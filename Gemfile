@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Money
 gem 'money', '~> 6.7'
+gem 'money-rails', '~> 1.6'
 
 # Use Devise for user authentication
 gem 'devise', '~> 4.0'
