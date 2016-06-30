@@ -11,13 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630190942) do
+ActiveRecord::Schema.define(version: 20160630213341) do
 
   create_table "admins", force: :cascade do |t|
-    t.string   "phone"
-    t.text     "address"
-    t.boolean  "looking"
-    t.string   "time_frame"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -28,18 +24,13 @@ ActiveRecord::Schema.define(version: 20160630190942) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "name"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "agents", force: :cascade do |t|
-    t.string   "phone"
-    t.text     "address"
-    t.boolean  "looking"
-    t.string   "time_frame"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -50,8 +41,8 @@ ActiveRecord::Schema.define(version: 20160630190942) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "phone"
+    t.string   "agent_number"
   end
 
   add_index "agents", ["email"], name: "index_agents_on_email", unique: true
@@ -72,10 +63,6 @@ ActiveRecord::Schema.define(version: 20160630190942) do
   end
 
   create_table "customers", force: :cascade do |t|
-    t.string   "phone"
-    t.text     "address"
-    t.boolean  "looking"
-    t.string   "time_frame"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -86,8 +73,10 @@ ActiveRecord::Schema.define(version: 20160630190942) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.text     "address"
+    t.string   "phone"
+    t.string   "time_frame"
+    t.boolean  "looking"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true
@@ -106,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160630190942) do
     t.decimal  "estimate",    precision: 12, scale: 2
     t.text     "seller_info"
     t.string   "pid"
+    t.string   "status"
   end
 
   create_table "wishlists", force: :cascade do |t|

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :agents
+  get 'agent/dashboard'
+  devise_for :customers
+  get 'customer/dashboard'
+  devise_for :admins
   get 'admin/dashboard'
 
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
