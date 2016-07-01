@@ -4,6 +4,13 @@
     <title>Dashboard</title>
   </head>
   <body>
-    <h1>Dashboard for <%= @admin.email %></h1>
+    <% if admin_signed_in? %>
+      <h1>Dashboard for <%= @admin.email %></h1>
+      <p><%= link_to 'Log Out', destroy_admin_session_path, method: :delete %><br/></p>
+    <% else %>
+      <h5>
+        <%= link_to 'Register', new_admin_registration_path %>
+      </h5>
+    <% end %>
   </body>
 </html>
