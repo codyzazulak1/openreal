@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     admin_signed_in? || customer_signed_in? || agent_signed_in?
   end
 
-  def who_logged_in
+  def logged_in_type
     if admin_signed_in?
       return Admin
     elsif customer_signed_in?

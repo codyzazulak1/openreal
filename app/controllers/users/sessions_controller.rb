@@ -2,13 +2,11 @@ class Users::SessionsController < Devise::SessionsController
 # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
+
   def new
-   if admin_signed_in?
+   if logged_in?
      redirect_to dashboard_path
-     flash[:notice] = "You are already signed in as an admin."
-   elsif customer_signed_in?
-     redirect_to dashboard_path
-     flash[:notice] = "You are already signed in as a customer."
+     flash[:notice] = "You are already signed in as #{logged_in_type}."
    else
      super
    end

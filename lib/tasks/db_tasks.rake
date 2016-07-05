@@ -131,14 +131,17 @@ namespace :db_tasks do
 
   desc "Seed 20 properties"
   task :seed_properties, [] => :environment do
+
     raise "Can't run on Production" if Rails.env.production?
+
+    cities = ["Langley", "Surrey", "Vancouver", "Burnaby"]
 
     arr = (1..20).map { |n| Property.create(description: "House number #{n}") }
     fake = Faker::Address
     arr.each { |p|
       puts p.description << " created!"
       p.address = Address.create(
-        city: fake.city,
+        city: cities.sample,
         address_first: fake.street_address,
         postal_code: fake.zip,
         latitude: BigDecimal(fake.latitude),

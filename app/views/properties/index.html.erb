@@ -10,8 +10,10 @@
       <ul>
         <% @properties.each do |p| %>
           <li>
-            <h3>Placeholder Image</h3>
-            <h5><%= p.address %></h5>
+            <h1>Placeholder Image</h1>
+            <h5><%= p.address.address_first %></h5>
+            <h5><%= p.address.city %></h5>
+            <h5><%= p.address.postal_code %></h5>
           </li>
         <%end%>
       </ul>
