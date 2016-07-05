@@ -139,7 +139,7 @@ namespace :db_tasks do
     arr = (1..20).map { |n| Property.create(description: "House number #{n}") }
     fake = Faker::Address
     arr.each { |p|
-      puts p.description << " created!"
+      puts p.description
       p.address = Address.create(
         city: cities.sample,
         address_first: fake.street_address,

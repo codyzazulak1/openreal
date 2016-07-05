@@ -1,0 +1,5 @@
+<ul>
+  <% @addresses.each do |address| %>
+    <li><%= link_to address.city, "/properties/cities/#{address.city}" %></li>
+  <% end %>
+</ul>

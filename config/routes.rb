@@ -15,8 +15,13 @@ Rails.application.routes.draw do
   get '/dashboard', to: :get_dash, controller: 'dashboard'
   get '/login', to: :login, controller: 'welcome'
 
-  resources :properties
+  resources :properties do
+    collection do
+      get 'cities'
+    end
+  end
 
+  get 'properties/cities', to: :cities_list, controller: 'properties'
   get 'properties/cities/:city', to: :city, controller: 'properties'
 
   root to: 'welcome#index'
