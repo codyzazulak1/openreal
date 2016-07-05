@@ -11,16 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704235457) do
+ActiveRecord::Schema.define(version: 20160705185029) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
     t.string   "address_second"
     t.string   "street"
     t.string   "city"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "postal_code"
+    t.integer  "property_id"
+    t.decimal  "latitude",       precision: 9, scale: 6
+    t.decimal  "longitude",      precision: 9, scale: 6
   end
+
+  add_index "addresses", ["property_id"], name: "index_addresses_on_property_id"
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",              default: "", null: false
@@ -119,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160704235457) do
     t.string   "zoning"
     t.string   "ownership"
     t.string   "status"
-    t.string   "postal_code"
+    t.text     "description"
   end
 
   create_table "services", force: :cascade do |t|
