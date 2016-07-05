@@ -3,13 +3,13 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="name">
-    <%= f.label :first_name %><br />
+  <div class="field">
+    <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
-  <div class="name">
-    <%= f.label :last_name %><br />
+  <div class="field">
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
 
@@ -36,4 +36,4 @@
   </div>
 <% end %>
 
-<%= render "admins/shared/links" %>
+<%= render "agents/shared/links" %>

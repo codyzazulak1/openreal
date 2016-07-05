@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to OpenReal</title>
+  </head>
+  <body>
+    <h1>Welcome <%= @user.first_name if @user %></h1>
+    <% if @user %>
+      <div>
+      <% if @user.class == Admin %>
+        <%= link_to 'Log Out', destroy_admin_session_path, method: :delete %>
+      <% elsif @user.class == Agent %>
+        <%= link_to 'Log Out', destroy_agent_session_path, method: :delete %>
+      <% elsif @user.class == Customer %>
+        <%= link_to 'Log Out', destroy_customer_session_path, method: :delete %>
+      <%end%>
+        <%= link_to 'Dashboard', dashboard_path %>
+      <div>
+    <%end%>
+  </body>
+</html>

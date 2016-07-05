@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Openreal</title>
+  </head>
+  <body>
+    <% if !@properties %>
+      <h1> There are no properties here </h1>
+    <%else%>
+      <ul>
+        <% @properties.each do |p| %>
+          <li>
+            <h3>Placeholder Image</h3>
+            <h5><%= p.address %></h5>
+          </li>
+        <%end%>
+      </ul>
+    <%end%>
+  </body>
+</html>
+

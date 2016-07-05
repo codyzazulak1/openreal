@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <% if agent_signed_in? %>
+      <h1>Dashboard for <%= "#{@agent.first_name} #{@agent.last_name}" %></h1>
+      <h2>Email: <%= @agent.email %></h2>
+      <p><%= link_to 'Log Out', destroy_agent_session_path, method: :delete %><br/></p>
+      <p><%= button_to 'Delete Account', registration_path(:agent), method: :delete %>
+    <% else %>
+      <h5>
+        <%= link_to 'Register', new_agent_registration_path %>
+        <%= link_to 'Log In', new_agent_session_path %>
+      </h5>
+    <% end %>
+  </body>
+</html>

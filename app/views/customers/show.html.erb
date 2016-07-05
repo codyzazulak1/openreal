@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <% if customer_signed_in? %>
+      <h1>Dashboard for <%= @customer.first_name + @customer.last_name%></h1>
+      <h2>Email: <%= @customer.email %></h2>
+      <p><%= link_to 'Log Out', destroy_customer_session_path, method: :delete %><br/></p>
+      <p><%= button_to 'Delete Account', registration_path(:customer), method: :delete %>
+    <% else %>
+      <h5>
+        <%= link_to 'Register', new_customer_registration_path %>
+        <%= link_to 'Log In', new_customer_session_path %>
+      </h5>
+    <% end %>
+  </body>
+</html>
+
