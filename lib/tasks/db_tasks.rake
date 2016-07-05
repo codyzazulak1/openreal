@@ -136,13 +136,14 @@ namespace :db_tasks do
     arr = (1..20).map { |n| Property.create(description: "House number #{n}") }
     fake = Faker::Address
     arr.each { |p|
-      p.addresses.create(
+      p.address = Address.create(
         city: fake.city,
         address_first: fake.street_address,
         postal_code: fake.zip,
         latitude: BigDecimal(fake.latitude),
         longitude: BigDecimal(fake.longitude)
       )
+      p.save
     }
 
   end
@@ -182,7 +183,7 @@ namespace :db_tasks do
     raise "Can't run on Production" if Rails.env.production?
 
     Property.all.each { |a|
-      puts "Destroying Property: #{a.first_name} #{a.last_name}"
+      puts "Destroying: #{a.description}"
       a.destroy
     }
   end

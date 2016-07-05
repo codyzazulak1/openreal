@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
 
-  belongs_to :property, dependent: :destroy
+  belongs_to :property
 
 end
