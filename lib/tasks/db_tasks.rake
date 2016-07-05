@@ -108,7 +108,7 @@ namespace :db_tasks do
   end
 
   desc "Seed 3 Customers"
-  task :seed_agents, [] => :environment do
+  task :seed_customers, [] => :environment do
     raise "Can't run on Production" if Rails.env.production?
 
     Customer.create(first_name: "Steven", last_name: "Customer", email: "steven@customer.com", password: "butts1", password_confirmation: "butts1")
@@ -136,6 +136,7 @@ namespace :db_tasks do
     arr = (1..20).map { |n| Property.create(description: "House number #{n}") }
     fake = Faker::Address
     arr.each { |p|
+      puts p.description << " created!"
       p.address = Address.create(
         city: fake.city,
         address_first: fake.street_address,
@@ -198,9 +199,9 @@ namespace :db_tasks do
 
   desc "All user seeds"
   task :seed_users do
-    Rake::Task['db_tasks:admins'].execute
-    Rake::Task['db_tasks:agents'].execute
-    Rake::Task['db_tasks:customers'].execute
+    Rake::Task['db_tasks:seed_admins'].execute
+    Rake::Task['db_tasks:seed_agents'].execute
+    Rake::Task['db_tasks:seed_customers'].execute
   end
 
 end
