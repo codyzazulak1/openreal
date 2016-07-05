@@ -22,6 +22,8 @@ namespace :db_tasks do
     ]
 
     puts ""
+    puts "START ALL COMMANDS WITH 'db_tasks'".center(100)
+    puts ""
     puts "Overall Commands".center(100, " - ")
     puts ""
     overall_commands.each { |c|
@@ -187,17 +189,17 @@ namespace :db_tasks do
 
   desc "Destroy all / purge database"
   task :DESTROY, [] => :environment do
-    Rake::Task[db_tasks:destroy_admins].execute
-    Rake::Task[db_tasks:destroy_properties].execute
-    Rake::Task[db_tasks:destroy_agents].execute
-    Rake::Task[db_tasks:destroy_customers].execute
+    Rake::Task['db_tasks:destroy_admins'].execute
+    Rake::Task['db_tasks:destroy_properties'].execute
+    Rake::Task['db_tasks:destroy_agents'].execute
+    Rake::Task['db_tasks:destroy_customers'].execute
   end
 
   desc "All user seeds"
   task :seed_users do
-    Rake::Task[db_tasks:admins].execute
-    Rake::Task[db_tasks:agents].execute
-    Rake::Task[db_tasks:customers].execute
+    Rake::Task['db_tasks:admins'].execute
+    Rake::Task['db_tasks:agents'].execute
+    Rake::Task['db_tasks:customers'].execute
   end
 
 end
