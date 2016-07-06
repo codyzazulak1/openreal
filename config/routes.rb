@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'welcome#index'
+
   devise_for :agents, :controllers => {
                           registrations: 'registrations',
                           sessions: 'users/sessions'
@@ -12,17 +14,18 @@ Rails.application.routes.draw do
                       registrations: 'registrations',
                       sessions: 'users/sessions'
                       }
+
   get '/dashboard', to: :get_dash, controller: 'dashboard'
   get '/login', to: :login, controller: 'welcome'
+
 
   resources :properties do
     collection do
       get 'cities'
     end
   end
-
-  get 'properties/cities', to: :cities_list, controller: 'properties'
   get 'properties/cities/:city', to: :city, controller: 'properties'
 
-  root to: 'welcome#index'
+  get 'welcome/howitworks', to: :howitworks, controller: 'welcome'
+  get 'welcome/contactus', to: :contactus, controller: 'welcome'
 end
