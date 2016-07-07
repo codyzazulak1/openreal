@@ -1,4 +1,5 @@
-### Please rebuild database with `rake db_tasks:allthethings` before changing anything.
+## Rebuild the database first with `rake db:rebuild`
+
 
 ### Run `rake commands:list` for a list of all database commands
 ### Here they are anyways
