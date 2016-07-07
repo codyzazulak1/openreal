@@ -15,6 +15,7 @@
             <h5><%= p.address.address_first %></h5>
             <h5><%= p.address.city %></h5>
             <h5><%= p.address.postal_code %></h5>
+            <%= link_to p.description, property_path(p) %>
           </li>
         <%end%>
       </ul>

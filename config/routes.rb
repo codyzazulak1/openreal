@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: :get_dash, controller: 'dashboard'
   get '/login', to: :login, controller: 'welcome'
+  get '/register', to: :register, controller: 'welcome'
 
   resources :contact_forms
 
