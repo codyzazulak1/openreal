@@ -16,6 +16,9 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     if @property.save
+      params[:photos]['picture'].each do |p|
+        @property.photos.create!(picture: p)
+      end
       redirect_to properties_path, alert: "Created Successfully"
     else
       redirect_to new_property_path

@@ -12,8 +12,8 @@
           <li>
             <h1>Placeholder Image</h1>
             <div>
-              <% p.photos.each do |p| %>
-                <img src=<%= p.picture %>/>
+              <% p.photos.all.each do |photo| %>
+                <%= image_tag photo.picture.url %>
               <%end%>
             </div>
             <h5><%= p.address.address_first %></h5>
