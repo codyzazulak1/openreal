@@ -6,6 +6,7 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
+    @photo = @property.photos.build
   end
 
   def show
@@ -40,7 +41,7 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:description, :photo, address_attributes: [:address_first, :address_second, :city, :postal_code])
+    params.require(:property).permit(:description, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code])
   end
 
 end

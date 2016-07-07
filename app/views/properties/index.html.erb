@@ -11,7 +11,11 @@
         <% @properties.each do |p| %>
           <li>
             <h1>Placeholder Image</h1>
-            <img src=<%=p.photo%>/>
+            <div>
+              <% p.photos.each do |p| %>
+                <img src=<%= p.picture %>/>
+              <%end%>
+            </div>
             <h5><%= p.address.address_first %></h5>
             <h5><%= p.address.city %></h5>
             <h5><%= p.address.postal_code %></h5>

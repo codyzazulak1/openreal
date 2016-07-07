@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160705234650) do
+ActiveRecord::Schema.define(version: 20160707201740) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(version: 20160705234650) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.integer  "property_id"
+    t.string   "picture"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "photos", ["property_id"], name: "index_photos_on_property_id"
+
   create_table "properties", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -126,7 +135,6 @@ ActiveRecord::Schema.define(version: 20160705234650) do
     t.string   "ownership"
     t.string   "status"
     t.text     "description"
-    t.string   "photo"
   end
 
   create_table "services", force: :cascade do |t|
