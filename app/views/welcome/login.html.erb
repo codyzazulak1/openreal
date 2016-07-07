@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login</title>
-  </head>
-  <body>
-    <h1>Select account type</h1>
-    <%= button_to "Customer", '/customers/sign_in'%>
-    <%= button_to "Agent", '/agents/sign_in' %>
-    <%= button_to "Admin", '/admins/sign_in'%>
-  </body>
-</html>
+<h1>Select account type</h1>
+<%= link_to "Customer", '/customers/sign_in'%>
+<%= link_to "Agent", '/agents/sign_in' %>
+<%= link_to "Admin", '/admins/sign_in'%>

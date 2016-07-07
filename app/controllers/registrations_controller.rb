@@ -2,16 +2,24 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def current_user
-      current_admin || current_customer
-    end
-
     def sign_up_params
-      params.require(:admin).permit(:first_name, :last_name, :email, :password)
+      if resource_class == Admin
+        params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      elsif resource_class == Agent
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      elsif resource_class == Customer
+        params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      end
     end
 
     def account_update_params
-      params.require(:admin).permit(:first_name, :last_name, :email, :password)
+      if resource_class == Admin
+        params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      elsif resource_class == Agent
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      elsif resource_class == Customer
+        params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      end
     end
 
 end
