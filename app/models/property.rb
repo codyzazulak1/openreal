@@ -1,9 +1,9 @@
 class Property < ActiveRecord::Base
 
   has_one :address, :dependent => :destroy
+  has_many :photos
 
   accepts_nested_attributes_for :address
-
-  mount_uploader :photo, PhotoUploader
+  accepts_nested_attributes_for :photos
 
 end
