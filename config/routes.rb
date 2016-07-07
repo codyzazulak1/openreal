@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: :get_dash, controller: 'dashboard'
   get '/login', to: :login, controller: 'welcome'
 
+  resources :contact_forms
 
   resources :properties do
     collection do
@@ -27,5 +28,5 @@ Rails.application.routes.draw do
   get 'properties/cities/:city', to: :city, controller: 'properties'
 
   get 'welcome/howitworks', to: :howitworks, controller: 'welcome'
-  get 'welcome/contactus', to: :contactus, controller: 'welcome'
+  get 'welcome/contact_us', to: 'contact_forms#new'
 end

@@ -17,10 +17,6 @@ class WelcomeController < ApplicationController
     end
   end
 
-  def contactus
-
-  end
-
   def howitworks
 
   end
