@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       get 'cities'
     end
   end
+
+  resources :photos
+
   get 'properties/cities/:city', to: :city, controller: 'properties'
 
   get 'welcome/howitworks', to: :howitworks, controller: 'welcome'
