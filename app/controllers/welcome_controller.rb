@@ -17,4 +17,8 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def howitworks
+
+  end
+
 end

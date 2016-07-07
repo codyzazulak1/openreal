@@ -1,0 +1,28 @@
+<h1>Add a Property</h1>
+<%= form_for setup_property(@property) do |fp| %>
+  <div>
+    <%= label_tag :description %>
+    <%= fp.text_field :description %>
+  </div>
+  <div>
+    <%= label_tag :photo %>
+    <%= fp.file_field :photo %>
+  </div>
+  <%= fp.fields_for :address do |fa| %>
+    <div>
+      <%= fa.label :address_first %>
+      <%= fa.text_field :address_first %>
+    </div>
+    <div>
+      <%= fa.label :address_second %>
+      <%= fa.text_field :address_second %>
+    </div>
+      <%= fa.label :city %>
+      <%= fa.text_field :city %>
+    <div>
+      <%= fa.label :postal_code %>
+      <%= fa.text_field :postal_code %>
+    </div>
+  <%end%>
+  <%= fp.submit "Create" %>
+<% end %>
