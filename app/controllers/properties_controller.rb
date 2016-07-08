@@ -10,7 +10,9 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id])
+    if Property.all.count != 0
+      @property = Property.find(params[:id])
+    end
   end
 
   def create

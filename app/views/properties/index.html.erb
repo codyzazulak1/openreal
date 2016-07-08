@@ -4,7 +4,7 @@
     <title>Openreal</title>
   </head>
   <body>
-    <% if !@properties %>
+    <% if @properties.count == 0 %>
       <h1> There are no properties here </h1>
     <%else%>
       <ul>
@@ -12,9 +12,7 @@
           <li>
             <h1>Placeholder Image</h1>
             <div>
-              <% p.photos.all.each do |photo| %>
-                <%= image_tag photo.picture.url %>
-              <%end%>
+              <%= image_tag p.photos.first.picture.url %>
             </div>
             <h5><%= p.address.address_first %></h5>
             <h5><%= p.address.city %></h5>
