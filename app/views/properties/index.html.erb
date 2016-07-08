@@ -12,7 +12,11 @@
           <li>
             <h1>Placeholder Image</h1>
             <div>
-              <%= image_tag p.photos.first.picture.url %>
+              <% if p.has_photos? %>
+                <%= image_tag p.photos.first.picture.url %>
+              <%else%>
+                <%= image_tag "http://www.clipartbest.com/cliparts/9iz/obA/9izobA8GT.jpeg" %>
+              <%end%>
             </div>
             <h5><%= p.address.address_first %></h5>
             <h5><%= p.address.city %></h5>

@@ -7,6 +7,10 @@ class Admin < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :validatable, :trackable 
 
+  def full_name
+    self.first_name << " " << self.last_name
+  end
+
   private
 
 end

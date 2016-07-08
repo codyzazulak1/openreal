@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160707201740) do
+ActiveRecord::Schema.define(version: 20160708191622) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -103,9 +103,14 @@ ActiveRecord::Schema.define(version: 20160707201740) do
   add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
 
   create_table "favorites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "wishlist_id"
+    t.integer  "property_id"
   end
+
+  add_index "favorites", ["property_id"], name: "index_favorites_on_property_id"
+  add_index "favorites", ["wishlist_id"], name: "index_favorites_on_wishlist_id"
 
   create_table "features", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -144,8 +149,11 @@ ActiveRecord::Schema.define(version: 20160707201740) do
 
   create_table "wishlists", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
+
+  add_index "wishlists", ["customer_id"], name: "index_wishlists_on_customer_id"
 
 end

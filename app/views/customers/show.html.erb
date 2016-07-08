@@ -7,6 +7,7 @@
     <% if customer_signed_in? %>
       <h1>Dashboard for <%= @customer.first_name + @customer.last_name%></h1>
       <h2>Email: <%= @customer.email %></h2>
+      <p><%= link_to 'Wishlists', customer_wishlists_path(@customer) %></p>
       <p><%= link_to 'Log Out', destroy_customer_session_path, method: :delete %><br/></p>
       <p><%= button_to 'Delete Account', registration_path(:customer), method: :delete %>
     <% else %>

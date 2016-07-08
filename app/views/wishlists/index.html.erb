@@ -1,0 +1,9 @@
+<h1>Wishlists for <%= @customer.first_name %></h1>
+<div>
+<%= link_to "New Wishlist", new_customer_wishlist_path %>
+</div>
+<% @wishlists.each do |wl| %>
+  <div style="background-color: grey; display: inline-block; width: 150px; height: 100px; margin: 20px;">
+    <%= link_to wl.id, customer_wishlist_path(@customer, wl) %>
+  </div>
+<%end%>
