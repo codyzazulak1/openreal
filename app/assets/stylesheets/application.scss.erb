@@ -575,23 +575,19 @@ nav {
 
 /* Styles for Hero image & hero message */
 .hero {
-  background: url("../img/front.jpg") no-repeat center center;
+  background: url(<%= asset_path 'front.jpg' %>) no-repeat center center;
   background-size: cover;
-  height: 90vh; 
-  &:before {
-    content:"";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: .8; }
+  height: 400px;
+  position: relative;
+
   .intro {
-    padding: 3rem;
-    position: relative;
-    top: 60%;
-    left: 10%;
-    transform: translateY(-50%); }
+    // padding: 3rem;
+    position: absolute;
+    top: 50%;
+    // left: 10%;
+    transform: translateY(-50%); 
+  }
+
   h1 {
     margin-top: -140px;
     color: #fff;
@@ -599,13 +595,17 @@ nav {
     line-height: 1.5em;
     letter-spacing: -0.025em;
     font-weight: 500;
-    text-align: center; }
+    text-align: center; 
+  }
+
   p {
     color: #fff;
     line-height: 1.0em;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem; 
+  }
+
   @media only screen and (min-width: 40.063em) {
     h1 {
       padding-top: 1.5rem;
@@ -618,10 +618,7 @@ nav {
 
 /* Styles for search dropdown */
 .search-bar {
-  position: relative;
-  margin-bottom: 0%;
-  margin-top: 15%;
-  margin-left: 0%;
+
 }
 
 .search-bar .input-group {
