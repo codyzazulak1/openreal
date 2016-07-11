@@ -1,2 +1,9 @@
-<h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+<h1><%= @customer.full_name %>'s favorites</h1>
+
+<ul>
+  <% @favorites.each do |f| %>
+    <li>
+      <%= link_to f.property.description, property_path(f.property) %>
+    </li>
+  <%end%>
+</ul>
