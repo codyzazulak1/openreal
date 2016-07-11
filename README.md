@@ -16,3 +16,6 @@
 - `destroy:properties` - Destroys all Properties
 - `destroy:EVERYTHING` - Destroys EVERYTHING
 
+## TODO
+* All static pages
+* Working sale process
