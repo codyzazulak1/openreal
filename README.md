@@ -1,29 +1,18 @@
+## Rebuild the database first with `rake db:rebuild`
 
 
+### Run `rake commands:list` for a list of all database commands
+### Here they are anyways
+- `db:rebuild` - Rebuilds Database
+- `seed:admins` - Seeds Admins (3)
+- `seed:agents` - Seeds Agents (3)
+- `seed:customers` - Seeds Customers (3)
+- `seed:users` - Seeds Admins, Agents, and Customers (3 of each)
+- `seed:properties` - Seeds Properties (20)
+- `destroy:admins` - Destroys all Admins
+- `destroy:agents` - Destroys all Agents
+- `destroy:customers` - Destroys all Customers
+- `destroy:users` - Destroys all Admins, Agents, and Customers
+- `destroy:properties` - Destroys all Properties
+- `destroy:EVERYTHING` - Destroys EVERYTHING
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

@@ -1,0 +1,25 @@
+<h1>People to Contact </h1>
+<ul>
+  <% @cforms.each do |cf| %>
+    <li>
+      <div>
+        <div>
+          <h5>Name: </h5>
+          <span><%= cf.name %></span>
+        </div>
+        <div>
+          <h5>Email: </h5>
+          <span><%= cf.email %></span>
+        </div>
+        <div>
+          <h5>Phone: </h5>
+          <span><%= cf.phone %></span>
+        </div>
+        <div>
+          <h5>Notes: </h5>
+          <span><%= cf.notes %></span>
+        </div>
+      </div>
+    </li>
+  <%end%>
+</ul>

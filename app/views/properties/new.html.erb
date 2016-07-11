@@ -1,0 +1,30 @@
+<h1>Add a Property</h1>
+<%= form_for setup_property(@property), :html => { :multipart => true } do |fp| %>
+  <div>
+    <%= fp.label :description %>
+    <%= fp.text_field :description %>
+  </div>
+  <%= fp.fields_for :photos do |ffp| %>
+    <div>
+      <%= ffp.label :picture %>
+      <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+    </div>
+  <%end%>
+  <%= fp.fields_for :address do |ffa| %>
+    <div>
+      <%= ffa.label :address_first %>
+      <%= ffa.text_field :address_first %>
+    </div>
+    <div>
+      <%= ffa.label :address_second %>
+      <%= ffa.text_field :address_second %>
+    </div>
+      <%= ffa.label :city %>
+      <%= ffa.text_field :city %>
+    <div>
+      <%= ffa.label :postal_code %>
+      <%= ffa.text_field :postal_code %>
+    </div>
+  <%end%>
+  <%= fp.submit "Create" %>
+<% end %>
