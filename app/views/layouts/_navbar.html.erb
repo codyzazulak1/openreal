@@ -2,7 +2,7 @@
   <div class="top-bar">
     <div class="top-bar-left">
       <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text"><a id="logo" href="#">OpenReal</a></li>
+        <li class="menu-text"><a id="logo" href=<%= root_path %>>OpenReal</a></li>
       </ul>
     </div>
     <div class="top-bar-right">
@@ -17,7 +17,11 @@
         </li>
         <li><a href="#" class="active">Buy</a></li>
         <li><a href="#">How it works</a></li>
-        <li><a href="#">Sign in</a></li>
+        <% if @user %>
+          <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %>
+        <%else%>
+          <li><%= link_to 'Sign In', login_path %></li>
+        <%end%>
       </ul>
     </div>
   </div>
