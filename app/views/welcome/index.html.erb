@@ -10,12 +10,14 @@
       <div class="search-bar">
         <div class="small-9 medium-8 medium-push-2 columns">
           <!-- Search field -->
-          <div class="input-group">
-            <input type="text" class="input-group-field" placeholder="Enter Property Address">
-            <div class="input-group-button">
-              <button class="button">Get&nbsp;Offer</button>
+          <form id="addressForm">
+            <div class="input-group">
+              <input type="text" id="addressInput" class="input-group-field" placeholder="Enter Property Address">
+              <div class="input-group-button">
+                <button class="button" type="submit">Get&nbsp;Offer</button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -135,7 +137,7 @@
   </div>
 <div class="row">
   <div class="small-12 medium-6 large-8 columns">
-    <div class="card" style="background-image:url('img/whiterock.jpg');">
+    <div class="card" style="background-image:url(<%= asset_path 'whiterock.jpg' %>);">
       <a href="#" data-id="Whiterock">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -146,7 +148,7 @@
     </div>
   </div>
   <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url('img/burnaby.jpg');">
+    <div class="card" style="background-image:url(<%= asset_path 'burnaby.jpg' %>);">
       <a href="#" data-id="Burnaby">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -157,7 +159,7 @@
     </div>
   </div>
   <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url('img/delta.jpg');">
+    <div class="card" style="background-image:url(<%= asset_path 'delta.jpg' %>);">
       <a href="#" data-id="Delta">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -168,7 +170,7 @@
     </div>
   </div>
   <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url('img/mapleridge.jpg');">
+    <div class="card" style="background-image:url(<%= asset_path 'mapleridge.jpg' %>);">
       <a href="#" data-id="mapleridge">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -179,7 +181,7 @@
     </div>
   </div>
   <div class="small-12 medium-12 large-4 columns">
-    <div class="card" style="background-image:url('img/vancouver.jpg');">
+    <div class="card" style="background-image:url(<%= asset_path 'vancouver.jpg' %>);">
       <a href="#" data-id="vancouver">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -252,4 +254,5 @@
   </div>
 </div>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete"
+        async defer></script>
