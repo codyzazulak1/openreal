@@ -1,24 +1,255 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Welcome to OpenReal</title>
-  </head>
-  <body>
-    <h1>Welcome <%= @user.first_name if @user %></h1>
-    <% if @user %>
-      <div>
-      <% if @user.class == Admin %>
-        <%= link_to 'Log Out', destroy_admin_session_path, method: :delete %>
-      <% elsif @user.class == Agent %>
-        <%= link_to 'Log Out', destroy_agent_session_path, method: :delete %>
-      <% elsif @user.class == Customer %>
-        <%= link_to 'Log Out', destroy_customer_session_path, method: :delete %>
-      <%end%>
-        <%= link_to 'Dashboard', dashboard_path %>
-      </div>
-    <%else%>
-      <%= link_to 'Register', register_path %>
-      <%= link_to 'Log In', login_path %>
+<div>
+  <h1>Welcome <%= @user.first_name if @user %></h1>
+  <% if @user %>
+    <div>
+    <% if @user.class == Admin %>
+      <%= link_to 'Log Out', destroy_admin_session_path, method: :delete %>
+    <% elsif @user.class == Agent %>
+      <%= link_to 'Log Out', destroy_agent_session_path, method: :delete %>
+    <% elsif @user.class == Customer %>
+      <%= link_to 'Log Out', destroy_customer_session_path, method: :delete %>
     <%end%>
-  </body>
-</html>
+      <%= link_to 'Dashboard', dashboard_path %>
+    </div>
+  <%else%>
+    <%= link_to 'Register', register_path %>
+    <%= link_to 'Log In', login_path %>
+  <%end%>
+</div>
+ <!--Start Hero Section-->
+  <section class="hero">
+    <div class="row intro">
+      <div class="small-9 medium-9 large-9 columns">
+        <h1>Welcome to OpenReal</h1>
+        <p>Sell your home to OpenReal and eliminate the hassle of listings, showings and months of uncertainty.</p>
+      </div>
+      <!--Search Bar-->
+      <div class="search-bar">
+        <div class="small-9 medium-9 large-9 columns">
+          <!-- Search field -->
+          <div class="input-group">
+            <input type="text" class="input-group-field" placeholder="Enter Property Address">
+            <div class="input-group-button">
+              <button class="button">Get Offer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--End of Hero Section-->
+  <br>
+  <!--Start Why Opendoor Section -->
+  <section>
+    <div class="row column text-center section-title">
+      <h2>Why OpenReal?</h2>
+    </div>
+    <br>
+    <div class="row small-up-1 medium-up-3 large-up-3" class="perks">
+    <div class="small-1 medium-3 large03 columns">
+      <div class="callout">
+        <p><img src="img/money.jpg" alt="image of a planet called Pegasi B"></p>
+        <p class="lead">Selling your home hassle-free the moment when you are ready</p>
+        <p class="subheader">No need to hire an agent, list your home and wait for months for transaction to complete.</p>
+        <a href="">Learn More ></a>
+      </div>
+    </div>
+    <div class="small-1 medium-3 large03 columns">
+      <div class="callout">
+        <p><img src="img/house.jpg" alt="image of a planet called Pegasi B"></p>
+        <p class="lead">Obtaining a fair offer by telling us everything about your home</p>
+        <p class="subheader">No need to host countless showings with contracts falling through.</p>
+        <a href="">Get Offer ></a>
+      </div>
+    </div>
+    <div class="small-1 medium-3 large03 columns">
+      <div class="callout">
+        <p><img src="img/coins.jpg" alt="image of a planet called Pegasi B"></p>
+        <p class="lead">Moving in to your dream home worry-free</p>
+        <p class="subheader">All of our listings have certified home inspection and extended coverage warranty.</p>
+        <a href="">View Listings ></a>
+      </div>
+    </div>
+  </section>
+  <!--End Why Opendoor Section -->
+  <!--Start Carousel-->
+  <section>
+    <div class="row column text-center section-title">
+    <h2>Our Featured Listings</h2>
+    </div>
+    <br>
+    <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+      <ul class="orbit-container">
+        <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+        <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+        <li class="orbit-slide is-active">
+          <div class="image-wrapper overlay-fade-in">
+            <img class="carousel-img" src="img/P1.jpg">
+            <div class="image-overlay-content">
+              <h2>3616 W 1st Ave</h2>
+              <p class="price"></p>
+              <a href="#" class="button">More Info</a>
+            </div>
+          </div>
+        </li>
+        <li class="orbit-slide">
+          <div class="image-wrapper overlay-fade-in">
+            <img class="carousel-img" src="img/P3.jpg">
+            <div class="image-overlay-content">
+              <h2>3616 W 1st Ave</h2>
+              <p class="price"></p>
+              <a href="#" class="button">More Info</a>
+            </div>
+          </div>
+        </li>
+        <li class="orbit-slide">
+          <div class="image-wrapper overlay-fade-in">
+            <img class="carousel-img" src="img/P4.jpg">
+            <div class="image-overlay-content">
+              <h2>3616 W 1st Ave</h2>
+              <p class="price"></p>
+              <a href="#" class="button">More Info</a>
+            </div>
+          </div>
+        </li>
+        <li class="orbit-slide">
+          <div class="image-wrapper overlay-fade-in">
+            <img class="carousel-img" src="img/P5.jpg">
+            <div class="image-overlay-content">
+              <h2>3616 W 1st Ave</h2>
+              <p class="price"></p>
+              <a href="#" class="button">More Info</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!--End Carousel-->
+  <br>
+  <!--Start Browser by City Section-->
+  <section>
+    <div class="row column text-center section-title">
+    <h2>Browse By City</h2>
+    </div>
+  <div class="row">
+    <div class="small-12 medium-6 large-8 columns">
+      <div class="card" style="background-image:url('img/whiterock.jpg');">
+        <a href="#" data-id="Whiterock">
+          <div class="va-container">
+            <div class="va-middle text-center text-contrast">
+              <h2><strong>White Rock</strong></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="small-12 medium-6 large-4 columns">
+      <div class="card" style="background-image:url('img/burnaby.jpg');">
+        <a href="#" data-id="Burnaby">
+          <div class="va-container">
+            <div class="va-middle text-center text-contrast">
+              <h2><strong>Burnaby</strong></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="small-12 medium-6 large-4 columns">
+      <div class="card" style="background-image:url('img/delta.jpg');">
+        <a href="#" data-id="Delta">
+          <div class="va-container">
+            <div class="va-middle text-center text-contrast">
+              <h2><strong>Delta</strong></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="small-12 medium-6 large-4 columns">
+      <div class="card" style="background-image:url('img/mapleridge.jpg');">
+        <a href="#" data-id="mapleridge">
+          <div class="va-container">
+            <div class="va-middle text-center text-contrast">
+              <h2><strong>Maple Ridge</strong></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="small-12 medium-12 large-4 columns">
+      <div class="card" style="background-image:url('img/vancouver.jpg');">
+        <a href="#" data-id="vancouver">
+          <div class="va-container">
+            <div class="va-middle text-center text-contrast">
+              <h2><strong>Vancouver</strong></h2>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!--End Featured Listing Section-->
+<br>
+<!--Start Reference-->
+  <div class="row column text-center section-title">
+    <h2>In the News</h2>
+  </div>
+  <br>
+  <div class="row small-up-2 medium-up-3 large-up-6">
+    <div class="column" id="news">
+      <img class="thumbnail" src="http://placehold.it/300x400">
+      <h5>CBC</h5>
+    </div>
+    <div class="column">
+      <img class="thumbnail" src="http://placehold.it/300x400">
+      <h5>bloomberg</h5>
+    </div>
+    <div class="column">
+      <img class="thumbnail" src="http://placehold.it/300x400">
+      <h5>TechNews</h5>
+    </div>
+    <div class="column">
+      <img class="thumbnail" src="http://placehold.it/300x400">
+      <h5>VancouverSun</h5>
+    </div>
+    <div class="column">
+      <img class="thumbnail" src="http://placehold.it/300x400">
+      <h5>CNN</h5>
+    </div>
+    <div class="column">
+      <img class="thumbnail" src="http://placehold.it/300x400">
+      <h5>Metro Vancouver</h5>
+  </div>
+<!--End Reference-->
+  <br>
+<!--Start Footer-->
+  <hr>
+  <div class="callout large secondary">
+    <div class="row">
+      <div class="large-4 columns">
+        <h5>Vivamus Hendrerit Arcu Sed Erat Molestie</h5>
+        <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit.</p>
+      </div>
+      <div class="large-3 large-offset-2 columns">
+        <ul class="menu vertical" id="social">
+          <li><a href="#"><i class="fi-social-facebook"></i></a></li>
+          <li><a href="#"><i class="fi-social-twitter"></i></a></li>
+          <li><a href="#"><i class="fi-social-tumblr"></i></a></li>
+          <li><a href="#"><i class="fi-social-youtube"></i></a></li>
+        </ul>
+      </div>
+      <div class="large-3 columns">
+        <ul class="menu vertical" id="social">
+          <li><a href="#"><i class="fi-social-google-plus"></i></a></li>
+          <li><a href="#"><i class="fi-social-vimeo"></i></a></li>
+          <li><a href="#"><i class="fi-social-yahoo"></i></a></li>
+          <li><a href="#"><i class="fi-social-instagram"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<
+
+
