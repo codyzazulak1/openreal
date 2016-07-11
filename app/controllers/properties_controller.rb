@@ -12,6 +12,8 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+    else
+      redirect_to :index
     end
   end
 

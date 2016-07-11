@@ -20,8 +20,8 @@ class AddAttributesToProperties < ActiveRecord::Migration
       t.integer :fireplaces
     end
 
-    add_column :properties, :lot_length, precision: 8, scale: 2
-    add_column :properties, :lot_width, precision: 8, scale: 2
+    add_column :properties, :lot_length, :decimal, precision: 8, scale: 2
+    add_column :properties, :lot_width, :decimal, precision: 8, scale: 2
 
   end
 end
