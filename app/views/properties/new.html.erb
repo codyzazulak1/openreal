@@ -1,5 +1,5 @@
 <h1>Add a Property</h1>
-<%= form_for setup_property(@property), :html => { :multipart => true } do |fp| %>
+<%= form_for @property, :html => { :multipart => true } do |fp| %>
   <div>
     <%= fp.label :description %>
     <%= fp.text_field :description %>
