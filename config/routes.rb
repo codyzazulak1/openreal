@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'welcome#index'
+  root 'welcome#index'
 
   devise_for :agents, :controllers => {
                           registrations: 'registrations',
@@ -16,27 +16,24 @@ Rails.application.routes.draw do
                       }
 
   resources :customers, :only => [:show] do
-    resources :wishlists
+    resources :favorites, :only => [:index, :create, :destroy]
   end
 
-  get '/dashboard', to: :get_dash, controller: 'dashboard'
-  get '/login', to: :login, controller: 'welcome'
-  get '/register', to: :register, controller: 'welcome'
+  get '/dashboard', action: :get_dash, controller: 'dashboard'
+  get '/login', action: :login, controller: 'welcome'
+  get '/register', action: :register, controller: 'welcome'
 
-  resources :contact_forms
-
+  get 'properties/cities/:city', action: :city, controller: 'properties'
   resources :properties do
     collection do
       get 'cities'
     end
-
   end
-  resources :favorites, :only => [:create, :destroy]
+
   resources :photos
 
-  get 'properties/cities/:city', to: :city, controller: 'properties'
-  get 'properties/:id/favorite_this', to: :favorite_this, controller: 'favorites'
+  resources :contact_forms, :except => [:new]
+  get 'welcome/howitworks', action: :howitworks, controller: 'welcome'
+  get 'welcome/contact_us', action: :new, controller: 'contact_forms'
 
-  get 'welcome/howitworks', to: :howitworks, controller: 'welcome'
-  get 'welcome/contact_us', to: 'contact_forms#new'
 end

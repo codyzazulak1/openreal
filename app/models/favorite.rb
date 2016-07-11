@@ -1,7 +1,6 @@
 class Favorite < ActiveRecord::Base
 
-  belongs_to :wishlist
-
-  has_one :property
+  belongs_to :property
+  belongs_to :customer
 
 end

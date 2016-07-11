@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708191622) do
+ActiveRecord::Schema.define(version: 20160708232005) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -105,12 +105,12 @@ ActiveRecord::Schema.define(version: 20160708191622) do
   create_table "favorites", force: :cascade do |t|
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "wishlist_id"
     t.integer  "property_id"
+    t.integer  "customer_id"
   end
 
+  add_index "favorites", ["customer_id"], name: "index_favorites_on_customer_id"
   add_index "favorites", ["property_id"], name: "index_favorites_on_property_id"
-  add_index "favorites", ["wishlist_id"], name: "index_favorites_on_wishlist_id"
 
   create_table "features", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -127,17 +127,26 @@ ActiveRecord::Schema.define(version: 20160708191622) do
   add_index "photos", ["property_id"], name: "index_photos_on_property_id"
 
   create_table "properties", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.text     "seller_info"
     t.string   "pid"
+    t.string   "dwelling_class"
+    t.string   "property_type"
+    t.string   "building_type"
+    t.string   "title_to_land"
+    t.string   "sellers_interest"
+    t.string   "architecture_style"
+    t.integer  "number_of_floors"
+    t.integer  "floor_area"
+    t.integer  "year_built"
+    t.integer  "list_price"
+    t.integer  "stories"
     t.integer  "bedrooms"
-    t.integer  "full_baths"
-    t.integer  "half_baths"
-    t.integer  "area"
-    t.integer  "age"
-    t.string   "zoning"
-    t.string   "ownership"
+    t.integer  "bathrooms"
+    t.integer  "fireplaces"
+    t.decimal  "lot_length",         precision: 8, scale: 2
+    t.decimal  "lot_width",          precision: 8, scale: 2
     t.string   "status"
     t.text     "description"
   end
@@ -146,14 +155,5 @@ ActiveRecord::Schema.define(version: 20160708191622) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "wishlists", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "customer_id"
-  end
-
-  add_index "wishlists", ["customer_id"], name: "index_wishlists_on_customer_id"
 
 end
