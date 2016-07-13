@@ -1,0 +1,8 @@
+<h1>Step 2. Upgrades</h1>
+
+<%= fp.fields_for :photos do |ffp| %>
+  <div>
+    <%= ffp.label :picture %>
+    <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+  </div>
+<%end%>

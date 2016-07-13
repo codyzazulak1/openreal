@@ -18,8 +18,6 @@
 
 $(function(){ $(document).foundation(); });
 
-
-
 function autoComplete() {
   var defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(55.04841493732514, 180),
