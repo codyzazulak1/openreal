@@ -18,11 +18,37 @@
         <li><a href="#" class="active">Buy</a></li>
         <li><a href="#">How it works</a></li>
         <% if @user %>
-          <%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %>
+          <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
         <%else%>
-          <li><%= link_to 'Sign In', login_path %></li>
+          <li><a data-open="signinmodal">Sign in</a></li>
         <%end%>
       </ul>
     </div>
   </div>
 </nav>
+
+<% if !@user %>
+<div class="reveal" id="signinmodal" data-reveal>
+  <div class="row">
+    <div class="medium-7 medium-centered large-7 large-centered columns">
+      <form>
+        <div class="row column log-in-form">
+          <h3 class="text-left">Sign In</h3>
+          <label>Email
+            <input type="text" placeholder="somebody@example.com">
+          </label>
+          <label>Password
+            <input type="password" placeholder="Password">
+          </label>
+          <input id="remember-me" type="checkbox"><label for="remember-me">Remember me</label>
+          <p><a type="submit" class="button expanded">SIGN IN</a></p>
+          <p class="text-center"><a href="#">Forgot your password?</a></p>   
+        </div>
+      </form>
+    </div>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%end%>
