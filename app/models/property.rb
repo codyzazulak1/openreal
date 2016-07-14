@@ -2,6 +2,7 @@ class Property < ActiveRecord::Base
   attr_accessor :current_step
 
   has_one :address, :dependent => :destroy
+  has_one :contact_form, :dependent => :destroy
   has_many :photos
   has_many :favorites
 
