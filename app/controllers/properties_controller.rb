@@ -58,7 +58,7 @@ class PropertiesController < ApplicationController
     end
 
     if @property.new_record?
-      render "new"
+      render 'new'
     else
       session[:property_step] = session[:property] = session[:address] = nil
       flash[:notice] = "property saved!"

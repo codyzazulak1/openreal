@@ -1,4 +1,4 @@
-<%= form_for @property, :html => { :multipart => true } do |fp| %>
+<%= form_for @property, url: properties_new_path, :html => { :multipart => true } do |fp| %>
   <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= @property.current_progress %>" aria-valuemin="0" aria-valuetext="<%= @property.current_progress %> percent"  aria-valuemax="100">
     <div class="progress-meter" style="width: <%= @property.current_progress %>%" ></div>
   </div>
