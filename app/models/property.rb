@@ -7,6 +7,7 @@ class Property < ActiveRecord::Base
   has_many :favorites
 
   accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :contact_form
   accepts_nested_attributes_for :photos
 
   def has_photos?

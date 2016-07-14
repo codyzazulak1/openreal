@@ -1,23 +1,23 @@
 <h1>Step 4. How can we contact you?</h1>
 
-<%= fp.fields_for :contact do |f| %>
+<%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= cf.label :name %>
+    <%= cf.text_field :name %>
   </div>
 
   <div>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= cf.label :email %>
+    <%= cf.text_field :email %>
   </div>
 
   <div>
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
+    <%= cf.label :phone %>
+    <%= cf.text_field :phone %>
   </div>
 
   <div>
-    <%= f.label :notes %>
-    <%= f.text_field :notes %>
+    <%= cf.label :notes %>
+    <%= cf.text_field :notes %>
   </div>
 <%end%>
