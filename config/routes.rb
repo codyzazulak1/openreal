@@ -16,7 +16,7 @@ Rails.application.routes.draw do
                       }
 
   resources :customers, :only => [:show] do
-    resources :favorites, :only => [:index, :create, :destroy]
+    resources :favorites, :only => [:index]
   end
 
   get '/dashboard', action: :get_dash, controller: 'dashboard'
@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   get '/register', action: :register, controller: 'welcome'
 
   get 'properties/cities/:city', action: :city, controller: 'properties'
+  post 'properties/new', action: :create, controller: 'properties'
+
   resources :properties do
+    post '/favorite', action: :favorite, controller: 'properties'
+    delete '/favorite', action: :unfavorite, controller: 'properties'
     collection do
       get 'cities'
     end

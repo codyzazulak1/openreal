@@ -14,6 +14,7 @@ class PropertiesController < ApplicationController
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
+    @address = Address.new(property: @property)
   end
 
   def show
@@ -22,6 +23,13 @@ class PropertiesController < ApplicationController
     else
       redirect_to :index
     end
+
+    if current_customer.favorites.where(property: @property).exists?
+      @has_favorite = true
+    else
+      @has_favorite = false
+    end
+
   end
 
   def create
@@ -50,7 +58,7 @@ class PropertiesController < ApplicationController
     end
 
     if @property.new_record?
-      render "new"
+      render 'new'
     else
       session[:property_step] = session[:property] = session[:address] = nil
       flash[:notice] = "property saved!"
@@ -72,6 +80,27 @@ class PropertiesController < ApplicationController
   def cities
     @addresses = Address.select(:city).distinct
     render :cities
+  end
+
+  def favorite
+    @property = Property.find(params[:property_id])
+    @customer = current_customer
+    @favorite = Favorite.new(property: @property, customer: @customer)
+
+    if @favorite.save
+      redirect_to @property
+    end
+  end
+
+  def unfavorite
+    @property = Property.find(params[:property_id])
+    @customer = current_customer
+    @favorite = Favorite.find_by(property: @property, customer: @customer)
+
+    @favorite.destroy
+
+    redirect_to @property
+
   end
 
   private

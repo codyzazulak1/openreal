@@ -5,20 +5,6 @@ class FavoritesController < ApplicationController
     @favorites = @customer.favorites
   end
 
-  def create
-    @customer = current_customer
-    @property = Property.find(params[:id])
-    @favorite = @customer.favorites.create(property: @property)
-
-    if @favorite.save
-      redirect_to @property
-    end
-
-  end
-
-  def destroy
-  end
-
   private
 
 end
