@@ -30,14 +30,13 @@ class PropertiesController < ApplicationController
     session[:property] ||= property_params unless params[:property].nil?
     session[:property] = session[:property].merge(property_params) unless params[:property].nil?
     session[:address] = address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
-    session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_forms_attributes].nil?
+    session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 
     @property = Property.new(session[:property])
     @address = Address.new(session[:address])
     @contact = ContactForm.new(session[:contact])
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
-    # byebug
 
     if @property.valid?
       if params[:back_button]
@@ -86,7 +85,7 @@ class PropertiesController < ApplicationController
   end
 
   def contact_params
-    params.require(:property).require(:contact_forms_attributes).permit(:name, :email, :phone, :notes)
+    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes)
   end
 
 end
