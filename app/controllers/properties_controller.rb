@@ -30,7 +30,7 @@ class PropertiesController < ApplicationController
     session[:property] ||= property_params unless params[:property].nil?
     session[:property] = session[:property].merge(property_params) unless params[:property].nil?
     session[:address] = address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
-    session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_forms].nil?
+    session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_forms_attributes].nil?
 
     @property = Property.new(session[:property])
     @address = Address.new(session[:address])
@@ -86,7 +86,7 @@ class PropertiesController < ApplicationController
   end
 
   def contact_params
-    params.require(:property).require(:contact_forms).permit(:name, :email, :phone, :notes)
+    params.require(:property).require(:contact_forms_attributes).permit(:name, :email, :phone, :notes)
   end
 
 end
