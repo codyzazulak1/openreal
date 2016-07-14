@@ -31,20 +31,22 @@
 <div class="reveal" id="signinmodal" data-reveal>
   <div class="row">
     <div class="medium-7 medium-centered large-7 large-centered columns">
-      <form>
+      <%= form_tag (customer_session_path) do |f| %>
         <div class="row column log-in-form">
           <h3 class="text-left">Sign In</h3>
           <label>Email
-            <input type="text" placeholder="somebody@example.com">
+            <%= email_field_tag('email') %>
           </label>
           <label>Password
-            <input type="password" placeholder="Password">
+            <%= password_field_tag("password") %>
           </label>
-          <input id="remember-me" type="checkbox"><label for="remember-me">Remember me</label>
+          <%= check_box_tag('remember_me', "0", false) %>
+          <%= label_tag :remember_me %>
+          <%= submit_tag "Log in" %>
           <p><a type="submit" class="button expanded">SIGN IN</a></p>
           <p class="text-center"><a href="#">Forgot your password?</a></p>   
         </div>
-      </form>
+      <% end %>
     </div>
   </div>
   <button class="close-button" data-close aria-label="Close modal" type="button">
