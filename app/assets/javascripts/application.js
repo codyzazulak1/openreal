@@ -37,4 +37,21 @@ function autoComplete() {
     console.log(address);
   });
 }
-  
+
+$(document).ready(function(){
+
+  showForm($('#signin-radios').children('input[type=radio]:checked').attr('name'));
+
+  $('#signin-radios').children('input[type=radio]').click(function(e){
+    $(this).siblings().prop('checked', false);
+    showForm($(this).prop('name'));
+  });
+
+  function showForm(name) {
+    $('#signinmodal form').hide();
+    $('#' + name + '-signin').show();
+  }
+
+});
+
+
