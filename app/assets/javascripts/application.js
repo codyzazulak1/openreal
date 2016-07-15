@@ -88,8 +88,8 @@ function showForm(name) {
 function populateFormFields(response) {
   var addressFirst = response.address_components[0].long_name + ' ' + response.address_components[1].long_name;
   // var addressSecond = response.address_components[0].long_name + ' ' + response.address_components[1].long_name;
-  var addressCity = response.address_components[2].long_name;
-  var addressPostal = response.address_components[6].long_name;
+  var addressCity = response.address_components.reverse()[4].long_name;
+  var addressPostal = response.address_components[0].long_name;
   var addressLat = response.geometry.location.lat;
   var addressLng = response.geometry.location.lng;
    $('#addressForm').find('#addressFirst').val(addressFirst);

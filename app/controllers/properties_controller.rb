@@ -24,8 +24,6 @@ class PropertiesController < ApplicationController
     @property = Property.new
     @address = Address.new(session[:address_params].merge({property: @property}))
     @address ||= Address.new(property: @property)
-    byebug
-
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
