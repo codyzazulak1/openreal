@@ -5,6 +5,7 @@ class PropertiesController < ApplicationController
   end
 
   def sell
+    session[:property_step] = nil
     session[:address_params] = {
       address_first: params['addressFirst'],
       address_second: params['addressSecond'], 
