@@ -5,6 +5,14 @@ class PropertiesController < ApplicationController
   end
 
   def sell
+    session[:address_params] = {
+      address_first: params['addressFirst'],
+      address_second: params['addressSecond'], 
+      city: params['addressCity'], 
+      postal_code: params['addressPostal'],
+      latitude: params['addressLat'],
+      longitude: params['addressLng']
+    }
     redirect_to new_property_path
   end
 
@@ -14,8 +22,10 @@ class PropertiesController < ApplicationController
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
 
     @property = Property.new
-    # @address = Address.new
-    @address = Address.new(property: @property)
+    @address = Address.new(session[:address_params].merge({property: @property}))
+    @address ||= Address.new(property: @property)
+    byebug
+
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build

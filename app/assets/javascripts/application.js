@@ -33,8 +33,9 @@ function autoComplete() {
 
   autocomplete = new google.maps.places.Autocomplete(addressInput, options);
   autocomplete.addListener('place_changed', function() {
-    var address = autocomplete.getPlace();
-    // console.log(address);
+    var addressResponse = autocomplete.getPlace();
+    console.log(addressResponse);
+    populateFormFields(addressResponse);
   });
 }
 
@@ -82,6 +83,21 @@ $(document).ready(function(){
 function showForm(name) {
   $('#signinmodal form').hide();
   $('#' + name + '-signin').show();
+}
+
+function populateFormFields(response) {
+  var addressFirst = response.address_components[0].long_name + ' ' + response.address_components[1].long_name;
+  // var addressSecond = response.address_components[0].long_name + ' ' + response.address_components[1].long_name;
+  var addressCity = response.address_components[2].long_name;
+  var addressPostal = response.address_components[6].long_name;
+  var addressLat = response.geometry.location.lat;
+  var addressLng = response.geometry.location.lng;
+   $('#addressForm').find('#addressFirst').val(addressFirst);
+   // $('#addressForm').find('#addressSecond').val(addressSecond);
+   $('#addressForm').find('#addressCity').val(addressCity);
+   $('#addressForm').find('#addressPostal').val(addressPostal);
+   $('#addressForm').find('#addressLat').val(addressLat);
+   $('#addressForm').find('#addressLng').val(addressLng);
 }
 
 
