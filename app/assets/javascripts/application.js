@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
@@ -92,12 +91,12 @@ function populateFormFields(response) {
   var addressPostal = response.address_components[0].long_name;
   var addressLat = response.geometry.location.lat;
   var addressLng = response.geometry.location.lng;
-   $('#addressForm').find('#addressFirst').val(addressFirst);
-   // $('#addressForm').find('#addressSecond').val(addressSecond);
-   $('#addressForm').find('#addressCity').val(addressCity);
-   $('#addressForm').find('#addressPostal').val(addressPostal);
-   $('#addressForm').find('#addressLat').val(addressLat);
-   $('#addressForm').find('#addressLng').val(addressLng);
+  $('#addressForm').find('#addressFirst').val(addressFirst);
+  // $('#addressForm').find('#addressSecond').val(addressSecond);
+  $('#addressForm').find('#addressCity').val(addressCity);
+  $('#addressForm').find('#addressPostal').val(addressPostal);
+  $('#addressForm').find('#addressLat').val(addressLat);
+  $('#addressForm').find('#addressLng').val(addressLng);
 }
 
 

@@ -8,7 +8,7 @@
     <div class="top-bar-right">
       <ul class="menu nav-menu">
         <li>
-          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'new' %>>Sell</a>
+          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'new' || controller.action_name == 'create' %>>Sell</a>
           <!-- <ul class="menu vertical">
             <li><a href="#">One</a></li>
             <li><a href="#">Two</a></li>
