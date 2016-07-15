@@ -34,7 +34,7 @@ function autoComplete() {
   autocomplete = new google.maps.places.Autocomplete(addressInput, options);
   autocomplete.addListener('place_changed', function() {
     var address = autocomplete.getPlace();
-    console.log(address);
+    // console.log(address);
   });
 }
 
@@ -47,11 +47,42 @@ $(document).ready(function(){
     showForm($(this).prop('name'));
   });
 
-  function showForm(name) {
-    $('#signinmodal form').hide();
-    $('#' + name + '-signin').show();
-  }
+  $('#signinmodal form').on('submit', function(e){
+    e.preventDefault();
+    var email = $(this).find('input[name*="email"]').attr('name');
+    var emailVar = $(this).find('input[name*="email"]').val();
+    var password = $(this).find('input[name$="[password]"]').attr('name');
+    var passwordVar = $(this).find('input[name$="[password]"]').val();
+    // var remember_me = $(this).find('input[name="remember_me"]:checked');
+    // console.log($(this), email, password,remember_me);
+    var data = {};
+    data[email] = emailVar;
+    data[password] = passwordVar;
+
+    $.ajax({
+      url: $(this).attr('action'),
+      type: 'post',
+      // contentType: 'application/json',
+      dataType: 'json',
+      data: data,
+      headers: {
+        'X-CSRF-Token': $(this).find('input[name="authenticity_token"]').val(),
+      },
+      error: function(xhr) {
+        console.error (xhr);
+      },
+      success(data) {
+        $('#signinmodal').foundation('close');
+        window.location.reload(false);
+      }
+    });
+  });
 
 });
+
+function showForm(name) {
+  $('#signinmodal form').hide();
+  $('#' + name + '-signin').show();
+}
 
 

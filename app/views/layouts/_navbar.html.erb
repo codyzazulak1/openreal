@@ -17,7 +17,7 @@
         </li>
         <li><a href="#" class="active">Buy</a></li>
         <li><a href="#">How it works</a></li>
-        <% if @user %>
+        <% if current_customer || current_agent || current_admin %>
           <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
         <%else%>
           <li><a data-open="signinmodal">Sign in</a></li>
@@ -27,7 +27,7 @@
   </div>
 </nav>
 
-<% if !@user %>
+<% unless current_customer || current_agent || current_admin %>
 <div class="reveal" id="signinmodal" data-reveal>
   <div class="row">
     <div class="medium-7 medium-centered large-7 large-centered columns">
