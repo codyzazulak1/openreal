@@ -10,14 +10,14 @@
       <div class="search-bar">
         <div class="small-9 medium-8 medium-push-2 columns">
           <!-- Search field -->
-          <form id="addressForm">
+          <%= form_tag (properties_sell_path), id: "addressForm" do %>
             <div class="input-group">
-              <input type="text" id="addressInput" class="input-group-field" placeholder="Enter your home address"><!-- 
-           --><div class="input-group-button"><!-- 
-             --><button class="button" type="submit">Get&nbsp;Offer</button>
+              <input type="text" id="addressInput" class="input-group-field" placeholder="Enter your home address" name="addressInput">
+              <div class="input-group-button">
+                <button class="button" type="submit">Get&nbsp;Offer</button>
               </div>
             </div>
-          </form>
+          <% end %>
         </div>
       </div>
     </div>
@@ -254,5 +254,4 @@
   </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete"
-        async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete" async defer></script>

@@ -4,17 +4,21 @@ class PropertiesController < ApplicationController
     @properties = Property.all
   end
 
+  def sell
+    redirect_to new_property_path
+  end
+
   def new
     # session[:property_params] ||= {}
     # session[:address_params] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
 
     @property = Property.new
-    @address = Address.new
+    # @address = Address.new
+    @address = Address.new(property: @property)
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
-    @address = Address.new(property: @property)
   end
 
   def show

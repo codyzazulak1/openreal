@@ -13,7 +13,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>">
     <!-- <p class="alert"><%= "alert" %></p> -->
     <!-- <p class="notice"><%= "notice" %></p> -->
     <%= render 'layouts/navbar' %>
