@@ -46,7 +46,7 @@ $(document).ready(function(){
     $(this).siblings().prop('checked', false);
     showForm($(this).prop('name'));
   });
-
+  
   $('#signinmodal form').on('submit', function(e){
     e.preventDefault();
     var email = $(this).find('input[name*="email"]').attr('name');
@@ -58,7 +58,7 @@ $(document).ready(function(){
     var data = {};
     data[email] = emailVar;
     data[password] = passwordVar;
-
+    
     $.ajax({
       url: $(this).attr('action'),
       type: 'post',
@@ -77,7 +77,6 @@ $(document).ready(function(){
       }
     });
   });
-
 });
 
 function showForm(name) {
