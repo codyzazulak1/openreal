@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get '/register', action: :register, controller: 'welcome'
 
   get 'properties/cities/:city', action: :city, controller: 'properties'
+  post 'properties/new', action: :create, controller: 'properties'
+
   resources :properties do
     post '/favorite', action: :favorite, controller: 'properties'
     delete '/favorite', action: :unfavorite, controller: 'properties'

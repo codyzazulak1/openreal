@@ -1,30 +1,18 @@
-<h1>Add a Property</h1>
-<%= form_for @property, :html => { :multipart => true } do |fp| %>
-  <div>
-    <%= fp.label :description %>
-    <%= fp.text_field :description %>
+<%= form_for @property, url: properties_new_path, :html => { :multipart => true } do |fp| %>
+  <div class="progress" role="progressbar" tabindex="0" aria-valuenow="<%= @property.current_progress %>" aria-valuemin="0" aria-valuetext="<%= @property.current_progress %> percent"  aria-valuemax="100">
+    <div class="progress-meter" style="width: <%= @property.current_progress %>%" ></div>
   </div>
-  <%= fp.fields_for :photos do |ffp| %>
-    <div>
-      <%= ffp.label :picture %>
-      <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+  <div class="row expanded">
+    <div class="medium-8 medium-push-2 columns">
+      <%= render "properties/#{@property.current_step}_form", :fp => fp %>
+
+      <div class="row collapse">
+        <div class="medium-12 columns text-right">
+          <%= fp.submit "Back", :name => "back_button" unless @property.first_step? %>
+          <%= fp.submit "Next" unless @property.last_step? %>
+          <%= fp.submit "Submit" if @property.last_step? %>
+        </div>
+      </div>
     </div>
-  <%end%>
-  <%= fp.fields_for :address do |ffa| %>
-    <div>
-      <%= ffa.label :address_first %>
-      <%= ffa.text_field :address_first %>
-    </div>
-    <div>
-      <%= ffa.label :address_second %>
-      <%= ffa.text_field :address_second %>
-    </div>
-      <%= ffa.label :city %>
-      <%= ffa.text_field :city %>
-    <div>
-      <%= ffa.label :postal_code %>
-      <%= ffa.text_field :postal_code %>
-    </div>
-  <%end%>
-  <%= fp.submit "Create" %>
-<% end %>
+  </div>
+<%end%>

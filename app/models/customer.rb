@@ -9,8 +9,9 @@ class Customer < ActiveRecord::Base
   devise :database_authenticatable,
     :registerable,
     :validatable,
-    :trackable
-         #:recoverable, :rememberable, ,
+    :trackable,
+    :recoverable,
+    :rememberable
 
   def full_name
     self.first_name << " " << self.last_name
