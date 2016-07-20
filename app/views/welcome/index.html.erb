@@ -11,18 +11,18 @@
         <div class="small-9 medium-8 medium-push-2 columns">
           <!-- Search field -->
           <%= form_tag (properties_sell_path), id: "addressForm" do %>
-            <div class="input-group">
-              <input type="text" id="addressInput" class="input-group-field" placeholder="Enter your home address" name="addressInput">
+            <div>
+              <input type="text" id="addressInput" placeholder="Enter your home address" name="addressInput">
               <input type="hidden" name="addressFirst" id="addressFirst">
               <input type="hidden" name="addressSecond" id="addressSecond">
               <input type="hidden" name="addressCity" id="addressCity">
               <input type="hidden" name="addressPostal" id="addressPostal">
               <input type="hidden" name="addressLat" id="addressLat">
               <input type="hidden" name="addressLng" id="addressLng">
-
-              <div class="input-group-button">
+              <input type="submit" class="hide">
+              <!-- <div class="input-group-button">
                 <button class="button">Get&nbsp;Offer</button>
-              </div>
+              </div> -->
             </div>
           <% end %>
         </div>

@@ -17,3 +17,4 @@
 /tmp
 Gemfile.lock
 /public/uploads
+/config/secrets.yml
