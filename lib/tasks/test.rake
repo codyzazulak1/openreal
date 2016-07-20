@@ -43,7 +43,18 @@ namespace :seed do
       addr_street = addr_c[1]["long_name"]
 
       property = Property.create(
-        description: "#{addr_formatted}"
+        description: "#{addr_formatted}",
+        floor_area: rand(1900..2100),
+        lot_length: rand(210..240),
+        lot_width: rand(200..220),
+        title_to_land: "Freehold",
+        pid: rand(1000000..6000000),
+        building_type: "House",
+        property_type: "Single Family",
+        stories: rand(1..3),
+        bedrooms: rand(2..5),
+        bathrooms: rand(2..4),
+        fireplaces: rand(1..15)
       )
 
       Address.create(
