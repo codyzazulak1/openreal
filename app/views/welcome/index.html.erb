@@ -35,23 +35,30 @@
   <div class="medium-10 medium-centered columns">
     <div class="row collapse">
       <!-- photo carousel -->
-      <div class="medium-8 columns orbit" role="region" data-orbit data-timer-delay="3000">
-        <ul class="orbit-container">
-          <li class="is-active orbit-slide">
-            <%= image_tag 'P1.jpg', class:'orbit-image' %>
-          </li>
-          <li class="orbit-slide">
-            <%= image_tag 'P4.jpg', class:'orbit-image' %>
-          </li>
-          <li class="orbit-slide">
-            <%= image_tag 'P5.jpg', class:'orbit-image' %>
-          </li>
-        </ul>
+      <div class="medium-8 columns">
+        <div class="orbit photo-carousel" role="region" data-orbit>
+          <ul class="orbit-container">
+            <li class="is-active orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P1.jpg') %>></div>
+            </li>
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P5.jpg') %>></div>
+            </li>
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P4.jpg') %>></div>
+            </li>
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P5.jpg') %>></div>
+            </li>
+          </ul>
+        </div>
       </div>
       <!-- CTA -->
-      <div class="medium-4 columns cta">
-        <h3>Buy an Opendoor Home</h3>
-        <h3>that you’re guaranteed to love.</h3>
+      <div class="medium-4 columns cta text-center">
+        <div class="v-align">
+          <h2>Buy an OpenReal Home that you’re guaranteed to love.</h2>
+          <a href="#" class="btn btn-primary">View our homes</a>
+        </div>
       </div>
 
   </div>

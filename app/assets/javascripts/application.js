@@ -63,6 +63,11 @@ function populateFormFields() {
 
 $(document).ready(function(){
 
+  // carousel
+  $('.photo-carousel .photo-slide').css('background-image', function(){
+    return "url(" + $(this).data('bg') + ")";
+  });
+
   // initialize the sign in form
   showForm($('#signin-radios').children('input[type=radio]:checked').attr('name'));
 
