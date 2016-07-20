@@ -19,6 +19,10 @@ class Property < ActiveRecord::Base
     return self.lot_length * self.lot_width
   end
 
+  def address_name
+    return "#{self.address.address_first}, #{self.address.city}"
+  end
+
   def current_step
     @current_step || steps.first
   end
