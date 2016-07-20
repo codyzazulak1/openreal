@@ -621,11 +621,21 @@ nav {
 
 
 /* Styles for Hero image & hero message */
+
 .hero {
-  background: url(<%= asset_path 'front.jpg' %>) no-repeat center center;
-  background-size: cover;
   height: 600px;
   position: relative;
+
+  .hero-bg {
+
+    background: linear-gradient(
+      rgba($primary-color, 0.65), 
+      rgba($primary-color, 0.65)
+    ),
+    url(<%= asset_path 'front.jpg' %>) no-repeat center center;
+    background-size: cover;
+    height: 100%;
+  }
 
   .intro {
     width: 100%;
@@ -647,12 +657,12 @@ nav {
     line-height: 1.0em;
     font-weight: 300;
     text-align: center;
-    margin-bottom: 2rem; 
+    // margin-bottom: 2rem; 
   }
 
   @media only screen and (min-width: 40.063em) {
     h1 {
-      padding-top: 1.5rem;
+      // padding-top: 1.5rem;
       text-align: center;
       font-size: 3.5rem; }
     p {
