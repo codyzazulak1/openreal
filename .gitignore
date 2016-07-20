@@ -19,3 +19,4 @@ Gemfile.lock
 /public/uploads
 config/local_env.yml
 config/secrets.yml
+.env

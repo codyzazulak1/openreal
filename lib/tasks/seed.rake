@@ -75,27 +75,4 @@ namespace :seed do
     puts "-------------------------------"
   end
 
-  desc "Seed 20 properties"
-  task :properties, [] => :environment do
-
-    raise "Can't run on Production" if Rails.env.production?
-
-    cities = ["Langley", "Surrey", "Vancouver", "Burnaby"]
-
-    arr = (1..20).map { |n| Property.create(description: "House number #{n}") }
-    fake = Faker::Address
-    arr.each { |p|
-      puts p.description
-      p.address = Address.create(
-        city: cities.sample,
-        address_first: fake.street_address,
-        postal_code: fake.zip,
-        latitude: BigDecimal(fake.latitude),
-        longitude: BigDecimal(fake.longitude)
-      )
-      p.save
-    }
-
-  end
-
 end
