@@ -4,13 +4,12 @@
   <div class="hero-bg"></div>
   <div class="intro">
     <div class="row expanded">
-      <div class="small-9 medium-8 medium-push-2 columns">
+      <div class="small-9 medium-8 small-centered medium-centered columns">
         <h1>Welcome to OpenReal</h1>
         <p>Sell your home to OpenReal and eliminate the hassle of listings, showings and months of uncertainty.</p>
-      </div>
-      <!--Search Bar-->
-      <div class="search-bar">
-        <div class="small-9 medium-8 medium-push-2 columns">
+      
+        <!--Search Bar-->
+        <div class="search-bar">
           <!-- Search field -->
           <%= form_tag (properties_sell_path), id: "addressForm" do %>
             <div>
@@ -108,6 +107,101 @@
 </section>
 <!-- end of why -->
 
+<!-- new listings -->
+<!-- <section id="new-listings">
+  
+
+</section> -->
+
+<section class="row expanded collapse new-listings" style="background-color:#f5f5f5;" id="new-listings">
+  <div class="medium-10 medium-centered columns">
+    <!-- <div class="row">
+      <div class="medium-12 columns">
+        <h2>Homes you'll love</h2>
+      </div>
+    </div> -->
+    <div class="row text-center section-title">
+      <h2 class="medium-6 medium-push-3 columns">New listings</h2>
+    </div>
+
+    <div class="row">
+
+      <div class="small-12 medium-4 columns">
+        <div class="listing-item">
+          <div class="listing-img" data-bg="<%= asset_path('01.jpg') %>">
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style="">3,955,000</span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span>3616 W 1st Ave</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+            </div>
+            <div class="float-right text-right">
+              <span>3743 sqft &middot; 4 bed 3 bath</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-12 medium-4 columns">
+        <div class="listing-item">
+          <div class="listing-img" data-bg="<%= asset_path('02.jpg') %>">
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style="">3,955,000</span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span>3616 W 1st Ave</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+            </div>
+            <div class="float-right text-right">
+              <span>3743 sqft &middot; 4 bed 3 bath</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-12 medium-4 columns">
+        <div class="listing-item">
+          <div class="listing-img" data-bg="<%= asset_path('03.jpg') %>">
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style="">3,955,000</span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span>3616 W 1st Ave</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+            </div>
+            <div class="float-right text-right">
+              <span>3743 sqft &middot; 4 bed 3 bath</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end new listings -->
 
 
 
@@ -120,16 +214,16 @@
 
 
 
-
+<!-- clean up needed -->
 
 <!--Start Browser by City Section-->
-<section style="background-color:#f5f5f5;">
+<section>
   <div class="row column text-center section-title">
-  <h2>Browse By City</h2>
+  <h2></h2>
   </div>
 <div class="row">
   <div class="small-12 medium-6 large-8 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'whiterock.jpg' %>);">
+    <div class="card" style="background-image:url(<%= asset_path 'cities/whiterock.jpg' %>);">
       <a href="#" data-id="Whiterock">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -140,7 +234,7 @@
     </div>
   </div>
   <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'burnaby.jpg' %>);">
+    <div class="card" style="background-image:url(<%= asset_path 'cities/burnaby.jpg' %>);">
       <a href="#" data-id="Burnaby">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -151,7 +245,7 @@
     </div>
   </div>
   <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'delta.jpg' %>);">
+    <div class="card" style="background-image:url(<%= asset_path 'cities/delta.jpg' %>);">
       <a href="#" data-id="Delta">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -162,7 +256,7 @@
     </div>
   </div>
   <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'mapleridge.jpg' %>);">
+    <div class="card" style="background-image:url(<%= asset_path 'cities/mapleridge.jpg' %>);">
       <a href="#" data-id="mapleridge">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -173,7 +267,7 @@
     </div>
   </div>
   <div class="small-12 medium-12 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'vancouver.jpg' %>);">
+    <div class="card" style="background-image:url(<%= asset_path 'cities/vancouver.jpg' %>);">
       <a href="#" data-id="vancouver">
         <div class="va-container">
           <div class="va-middle text-center text-contrast">
@@ -185,65 +279,7 @@
   </div>
 </div>
 </section>
-<!--End Featured Listing Section-->
-<br>
-<!--Start Reference-->
-<div class="row column text-center section-title">
-  <h2>In the News</h2>
-</div>
-<br>
-<div class="row small-up-2 medium-up-3 large-up-6">
-  <div class="column" id="news">
-    <img class="thumbnail" src="http://placehold.it/300x400">
-    <h5>CBC</h5>
-  </div>
-  <div class="column">
-    <img class="thumbnail" src="http://placehold.it/300x400">
-    <h5>bloomberg</h5>
-  </div>
-  <div class="column">
-    <img class="thumbnail" src="http://placehold.it/300x400">
-    <h5>TechNews</h5>
-  </div>
-  <div class="column">
-    <img class="thumbnail" src="http://placehold.it/300x400">
-    <h5>VancouverSun</h5>
-  </div>
-  <div class="column">
-    <img class="thumbnail" src="http://placehold.it/300x400">
-    <h5>CNN</h5>
-  </div>
-  <div class="column">
-    <img class="thumbnail" src="http://placehold.it/300x400">
-    <h5>Metro Vancouver</h5>
-</div>
-<!--End Reference-->
-<br>
-<!--Start Footer-->
-<hr>
-<div class="callout large secondary">
-  <div class="row">
-    <div class="large-4 columns">
-      <h5>Vivamus Hendrerit Arcu Sed Erat Molestie</h5>
-      <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit.</p>
-    </div>
-    <div class="large-3 large-offset-2 columns">
-      <ul class="menu vertical" id="social">
-        <li><a href="#"><i class="fi-social-facebook"></i></a></li>
-        <li><a href="#"><i class="fi-social-twitter"></i></a></li>
-        <li><a href="#"><i class="fi-social-tumblr"></i></a></li>
-        <li><a href="#"><i class="fi-social-youtube"></i></a></li>
-      </ul>
-    </div>
-    <div class="large-3 columns">
-      <ul class="menu vertical" id="social">
-        <li><a href="#"><i class="fi-social-google-plus"></i></a></li>
-        <li><a href="#"><i class="fi-social-vimeo"></i></a></li>
-        <li><a href="#"><i class="fi-social-yahoo"></i></a></li>
-        <li><a href="#"><i class="fi-social-instagram"></i></a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!--End Section-->
+
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete" async defer></script>

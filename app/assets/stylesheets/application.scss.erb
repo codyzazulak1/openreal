@@ -13,21 +13,30 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
-
  */
 @import "foundation_and_overrides";
-
 /*@import url("foundation-icons.css");*/
 @import url(https://fonts.googleapis.com/css?family=Pacifico);
 @import url(https://fonts.googleapis.com/css?family=Questrial);
 @import url(https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700);
+
+/*****************
+ *               *
+ *   variables   *
+ *               *
+ *****************/
 
 $border-color: #dce0e0;
 $nav-anchor: #484848;
 $nav-hover: $light-gray;
 $panel-bg: $light-gray;
 
-// general
+/*****************
+ *               *
+ * general stuff *
+ *               *
+ *****************/
+
 html, body {
   height: 100%;
   margin: 0;
@@ -51,17 +60,17 @@ html, body {
 }
 
 // color classes
-.light-grey {
-  color: $light-gray;
-}
+// .light-grey {
+//   color: $light-gray;
+// }
 
-.mid-grey {
-  color: $medium-gray;
-}
+// .mid-grey {
+//   color: $medium-gray;
+// }
 
-.dark-grey {
-  color: $dark-gray;
-}
+// .dark-grey {
+//   color: $dark-gray;
+// }
 
 // buttons
 input.btn {
@@ -122,6 +131,7 @@ section {
       font-family: Circular,"Helvetica Neue";
       font-size: 2.25rem;
       line-height: 1.5;
+      letter-spacing: 1px;
       color: $black;
     }
   }
@@ -202,7 +212,12 @@ nav {
     }      
 }
 
-// listings page
+/****************
+ *              *
+ * listing page *
+ *              *
+ ****************/
+
 #map {
   // height: 100%;
   height: calc(100vh - 62px);
@@ -504,12 +519,17 @@ nav {
   }
 }
 
+
+
 .similar-listings {
   background-color: $white;
-  display: block;
-  // border-bottom: 1px solid $border-color;
   margin-bottom: 2rem;
   padding: 1rem 0;
+}
+
+.similar-listings,
+.new-listings
+ {
 
   &:hover {
   }
@@ -1001,9 +1021,7 @@ body.page-how {
       }
     }
     .search-bar {
-      position: relative;
-      margin-bottom: -3%;
-      margin-top: 3%;
+      
     }
     .button {
       color: $white;

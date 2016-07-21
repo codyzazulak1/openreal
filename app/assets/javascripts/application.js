@@ -68,6 +68,11 @@ $(document).ready(function(){
     return "url(" + $(this).data('bg') + ")";
   });
 
+  // listing images
+  $('.listing-img').css('background-image', function(){
+    return "url(" + $(this).data('bg') + ")";
+  });
+
   // initialize the sign in form
   showForm($('#signin-radios').children('input[type=radio]:checked').attr('name'));
 
