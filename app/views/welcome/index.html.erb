@@ -1,5 +1,5 @@
 <!--hero-->
-<section class="hero">
+<section class="" id="hero">
   <div class="hero-bg-overlay"></div>
   <div class="hero-bg"></div>
   <div class="intro">
@@ -33,6 +33,8 @@
   </div>
 </section>
 <!--end of hero-->
+
+<!-- listing banner -->
 <section class="listing-banner row expanded" id="listing-banner">
   <div class="medium-10 medium-centered columns">
     <div class="row collapse">
@@ -65,69 +67,63 @@
 
   </div>
 </section>
+<!-- end of listing banner -->
 
-
-
-
-
-
-
-
-<div>
-  <% if @user %>
-    <div>
-    <% if @user.class == Admin %>
-      <%= link_to 'Log Out', destroy_admin_session_path, method: :delete %>
-    <% elsif @user.class == Agent %>
-      <%= link_to 'Log Out', destroy_agent_session_path, method: :delete %>
-    <% elsif @user.class == Customer %>
-      <%= link_to 'Log Out', destroy_customer_session_path, method: :delete %>
-    <%end%>
-      <%= link_to 'Dashboard', dashboard_path %>
-    </div>
-  <%else%>
-    <%= link_to 'Register', register_path %>
-    <%= link_to 'Log In', login_path %>
-  <%end%>
-</div>
-<br>
-<!--Start Why Opendoor Section -->
-<section>
-  <div class="row column text-center section-title">
-    <h2>Why OpenReal?</h2>
+<!-- why -->
+<section class="row expanded" id="why">
+  <div class="row text-center section-title">
+    <h2 class="medium-6 medium-push-3 columns">With OpenReal, your home buying and selling experience is hassle-free.</h2>
   </div>
-  <br>
-  <div class="row small-up-1 medium-up-3 large-up-3" class="perks">
-  <div class="small-1 medium-3 large03 columns">
-    <div class="callout">
-      <p><%= image_tag "money.jpg" %></p>
-      <p class="lead">Selling your home hassle-free the moment when you are ready</p>
-      <p class="subheader">No need to hire an agent, list your home and wait for months for transaction to complete.</p>
-      <a href="">Learn More ></a>
+  <div class="row collapse">
+    <div class="medium-10 medium-centered columns">
+      <div class="row">
+        <div class="small-12 medium-4 large-4 columns">
+          <div class="points">
+            <%= image_tag('bubble.svg') %>
+            <p class="lead">Selling your home hassle-free the moment when you are ready</p>
+            <p class="subheader">No need to hire an agent, list your home and wait for months for transaction to complete.</p>
+          </div>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+          <div class="points">
+            <%= image_tag('data-house.svg') %>
+
+            <p class="lead">Obtaining a fair offer by telling us everything about your home</p>
+            <p class="subheader">No need to host countless showings with contracts falling through.</p>
+          </div>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+          <div class="points">
+            <%= image_tag('truck.svg') %>
+            <p class="lead">Moving in to your dream home worry-free</p>
+            <p class="subheader">All of our listings have certified home inspection and extended coverage warranty.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="small-1 medium-3 large03 columns">
-    <div class="callout">
-      <p><%= image_tag 'house.jpg' %></p>
-      <p class="lead">Obtaining a fair offer by telling us everything about your home</p>
-      <p class="subheader">No need to host countless showings with contracts falling through.</p>
-      <a href="">Get Offer ></a>
-    </div>
-  </div>
-  <div class="small-1 medium-3 large03 columns">
-    <div class="callout">
-      <p><%= image_tag 'coins.jpg' %></p>
-      <p class="lead">Moving in to your dream home worry-free</p>
-      <p class="subheader">All of our listings have certified home inspection and extended coverage warranty.</p>
-      <a href="">View Listings ></a>
-    </div>
+  <div class="row text-center section-title">
+    <a href="#" class="btn btn-secondary">Learn more</a>
   </div>
 </section>
-<!--End Why Opendoor Section -->
+<!-- end of why -->
 
-<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--Start Browser by City Section-->
-<section>
+<section style="background-color:#f5f5f5;">
   <div class="row column text-center section-title">
   <h2>Browse By City</h2>
   </div>

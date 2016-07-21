@@ -112,15 +112,21 @@ input.btn {
     color: $body-font-color;
   }
 }
-.section-title {
-  h2 {
-    font-weight: bold;
-    font-family: Circular,"Helvetica Neue";
-    font-size: 40px;
-    line-height: 1.1;
-    color: $black;
+
+section {
+  padding: 2rem 0;
+
+  .section-title {
+    h2 {
+      font-weight: 200;
+      font-family: Circular,"Helvetica Neue";
+      font-size: 2.25rem;
+      line-height: 1.5;
+      color: $black;
+    }
   }
 }
+  
 
 // form
 
@@ -496,8 +502,6 @@ nav {
       }
     }
   }
-
-  
 }
 
 .similar-listings {
@@ -574,16 +578,11 @@ nav {
   }
 }
 
-
-
-
-
-
-
-
-
-
-// landing page
+/****************
+ *              *
+ * landing page *
+ *              *
+ ****************/
 
 #listing-banner {
   background-color: $panel-bg;
@@ -620,11 +619,11 @@ nav {
 }
 
 
-/* Styles for Hero image & hero message */
-
-.hero {
+/* hero section */
+#hero {
   height: 600px;
   position: relative;
+  padding: 0;
 
   .hero-bg {
 
@@ -645,29 +644,21 @@ nav {
   }
 
   h1 {
-    color: #fff;
-    font-size: 20px;
+    color: $white;
+    font-size: 3.5rem;
     line-height: 1.5em;
     font-weight: 500;
     text-align: center; 
   }
 
   p {
-    color: #fff;
-    line-height: 1.0em;
+    color: $white;
     font-weight: 300;
     text-align: center;
+    font-size: 1.5rem;
+    line-height: 1.5;
     // margin-bottom: 2rem; 
   }
-
-  @media only screen and (min-width: 40.063em) {
-    h1 {
-      // padding-top: 1.5rem;
-      text-align: center;
-      font-size: 3.5rem; }
-    p {
-      text-align: center; 
-      font-size: 1.5rem;} }
 }
 
 // hide google maps logo
@@ -675,46 +666,49 @@ nav {
   // display: none;
 }
 
-/* Styles for Why Openreal */
-.callout {
-  border: none;
-  a {
-  color: $primary-color;
-  font-size: 25px;
+/* why section */
+#why {
+  .points {
+    margin: 1rem 0;
+
+    img {
+      // width: 100%;
+      width: 5rem;
+      height: 5rem;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+
+    .lead {
+      line-height: 1.125;
+      font-weight: 200;
+      letter-spacing: normal;
+      font-size:1.5rem;
+      // font-family: "Myriad Set Pro", "Helvetica Neue", "Helvetica";
+    }
+
+    .subheader {
+      margin: 0;
+      line-height: 1.5;
+    }
   }
-  img {
-    height: 300px;
-    width: 300px;
-  }
-}
-
-.lead {
-  line-height: 1.125;
-  font-weight: 200;
-  letter-spacing: normal;
-  font-size:1.5rem;
-  font-family: "Myriad Set Pro", "Helvetica Neue", "Helvetica";
-}
-
-/* Styes for Carousel Images */
-.image-wrapper {
-  // width: 100%;
-  // height: 100%;
-  // border: 1px solid rgba(0,0,0,0.04);
-  // overflow: hidden;
-  // position: relative;
-  // text-align: center;
-  // border-radius: $global-radius;
 }
 
 
 
-.carousel-img {
-  display: block;
-  // width: 100%;
-  // overflow: hidden;
-  // height: 600px;
-}
+
+// .carousel-img {
+//   display: block;
+// }
+
+
+
+
+
+
+
+
+
 
 .image-overlay-content {
   width: 100%;
@@ -896,15 +890,15 @@ body.page-how {
     margin-left: auto;
     margin-right: auto;
   }
-  .section-title {
-    margin-bottom: 10px;
-    color: $primary-color;
-    text-align: center;
-    h2 {
-      font-weight: 500;
-      font-size: 60px;
-    }
-  }
+  // .section-title {
+  //   margin-bottom: 10px;
+  //   color: $primary-color;
+  //   text-align: center;
+  //   h2 {
+  //     font-weight: 500;
+  //     font-size: 60px;
+  //   }
+  // }
   .steps {
 
     #buy-tabs{
