@@ -71,7 +71,7 @@
 <!-- why -->
 <section class="row expanded" id="why">
   <div class="row text-center section-title">
-    <h2 class="medium-6 medium-push-3 columns">With OpenReal, your home buying and selling experience is hassle-free.</h2>
+    <h2 class="medium-6 medium-push-3 columns">Your home buying and selling experience is hassle-free.</h2>
   </div>
   <div class="row collapse">
     <div class="medium-10 medium-centered columns">
@@ -108,24 +108,13 @@
 <!-- end of why -->
 
 <!-- new listings -->
-<!-- <section id="new-listings">
-  
-
-</section> -->
-
 <section class="row expanded collapse new-listings" style="background-color:#f5f5f5;" id="new-listings">
   <div class="medium-10 medium-centered columns">
-    <!-- <div class="row">
-      <div class="medium-12 columns">
-        <h2>Homes you'll love</h2>
-      </div>
-    </div> -->
     <div class="row text-center section-title">
       <h2 class="medium-6 medium-push-3 columns">New listings</h2>
     </div>
 
     <div class="row">
-
       <div class="small-12 medium-4 columns">
         <div class="listing-item">
           <div class="listing-img" data-bg="<%= asset_path('01.jpg') %>">
@@ -200,86 +189,48 @@
     </div>
   </div>
 </section>
-
 <!-- end new listings -->
 
+<!-- districts -->
+<section class="row expanded collapse new-listings"" id="new-listings">
+  <div class="medium-10 medium-centered columns">
+    <div class="row text-center section-title">
+      <h2 class="medium-6 medium-push-3 columns">Find the perfect home in these neighbourhoods.</h2>
+    </div>
 
+    <div class="row">
+      <div class="medium-8 columns ">
+        <div class="card" style="background-image:url(<%= asset_path 'cities/whiterock.jpg' %>);">
+          <a href="#">Vancouver Island</a>
+        </div>
+      </div>
 
+      <div class="medium-4 columns">
+        <div class="card" style="background-image:url(<%= asset_path 'cities/burnaby.jpg' %>);">
+          <a href="#">Metro Vancouver</a>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="medium-4 columns">
+        <div class="card" style="background-image:url(<%= asset_path 'cities/delta.jpg' %>);">
+          <a href="#">Calgary (coming soon)</a>
+        </div>
+      </div>
 
+      <div class="medium-8 columns">
+        <div class="card" style="background-image:url(<%= asset_path 'cities/vancouver.jpg' %>);">
+          <a href="#">Edmonton (coming soon)</a>
+        </div>
+      </div>
 
+    </div>
+  </div>
 
-
-
-
-
+</section>
+<!-- end of districts -->
 
 <!-- clean up needed -->
-
-<!--Start Browser by City Section-->
-<section>
-  <div class="row column text-center section-title">
-  <h2></h2>
-  </div>
-<div class="row">
-  <div class="small-12 medium-6 large-8 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'cities/whiterock.jpg' %>);">
-      <a href="#" data-id="Whiterock">
-        <div class="va-container">
-          <div class="va-middle text-center text-contrast">
-            <h2><strong>White Rock</strong></h2>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'cities/burnaby.jpg' %>);">
-      <a href="#" data-id="Burnaby">
-        <div class="va-container">
-          <div class="va-middle text-center text-contrast">
-            <h2><strong>Burnaby</strong></h2>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'cities/delta.jpg' %>);">
-      <a href="#" data-id="Delta">
-        <div class="va-container">
-          <div class="va-middle text-center text-contrast">
-            <h2><strong>Delta</strong></h2>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="small-12 medium-6 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'cities/mapleridge.jpg' %>);">
-      <a href="#" data-id="mapleridge">
-        <div class="va-container">
-          <div class="va-middle text-center text-contrast">
-            <h2><strong>Maple Ridge</strong></h2>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-  <div class="small-12 medium-12 large-4 columns">
-    <div class="card" style="background-image:url(<%= asset_path 'cities/vancouver.jpg' %>);">
-      <a href="#" data-id="vancouver">
-        <div class="va-container">
-          <div class="va-middle text-center text-contrast">
-            <h2><strong>Vancouver</strong></h2>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</div>
-</section>
-<!--End Section-->
-
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete" async defer></script>
