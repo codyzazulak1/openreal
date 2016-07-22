@@ -1,0 +1,11 @@
+<h1><%= @customer.full_name %>'s favorites</h1>
+
+<ul>
+  <% @favorites.each do |f| %>
+    <li>
+      <%= link_to f.property.description, property_path(f.property) %>
+    </li>
+  <%end%>
+</ul>
+
+<%= link_to 'Back to Dashboard', customer_path(@customer) %>

@@ -1,0 +1,240 @@
+<!--hero-->
+<section class="" id="hero">
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-bg"></div>
+  <div class="intro">
+    <div class="row expanded">
+      <div class="small-9 medium-8 small-centered medium-centered columns">
+        <h1>Welcome to OpenReal</h1>
+        <p>Sell your home to OpenReal and eliminate the hassle of listings, showings and months of uncertainty.</p>
+      
+        <!--Search Bar-->
+        <div class="search-bar">
+          <!-- Search field -->
+          <%= form_tag (properties_sell_path), id: "addressForm" do %>
+            <div>
+              <input type="text" id="addressInput" placeholder="Enter your home address" name="addressInput">
+              <input type="hidden" name="addressFirst" id="addressFirst">
+              <input type="hidden" name="addressSecond" id="addressSecond">
+              <input type="hidden" name="addressCity" id="addressCity">
+              <input type="hidden" name="addressPostal" id="addressPostal">
+              <input type="hidden" name="addressLat" id="addressLat">
+              <input type="hidden" name="addressLng" id="addressLng">
+              <input type="submit" class="hide">
+              <!-- <div class="input-group-button">
+                <button class="button">Get&nbsp;Offer</button>
+              </div> -->
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end of hero-->
+
+<!-- listing banner -->
+<section class="listing-banner row expanded" id="listing-banner">
+  <div class="medium-10 medium-centered columns">
+    <div class="row collapse">
+      <!-- photo carousel -->
+      <div class="medium-8 columns">
+        <div class="orbit photo-carousel" role="region" data-orbit>
+          <ul class="orbit-container">
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P1.jpg') %>></div>
+            </li>
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P5.jpg') %>></div>
+            </li>
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P4.jpg') %>></div>
+            </li>
+            <li class="orbit-slide">
+              <div class="photo-slide" data-bg=<%= asset_path('P5.jpg') %>></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- CTA -->
+      <div class="medium-4 columns cta text-center">
+        <div class="v-align">
+          <h2>Buy an OpenReal Home that you’re guaranteed to love.</h2>
+          <a href="#" class="btn btn-primary">View our homes</a>
+        </div>
+      </div>
+
+  </div>
+</section>
+<!-- end of listing banner -->
+
+<!-- why -->
+<section class="row expanded" id="why">
+  <div class="row text-center section-title">
+    <h2 class="medium-6 medium-push-3 columns">Your home buying and selling experience is hassle-free.</h2>
+  </div>
+  <div class="row collapse">
+    <div class="medium-10 medium-centered columns">
+      <div class="row">
+        <div class="small-12 medium-4 large-4 columns">
+          <div class="points">
+            <%= image_tag('bubble.svg') %>
+            <p class="lead">Selling your home hassle-free the moment when you are ready</p>
+            <p class="subheader">No need to hire an agent, list your home and wait for months for transaction to complete.</p>
+          </div>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+          <div class="points">
+            <%= image_tag('data-house.svg') %>
+
+            <p class="lead">Obtaining a fair offer by telling us everything about your home</p>
+            <p class="subheader">No need to host countless showings with contracts falling through.</p>
+          </div>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+          <div class="points">
+            <%= image_tag('truck.svg') %>
+            <p class="lead">Moving in to your dream home worry-free</p>
+            <p class="subheader">All of our listings have certified home inspection and extended coverage warranty.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center section-title">
+    <a href="#" class="btn btn-secondary">Learn more</a>
+  </div>
+</section>
+<!-- end of why -->
+
+<!-- new listings -->
+<section class="row expanded collapse new-listings" style="background-color:#f5f5f5;" id="new-listings">
+  <div class="medium-10 medium-centered columns">
+    <div class="row text-center section-title">
+      <h2 class="medium-6 medium-push-3 columns">New listings</h2>
+    </div>
+
+    <div class="row">
+      <div class="small-12 medium-4 columns">
+        <div class="listing-item">
+          <div class="listing-img" data-bg="<%= asset_path('01.jpg') %>">
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style="">3,955,000</span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span>3616 W 1st Ave</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+            </div>
+            <div class="float-right text-right">
+              <span>3743 sqft &middot; 4 bed 3 bath</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-12 medium-4 columns">
+        <div class="listing-item">
+          <div class="listing-img" data-bg="<%= asset_path('02.jpg') %>">
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style="">3,955,000</span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span>3616 W 1st Ave</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+            </div>
+            <div class="float-right text-right">
+              <span>3743 sqft &middot; 4 bed 3 bath</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-12 medium-4 columns">
+        <div class="listing-item">
+          <div class="listing-img" data-bg="<%= asset_path('03.jpg') %>">
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style="">3,955,000</span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span>3616 W 1st Ave</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+            </div>
+            <div class="float-right text-right">
+              <span>3743 sqft &middot; 4 bed 3 bath</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end new listings -->
+
+<!-- districts -->
+<section class="row expanded collapse new-listings"" id="new-listings">
+  <div class="medium-10 medium-centered columns">
+    <div class="row text-center section-title">
+      <h2 class="medium-6 medium-push-3 columns">Find the perfect home in these neighbourhoods.</h2>
+    </div>
+
+    <div class="row">
+      <div class="medium-8 columns ">
+        <div class="card">
+          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/whiterock.jpg' %>);"></div>
+          <a href="#"><span>Vancouver Island</span></a>
+        </div>
+      </div>
+
+      <div class="medium-4 columns">
+        <div class="card">
+          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/burnaby.jpg' %>);"></div>
+          <a href="#"><span>Metro Vancouver</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="medium-4 columns">
+        <div class="card">
+          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/delta.jpg' %>);"></div>
+          <a href="#"><span>Calgary</span></a>
+        </div>
+      </div>
+
+      <div class="medium-8 columns">
+        <div class="card">
+          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/vancouver.jpg' %>);"></div>
+          <a href="#"><span>Edmonton</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<!-- end of districts -->
+
+<!-- clean up needed -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete" async defer></script>

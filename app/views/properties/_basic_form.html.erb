@@ -1,0 +1,27 @@
+<h1>Step 1. Start with the basics</h1>
+
+<%= fp.fields_for :address do |ffa| %>
+  <div>
+    <%= ffa.label :address_first %>
+    <%= ffa.text_field :address_first %>
+  </div>
+  <div>
+    <%= ffa.label :address_second %>
+    <%= ffa.text_field :address_second %>
+  </div>
+    <%= ffa.label :city %>
+    <%= ffa.text_field :city %>
+  <div>
+    <%= ffa.label :postal_code %>
+    <%= ffa.text_field :postal_code %>
+  </div>
+  <div>
+    <%= ffa.hidden_field :latitude %>
+    <%= ffa.hidden_field :longitude %>
+  </div>
+<% end %>
+
+<div>
+  <%= fp.label :description %>
+  <%= fp.text_field :description %>
+</div>
