@@ -680,6 +680,47 @@ nav {
     line-height: 1.5;
     // margin-bottom: 2rem; 
   }
+
+  .arrow {
+    // opacity: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform-origin: 50% 50%;
+    transform: translate3d(-50%, -50%, 0);
+    display: block;
+
+    &:before,
+    &:after {
+      background: #fff;
+      content: '';
+      display: block;
+      height: 3px; 
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30px;
+    }
+
+    &:before {
+      transform: rotate(45deg) translateX(-23%);
+      transform-origin: top left;
+    }
+
+    &:after {
+      transform: rotate(-45deg) translateX(23%);
+      transform-origin: top right;
+    }
+
+    span {
+      position: absolute;
+      opacity: 0;
+      transform: translate(-23%, -23%);
+      transform-origin: center;
+    }
+  }
+
+
 }
 
 // hide google maps logo
