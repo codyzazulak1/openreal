@@ -15,7 +15,7 @@
             <li><a href="#">Three</a></li>
           </ul> -->
         </li>
-        <li><a href="#">Buy</a></li>
+        <li><a href=<%= properties_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Buy</a></li>
         <li><a href="#">How it works</a></li>
         <li><a href="#">FAQ</a></li>
         <% if current_customer || current_agent || current_admin %>
