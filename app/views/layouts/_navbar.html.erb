@@ -1,0 +1,56 @@
+<nav>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li class="menu-text"><a id="logo" href=<%= root_path %>>OpenReal</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu nav-menu">
+        <li>
+          <a href="#">Sell</a>
+          <!-- <ul class="menu vertical">
+            <li><a href="#">One</a></li>
+            <li><a href="#">Two</a></li>
+            <li><a href="#">Three</a></li>
+          </ul> -->
+        </li>
+        <li><a href="#" class="active">Buy</a></li>
+        <li><a href="#">How it works</a></li>
+        <% if @user %>
+          <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
+        <%else%>
+          <li><a data-open="signinmodal">Sign in</a></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<% if !@user %>
+<div class="reveal" id="signinmodal" data-reveal>
+  <div class="row">
+    <div class="medium-7 medium-centered large-7 large-centered columns">
+      <%= form_tag (customer_session_path) do |f| %>
+        <div class="row column log-in-form">
+          <h3 class="text-left">Sign In</h3>
+          <label>Email
+            <%= email_field_tag('email') %>
+          </label>
+          <label>Password
+            <%= password_field_tag("password") %>
+          </label>
+          <%= check_box_tag('remember_me', "0", false) %>
+          <%= label_tag :remember_me %>
+          <%= submit_tag "Log in" %>
+          <p><a type="submit" class="button expanded">SIGN IN</a></p>
+          <p class="text-center"><a href="#">Forgot your password?</a></p>   
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%end%>

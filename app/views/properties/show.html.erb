@@ -1,0 +1,9 @@
+<h1><%= @property.description %></h1>
+
+<% if current_customer %>
+  <% if @has_favorite %>
+    <%= link_to "Unfavorite", property_favorite_path(@property), method: :delete %>
+  <% else %>
+    <%= link_to "Favorite", property_favorite_path(@property), method: :post %>
+  <% end %>
+<%end%>

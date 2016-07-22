@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <!-- TypeKit -->
+    <script src="https://use.typekit.net/otn4kyo.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <!-- <p class="alert"><%= "alert" %></p> -->
+    <!-- <p class="notice"><%= "notice" %></p> -->
+    <%= render 'layouts/navbar' %>
+    
+    <%= yield %>
+
+  </body>
+</html>

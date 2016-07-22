@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Openreal</title>
+  </head>
+  <body>
+    <% if @properties.count == 0 %>
+      <h1> There are no properties here </h1>
+    <%else%>
+      <ul>
+        <% @properties.each do |p| %>
+          <li>
+            <h1>Placeholder Image</h1>
+            <div>
+              <% if p.has_photos? %>
+                <%= image_tag p.photos.first.picture.url %>
+              <%else%>
+                <%= image_tag "http://www.clipartbest.com/cliparts/9iz/obA/9izobA8GT.jpeg" %>
+              <%end%>
+            </div>
+            <h5><%= p.address.address_first %></h5>
+            <h5><%= p.address.city %></h5>
+            <h5><%= p.address.postal_code %></h5>
+            <%= link_to p.description, property_path(p) %>
+          </li>
+        <%end%>
+      </ul>
+    <%end%>
+  </body>
+</html>
+
