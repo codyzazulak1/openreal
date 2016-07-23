@@ -1,31 +1,213 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Openreal</title>
-  </head>
-  <body>
-    <% if @properties.count == 0 %>
-      <h1> There are no properties here </h1>
-    <%else%>
-      <ul>
-        <% @properties.each do |p| %>
-          <li>
-            <h1>Placeholder Image</h1>
-            <div>
-              <% if p.has_photos? %>
-                <%= image_tag p.photos.first.picture.url %>
-              <%else%>
-                <%= image_tag "http://www.clipartbest.com/cliparts/9iz/obA/9izobA8GT.jpeg" %>
-              <%end%>
+<div class="row collapse container">
+      <div class="medium-7 columns">
+        <div id="map"><img src="http://placehold.it/1000"></div>
+      </div>
+      <div class="medium-5 columns">
+        <div id="listings">
+          <div class="row collapse">
+            <div class="large-12 columns clearfix listing-header vertical-align"><!-- 
+               --><a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+               --><div class="float-right listing-count">
+               <span>1469</span><span> active listings</span>
+              </div>
             </div>
-            <h5><%= p.address.address_first %></h5>
-            <h5><%= p.address.city %></h5>
-            <h5><%= p.address.postal_code %></h5>
-            <%= link_to p.description, property_path(p) %>
-          </li>
-        <%end%>
-      </ul>
-    <%end%>
-  </body>
-</html>
 
+
+
+            <div class="listing-body">
+              <!-- listing filters -->
+              <div class="listing-filters">
+                <form class="">
+                  <div class="row">
+                    <div class="medium-6 columns">
+                      <label>Min Price
+                        <select>
+                          <option value="0">0</option>
+                          <option value="1">$100,000</option>
+                          <option value="2">$200,000</option>
+                          <option value="3">$300,000</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="medium-6 columns">
+                      <label>Max Price
+                        <select>
+                          <option value="0">Unlimited</option>
+                          <option value="1">$100,000</option>
+                          <option value="2">$200,000</option>
+                          <option value="3">$300,000</option>
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="medium-6 columns">
+                      <label>Bedrooms
+                        <select>
+                          <option value="0">Any</option>
+                          <option value="1">1+</option>
+                          <option value="2">2+</option>
+                          <option value="3">3+</option>
+                          <option value="4">4+</option>
+                          <option value="5">5+</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="medium-6 columns">
+                      <label>Bathrooms
+                        <select>
+                          <option value="0">Any</option>
+                          <option value="1">1+</option>
+                          <option value="2">2+</option>
+                          <option value="3">3+</option>
+                          <option value="4">4+</option>
+                          <option value="5">5+</option>
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="medium-6 columns">
+                      <label>Building Type
+                        <select>
+                          <option value="0">Any</option>
+                          <option value="1">House</option>
+                          <option value="2">Townhouse</option>
+                          <option value="3">Apartment</option>
+                          <option value="4">Duplex</option>
+                          <option value="5">Fourplex</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div class="medium-6 columns">
+                      <label>Storeys
+                        <select>
+                          <option value="0">Any</option>
+                          <option value="1">1+</option>
+                          <option value="2">2+</option>
+                          <option value="3">3+</option>
+                          <option value="4">4+</option>
+                          <option value="5">5+</option>
+                        </select>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="medium-6 columns">
+                      <label>Min Square Feet
+                        <input type="number">
+                      </label>
+                    </div>
+                    <div class="medium-6 columns">
+                      <label>Min Lot Size (sqft)
+                        <input type="number">
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="filter-buttons">
+                    <a href="#" class="btn btn-secondary" id="cancel-btn">Cancel</a>
+                    <input type="submit" class="btn btn-primary" value="Apply">
+                  </div>
+
+                </form>
+              </div>
+              <!-- end listing filters -->
+              <ul>
+                <li>
+                  <div class="listing-img" data-bg="img/01.jpg">
+                    <div class="listing-badge">
+                      <span>Just Listed</span>
+                    </div>
+                    <div class="listing-price">
+                      <sup>$</sup>
+                      <span style="">3,955,000</span>
+                    </div>
+                  </div>
+                  <div class="listing-meta clearfix">
+                    <div class="float-left">
+                      <span>3616 W 1st Ave</span>
+                      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+                    </div>
+                    <div class="float-right text-right">
+                      <span>3743 sqft &middot; 4 bed 3 bath</span>
+                      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="listing-img" data-bg="img/02.jpg">
+                    <div class="listing-badge">
+                      <span>Just Listed</span>
+                    </div>
+                    <div class="listing-price">
+                      <sup>$</sup>
+                      <span style="">3,955,000</span>
+                    </div>
+                  </div>
+                  <div class="listing-meta clearfix">
+                    <div class="float-left">
+                      <span>3616 W 1st Ave</span>
+                      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+                    </div>
+                    <div class="float-right text-right">
+                      <span>3743 sqft &middot; 4 bed 3 bath</span>
+                      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="listing-img" data-bg="img/03.jpg">
+                    <div class="listing-badge">
+                      <span>Just Listed</span>
+                    </div>
+                    <div class="listing-price">
+                      <sup>$</sup>
+                      <span style="">3,955,000</span>
+                    </div>
+                  </div>
+                  <div class="listing-meta clearfix">
+                    <div class="float-left">
+                      <span>3616 W 1st Ave</span>
+                      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+                    </div>
+                    <div class="float-right text-right">
+                      <span>3743 sqft &middot; 4 bed 3 bath</span>
+                      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+                    </div>
+                  </div>
+                </li>
+
+                <!-- pagination -->
+                <div class="text-center">
+                  <ul class="pagination" role="navigation" aria-label="Pagination">
+                    <li class="disabled">&#9664;<span class="show-for-sr">Previous page</span></li>
+                    <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+                    <li><a href="#" aria-label="Page 2">2</a></li>
+                    <li><a href="#" aria-label="Page 3">3</a></li>
+                    <li><a href="#" aria-label="Page 4">4</a></li>
+                    <li class="ellipsis" aria-hidden="true"></li>
+                    <li><a href="#" aria-label="Page 12">12</a></li>
+                    <li><a href="#" aria-label="Page 13">13</a></li>
+                    <li><a href="#" aria-label="Next page">&#9654;<span class="show-for-sr">Next page</span></a></li>
+                  </ul>
+                </div>
+                <!-- end pagination -->
+              </ul>
+
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="js/map.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap"
+    async defer></script>
