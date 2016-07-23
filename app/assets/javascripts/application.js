@@ -74,6 +74,17 @@ $(document).ready(function(){
     return "url(" + $(this).data('bg') + ")";
   });
 
+  // listing filters
+  $('#filter-btn').click(function(e){
+    e.preventDefault();
+    $('.listing-filters').slideToggle();
+  });
+
+  $('#cancel-btn').click(function(e){
+    e.preventDefault();
+    $('.listing-filters').slideToggle();
+  });
+
   // initialize the sign in form
   showForm($('#signin-radios').children('input[type=radio]:checked').attr('name'));
 
