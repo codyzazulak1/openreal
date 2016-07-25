@@ -10,6 +10,17 @@ class Property < ActiveRecord::Base
   accepts_nested_attributes_for :contact_form
   accepts_nested_attributes_for :photos
 
+  monetize :list_price_cents, as: :list_price
+
+  def price
+    self.list_price.format
+  end
+
+  def city_province
+    province = "British Columbia"
+    "#{self.address.city}, #{province}"
+  end
+
   def has_photos?
     return true if self.photos.count > 0
     return false
