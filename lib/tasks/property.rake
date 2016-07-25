@@ -1,14 +1,5 @@
 namespace :seed do
 
-  desc "test money"
-  task :money, [] => :environment do
-
-    raise "Can't run on production" if Rails.env.production?
-
-    Property.create(list_price_cents: 2000)
-
-  end
-
   desc "add photos"
   task :photos, [] => :environment do
 
