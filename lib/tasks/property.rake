@@ -1,5 +1,14 @@
 namespace :seed do
 
+  desc "test money"
+  task :money, [] => :environment do
+
+    raise "Can't run on production" if Rails.env.production?
+
+    Property.create(list_price_cents: 2000)
+
+  end
+
   desc "add photos"
   task :photos, [] => :environment do
 
@@ -9,16 +18,12 @@ namespace :seed do
 
     data_hash = JSON.parse(file)
 
-    Property.all.each do |property|
-
       set = data_hash["photos"].sample
       set.each do |photo|
         Photo.create(property: property, picture: open(photo["url"]))
         puts "Photo created"
       end
       puts "Next property"
-
-    end
 
   end
 
@@ -65,9 +70,10 @@ namespace :seed do
 
       property = Property.create(
         description: "Elegance & luxury exudes in this amazing Chandler home in a gated community! Enter through the ornate wrought iron gate & behold the beauty of travertine tile, wood shutters, built in bookcases, fireplaces, and the professional interior design throughout. Chef's kitchen features top of the line stainless steel appliances, dark wood cabinets, granite countertops & backsplash, 2 wine coolers, center island, breakfast bar & a walk in pantry. 14' ceiling in the living room. Master suite is complete with sitting area, fireplace, separate exit, and luxurious spa like bathroom. Each spacious bedroom has direct access to a bath. Resort style backyard with sparkling blue pool, extended covered patio, built in BBQ and a firepit both with ample seating. Multiple fruit trees in the courtyard/backyard.",
+        list_price: rand(70000000..100000000),
         floor_area: rand(1900..2100),
-        lot_length: rand(210..240),
-        lot_width: rand(200..220),
+        lot_length: rand(110..130),
+        lot_width: rand(30..40),
         title_to_land: "Freehold",
         pid: rand(1000000..6000000),
         building_type: "House",
