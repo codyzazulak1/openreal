@@ -1,5 +1,27 @@
 namespace :seed do
 
+  desc "add photos"
+  task :photos, [] => :environment do
+
+    raise "Can't run on production" if Rails.env.production?
+
+    file = File.read('photos.json')
+
+    data_hash = JSON.parse(file)
+
+    Property.all.each do |property|
+
+      set = data_hash["photos"].sample
+      set.each do |photo|
+        Photo.create(property: property, picture: open(photo["url"]))
+        puts "Photo created"
+      end
+      puts "Next property"
+
+    end
+
+  end
+
   desc "seed properties"
   task :properties, [] => :environment do
     raise "Can't run on Production" if Rails.env.production?
@@ -34,7 +56,6 @@ namespace :seed do
       end
 
       addr = @place_json[0]
-      addr_formatted = addr["formatted_address"]
       addr_c = addr["address_components"]
 
       addr_first = "#{addr_c[0]["long_name"]} #{addr_c[1]["long_name"]}"
@@ -67,7 +88,7 @@ namespace :seed do
         property_id: property.id
       )
 
-      puts "#{property.description} CREATED"
+      puts "#{property.addres_name} CREATED"
 
     end
 
