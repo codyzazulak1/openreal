@@ -88,7 +88,7 @@ namespace :seed do
         property_id: property.id
       )
 
-      puts "#{property.addres_name} CREATED"
+      puts "#{property.address_name} CREATED"
 
     end
 
