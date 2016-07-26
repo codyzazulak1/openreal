@@ -34,19 +34,16 @@ function setMarkers(map) {
   
   $.getJSON("/properties.json", function(data){
     data.forEach(function(property){
+      var iconImg = "<%= asset_path('marker.png') %>";
       var marker = new google.maps.Marker({
         position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
         map: map,
-        title: property.address.address_first,
+        icon: iconImg,
+        title: property.address.address_first
         // zIndex: 5
       });
 
-      var info = 
-      // "<div class='marker-info'>" + 
-        // "<span>" + 
-        property.address.address_first;
-        // "</span>" + 
-        // "</div>";
+      var info = property.address.address_first;
 
       var infowindow = new google.maps.InfoWindow({
         content: info,

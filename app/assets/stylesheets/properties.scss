@@ -7,7 +7,6 @@
  ****************/
 
 #map {
-  // height: 100%;
   height: calc(100vh - 62px);
   overflow: hidden;
 
@@ -22,12 +21,11 @@
     text-align: center;
 
     >div {
-      // text-align: center;
-      // max-width: 100% !important;
       vertical-align: middle;
     }
   }
 
+  // experiment
   div:has(+ .gm-style-iw) {display: none;}
 
   // hide info window close button
