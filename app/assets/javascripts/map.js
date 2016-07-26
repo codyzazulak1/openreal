@@ -1,9 +1,14 @@
 var map;
-var markers = [
-  ['Property 1', 49.2447, -123.1359, 4],
-  ['Property 2', 49.2512, -123.1482, 5],
-  ['Property 3', 49.2524, -123.1598, 3]
-];
+// var markers = [
+//   ['Property 1', 49.2447, -123.1359, 4],
+//   ['Property 2', 49.2512, -123.1482, 5],
+//   ['Property 3', 49.2524, -123.1598, 3]
+// ];
+
+var markers = [];
+
+
+// console.log(markers);
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -25,15 +30,27 @@ function initMap() {
   
 
 function setMarkers(map) {
-  for (var i = 0; i < markers.length; i++) {
-    // var marker = markers[i];
-    var marker = new google.maps.Marker({
-      position: {lat: marker[1], lng: marker[2]},
-      map: map,
-      title: marker[0],
-      zIndex: marker[3]
+  $.getJSON("/properties.json", function(data){
+    // console.log(data);
+    data.forEach(function(property){
+      var marker = new google.maps.Marker({
+        position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+        map: map,
+        title: property.address.address_first,
+        zIndex: 5
+      });
     });
-  }
+  });
+
+  // for (var i = 0; i < markers.length; i++) {
+  //   // var marker = markers[i];
+  //   var marker = new google.maps.Marker({
+  //     position: {lat: marker[1], lng: marker[2]},
+  //     map: map,
+  //     title: marker[0],
+  //     zIndex: marker[3]
+  //   });
+  // }
 }
 
 var pin = [49.2447, -123.1359, 4];

@@ -2,6 +2,12 @@ class PropertiesController < ApplicationController
 
   def index
     @properties = Property.all
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @properties.to_json(include: [:address])
+      end
+    end
   end
 
   def sell
