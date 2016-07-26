@@ -85,6 +85,9 @@ $(document).ready(function(){
     $('.listing-filters').slideToggle();
   });
 
+  
+
+
   // initialize the sign in form
   showForm($('#signin-radios').children('input[type=radio]:checked').attr('name'));
 
