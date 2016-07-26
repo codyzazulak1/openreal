@@ -57,6 +57,7 @@ function setMarkers(map) {
       marker.addListener('click', function() {
         closeAllInfoWin();
         infowindow.open(map, marker);
+        $(".gm-style-iw").prev("div").hide();
       });
     });
   });
