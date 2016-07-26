@@ -1,31 +1,80 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Openreal</title>
-  </head>
-  <body>
-    <% if @properties.count == 0 %>
-      <h1> There are no properties here </h1>
-    <%else%>
-      <ul>
-        <% @properties.each do |p| %>
-          <li>
-            <h1>Placeholder Image</h1>
-            <div>
-              <% if p.has_photos? %>
-                <%= image_tag p.photos.first.picture.url %>
-              <%else%>
-                <%= image_tag "http://www.clipartbest.com/cliparts/9iz/obA/9izobA8GT.jpeg" %>
-              <%end%>
+<div class="row collapse container">
+      <div class="medium-7 columns">
+        <div id="map"><img src="http://placehold.it/1000"></div>
+      </div>
+      <div class="medium-5 columns">
+        <div id="listings">
+          <div class="row collapse">
+            <div class="large-12 columns clearfix listing-header vertical-align"><!-- 
+               --><a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+               --><div class="float-right listing-count">
+               <span><%= @properties.count %></span><span> active listings</span>
+              </div>
             </div>
-            <h5><%= p.address.address_first %></h5>
-            <h5><%= p.address.city %></h5>
-            <h5><%= p.address.postal_code %></h5>
-            <%= link_to p.description, property_path(p) %>
-          </li>
-        <%end%>
-      </ul>
-    <%end%>
-  </body>
-</html>
 
+
+
+            <div class="listing-body">
+              <!-- listing filters -->
+              <%= render 'listings_filter' %>
+              <!-- end listing filters -->
+              <ul>
+                <% if @properties.count == 0 %>
+                <li>There are no properties here</li>
+                <%else%>
+                  <% @properties.each do |p| %>
+                  <li>
+                    <div class="listing-img" data-bg=<%= asset_path '01.jpg' %>>
+                      <div class="listing-badge">
+                        <span>Just Listed</span>
+                      </div>
+                      <div class="listing-price">
+                        <sup>$</sup>
+                        <span style=""><%= p.price %></span>
+                      </div>
+                    </div>
+                    <div class="listing-meta clearfix">
+                      <div class="float-left">
+                        <span><%= p.address.address_first %></span>
+                        <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
+                      </div>
+                      <div class="float-right text-right">
+                        <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>
+                        <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+                      </div>
+                    </div>
+                  </li>
+                  <%end%>
+                <%end%>
+
+
+                
+
+                <!-- pagination -->
+                <div class="text-center">
+                  <ul class="pagination" role="navigation" aria-label="Pagination">
+                    <li class="disabled">&#9664;<span class="show-for-sr">Previous page</span></li>
+                    <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+                    <li><a href="#" aria-label="Page 2">2</a></li>
+                    <li><a href="#" aria-label="Page 3">3</a></li>
+                    <li><a href="#" aria-label="Page 4">4</a></li>
+                    <li class="ellipsis" aria-hidden="true"></li>
+                    <li><a href="#" aria-label="Page 12">12</a></li>
+                    <li><a href="#" aria-label="Page 13">13</a></li>
+                    <li><a href="#" aria-label="Next page">&#9654;<span class="show-for-sr">Next page</span></a></li>
+                  </ul>
+                </div>
+                <!-- end pagination -->
+              </ul>
+
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="js/map.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap"
+    async defer></script>

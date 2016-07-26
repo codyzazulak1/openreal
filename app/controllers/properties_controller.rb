@@ -18,8 +18,8 @@ class PropertiesController < ApplicationController
   end
 
   def new
-    # session[:property_params] ||= {}
-    # session[:address_params] ||= {}
+    session[:property_params] ||= {}
+    session[:address_params] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
 
     @property = Property.new

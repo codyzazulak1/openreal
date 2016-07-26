@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+//= require map
 
 $(function(){ $(document).foundation(); });
 
@@ -71,6 +72,17 @@ $(document).ready(function(){
   // listing images
   $('.listing-img').css('background-image', function(){
     return "url(" + $(this).data('bg') + ")";
+  });
+
+  // listing filters
+  $('#filter-btn').click(function(e){
+    e.preventDefault();
+    $('.listing-filters').slideToggle();
+  });
+
+  $('#cancel-btn').click(function(e){
+    e.preventDefault();
+    $('.listing-filters').slideToggle();
   });
 
   // initialize the sign in form
