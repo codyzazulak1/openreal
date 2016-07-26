@@ -28,6 +28,8 @@
     }
   }
 
+  div:has(+ .gm-style-iw) {display: none;}
+
   // hide info window close button
   .gm-style-iw + div {display: none;}
 }

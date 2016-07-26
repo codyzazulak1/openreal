@@ -22,7 +22,8 @@ function initMap() {
     scaleControl: false,
     streetViewControl: false,
     rotateControl: false,
-    fullscreenControl: false
+    fullscreenControl: false,
+    clickableIcons: false
   });
 
   setMarkers(map);
