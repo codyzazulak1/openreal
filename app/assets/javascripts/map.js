@@ -6,7 +6,7 @@ var map;
 // ];
 
 var markers = [];
-
+var infoWindows = [];
 
 // console.log(markers);
 
@@ -30,14 +30,33 @@ function initMap() {
   
 
 function setMarkers(map) {
+  
   $.getJSON("/properties.json", function(data){
-    // console.log(data);
     data.forEach(function(property){
       var marker = new google.maps.Marker({
         position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
         map: map,
         title: property.address.address_first,
-        zIndex: 5
+        // zIndex: 5
+      });
+
+      var info = 
+      // "<div class='marker-info'>" + 
+        // "<span>" + 
+        property.address.address_first;
+        // "</span>" + 
+        // "</div>";
+
+      var infowindow = new google.maps.InfoWindow({
+        content: info,
+        // maxWidth: 200
+      });
+
+      infoWindows.push(infowindow);
+
+      marker.addListener('click', function() {
+        closeAllInfoWin();
+        infowindow.open(map, marker);
       });
     });
   });
@@ -51,6 +70,12 @@ function setMarkers(map) {
   //     zIndex: marker[3]
   //   });
   // }
+}
+
+function closeAllInfoWin() {
+  for (var i=0; i<infoWindows.length; i++) {
+    infoWindows[i].close();
+  }
 }
 
 var pin = [49.2447, -123.1359, 4];
