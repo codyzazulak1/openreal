@@ -30,13 +30,13 @@
                       </div>
                       <div class="listing-price">
                         <sup>$</sup>
-                        <span style="">3,955,000</span>
+                        <span style=""><%= p.price %></span>
                       </div>
                     </div>
                     <div class="listing-meta clearfix">
                       <div class="float-left">
                         <span><%= p.address.address_first %></span>
-                        <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.address.city %>, BC</span>
+                        <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
                       </div>
                       <div class="float-right text-right">
                         <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>

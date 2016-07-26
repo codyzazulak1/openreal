@@ -13,11 +13,12 @@ class Property < ActiveRecord::Base
   monetize :list_price_cents, as: :list_price
 
   def price
-    self.list_price.format
+    self.list_price.format(:drop_trailing_zeros => true)
   end
 
   def city_province
-    province = "British Columbia"
+    # province = "British Columbia"
+    province = "BC"
     "#{self.address.city}, #{province}"
   end
 
@@ -28,10 +29,6 @@ class Property < ActiveRecord::Base
 
   def lot_area
     return self.lot_length * self.lot_width
-  end
-
-  def city_province
-    "#{self.city}, British Columbia"
   end
 
   def address_name
