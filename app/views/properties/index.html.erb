@@ -21,8 +21,8 @@
                 <li>There are no properties here</li>
                 <%else%>
                   <% @properties.each do |p| %>
-                  <li>
-                    <div class="listing-img" data-bg=<%= asset_path '01.jpg' %>>
+                  <li>p
+                    <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
                       <div class="listing-badge">
                         <span>Just Listed</span>
                       </div>
