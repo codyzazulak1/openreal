@@ -14,11 +14,10 @@
   </head>
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
-    <!-- <p class="alert"><%= "alert" %></p> -->
-    <!-- <p class="notice"><%= "notice" %></p> -->
     <%= render 'layouts/navbar' %>
     
     <%= yield %>
 
+    <%= render 'layouts/footer' unless controller.controller_name == 'properties' && controller.action_name == 'index' %>
   </body>
 </html>
