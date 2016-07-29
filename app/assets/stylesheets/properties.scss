@@ -93,6 +93,38 @@
       overflow-y: auto;
       height: 100%;
       margin: 0;
+      // position: relative;
+
+      >.listing-overview {
+        position: absolute;
+        top: 0;
+        background-color: $panel-bg;
+        width: 100%;
+        height: calc(100vh - 60px - 62px);
+        overflow-y: auto;
+        z-index: 10;
+        display: none;
+
+        // padding: 1.25rem;
+
+        .listing-img {
+          height: 240px;
+          -webkit-transition: all ease-in-out 0.1s;
+          transition: all ease-in-out 0.1s;
+          background-color: #dedede;
+          background-size: cover;
+          background-position: center;
+          position: relative;
+        }
+
+        .listing-meta {
+          padding: 0.5rem 0.75rem;
+        }
+
+        .listing-description {
+          clear: both;
+        }
+      }
 
       >li {
         background-color: $white;

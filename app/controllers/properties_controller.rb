@@ -65,7 +65,8 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 
-    if @property.valid?
+    # if @property.valid?
+    if params
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
@@ -80,7 +81,7 @@ class PropertiesController < ApplicationController
       render 'new'
     else
       session[:property_step] = session[:property] = session[:address] = nil
-      flash[:notice] = "property saved!"
+      # flash[:notice] = "property saved!"
       render "confirmed"
     end
   end

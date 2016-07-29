@@ -85,7 +85,32 @@ $(document).ready(function(){
     $('.listing-filters').slideToggle();
   });
 
-  
+
+  // listing overview
+  $('.listing-body>ul>li').click(function(){
+    var pid = $(this).data('pid');
+    // var marker;
+    $('#p-' + pid).toggle();
+    mapMarkers.forEach(function(m){
+      if (m.pid === pid) {
+        var marker = m;
+        console.log(marker);
+        infoWindows.forEach(function(info){
+          if (info.pid === pid) {
+            closeAllInfoWin();
+            info.open(map, marker);
+            $(".gm-style-iw").prev("div").hide();
+          }
+        });
+      }
+    });
+        
+  });
+
+  $('.listing-overview>.close-btn').click(function(e){
+    e.preventDefault();
+    $(this).parent('.listing-overview').toggle();
+  });
 
 
   // initialize the sign in form
