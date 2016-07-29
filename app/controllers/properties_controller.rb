@@ -43,10 +43,12 @@ class PropertiesController < ApplicationController
       redirect_to :index
     end
 
-    if current_customer.favorites.where(property: @property).exists?
-      @has_favorite = true
-    else
-      @has_favorite = false
+    if current_customer
+      if current_customer.favorites.where(property: @property).exists?
+        @has_favorite = true
+      else
+        @has_favorite = false
+      end
     end
 
   end
