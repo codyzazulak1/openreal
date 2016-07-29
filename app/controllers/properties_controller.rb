@@ -43,7 +43,7 @@ class PropertiesController < ApplicationController
       redirect_to :index
     end
 
-    if current_customer
+    if customer_signed_in?
       if current_customer.favorites.where(property: @property).exists?
         @has_favorite = true
       else
