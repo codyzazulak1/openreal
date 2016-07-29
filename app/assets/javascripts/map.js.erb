@@ -69,19 +69,10 @@ function setMarkers(map) {
       infowindow.addListener('domready', function() {
         $('.listing-overview').hide();
         $('#p-' + infowindow.pid).toggle();
+        toggleOverview(infowindow.pid);
       });
     });
   });
-
-  // for (var i = 0; i < markers.length; i++) {
-  //   // var marker = markers[i];
-  //   var marker = new google.maps.Marker({
-  //     position: {lat: marker[1], lng: marker[2]},
-  //     map: map,
-  //     title: marker[0],
-  //     zIndex: marker[3]
-  //   });
-  // }
 }
 
 function closeAllInfoWin() {

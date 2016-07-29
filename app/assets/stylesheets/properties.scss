@@ -43,8 +43,12 @@
 
     #filter-btn {
       display: inline-block;
-      vertical-align: middle;
+      // vertical-align: middle;
       // line-height: 60px;
+    }
+
+    #close-btn {
+      display: inline-block;
     }
 
     .listing-count {
@@ -57,7 +61,22 @@
     }
   }
 
-  
+  .listing-footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    padding: calc((60px - 34px) / 2) 1.25rem;
+    background-color: $panel-bg;
+    z-index: 20;
+    text-align: right;
+    display: none;
+
+    .btn {
+      width: 100%;
+      display: block;
+    }
+  }
 
   .listing-body {
     position: relative;
@@ -100,7 +119,7 @@
         top: 0;
         background-color: $panel-bg;
         width: 100%;
-        height: calc(100vh - 60px - 62px);
+        height: calc(100vh - 60px - 62px - 60px);
         overflow-y: auto;
         z-index: 10;
         display: none;
@@ -117,12 +136,14 @@
           position: relative;
         }
 
-        .listing-meta {
-          padding: 0.5rem 0.75rem;
+        .listing-meta,
+        .listing-description {
+          padding: 0.5rem 1rem;
         }
 
         .listing-description {
           clear: both;
+          background-color: $white;
         }
       }
 
