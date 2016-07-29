@@ -109,6 +109,7 @@ $(document).ready(function(){
 
   $('.listing-overview>.close-btn').click(function(e){
     e.preventDefault();
+    closeAllInfoWin();
     $(this).parent('.listing-overview').toggle();
   });
 
