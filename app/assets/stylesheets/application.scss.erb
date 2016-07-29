@@ -190,6 +190,52 @@ nav {
 }
 
 
+footer {
+  background-color: $dark-gray;
+  background-color: darken($primary-color, 10%);
+  color: $light-gray;
+  padding: 1.5rem 0 0;
+
+  .bottom {
+    background-color: darken($primary-color, 15%);
+  }
+
+  .small-6 {
+    margin-bottom: 1.5rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0;
+    line-height: 3rem;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+
+    li>a {
+      color: $light-gray;
+      font-weight: 100;
+      letter-spacing: 0.1px;
+
+      &:hover,
+      &:focus {
+        color: $medium-gray;
+      }
+    }
+  }
+}
+
 
 
 

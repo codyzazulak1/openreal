@@ -7,12 +7,11 @@
           <div class="row collapse">
             <div class="large-12 columns clearfix listing-header vertical-align"><!-- 
                --><a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+               --><a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
                --><div class="float-right listing-count">
                <span><%= @properties.count %></span><span> active listings</span>
               </div>
             </div>
-
-
 
             <div class="listing-body">
               <!-- listing filters -->
@@ -23,8 +22,8 @@
                 <li>There are no properties here</li>
                 <%else%>
                   <% @properties.each do |p| %>
-                  <li>
-                    <div class="listing-img" data-bg=<%= asset_path '01.jpg' %>>
+                  <li data-pid=<%= p.id %>>
+                    <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
                       <div class="listing-badge">
                         <span>Just Listed</span>
                       </div>
@@ -44,11 +43,14 @@
                       </div>
                     </div>
                   </li>
+
+                  <!-- listing overview -->
+                  <%= render 'listing_overview', p: p %>
+                  <!-- end listing overview -->
                   <%end%>
                 <%end%>
 
-
-                
+                  
 
                 <!-- pagination -->
                 <div class="text-center">
@@ -67,6 +69,9 @@
                 <!-- end pagination -->
               </ul>
 
+              <div class="listing-footer">
+                <a href="#" class="btn btn-primary" id="detail-btn">See Details</a>
+              </div>
 
             </div>
             

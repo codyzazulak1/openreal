@@ -43,10 +43,12 @@ class PropertiesController < ApplicationController
       redirect_to :index
     end
 
-    if current_customer.favorites.where(property: @property).exists?
-      @has_favorite = true
-    else
-      @has_favorite = false
+    if customer_signed_in?
+      if current_customer.favorites.where(property: @property).exists?
+        @has_favorite = true
+      else
+        @has_favorite = false
+      end
     end
 
   end
@@ -65,7 +67,8 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 
-    if @property.valid?
+    # if @property.valid?
+    if params
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
@@ -80,7 +83,7 @@ class PropertiesController < ApplicationController
       render 'new'
     else
       session[:property_step] = session[:property] = session[:address] = nil
-      flash[:notice] = "property saved!"
+      # flash[:notice] = "property saved!"
       render "confirmed"
     end
   end
