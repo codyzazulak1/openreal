@@ -60,6 +60,8 @@ namespace :seed do
       addr_city = addr_c[4]["long_name"]
       addr_street = addr_c[1]["long_name"]
 
+      rand_date = Faker::Date.between(7.days.ago, Date.today)
+
       property = Property.create(
         description: "Elegance & luxury exudes in this amazing Chandler home in a gated community! Enter through the ornate wrought iron gate & behold the beauty of travertine tile, wood shutters, built in bookcases, fireplaces, and the professional interior design throughout. Chef's kitchen features top of the line stainless steel appliances, dark wood cabinets, granite countertops & backsplash, 2 wine coolers, center island, breakfast bar & a walk in pantry. 14' ceiling in the living room. Master suite is complete with sitting area, fireplace, separate exit, and luxurious spa like bathroom. Each spacious bedroom has direct access to a bath. Resort style backyard with sparkling blue pool, extended covered patio, built in BBQ and a firepit both with ample seating. Multiple fruit trees in the courtyard/backyard.",
         list_price: rand(7000..10000),
@@ -73,7 +75,9 @@ namespace :seed do
         stories: rand(1..3),
         bedrooms: rand(2..5),
         bathrooms: rand(2..4),
-        fireplaces: rand(1..15)
+        fireplaces: rand(1..15),
+        created_at: rand_date,
+        updated_at: rand_date
       )
 
       Address.create(
