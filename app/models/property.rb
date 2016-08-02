@@ -1,13 +1,17 @@
 class Property < ActiveRecord::Base
   attr_accessor :current_step
 
+  validates :list_price_cents, presence: true
+
   has_one :address, dependent: :destroy
   has_one :contact_form, dependent: :destroy
   has_many :photos, dependent: :destroy
   has_many :favorites
 
   accepts_nested_attributes_for :address
+  validates_associated :address
   accepts_nested_attributes_for :contact_form
+  validates_associated :contact_form
   accepts_nested_attributes_for :photos
 
   monetize :list_price_cents, as: :list_price

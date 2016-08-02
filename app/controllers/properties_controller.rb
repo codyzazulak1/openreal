@@ -67,7 +67,7 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 
-    if @property.valid?
+    if @property
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?

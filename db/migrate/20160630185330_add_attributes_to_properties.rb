@@ -13,7 +13,7 @@ class AddAttributesToProperties < ActiveRecord::Migration
       t.integer :number_of_floors
       t.integer :floor_area
       t.integer :year_built
-      t.integer :list_price
+      t.integer :list_price, limit: 9
       t.integer :stories
       t.integer :bedrooms
       t.integer :bathrooms
