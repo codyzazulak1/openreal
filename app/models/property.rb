@@ -29,7 +29,7 @@ class Property < ActiveRecord::Base
 
   def lot_area
     return 'N/A' if self.lot_length.nil? || self.lot_width.nil?
-    return self.lot_length * self.lot_width
+    return (self.lot_length * self.lot_width).round
   end
 
   def address_name
