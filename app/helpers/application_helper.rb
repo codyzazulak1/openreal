@@ -1,4 +1,3 @@
-# require 'base64'
 require 'hmac-sha1'
 
 module ApplicationHelper
