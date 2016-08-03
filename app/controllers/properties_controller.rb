@@ -1,11 +1,13 @@
 class PropertiesController < ApplicationController
 
   def index
-    @properties = Property.all
+    # @properties = Property.all
+    @properties = Property.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
+      format.js 
       format.json do
-        render json: @properties.to_json(include: [:address])
+        render json: Property.all.to_json(include: [:address])
       end
     end
   end

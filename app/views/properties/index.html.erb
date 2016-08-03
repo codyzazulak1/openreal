@@ -21,39 +21,14 @@
                 <% if @properties.count == 0 %>
                 <li>There are no properties here</li>
                 <%else%>
-                  <% @properties.each do |p| %>
-                  <li data-pid=<%= p.id %>>
-                    <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
-                      <div class="listing-badge">
-                        <span>Just Listed</span>
-                      </div>
-                      <div class="listing-price">
-                        <sup>$</sup>
-                        <span style=""><%= p.price %></span>
-                      </div>
-                    </div>
-                    <div class="listing-meta clearfix">
-                      <div class="float-left">
-                        <span><%= p.address.address_first %></span>
-                        <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
-                      </div>
-                      <div class="float-right text-right">
-                        <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>
-                        <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
-                      </div>
-                    </div>
-                  </li>
-
-                  <!-- listing overview -->
-                  <%= render 'listing_overview', p: p %>
-                  <!-- end listing overview -->
-                  <%end%>
+                  <%= render 'listing_item' %>
                 <%end%>
 
                   
 
                 <!-- pagination -->
                 <div class="text-center">
+
                   <ul class="pagination" role="navigation" aria-label="Pagination">
                     <li class="disabled">&#9664;<span class="show-for-sr">Previous page</span></li>
                     <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
