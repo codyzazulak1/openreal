@@ -25,4 +25,6 @@
   <!-- end listing overview -->
 <%end%>
 
-<%= paginate @properties, {prev_label: '◀'} %>
+<!-- pagination -->
+<%= paginate @properties, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>                
+<!-- end pagination -->
