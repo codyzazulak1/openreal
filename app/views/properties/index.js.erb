@@ -1,3 +1,5 @@
+$('.loader').show();
+
 $("#listings .listing-body>ul").html("<%= escape_javascript(render partial: 'properties/listing_item') %>").animate({ scrollTop: 0 }, "slow");; 
 
 $('.listing-img').css('background-image', function(){
@@ -23,3 +25,6 @@ $('.listing-body>ul>li').click(function(){
     }
   });
 });
+
+setTimeout(function() { $('.loader').fadeOut(); }, 1000);
+

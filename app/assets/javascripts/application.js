@@ -134,7 +134,7 @@ $(document).ready(function(){
     });
   });
 
-  
+  $('.loader').hide();
 
 
   // initialize the sign in form

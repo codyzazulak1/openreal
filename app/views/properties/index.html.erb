@@ -17,6 +17,9 @@
               <!-- listing filters -->
               <%= render 'listings_filter' %>
               <!-- end listing filters -->
+
+              <div class="loader"><div class="spinner"></div></div>
+
               <ul>
                 <% if @properties.count == 0 %>
                 <li>There are no properties here</li>
