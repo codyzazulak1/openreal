@@ -2,29 +2,20 @@
   <div class="medium-12 columns">
     <div class="orbit photo-carousel" role="region" aria-label="home photos" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-pause-on-hover="false" data-timer-delay="3000">
       <ul class="orbit-container">
+        <% @property.photos.each do |p|  %>
         <li class="orbit-slide is-active">
-          <div class="photo-slide" data-bg="img/01-large.jpg"></div>
+          <div class="photo-slide" data-bg=<%= p.picture %>></div>
         </li>
-        <li class="orbit-slide is-active">
-          <div class="photo-slide" data-bg="img/02-large.jpg"></div>
-        </li>
-        <li class="orbit-slide is-active">
-          <div class="photo-slide" data-bg="img/03-large.jpg"></div>
-        </li>
-        <!-- More slides... -->
+      <% end %>
       </ul>
     </div>
     <!-- fancybox -->
     <div class="fancybox" style="display: none;">
-      <a class="photo-thumb" rel="photo-thumb" href="img/01-large.jpg" >
-        <img src="img/01-large.jpg" alt="" />
-      </a>
-      <a class="photo-thumb" rel="photo-thumb" href="img/02-large.jpg" >
-        <img src="img/02-large.jpg" alt="" />
-      </a>
-      <a class="photo-thumb" rel="photo-thumb" href="img/03-large.jpg" >
-        <img src="img/03-large.jpg" alt="" />
-      </a>
+      <% @property.photos.each do |p|  %>
+        <a class="photo-thumb" rel="photo-thumb" href=<%= p.picture %> >
+          <img src=<%= p.picture %> alt="" />
+        </a>
+      <% end %>
     </div>
   </div>
 </div>
