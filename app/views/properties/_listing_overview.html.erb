@@ -1,25 +1,20 @@
-<div class="listing-overview" id=<%= "p-#{p.id}" %>>
-  <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
-    <div class="listing-badge">
-      <!-- <span>Just Listed</span> -->
-    </div>
+<div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
+  <div class="listing-badge">
+    <!-- <span>Just Listed</span> -->
   </div>
+</div>
 
-  <div class="listing-meta clearfix">
-    <div class="float-left">
-      <span><%= p.address.address_first %></span>
-      <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
-    </div>
-    <div class="float-right text-right">
-      <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>
-      <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
-    </div>
+<div class="listing-meta clearfix">
+  <div class="float-left">
+    <span><%= p.address.address_first %></span>
+    <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
   </div>
-
-  <div class="listing-description">
-    <span><%= p.description %></span>
+  <div class="float-right text-right">
+    <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>
+    <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
   </div>
+</div>
 
-  
-
+<div class="listing-description">
+  <span><%= p.description %></span>
 </div>

@@ -68,7 +68,11 @@ function setMarkers(map) {
 
       infowindow.addListener('domready', function() {
         $('.listing-overview').hide();
-        $('#p-' + infowindow.pid).toggle();
+        $.ajax({
+          url: "/properties/" + infowindow.pid,
+          mehtod: 'get', 
+          dataType: 'script'
+        });
         toggleOverview(infowindow.pid);
         overviewToggled = true;
       });

@@ -59,7 +59,7 @@ function populateFormFields() {
     $('#addressForm').find('#addressLng').val(addressLng);
   }
   formFilled = true;
-  console.log('final submit');
+  // console.log('final submit');
   $('#addressForm input:submit').click();
 }
 
@@ -116,7 +116,6 @@ $(document).ready(function(){
   // listing overview
   $('.listing-body>ul>li').click(function(){
     var pid = $(this).data('pid');
-    $('#p-' + pid).toggle();
     toggleOverview(pid);
     overviewToggled = true;
 
@@ -185,6 +184,7 @@ $(document).ready(function(){
       console.log('cancel submission');
     }
   });
+
 });
 
 // switch between different user type

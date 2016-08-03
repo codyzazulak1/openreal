@@ -41,6 +41,14 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+
+      respond_to do |format|
+        format.html
+        format.js 
+        format.json do
+          render json: @property.to_json(include: [:address])
+        end
+      end
     else
       redirect_to :index
     end

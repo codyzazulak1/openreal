@@ -1,5 +1,6 @@
 <% @properties.each do |p| %>
-  <li data-pid=<%= p.id %>>
+  <li id="listing-<%= p.id %>" >
+    <%= link_to "", property_path(p.id), remote: true %>
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
       <div class="listing-badge">
         <span>Just Listed</span>
@@ -21,10 +22,12 @@
     </div>
   </li>
   <!-- listing overview -->
-  <%= render 'listing_overview', p: p %>
+  <!-- <%= "render 'listing_overview', p: p" %> -->
   <!-- end listing overview -->
 <%end%>
 
 <!-- pagination -->
-<%= paginate @properties, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>                
+<%= paginate @properties, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
 <!-- end pagination -->
+
+<div class="listing-overview"></div>
