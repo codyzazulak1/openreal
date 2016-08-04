@@ -7,67 +7,30 @@
           <div class="row collapse">
             <div class="large-12 columns clearfix listing-header vertical-align"><!-- 
                --><a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+               --><a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
                --><div class="float-right listing-count">
                <span><%= @properties.count %></span><span> active listings</span>
               </div>
             </div>
 
-
-
             <div class="listing-body">
               <!-- listing filters -->
               <%= render 'listings_filter' %>
               <!-- end listing filters -->
+
+              <div class="loader"><div class="spinner"></div></div>
+
               <ul>
                 <% if @properties.count == 0 %>
                 <li>There are no properties here</li>
                 <%else%>
-                  <% @properties.each do |p| %>
-                  <li>
-                    <div class="listing-img" data-bg=<%= asset_path '01.jpg' %>>
-                      <div class="listing-badge">
-                        <span>Just Listed</span>
-                      </div>
-                      <div class="listing-price">
-                        <sup>$</sup>
-                        <span style=""><%= p.price %></span>
-                      </div>
-                    </div>
-                    <div class="listing-meta clearfix">
-                      <div class="float-left">
-                        <span><%= p.address.address_first %></span>
-                        <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
-                      </div>
-                      <div class="float-right text-right">
-                        <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>
-                        <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
-                      </div>
-                    </div>
-                  </li>
-                  <%end%>
+                  <%= render 'listing_item' %>
                 <%end%>
-
-
-                
-
-                <!-- pagination -->
-                <div class="text-center">
-                  <ul class="pagination" role="navigation" aria-label="Pagination">
-                    <li class="disabled">&#9664;<span class="show-for-sr">Previous page</span></li>
-                    <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
-                    <li><a href="#" aria-label="Page 2">2</a></li>
-                    <li><a href="#" aria-label="Page 3">3</a></li>
-                    <li><a href="#" aria-label="Page 4">4</a></li>
-                    <li class="ellipsis" aria-hidden="true"></li>
-                    <li><a href="#" aria-label="Page 12">12</a></li>
-                    <li><a href="#" aria-label="Page 13">13</a></li>
-                    <li><a href="#" aria-label="Next page">&#9654;<span class="show-for-sr">Next page</span></a></li>
-                  </ul>
-                </div>
-                <!-- end pagination -->
               </ul>
 
-
+              <div class="listing-footer">
+                <a href="#" target="_blank" class="btn btn-primary" id="detail-btn">See Details</a>
+              </div>
             </div>
             
           </div>

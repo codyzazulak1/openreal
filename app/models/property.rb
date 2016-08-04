@@ -17,7 +17,7 @@ class Property < ActiveRecord::Base
   monetize :list_price_cents, as: :list_price
 
   def price
-    self.list_price.format(:drop_trailing_zeros => true)
+    self.list_price.format(:drop_trailing_zeros => true, :symbol => '')
   end
 
   def city_province
@@ -32,7 +32,8 @@ class Property < ActiveRecord::Base
   end
 
   def lot_area
-    return self.lot_length * self.lot_width
+    return 'N/A' if self.lot_length.nil? || self.lot_width.nil?
+    return (self.lot_length * self.lot_width).round
   end
 
   def address_name

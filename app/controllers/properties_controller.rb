@@ -1,11 +1,13 @@
 class PropertiesController < ApplicationController
 
   def index
-    @properties = Property.all
+    # @properties = Property.all
+    @properties = Property.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
+      format.js 
       format.json do
-        render json: @properties.to_json(include: [:address])
+        render json: Property.all.to_json(include: [:address])
       end
     end
   end
@@ -39,6 +41,14 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+
+      respond_to do |format|
+        format.html
+        format.js 
+        format.json do
+          render json: @property.to_json(include: [:address])
+        end
+      end
     else
       redirect_to :index
     end
@@ -67,10 +77,13 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 
-    if @property
+    # if @property.valid?
+    if params
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
+        # byebug
+        @property.list_price_cents = 0
         @property.save if @property.all_valid?
       else
         @property.next_step
@@ -82,8 +95,14 @@ class PropertiesController < ApplicationController
       render 'new'
     else
       session[:property_step] = session[:property] = session[:address] = nil
-      flash[:notice] = "property saved!"
       render "confirmed"
+    end
+  end
+
+  def all_valid?
+    steps.all? do |step|
+      self.current_step = step
+      valid?
     end
   end
 

@@ -27,6 +27,9 @@ gem 'money-rails', '~> 1.6'
 # Use Devise for user authentication
 gem 'devise', '~> 4.0'
 
+# Pagination
+gem 'will_paginate', '~> 3.1.0'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -38,6 +41,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Foundation Rails
 gem 'foundation-rails'
+
+# HMAC
+gem 'ruby-hmac'
+
+# fancybox
+gem 'fancybox2-rails', '~> 0.2.8'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

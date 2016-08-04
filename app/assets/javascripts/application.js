@@ -20,6 +20,7 @@ $(function(){ $(document).foundation(); });
 
 var autocomplete;
 var formFilled = false;
+var overviewToggled = false;
 
 // google places autocomplete
 function autoComplete() {
@@ -41,7 +42,7 @@ function autoComplete() {
 // populate the address form based on the google places api response
 function populateFormFields() {
   place = autocomplete.getPlace();
-  console.log(place);
+  // console.log(place);
 
   if (place.address_components) {
     var addressFirst = place.address_components[0].long_name + ' ' + place.address_components[1].long_name;
@@ -58,8 +59,26 @@ function populateFormFields() {
     $('#addressForm').find('#addressLng').val(addressLng);
   }
   formFilled = true;
-  console.log('final submit');
+  // console.log('final submit');
   $('#addressForm input:submit').click();
+}
+
+// toggle listing overview
+function toggleOverview(pid=null) {
+  if (overviewToggled && pid !== null) { 
+    $('#detail-btn').attr('href', "/properties/" + pid) 
+  } 
+  else if (!overviewToggled && pid!== null) {
+    $('#detail-btn').attr('href', "/properties/" + pid)
+    $('#close-btn').toggleClass('hide');
+    $('#filter-btn').toggle();
+    $('.listing-footer').toggle();
+  }
+  else {
+    $('#close-btn').toggleClass('hide');
+    $('#filter-btn').toggle();
+    $('.listing-footer').toggle();
+  }
 }
 
 $(document).ready(function(){
@@ -74,7 +93,7 @@ $(document).ready(function(){
     return "url(" + $(this).data('bg') + ")";
   });
 
-  // listing filters
+  // listing header
   $('#filter-btn').click(function(e){
     e.preventDefault();
     $('.listing-filters').slideToggle();
@@ -85,7 +104,36 @@ $(document).ready(function(){
     $('.listing-filters').slideToggle();
   });
 
-  
+  $('#close-btn').click(function(e){
+    e.preventDefault();
+    closeAllInfoWin();
+    toggleOverview();
+    $('.listing-overview').hide();
+    overviewToggled = false;
+  });
+
+
+  // listing overview
+  $('.listing-body>ul>li').click(function(){
+    var pid = $(this).data('pid');
+    toggleOverview(pid);
+    overviewToggled = true;
+
+    mapMarkers.forEach(function(m){
+      if (m.pid === pid) {
+        var marker = m;
+        infoWindows.forEach(function(info){
+          if (info.pid === pid) {
+            closeAllInfoWin();
+            info.open(map, marker);
+            $(".gm-style-iw").prev("div").hide();
+          }
+        });
+      }
+    });
+  });
+
+  $('.loader').hide();
 
 
   // initialize the sign in form
@@ -136,6 +184,7 @@ $(document).ready(function(){
       console.log('cancel submission');
     }
   });
+
 });
 
 // switch between different user type
