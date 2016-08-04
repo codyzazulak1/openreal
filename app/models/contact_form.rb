@@ -4,4 +4,5 @@ class ContactForm < ActiveRecord::Base
   validates :email, presence: true
 
   belongs_to :property
+
 end
