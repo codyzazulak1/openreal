@@ -42,8 +42,6 @@ $(document).ready(function(){
     return "url(" + $(this).data('bg') + ")";
   });
 
-
-
   var fancyOptions = {
     prevEffect  : 'none',
     nextEffect  : 'none',
@@ -60,12 +58,9 @@ $(document).ready(function(){
     afterClose : function(){ $('.orbit').foundation('restart'); }
   };
 
-  $(".photo-thumb").fancybox({ parent: "body"});
-
   $('.photo-carousel').click(function(){
     var slideIndex = $('.orbit-slide.is-active').data('slide');
     fancyOptions.index = slideIndex;
     $.fancybox.open($(".photo-thumb"), fancyOptions);
-    // $.fancybox.jumpto( slideIndex );
   });
 });
