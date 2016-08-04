@@ -65,4 +65,8 @@ $(document).ready(function(){
     fancyOptions.index = slideIndex;
     $.fancybox.open($(".photo-thumb"), fancyOptions);
   });
+
+  $('#submit-filter').click(function(){
+    $('.listing-filters').slideToggle();
+  });
 });
