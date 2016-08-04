@@ -1,8 +1,25 @@
 class PropertiesController < ApplicationController
 
   def index
-    # @properties = Property.all
-    @properties = Property.paginate(:page => params[:page], :per_page => 10)
+
+    @properties = Property.where(
+    "list_price_cents >= ? AND
+    list_price_cents <= ? AND
+    bedrooms >= ? AND
+    bathrooms >= ? AND
+    stories >= ? AND
+    floor_area >= ? AND
+    ? >= (lot_length * lot_width)",
+
+    params["min-price"],
+    params["max-price"],
+    params["bed"],
+    params["bath"],
+    params["storeys"],
+    params["min-floor"],
+    params["min-lot"])
+
+    @properties = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -16,8 +33,8 @@ class PropertiesController < ApplicationController
     session[:property_step] = nil
     session[:address_params] = {
       address_first: params['addressFirst'],
-      address_second: params['addressSecond'], 
-      city: params['addressCity'], 
+      address_second: params['addressSecond'],
+      city: params['addressCity'],
       postal_code: params['addressPostal'],
       latitude: params['addressLat'],
       longitude: params['addressLng']
