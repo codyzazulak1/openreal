@@ -1,33 +1,89 @@
 class PropertiesController < ApplicationController
 
   def index
+
     @properties = Property.all
+      .order('list_price_cents ASC')
+
+    if params["min-price"]
+      @properties = @properties.where("list_price_cents >= ?", params["min-price"])
+    end
+    if params["max-price"] && params["max-price"] != ''
+      @properties = @properties.where("list_price_cents <= ?", params["max-price"])
+    end
+    if params["bed"]
+      @properties = @properties.where("bedrooms >= ?", params["bed"])
+    end
+    if params["bath"]
+      @properties = @properties.where("bathrooms >= ?", params["bath"])
+    end
+    if params["storeys"]
+      @properties = @properties.where("stories >= ?", params["storeys"])
+    end
+    if params["min-floor"] && params["min-floor"] != ''
+      @properties = @properties.where("floor_area >= ?", params["min-floor"].to_i)
+    end
+    if params["min-lot"] && params["min-floor"] != ''
+      @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
+    end
+
+    @properties = @properties.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+      format.js
+      format.json do
+        render json: Property.all.to_json(include: [:address])
+      end
+    end
+  end
+
+  def sell
+    session[:property_step] = nil
+    session[:address_params] = {
+      address_first: params['addressFirst'],
+      address_second: params['addressSecond'],
+      city: params['addressCity'],
+      postal_code: params['addressPostal'],
+      latitude: params['addressLat'],
+      longitude: params['addressLng']
+    }
+    redirect_to new_property_path
   end
 
   def new
-    # session[:property_params] ||= {}
-    # session[:address_params] ||= {}
+    session[:property_params] ||= {}
+    session[:address_params] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
 
     @property = Property.new
-    @address = Address.new
+    @address = Address.new(session[:address_params].merge({property: @property}))
+    @address ||= Address.new(property: @property)
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
-    @address = Address.new(property: @property)
   end
 
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+
+      respond_to do |format|
+        format.html
+        format.js 
+        format.json do
+          render json: @property.to_json(include: [:address])
+        end
+      end
     else
       redirect_to :index
     end
 
-    if current_customer.favorites.where(property: @property).exists?
-      @has_favorite = true
-    else
-      @has_favorite = false
+    if customer_signed_in?
+      if current_customer.favorites.where(property: @property).exists?
+        @has_favorite = true
+      else
+        @has_favorite = false
+      end
     end
 
   end
@@ -46,10 +102,13 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 
-    if @property.valid?
+    # if @property.valid?
+    if params
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
+        # byebug
+        @property.list_price_cents = 0
         @property.save if @property.all_valid?
       else
         @property.next_step
@@ -61,8 +120,14 @@ class PropertiesController < ApplicationController
       render 'new'
     else
       session[:property_step] = session[:property] = session[:address] = nil
-      flash[:notice] = "property saved!"
       render "confirmed"
+    end
+  end
+
+  def all_valid?
+    steps.all? do |step|
+      self.current_step = step
+      valid?
     end
   end
 

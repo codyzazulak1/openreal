@@ -1,5 +1,24 @@
 namespace :seed do
 
+  desc "add photos"
+  task :photos, [] => :environment do
+
+    raise "Can't run on production" if Rails.env.production?
+
+    file = File.read('photos.json')
+
+    data_hash = JSON.parse(file)
+
+    Property.all.each do |property|
+      set = data_hash["photos"].sample
+      set.each do |photo|
+        Photo.create(property: property, picture: open(photo["url"]))
+        puts "Photo created"
+      end
+      puts "Next property"
+    end
+  end
+
   desc "seed properties"
   task :properties, [] => :environment do
     raise "Can't run on Production" if Rails.env.production?
@@ -20,7 +39,6 @@ namespace :seed do
 
     25.times do
 
-
       loop do
         @rand_lat = rand(sw['lat']..ne['lat'])
         @rand_lng = rand(sw['lng']..ne['lng'])
@@ -34,7 +52,6 @@ namespace :seed do
       end
 
       addr = @place_json[0]
-      addr_formatted = addr["formatted_address"]
       addr_c = addr["address_components"]
 
       addr_first = "#{addr_c[0]["long_name"]} #{addr_c[1]["long_name"]}"
@@ -42,11 +59,14 @@ namespace :seed do
       addr_city = addr_c[4]["long_name"]
       addr_street = addr_c[1]["long_name"]
 
+      rand_date = Faker::Date.backward(6)
+
       property = Property.create(
         description: "Elegance & luxury exudes in this amazing Chandler home in a gated community! Enter through the ornate wrought iron gate & behold the beauty of travertine tile, wood shutters, built in bookcases, fireplaces, and the professional interior design throughout. Chef's kitchen features top of the line stainless steel appliances, dark wood cabinets, granite countertops & backsplash, 2 wine coolers, center island, breakfast bar & a walk in pantry. 14' ceiling in the living room. Master suite is complete with sitting area, fireplace, separate exit, and luxurious spa like bathroom. Each spacious bedroom has direct access to a bath. Resort style backyard with sparkling blue pool, extended covered patio, built in BBQ and a firepit both with ample seating. Multiple fruit trees in the courtyard/backyard.",
+        list_price_cents: Faker::Number.number(8),
         floor_area: rand(1900..2100),
-        lot_length: rand(210..240),
-        lot_width: rand(200..220),
+        lot_length: rand(110..130),
+        lot_width: rand(30..40),
         title_to_land: "Freehold",
         pid: rand(1000000..6000000),
         building_type: "House",
@@ -54,7 +74,9 @@ namespace :seed do
         stories: rand(1..3),
         bedrooms: rand(2..5),
         bathrooms: rand(2..4),
-        fireplaces: rand(1..15)
+        fireplaces: rand(1..15),
+        created_at: rand_date,
+        updated_at: rand_date
       )
 
       Address.create(
@@ -67,7 +89,12 @@ namespace :seed do
         property_id: property.id
       )
 
-      puts "#{property.description} CREATED"
+      ContactForm.create(
+        name: Faker::Name.name,
+        email: Faker::Internet.email
+      )
+
+      puts "#{property.address_name} CREATED"
 
     end
 

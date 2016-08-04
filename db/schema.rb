@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713235644) do
+ActiveRecord::Schema.define(version: 20160725225736) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -130,8 +130,8 @@ ActiveRecord::Schema.define(version: 20160713235644) do
   add_index "photos", ["property_id"], name: "index_photos_on_property_id"
 
   create_table "properties", force: :cascade do |t|
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.text     "seller_info"
     t.string   "pid"
     t.string   "dwelling_class"
@@ -143,13 +143,13 @@ ActiveRecord::Schema.define(version: 20160713235644) do
     t.integer  "number_of_floors"
     t.integer  "floor_area"
     t.integer  "year_built"
-    t.integer  "list_price"
+    t.integer  "list_price_cents",   limit: 9
     t.integer  "stories"
     t.integer  "bedrooms"
     t.integer  "bathrooms"
     t.integer  "fireplaces"
-    t.decimal  "lot_length",         precision: 8, scale: 2
-    t.decimal  "lot_width",          precision: 8, scale: 2
+    t.decimal  "lot_length",                   precision: 8, scale: 2
+    t.decimal  "lot_width",                    precision: 8, scale: 2
     t.string   "status"
     t.text     "description"
   end

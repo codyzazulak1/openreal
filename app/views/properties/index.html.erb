@@ -1,31 +1,42 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Openreal</title>
-  </head>
-  <body>
-    <% if @properties.count == 0 %>
-      <h1> There are no properties here </h1>
-    <%else%>
-      <ul>
-        <% @properties.each do |p| %>
-          <li>
-            <h1>Placeholder Image</h1>
-            <div>
-              <% if p.has_photos? %>
-                <%= image_tag p.photos.first.picture.url %>
-              <%else%>
-                <%= image_tag "http://www.clipartbest.com/cliparts/9iz/obA/9izobA8GT.jpeg" %>
-              <%end%>
+<div class="row collapse container">
+      <div class="medium-7 columns">
+        <div id="map"><img src="http://placehold.it/1000"></div>
+      </div>
+      <div class="medium-5 columns">
+        <div id="listings">
+          <div class="row collapse">
+            <div class="large-12 columns clearfix listing-header vertical-align"><!-- 
+               --><a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+               --><a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
+               --><div class="float-right listing-count">
+               <span id="listing-count"><%= @properties.count %></span><span> active listings</span>
+              </div>
             </div>
-            <h5><%= p.address.address_first %></h5>
-            <h5><%= p.address.city %></h5>
-            <h5><%= p.address.postal_code %></h5>
-            <%= link_to p.description, property_path(p) %>
-          </li>
-        <%end%>
-      </ul>
-    <%end%>
-  </body>
-</html>
 
+            <div class="listing-body">
+              <!-- listing filters -->
+              <%= render 'listings_filter' %>
+              <!-- end listing filters -->
+
+              <div class="loader"><div class="spinner"></div></div>
+
+              <ul>
+                <% if @properties.count == 0 %>
+                <li>There are no properties here</li>
+                <%else%>
+                  <%= render 'listing_item' %>
+                <%end%>
+              </ul>
+
+              <div class="listing-footer">
+                <a href="#" target="_blank" class="btn btn-primary" id="detail-btn">See Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="js/map.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap"
+    async defer></script>

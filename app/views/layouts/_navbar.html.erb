@@ -8,16 +8,17 @@
     <div class="top-bar-right">
       <ul class="menu nav-menu">
         <li>
-          <a href="#">Sell</a>
+          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'new' || controller.action_name == 'create' %>>Sell</a>
           <!-- <ul class="menu vertical">
             <li><a href="#">One</a></li>
             <li><a href="#">Two</a></li>
             <li><a href="#">Three</a></li>
           </ul> -->
         </li>
-        <li><a href="#" class="active">Buy</a></li>
+        <li><a href=<%= properties_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Buy</a></li>
         <li><a href="#">How it works</a></li>
-        <% if @user %>
+        <li><a href="#">FAQ</a></li>
+        <% if current_customer || current_agent || current_admin %>
           <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
         <%else%>
           <li><a data-open="signinmodal">Sign in</a></li>
@@ -27,23 +28,67 @@
   </div>
 </nav>
 
-<% if !@user %>
+<% unless current_customer || current_agent || current_admin %>
 <div class="reveal" id="signinmodal" data-reveal>
   <div class="row">
     <div class="medium-7 medium-centered large-7 large-centered columns">
-      <%= form_tag (customer_session_path) do |f| %>
+      <div class="text-center">
+        <h3>Sign In</h3>
+      </div>
+      <div class="row">
+        <fieldset class="large-12 columns text-center" id="signin-radios">
+          <input type="radio" name="customer" checked><label>Customer</label>
+          <input type="radio" name="agent"><label>Agent</label>
+          <input type="radio" name="admin"><label>Admin</label>
+        </fieldset>
+      </div>
+      <%= form_tag (customer_session_path), id: "customer-signin" do |f| %>
         <div class="row column log-in-form">
-          <h3 class="text-left">Sign In</h3>
           <label>Email
-            <%= email_field_tag('email') %>
+            <%= email_field_tag('customer[email]') %>
           </label>
           <label>Password
-            <%= password_field_tag("password") %>
+            <%= password_field_tag("customer[password]") %>
           </label>
-          <%= check_box_tag('remember_me', "0", false) %>
-          <%= label_tag :remember_me %>
-          <%= submit_tag "Log in" %>
-          <p><a type="submit" class="button expanded">SIGN IN</a></p>
+          <% if Devise.mappings[:customer].rememberable? %>
+            <%= check_box_tag('remember_me', "0", false) %>
+            <%= label_tag :remember_me %>
+          <% end %>
+          <%= submit_tag "SIGN IN", class: "button expanded", name: 'commit' %>
+          <p class="text-center"><a href="#">Forgot your password?</a></p>   
+        </div>
+      <% end %>
+
+      <%= form_tag (agent_session_path), id: "agent-signin" do |f| %>
+        <div class="row column log-in-form">
+          <label>Email
+            <%= email_field_tag('agent[email]') %>
+          </label>
+          <label>Password
+            <%= password_field_tag("agent[password]") %>
+          </label>
+          <% if Devise.mappings[:agent].rememberable? %>
+            <%= check_box_tag('remember_me', "0", false) %>
+            <%= label_tag :remember_me %>
+          <% end %>
+          <%= submit_tag "SIGN IN", class: "button expanded", name: 'commit' %>
+          <p class="text-center"><a href="#">Forgot your password?</a></p>   
+        </div>
+      <% end %>
+
+      <%= form_tag (admin_session_path), id: "admin-signin" do |f| %>
+        <div class="row column log-in-form">
+          <label>Email
+            <%= email_field_tag('admin[email]') %>
+          </label>
+          <label>Password
+            <%= password_field_tag("admin[password]") %>
+          </label>
+          <% if Devise.mappings[:admin].rememberable? %>
+            <%= check_box_tag('remember_me', "0", false) %>
+            <%= label_tag :remember_me %>
+          <% end %>
+          <%= submit_tag "SIGN IN", class: "button expanded", name: 'commit' %>
           <p class="text-center"><a href="#">Forgot your password?</a></p>   
         </div>
       <% end %>

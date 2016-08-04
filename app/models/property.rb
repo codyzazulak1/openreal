@@ -1,14 +1,38 @@
 class Property < ActiveRecord::Base
   attr_accessor :current_step
 
-  has_one :address, :dependent => :destroy
-  has_one :contact_form, :dependent => :destroy
-  has_many :photos
+  validates :list_price_cents, presence: true
+
+  has_one :address, dependent: :destroy
+  has_one :contact_form, dependent: :destroy
+  has_many :photos, dependent: :destroy
   has_many :favorites
 
   accepts_nested_attributes_for :address
+  validates_associated :address
   accepts_nested_attributes_for :contact_form
+  validates_associated :contact_form
   accepts_nested_attributes_for :photos
+
+  monetize :list_price_cents, as: :list_price
+
+  def self.just_listed(num = 3)
+    Property.where("CREATED_AT >= ?", 3.days.ago).order("CREATED_AT DESC").limit(num)
+  end
+
+  def is_new?
+    self.created_at >= 3.days.ago
+  end
+
+  def price
+    self.list_price.format(:drop_trailing_zeros => true, :symbol => '')
+  end
+
+  def city_province
+    # province = "British Columbia"
+    province = "BC"
+    "#{self.address.city}, #{province}"
+  end
 
   def has_photos?
     return true if self.photos.count > 0
@@ -16,7 +40,8 @@ class Property < ActiveRecord::Base
   end
 
   def lot_area
-    return self.lot_length * self.lot_width
+    return 'N/A' if self.lot_length.nil? || self.lot_width.nil?
+    return (self.lot_length * self.lot_width).round
   end
 
   def address_name

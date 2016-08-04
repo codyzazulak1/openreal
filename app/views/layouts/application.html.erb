@@ -9,16 +9,15 @@
     <script src="https://use.typekit.net/otn4kyo.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <!-- <p class="alert"><%= "alert" %></p> -->
-    <!-- <p class="notice"><%= "notice" %></p> -->
+  <body class="<%= controller.controller_name %> <%= controller.action_name %>">
     <%= render 'layouts/navbar' %>
     
     <%= yield %>
 
+    <%= render 'layouts/footer' unless controller.controller_name == 'properties' && controller.action_name == 'index' %>
   </body>
 </html>

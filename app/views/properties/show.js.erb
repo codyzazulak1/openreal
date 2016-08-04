@@ -1,0 +1,5 @@
+$("#listings .listing-overview").html("<%= escape_javascript(render partial: 'properties/listing_overview', locals: {p: @property}) %>").attr("id", '<%= escape_javascript("p-#{@property.id}") %>').show(); 
+// console.log('loaded');
+$('.listing-img').css('background-image', function(){
+  return "url(" + $(this).data('bg') + ")";
+});
