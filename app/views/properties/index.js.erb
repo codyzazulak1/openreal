@@ -6,6 +6,8 @@ $('.listing-img').css('background-image', function(){
   return "url(" + $(this).data('bg') + ")";
 });
 
+$('#listing-count').html("<%= escape_javascript("#{@properties.count}")%>");
+
 $('.listing-body>ul>li').click(function(){
   var pid = $(this).data('pid');
   $('#p-' + pid).toggle();
