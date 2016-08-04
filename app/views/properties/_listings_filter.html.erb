@@ -1,23 +1,23 @@
 <div class="listing-filters">
-  <form class="">
+  <form class="" method="get" data-remote="true" action="/properties">
     <div class="row">
       <div class="medium-6 columns">
         <label>Min Price
-          <select>
+          <select name="min-price">
             <option value="0">0</option>
-            <option value="1">$100,000</option>
-            <option value="2">$200,000</option>
-            <option value="3">$300,000</option>
+            <option value="100000">$100,000</option>
+            <option value="200000">$200,000</option>
+            <option value="300000">$300,000</option>
           </select>
         </label>
       </div>
       <div class="medium-6 columns">
         <label>Max Price
-          <select>
+          <select name="max-price">
             <option value="0">Unlimited</option>
-            <option value="1">$100,000</option>
-            <option value="2">$200,000</option>
-            <option value="3">$300,000</option>
+            <option value="100000">$100,000</option>
+            <option value="200000">$200,000</option>
+            <option value="300000">$300,000</option>
           </select>
         </label>
       </div>
@@ -26,7 +26,7 @@
     <div class="row">
       <div class="medium-6 columns">
         <label>Bedrooms
-          <select>
+          <select name="bed">
             <option value="0">Any</option>
             <option value="1">1+</option>
             <option value="2">2+</option>
@@ -38,7 +38,7 @@
       </div>
       <div class="medium-6 columns">
         <label>Bathrooms
-          <select>
+          <select name="bath">
             <option value="0">Any</option>
             <option value="1">1+</option>
             <option value="2">2+</option>
@@ -53,7 +53,7 @@
     <div class="row">
       <div class="medium-6 columns">
         <label>Building Type
-          <select>
+          <select name="type">
             <option value="0">Any</option>
             <option value="1">House</option>
             <option value="2">Townhouse</option>
@@ -65,7 +65,7 @@
       </div>
       <div class="medium-6 columns">
         <label>Storeys
-          <select>
+          <select name="storeys">
             <option value="0">Any</option>
             <option value="1">1+</option>
             <option value="2">2+</option>
@@ -80,19 +80,19 @@
     <div class="row">
       <div class="medium-6 columns">
         <label>Min Square Feet
-          <input type="number">
+          <input type="number" name="min-floor">
         </label>
       </div>
       <div class="medium-6 columns">
         <label>Min Lot Size (sqft)
-          <input type="number">
+          <input type="number" name="min-lot">
         </label>
       </div>
     </div>
 
     <div class="filter-buttons">
       <a href="#" class="btn btn-secondary" id="cancel-btn">Cancel</a>
-      <input type="submit" class="btn btn-primary" value="Apply">
+      <input type="submit" class="btn btn-primary" value="Apply" id="submit-filter">
     </div>
 
   </form>
