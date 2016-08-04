@@ -1,5 +1,5 @@
 <% @properties.each do |p| %>
-  <li id="listing-<%= p.id %>" >
+  <li id="listing-<%= p.id %>" data-pid=<%= p.id %>>
     <%= link_to "", property_path(p.id), remote: true %>
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
       <div class="listing-badge">
