@@ -71,4 +71,26 @@ $(document).ready(function(){
   $('#submit-filter').click(function(){
     // $('.listing-filters').slideToggle();
   });
+
+  $('#favorite-btn').on('click', function(event){
+
+    event.preventDefault();
+
+    //if( $(this).data("state") == "false" ){
+    console.log("butts");
+
+      $.ajax({
+        url: "/customers/"+$(this).data("uid")+"/favorites",
+        method: "post",
+        data: {
+          pid: $(this).data("pid")
+        },
+        success: function(){
+          console.log("Created thing");
+          $(this).data("state", "true");
+        }
+      });
+    //}
+  });
+
 });
