@@ -23,6 +23,7 @@ class FavoritesController < ApplicationController
 
     if @favorite.destroy
     end
+  end
   private
 
 end

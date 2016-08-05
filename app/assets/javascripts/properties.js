@@ -74,19 +74,17 @@ $(document).ready(function(){
 
 
   $('#favorite-btn').on('click', function(event){
-
     event.preventDefault();
 
-    console.log("butts");
-
-      $.ajax({
-        url: "/customers/"+$(this).data("uid")+"/favorites",
-        method: "post",
-        data: {
-          pid: $(this).data("pid")
-        },
-        success: function(){
-        }
-      });
+    $.ajax({
+      url: "/customers/"+$(this).data("uid")+"/favorites",
+      method: "post",
+      data: {
+        pid: $(this).data("pid")
+      },
+      success: function(){
+        $(this).data("state", "true").html('Saved');
+      }
+    });
   });
 });
