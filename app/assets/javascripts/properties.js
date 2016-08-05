@@ -70,11 +70,11 @@ $(document).ready(function(){
     $('.listing-filters').slideToggle();
   });
 
+
   $('#favorite-btn').on('click', function(event){
 
     event.preventDefault();
 
-    //if( $(this).data("state") == "false" ){
     console.log("butts");
 
       $.ajax({
@@ -84,11 +84,7 @@ $(document).ready(function(){
           pid: $(this).data("pid")
         },
         success: function(){
-          console.log("Created thing");
-          $(this).data("state", "true");
         }
       });
-    //}
   });
-
 });

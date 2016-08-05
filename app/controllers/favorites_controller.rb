@@ -12,7 +12,6 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new(customer: @customer, property: @property)
 
     if @favorite.save
-
     end
   end
 
