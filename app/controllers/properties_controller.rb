@@ -2,30 +2,7 @@ class PropertiesController < ApplicationController
 
   def index
 
-    @properties = Property.all
-      .order('list_price_cents ASC')
-
-    # if params["min-price"]
-    #   @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
-    # end
-    # if params["max-price"] && params["max-price"] != ''
-    #   @properties = @properties.where("list_price_cents <= ?", params["max-price"].to_i)
-    # end
-    # if params["bed"]
-    #   @properties = @properties.where("bedrooms >= ?", params["bed"].to_i)
-    # end
-    # if params["bath"]
-    #   @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
-    # end
-    # if params["storeys"]
-    #   @properties = @properties.where("stories >= ?", params["storeys"].to_i)
-    # end
-    # if params["min-floor"] && params["min-floor"] != ''
-    #   @properties = @properties.where("floor_area >= ?", params["min-floor"].to_i)
-    # end
-    # if params["min-lot"] && params["min-floor"] != ''
-    #   @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
-    # end
+    @properties = Property.all.order('created_at DESC')
 
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
@@ -105,6 +82,7 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+      @favorite = Customer.find(current_customer.id).favorites.include?(Favorite.find_by(property_id: params[:id]))
 
       respond_to do |format|
         format.html

@@ -15,6 +15,14 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    @customer = Customer.find(params[:customer_id])
+    @property = Property.find(params[:pid])
+
+    @favorite = Favorite.find_by(customer: @customer, property: @property)
+
+    if @favorite.destroy
+    end
   private
 
 end
