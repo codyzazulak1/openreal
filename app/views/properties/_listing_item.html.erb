@@ -1,4 +1,4 @@
-<% @properties.each do |p| %>
+<% @properties_paged.each do |p| %>
   <li id="listing-<%= p.id %>" data-pid=<%= p.id %>>
     <%= link_to "", property_path(p.id), remote: true %>
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
@@ -24,7 +24,7 @@
 <%end%>
 
 <!-- pagination -->
-<%= paginate @properties, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
+<%= paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
 <!-- end pagination -->
 
 <!-- listing overview -->
