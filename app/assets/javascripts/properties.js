@@ -67,6 +67,6 @@ $(document).ready(function(){
   });
 
   $('#submit-filter').click(function(){
-    $('.listing-filters').slideToggle();
+    // $('.listing-filters').slideToggle();
   });
 });
