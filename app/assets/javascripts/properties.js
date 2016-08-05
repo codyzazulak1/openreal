@@ -68,11 +68,6 @@ $(document).ready(function(){
     $.fancybox.open($(".photo-thumb"), fancyOptions);
   });
 
-  $('#submit-filter').click(function(){
-    // $('.listing-filters').slideToggle();
-  });
-
-
   $('#favorite-btn').on('click', function(event){
     event.preventDefault();
 
