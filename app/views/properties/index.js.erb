@@ -1,13 +1,17 @@
 $('.loader').show();
 
+// update listings
 $("#listings .listing-body>ul").html("<%= escape_javascript(render partial: 'properties/listing_item') %>").animate({ scrollTop: 0 }, "slow");
 
+// attach liting images
 $('.listing-img').css('background-image', function(){
   return "url(" + $(this).data('bg') + ")";
 });
 
+// update listing count
 $('#listing-count').html("<%= escape_javascript("#{@properties.count}")%>");
 
+// attach listener to makers
 $('.listing-body>ul>li').click(function(){
   var pid = $(this).data('pid');
   $('#p-' + pid).toggle();
