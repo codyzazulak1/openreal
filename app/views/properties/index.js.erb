@@ -9,7 +9,7 @@ $('.listing-img').css('background-image', function(){
 });
 
 // update listing count
-$('#listing-count').html("<%= escape_javascript("#{@properties.count}")%>");
+$('#listing-count').html("<%= escape_javascript("#{@properties.count}")%> active listings");
 
 // attach listener to makers
 $('.listing-body>ul>li').click(function(){

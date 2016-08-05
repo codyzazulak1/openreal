@@ -9,7 +9,7 @@ $('.listing-img').css('background-image', function(){
 });
 
 // update listing count
-$('#listing-count').html("<%= escape_javascript("#{@properties.count}")%>");
+$('#listing-count').html('Loading...')
 
 // attach listener to makers
 $('.listing-body>ul>li').click(function(){
@@ -38,5 +38,6 @@ updateMarkers(<%= @properties.to_json(include: [:address]).html_safe %>);
 setTimeout(function() 
   { 
     $('.listing-filters').hide();
+    $('#listing-count').html("<%= escape_javascript("#{@properties.count}")%> active listings");
     $('.loader').fadeOut(); 
   }, 1000);
