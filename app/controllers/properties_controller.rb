@@ -1,7 +1,6 @@
 class PropertiesController < ApplicationController
 
   def index
-
     @properties = Property.all.order('created_at DESC')
 
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)

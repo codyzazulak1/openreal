@@ -1,19 +1,31 @@
-<h1>Step 1. Start with the basics</h1>
+<div>Step 1</div>
+<h3>Start with the basics</h3>
 
 <%= fp.fields_for :address do |ffa| %>
   <div>
     <%= ffa.label :address_first %>
-    <%= ffa.text_field :address_first %>
+    <%= ffa.text_field :address_first, data: { 
+      'validation' => "required", 
+      'validation-error-msg' => "You did not enter an address" 
+    } %>
   </div>
   <div>
     <%= ffa.label :address_second %>
     <%= ffa.text_field :address_second %>
   </div>
+  <div>
     <%= ffa.label :city %>
-    <%= ffa.text_field :city %>
+    <%= ffa.text_field :city, data: { 
+      'validation' => "required", 
+      'validation-error-msg' => "You did not enter a city" 
+    } %>
+  </div>
   <div>
     <%= ffa.label :postal_code %>
-    <%= ffa.text_field :postal_code %>
+    <%= ffa.text_field :postal_code, data: { 
+      'validation' => "required", 
+      'validation-error-msg' => "You did not enter a postal code" 
+    } %>
   </div>
   <div>
     <%= ffa.hidden_field :latitude %>

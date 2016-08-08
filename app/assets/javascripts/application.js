@@ -15,6 +15,7 @@
 //= require foundation
 //= require_tree .
 //= require map
+//= require jquery.form-validator.min
 
 $(function(){ $(document).foundation(); });
 
@@ -191,6 +192,20 @@ $(document).ready(function(){
       console.log('cancel submission');
     }
   });
+
+  $('#submit-btn').click(function(){
+
+  });
+
+  
+
+  $('#new-property-form').on('click', function() {
+    $(this).validate({
+      errorMessagePosition : 'inline',
+      borderColorOnError: '',
+    });
+  });
+
 
 });
 

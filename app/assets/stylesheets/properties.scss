@@ -413,9 +413,19 @@
 
 // new property form
 #new-property-form {
+  padding-bottom: 1rem;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
   .progress {
     .progress-meter {
       border-radius: 0;
     }
+  }
+
+  .form-error {
+    display: block;
   }
 }
