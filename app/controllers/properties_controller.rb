@@ -82,11 +82,15 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
-      @favorite = Customer.find(current_customer.id).favorites.include?(Favorite.find_by(property_id: params[:id]))
+      if customer_signed_in?
+
+        @favorite = Favorite.find_by(property: @property, customer: current_customer)
+
+      end
 
       respond_to do |format|
         format.html
-        format.js 
+        format.js
         format.json do
           render json: @property.to_json(include: [:address])
         end

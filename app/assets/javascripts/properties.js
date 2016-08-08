@@ -77,9 +77,25 @@ $(document).ready(function(){
 
     event.preventDefault();
 
-    console.log("butts");
+    console.log($(this).data("state"));
+
+    if ($(this).data("state") == true){
 
       $.ajax({
+
+        url: "/customers/"+$(this).data("uid")+"/favorites/"+$(this).data("fid"),
+        method: "delete",
+        data: {
+          fid: $(this).data("fid")
+        },
+        success: function(){
+        }
+      });
+
+    } else {
+
+      $.ajax({
+
         url: "/customers/"+$(this).data("uid")+"/favorites",
         method: "post",
         data: {
@@ -88,5 +104,9 @@ $(document).ready(function(){
         success: function(){
         }
       });
+
+    }
+
   });
+
 });
