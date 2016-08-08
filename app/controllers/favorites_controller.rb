@@ -12,18 +12,27 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.new(customer: @customer, property: @property)
 
     if @favorite.save
+      respond_to do |format|
+        format.json {render json: {fid: @favorite.id}}
+      end
     end
+
   end
 
   def destroy
     @customer = Customer.find(params[:customer_id])
-    @property = Property.find(params[:pid])
-
-    @favorite = Favorite.find_by(customer: @customer, property: @property)
+    @favorite = Favorite.find(params[:fid])
 
     if @favorite.destroy
+      result = {message: "success"}
+    else
+      result = {message: "failed"}
+    end
+
+    respond_to do |format|
+      format.json {render json: result}
     end
   end
-  private
 
+  private
 end

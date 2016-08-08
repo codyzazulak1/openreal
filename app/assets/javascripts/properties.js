@@ -71,15 +71,42 @@ $(document).ready(function(){
   $('#favorite-btn').on('click', function(event){
     event.preventDefault();
 
-    $.ajax({
-      url: "/customers/"+$(this).data("uid")+"/favorites",
-      method: "post",
-      data: {
-        pid: $(this).data("pid")
-      },
-      success: function(){
-        $(this).data("state", "true").html('Saved');
-      }
-    });
+    console.log($(this).data("state"));
+
+    if ($(this).data("state") === true){
+
+      $.ajax({
+
+        url: "/customers/"+$(this).data("uid")+"/favorites/"+$(this).data("fid"),
+        method: "post",
+        dataType: 'json',
+        data: {
+          "_method": "delete",
+          fid: $(this).data("fid")
+        },
+        success: function(data){
+          $('#favorite-btn').data("state", false).html("Save as favorite");
+          console.log(data.message);
+        }
+      });
+
+    } else {
+
+      $.ajax({
+
+        url: "/customers/"+$(this).data("uid")+"/favorites",
+        method: "post",
+        dataType: 'json',
+        data: {
+          pid: $(this).data("pid")
+        },
+        success: function(data){
+         $('#favorite-btn').data("fid", data.fid).data("state", true).html("Saved");
+        }
+      });
+
+    }
+
   });
+
 });

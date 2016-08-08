@@ -142,9 +142,9 @@
                 <div class="medium-12 columns">
                   <% if customer_signed_in? %>
                     <% if @favorite %>
-                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%=current_customer.id%> data-pid=<%=@property.id%> data-state="true" >Saved</a>
+                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%=current_customer.id%> data-pid=<%=@property.id%> data-fid=<%=@favorite.id%> data-state="true" >Saved</a>
                     <% else %>
-                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%=current_customer.id%> data-pid=<%=@property.id%> data-state="false" >Save as favorite</a>
+                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%=current_customer.id%> data-pid=<%=@property.id%> data-fid="" data-state="false" >Save as favorite</a>
                     <% end %>
                   <% end %>
                 </div>
