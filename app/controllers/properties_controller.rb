@@ -167,26 +167,25 @@ class PropertiesController < ApplicationController
     render :cities
   end
 
-  def favorite
-    @property = Property.find(params[:property_id])
-    @customer = current_customer
-    @favorite = Favorite.new(property: @property, customer: @customer)
+  # def favorite
+  #   @property = Property.find(params[:property_id])
+  #   @customer = current_customer
+  #   @favorite = Favorite.new(property: @property, customer: @customer)
 
-    if @favorite.save
-      redirect_to @property
-    end
-  end
+  #   if @favorite.save
+  #     redirect_to @property
+  #   end
+  # end
 
-  def unfavorite
-    @property = Property.find(params[:property_id])
-    @customer = current_customer
-    @favorite = Favorite.find_by(property: @property, customer: @customer)
+  # def unfavorite
+  #   @property = Property.find(params[:property_id])
+  #   @customer = current_customer
+  #   @favorite = Favorite.find_by(property: @property, customer: @customer)
 
-    @favorite.destroy
+  #   @favorite.destroy
 
-    redirect_to @property
-
-  end
+  #   redirect_to @property
+  # end
 
   private
 

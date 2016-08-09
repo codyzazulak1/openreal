@@ -17,7 +17,12 @@ class Property < ActiveRecord::Base
   monetize :list_price_cents, as: :list_price
 
   def self.just_listed(num = 3)
-    Property.where("CREATED_AT >= ?", 3.days.ago).order("CREATED_AT DESC").limit(num)
+    new_listing = where("CREATED_AT >= ?", 3.days.ago).order("CREATED_AT DESC").limit(num)
+    if new_listing
+      return new_listing
+    else
+      return all.order("CREATED_AT DESC").limit(num)
+    end
   end
 
   def is_new?
