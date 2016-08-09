@@ -116,71 +116,32 @@
     </div>
 
     <div class="row">
+    <% @new_properties.each do |p| %>
+
       <div class="small-12 medium-6 large-4 columns">
         <div class="listing-item">
-          <div class="listing-img" data-bg="<%= asset_path('01.jpg') %>">
+          <%= link_to "", property_path(p.id), class: "listing-link" %>
+          <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
             <div class="listing-badge">
               <span>Just Listed</span>
             </div>
             <div class="listing-price">
               <sup>$</sup>
-              <span style="">3,955,000</span>
+              <span style=""><%= p.price %></span>
             </div>
           </div>
           <div class="listing-meta clearfix">
             <div class="float-left">
-              <span>3616 W 1st Ave</span>
+              <span><%= p.address.address_first %></span>
             </div>
             <div class="float-right text-right">
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.address.city %>, BC</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="small-12 medium-6 large-4 columns">
-        <div class="listing-item">
-          <div class="listing-img" data-bg="<%= asset_path('02.jpg') %>">
-            <div class="listing-badge">
-              <span>Just Listed</span>
-            </div>
-            <div class="listing-price">
-              <sup>$</sup>
-              <span style="">3,955,000</span>
-            </div>
-          </div>
-          <div class="listing-meta clearfix">
-            <div class="float-left">
-              <span>3616 W 1st Ave</span>
-            </div>
-            <div class="float-right text-right">
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="small-12 medium-6 large-4 columns float-left">
-        <div class="listing-item">
-          <div class="listing-img" data-bg="<%= asset_path('03.jpg') %>">
-            <div class="listing-badge">
-              <span>Just Listed</span>
-            </div>
-            <div class="listing-price">
-              <sup>$</sup>
-              <span style="">3,955,000</span>
-            </div>
-          </div>
-          <div class="listing-meta clearfix">
-            <div class="float-left">
-              <span>3616 W 1st Ave</span>
-            </div>
-            <div class="float-right text-right">
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <% end %>
     </div>
 
     <div class="row text-center section-title">

@@ -1,7 +1,9 @@
 <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
+  <% if p.is_new? %>
   <div class="listing-badge">
-    <!-- <span>Just Listed</span> -->
+    <span>Just Listed</span>
   </div>
+  <% end %>
 </div>
 
 <div class="listing-meta clearfix">

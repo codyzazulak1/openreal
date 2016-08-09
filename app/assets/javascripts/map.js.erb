@@ -1,7 +1,8 @@
 var map;
-var markers = [];
 var infoWindows = [];
 var mapMarkers = [];
+
+// var markers = [];
 // var markers = [
 //   ['Property 1', 49.2447, -123.1359, 4],
 //   ['Property 2', 49.2512, -123.1482, 5],
@@ -29,53 +30,121 @@ function initMap() {
     closeAllInfoWin();
   });
 
-
   setMarkers(map);
 }
-  
+
+function setMapOnAll(map) {
+  for (var i = 0; i < mapMarkers.length; i++) {
+    mapMarkers[i].setMap(map);
+  }
+}
+
+function clearMarkers() {
+  setMapOnAll(null);
+}  
+
+function removeMakers() {
+  setMapOnAll(null);
+  mapMarkers = [];
+  infoWindows = [];
+}
 
 function setMarkers(map) {
   
   $.getJSON("/properties.json", function(data){
     data.forEach(function(property){
-      var iconImg = "<%= asset_path('marker.png') %>";
-      var marker = new google.maps.Marker({
-        position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
-        map: map,
-        icon: iconImg,
-        title: property.address.address_first,
-        // zIndex: 5
-        pid: property.id
+      newMarker(property, newInfo(property));
+    });
+  });
+}
+
+function newMarker(property, infowindow){
+  var iconImg = "<%= asset_path('marker.png') %>";
+  var marker = new google.maps.Marker({
+    position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+    map: map,
+    icon: iconImg,
+    title: property.address.address_first,
+    // zIndex: 5
+    pid: property.id
+  });
+
+  marker.addListener('click', function() {
+    closeAllInfoWin();
+    infowindow.open(map, marker);
+    $(".gm-style-iw").prev("div").hide();
+  });
+
+  mapMarkers.push(marker);
+
+  return marker;
+}
+
+function newInfo(property) {
+  var infowindow = new google.maps.InfoWindow({
+    content: property.address.address_first,
+    // maxWidth: 200
+    pid: property.id
+  });
+
+  infowindow.addListener('domready', function() {
+    $('.listing-overview').hide();
+    $.ajax({
+      url: "/properties/" + infowindow.pid,
+      mehtod: 'get', 
+      dataType: 'script'
+    });
+    toggleOverview(infowindow.pid);
+    overviewToggled = true;
+  });
+
+  infoWindows.push(infowindow);
+
+  return infowindow;
+}
+
+function updateMarkers(properties) {
+  removeMakers();
+  properties.forEach(function(property){
+    var iconImg = "<%= asset_path('marker.png') %>";
+    var marker = new google.maps.Marker({
+      position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+      map: map,
+      icon: iconImg,
+      title: property.address.address_first,
+      // zIndex: 5
+      pid: property.id
+    });
+
+    var info = property.address.address_first;
+
+    var infowindow = new google.maps.InfoWindow({
+      content: info,
+      // maxWidth: 200
+      pid: property.id
+    });
+
+    infoWindows.push(infowindow);
+
+    marker.addListener('click', function() {
+      closeAllInfoWin();
+      infowindow.open(map, marker);
+      $(".gm-style-iw").prev("div").hide();
+    });
+
+    mapMarkers.push(marker);
+
+    // window.markers = mapMarkers;
+
+    infowindow.addListener('domready', function() {
+      $('.listing-overview').hide();
+      $.ajax({
+        url: "/properties/" + infowindow.pid,
+        mehtod: 'get', 
+        dataType: 'script'
       });
-
-      var info = property.address.address_first;
-
-      var infowindow = new google.maps.InfoWindow({
-        content: info,
-        // maxWidth: 200
-        pid: property.id
-      });
-
-      infoWindows.push(infowindow);
-
-      marker.addListener('click', function() {
-        closeAllInfoWin();
-        infowindow.open(map, marker);
-        $(".gm-style-iw").prev("div").hide();
-      });
-
-      mapMarkers.push(marker);
-
-      infowindow.addListener('domready', function() {
-        $('.listing-overview').hide();
-        $.ajax({
-          url: "/properties/" + infowindow.pid,
-          mehtod: 'get', 
-          dataType: 'script'
-        });
-        toggleOverview(infowindow.pid);
-        overviewToggled = true;
-      });
+      toggleOverview(infowindow.pid);
+      overviewToggled = true;
     });
   });
 }

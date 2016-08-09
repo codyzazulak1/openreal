@@ -15,6 +15,7 @@
 //= require foundation
 //= require_tree .
 //= require map
+//= require jquery.form-validator.min
 
 $(function(){ $(document).foundation(); });
 
@@ -81,6 +82,35 @@ function toggleOverview(pid=null) {
   }
 }
 
+// initialize listings
+function initListings() {
+
+  $('.listing-body>ul>li').click(function(){
+    var pid = $(this).data('pid');
+    toggleOverview(pid);
+    overviewToggled = true;
+
+    mapMarkers.forEach(function(m){
+      if (m.pid === pid) {
+        var marker = m;
+        infoWindows.forEach(function(info){
+          if (info.pid === pid) {
+            closeAllInfoWin();
+            info.open(map, marker);
+            $(".gm-style-iw").prev("div").hide();
+          }
+        });
+      }
+    });
+  });
+}
+
+function initListingImg() {
+  $('.listing-img').css('background-image', function(){
+    return "url(" + $(this).data('bg') + ")";
+  });
+}
+
 $(document).ready(function(){
 
   // carousel
@@ -89,9 +119,7 @@ $(document).ready(function(){
   });
 
   // listing images
-  $('.listing-img').css('background-image', function(){
-    return "url(" + $(this).data('bg') + ")";
-  });
+  initListingImg();
 
   // listing header
   $('#filter-btn').click(function(e){
@@ -112,29 +140,9 @@ $(document).ready(function(){
     overviewToggled = false;
   });
 
-
-  // listing overview
-  $('.listing-body>ul>li').click(function(){
-    var pid = $(this).data('pid');
-    toggleOverview(pid);
-    overviewToggled = true;
-
-    mapMarkers.forEach(function(m){
-      if (m.pid === pid) {
-        var marker = m;
-        infoWindows.forEach(function(info){
-          if (info.pid === pid) {
-            closeAllInfoWin();
-            info.open(map, marker);
-            $(".gm-style-iw").prev("div").hide();
-          }
-        });
-      }
-    });
-  });
+  initListings();
 
   $('.loader').hide();
-
 
   // initialize the sign in form
   showForm($('#signin-radios').children('input[type=radio]:checked').attr('name'));
@@ -181,9 +189,30 @@ $(document).ready(function(){
   $('#addressForm').submit(function(e){
     if (!formFilled) {
       e.preventDefault();
-      console.log('cancel submission');
+      // console.log('cancel submission');
     }
   });
+  
+
+  // validation before form submission
+  $('#new-property-form').on('click', function(event) {
+    // console.log(event.target.attributes.name.nodeValue);
+    var validate;
+    if (event.target.attributes.name.nodeValue==="commit") {
+      validate = $.validate({
+        errorMessagePosition : 'inline',
+        borderColorOnError: '',
+      });
+    } else {
+      validate = null;
+    }
+      
+  });
+
+  $('#back-btn').click(function(){
+    // $('#new-property-form').get(0).reset();
+    // $('#new-property-form').submit();
+  })
 
 });
 

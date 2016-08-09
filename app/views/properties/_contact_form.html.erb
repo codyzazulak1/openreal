@@ -1,14 +1,19 @@
-<h1>Step 4. How can we contact you?</h1>
+<div>Step 4</div>
+<h3>How can we contact you?</h3>
 
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name %>
-    <%= cf.text_field :name %>
+    <%= cf.text_field :name, data: {
+     validation: "required" 
+    } %>
   </div>
 
   <div>
     <%= cf.label :email %>
-    <%= cf.text_field :email %>
+    <%= cf.email_field :email, data: {
+     validation: "required" 
+    } %>
   </div>
 
   <div>

@@ -3,7 +3,7 @@ $('.loader').show();
 // update listings
 $("#listings .listing-body>ul").html("<%= escape_javascript(render partial: 'properties/listing_item') %>").animate({ scrollTop: 0 }, "slow");
 
-// attach listing images
+// attach liting images
 initListingImg();
 
 // update listing count
@@ -17,4 +17,3 @@ setTimeout(function()
     $('.listing-filters').hide();
     $('.loader').fadeOut(); 
   }, 1000);
-

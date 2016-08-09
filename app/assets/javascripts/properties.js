@@ -1,13 +1,15 @@
 //= require fancybox
 
 $(window).scroll(function(){
-  // current position
-  var cur_pos = $(this).scrollTop();
-  var paddingHeight = Number($('.property-details').css('padding-top').replace("px", ""));
-  var floatOffset = Number($('.floating-container').css('margin-top').replace("px", "").replace("-", ""));
-  var bottom_pos = $('.similar-listings').offset().top - $('.floating-box').outerHeight() - paddingHeight * 2;
-  // console.log(cur_pos, bottom_pos);
-  var floatOn = $('.photo-carousel').outerHeight() + $('nav').outerHeight() + $('.property-overview').outerHeight() - floatOffset;
+  if ($('body.properties.show').length) {
+    // current position
+    var cur_pos = $(this).scrollTop();
+    var paddingHeight = Number($('.property-details').css('padding-top').replace("px", ""));
+    var floatOffset = Number($('.floating-container').css('margin-top').replace("px", "").replace("-", ""));
+    var bottom_pos = $('.similar-listings').offset().top - $('.floating-box').outerHeight() - paddingHeight * 2;
+    // console.log(cur_pos, bottom_pos);
+    var floatOn = $('.photo-carousel').outerHeight() + $('nav').outerHeight() + $('.property-overview').outerHeight() - floatOffset;
+  }
   
   if ($(window).width() >= 640) {
     if (cur_pos > floatOn && cur_pos < bottom_pos && !$(".floating-box").hasClass('is-floating')) {
@@ -66,7 +68,45 @@ $(document).ready(function(){
     $.fancybox.open($(".photo-thumb"), fancyOptions);
   });
 
-  $('#submit-filter').click(function(){
-    $('.listing-filters').slideToggle();
+  $('#favorite-btn').on('click', function(event){
+    event.preventDefault();
+
+    console.log($(this).data("state"));
+
+    if ($(this).data("state") === true){
+
+      $.ajax({
+
+        url: "/customers/"+$(this).data("uid")+"/favorites/"+$(this).data("fid"),
+        method: "post",
+        dataType: 'json',
+        data: {
+          "_method": "delete",
+          fid: $(this).data("fid")
+        },
+        success: function(data){
+          $('#favorite-btn').data("state", false).html("Save as favorite");
+          console.log(data.message);
+        }
+      });
+
+    } else {
+
+      $.ajax({
+
+        url: "/customers/"+$(this).data("uid")+"/favorites",
+        method: "post",
+        dataType: 'json',
+        data: {
+          pid: $(this).data("pid")
+        },
+        success: function(data){
+         $('#favorite-btn').data("fid", data.fid).data("state", true).html("Saved");
+        }
+      });
+
+    }
+
   });
+
 });

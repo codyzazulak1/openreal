@@ -1,10 +1,12 @@
-<% @properties.each do |p| %>
+<% @properties_paged.each do |p| %>
   <li id="listing-<%= p.id %>" data-pid=<%= p.id %>>
     <%= link_to "", property_path(p.id), remote: true %>
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
+      <% if p.is_new? %>
       <div class="listing-badge">
         <span>Just Listed</span>
       </div>
+      <% end %>
       <div class="listing-price">
         <sup>$</sup>
         <span style=""><%= p.price %></span>
@@ -24,7 +26,7 @@
 <%end%>
 
 <!-- pagination -->
-<%= paginate @properties, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
+<%= paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
 <!-- end pagination -->
 
 <!-- listing overview -->

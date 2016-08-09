@@ -3,18 +3,21 @@ $('.loader').show();
 // update listings
 $("#listings .listing-body>ul").html("<%= escape_javascript(render partial: 'properties/listing_item') %>").animate({ scrollTop: 0 }, "slow");
 
-// attach listing images
+// attach liting images
 initListingImg();
 
 // update listing count
-$('#listing-count').html("<%= escape_javascript("#{@properties.count}")%> active listings");
+$('#listing-count').html('Loading...')
 
-// attach listener to makers
+// attach listener to markers
 initListings();
+
+// update map markers
+updateMarkers(<%= @properties.to_json(include: [:address]).html_safe %>);
 
 setTimeout(function() 
   { 
     $('.listing-filters').hide();
+    $('#listing-count').html("<%= escape_javascript("#{@properties.count}")%> active listings");
     $('.loader').fadeOut(); 
   }, 1000);
-

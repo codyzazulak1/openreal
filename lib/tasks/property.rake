@@ -94,7 +94,7 @@ namespace :seed do
         email: Faker::Internet.email
       )
 
-      puts "#{property.address_name} CREATED"
+      puts "#{property.id} CREATED"
 
     end
 

@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
     @user = current_user
     @just_listed = Property.where('created_at >= ?', 2.days.ago)
     @featured = Property.all.sample(3)
+    @new_properties = Property.just_listed(3)
   end
 
   def login

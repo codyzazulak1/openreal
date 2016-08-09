@@ -1,24 +1,36 @@
 class PropertiesController < ApplicationController
 
   def index
+    @properties = Property.all.order('created_at DESC')
 
+    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+      format.js
+      format.json do
+        render json: Property.all.to_json(include: [:address])
+      end
+    end
+  end
+
+  def filter
     @properties = Property.all
       .order('list_price_cents ASC')
 
     if params["min-price"]
-      @properties = @properties.where("list_price_cents >= ?", params["min-price"])
+      @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
     end
     if params["max-price"] && params["max-price"] != ''
-      @properties = @properties.where("list_price_cents <= ?", params["max-price"])
+      @properties = @properties.where("list_price_cents <= ?", params["max-price"].to_i)
     end
     if params["bed"]
-      @properties = @properties.where("bedrooms >= ?", params["bed"])
+      @properties = @properties.where("bedrooms >= ?", params["bed"].to_i)
     end
     if params["bath"]
-      @properties = @properties.where("bathrooms >= ?", params["bath"])
+      @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
     end
     if params["storeys"]
-      @properties = @properties.where("stories >= ?", params["storeys"])
+      @properties = @properties.where("stories >= ?", params["storeys"].to_i)
     end
     if params["min-floor"] && params["min-floor"] != ''
       @properties = @properties.where("floor_area >= ?", params["min-floor"].to_i)
@@ -27,12 +39,15 @@ class PropertiesController < ApplicationController
       @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
     end
 
-    @properties = @properties.paginate(:page => params[:page], :per_page => 10)
+    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
-      format.js
-      format.json do
-        render json: Property.all.to_json(include: [:address])
+      format.js do
+        unless params["page"]
+          render 'filter'
+        else
+          render 'filter2'
+        end
       end
     end
   end
@@ -66,10 +81,15 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+      if customer_signed_in?
+
+        @favorite = Favorite.find_by(property: @property, customer: current_customer)
+
+      end
 
       respond_to do |format|
         format.html
-        format.js 
+        format.js
         format.json do
           render json: @property.to_json(include: [:address])
         end

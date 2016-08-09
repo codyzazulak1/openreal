@@ -134,6 +134,23 @@
           background-size: cover;
           background-position: center;
           position: relative;
+
+          .listing-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0.5rem 1.25rem;
+
+            background-color: $primary-color;
+            text-align: center;
+            color: $white;
+
+            span {
+              display: table-cell;
+              vertical-align: middle;
+              font-size: 1rem;
+            }
+          }
         }
 
         .listing-meta,
@@ -396,9 +413,19 @@
 
 // new property form
 #new-property-form {
+  padding-bottom: 1rem;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
   .progress {
     .progress-meter {
       border-radius: 0;
     }
+  }
+
+  .form-error {
+    display: block;
   }
 }
