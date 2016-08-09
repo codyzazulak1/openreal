@@ -189,23 +189,30 @@ $(document).ready(function(){
   $('#addressForm').submit(function(e){
     if (!formFilled) {
       e.preventDefault();
-      console.log('cancel submission');
+      // console.log('cancel submission');
     }
   });
-
-  $('#submit-btn').click(function(){
-
-  });
-
   
 
-  $('#new-property-form').on('click', function() {
-    $(this).validate({
-      errorMessagePosition : 'inline',
-      borderColorOnError: '',
-    });
+  // validation before form submission
+  $('#new-property-form').on('click', function(event) {
+    // console.log(event.target.attributes.name.nodeValue);
+    var validate;
+    if (event.target.attributes.name.nodeValue==="commit") {
+      validate = $.validate({
+        errorMessagePosition : 'inline',
+        borderColorOnError: '',
+      });
+    } else {
+      validate = null;
+    }
+      
   });
 
+  $('#back-btn').click(function(){
+    // $('#new-property-form').get(0).reset();
+    // $('#new-property-form').submit();
+  })
 
 });
 

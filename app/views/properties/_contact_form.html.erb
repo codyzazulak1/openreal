@@ -4,12 +4,16 @@
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name %>
-    <%= cf.text_field :name %>
+    <%= cf.text_field :name, data: {
+     validation: "required" 
+    } %>
   </div>
 
   <div>
     <%= cf.label :email %>
-    <%= cf.email_field :email, data: { validation: "required" } %>
+    <%= cf.email_field :email, data: {
+     validation: "required" 
+    } %>
   </div>
 
   <div>

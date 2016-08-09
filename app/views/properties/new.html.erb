@@ -8,7 +8,7 @@
 
       <div class="row collapse">
         <div class="medium-12 columns text-right">
-          <%= fp.submit "Back", :name => "back_button", class: "btn btn-secondary" unless @property.first_step? %>
+          <%= fp.submit "Back", :name => "back_button", class: "btn btn-secondary", id: "back-btn" unless @property.first_step? %>
           <%= fp.submit "Next", class: "btn btn-primary", id: "submit-btn" unless @property.last_step? %>
           <%= fp.submit "Submit", class: "btn btn-primary" if @property.last_step? %>
         </div>
