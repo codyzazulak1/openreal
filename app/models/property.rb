@@ -29,6 +29,15 @@ class Property < ActiveRecord::Base
     self.created_at >= 3.days.ago
   end
 
+  def self.similar_listings(num = 3)
+    # similar_listings = where("CREATED_AT >= ?", 3.days.ago).order("CREATED_AT DESC").limit(num)
+    # if similar_listings
+    #   return similar_listings
+    # else
+    #   return all.order("CREATED_AT DESC").limit(num)
+    # end
+  end
+
   def price
     self.list_price.format(:drop_trailing_zeros => true, :symbol => '')
   end
