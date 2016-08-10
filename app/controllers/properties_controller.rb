@@ -81,10 +81,11 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
       @property = Property.find(params[:id])
+      @similar_properties = Property.similar_listings(@property, 3)
+
       if customer_signed_in?
 
         @favorite = Favorite.find_by(property: @property, customer: current_customer)
-
       end
 
       respond_to do |format|
