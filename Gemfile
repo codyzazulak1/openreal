@@ -72,5 +72,14 @@ group :development do
 
   # Faker for seeding fake data
   gem 'faker'
+
+  # Rack livereload
+  gem "rack-livereload"
+
+  # Guard
+  gem 'guard'
+
+  # Guard livereload
+  gem 'guard-livereload', '~> 2.5', require: false
 end
 
