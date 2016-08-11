@@ -17,7 +17,7 @@
         </li>
         <li><a href=<%= properties_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Buy</a></li>
         <li><a href="#">How it works</a></li>
-        <li><a href="#">FAQ</a></li>
+        <li><a href=<%= faq_path %>>FAQ</a></li>
         <% if current_customer || current_agent || current_admin %>
           <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
         <%else%>

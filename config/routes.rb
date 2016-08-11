@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :photos
 
   resources :contact_forms, :except => [:new]
-  get 'welcome/howitworks', action: :howitworks, controller: 'welcome'
-  get 'welcome/contact_us', action: :new, controller: 'contact_forms'
-
+  get 'howitworks', action: :howitworks, controller: 'welcome'
+  get 'faq', action: :faq, controller: 'welcome'
+  # get 'welcome/contactus', action: :new, controller: 'contact_forms'
 end
