@@ -17,13 +17,13 @@ Rails.application.routes.draw do
 
   resources :customers, :only => [:show] do
     resources :favorites
+    resources :wishlists
   end
 
   get '/dashboard', action: :get_dash, controller: 'dashboard'
   get '/login', action: :login, controller: 'welcome'
   get '/register', action: :register, controller: 'welcome'
 
-  get 'properties/cities/:city', action: :city, controller: 'properties'
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   resources :photos
 
-  resources :contact_forms, :except => [:new]
+  resources :contact_forms
   get 'welcome/howitworks', action: :howitworks, controller: 'welcome'
   get 'welcome/contact_us', action: :new, controller: 'contact_forms'
 

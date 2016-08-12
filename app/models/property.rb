@@ -24,6 +24,10 @@ class Property < ActiveRecord::Base
     self.created_at >= 3.days.ago
   end
 
+  def self.within(city_name)
+    Property.joins(:address).where(:addresses => {:city => city_name})
+  end
+
   def price
     self.list_price.format(:drop_trailing_zeros => true, :symbol => '')
   end

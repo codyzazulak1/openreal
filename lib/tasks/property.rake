@@ -56,7 +56,7 @@ namespace :seed do
 
       addr_first = "#{addr_c[0]["long_name"]} #{addr_c[1]["long_name"]}"
       addr_postal = addr_c[-1]["long_name"]
-      addr_city = addr_c[4]["long_name"]
+      addr_city = addr_c[3]["long_name"]
       addr_street = addr_c[1]["long_name"]
 
       rand_date = Faker::Date.backward(6)
