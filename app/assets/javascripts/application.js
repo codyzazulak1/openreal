@@ -65,7 +65,9 @@ function populateFormFields() {
 }
 
 // toggle listing overview
-function toggleOverview(pid=null) {
+function toggleOverview(pid) {
+  var pid = typeof pid !== 'undefined' ?  pid : null;
+
   if (overviewToggled && pid !== null) { 
     $('#detail-btn').attr('href', "/properties/" + pid) 
   } 

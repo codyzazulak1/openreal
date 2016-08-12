@@ -6,7 +6,7 @@
       </ul>
     </div>
     <div class="float-right">
-      <ul class="dropdown menu nav-menu" data-dropdown-menu>
+      <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
         <li>
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
@@ -24,9 +24,9 @@
         <%else%>
           <li class="show-for-medium"><a data-open="signinmodal">Sign in</a></li>
         <%end%>
-        <li class="show-for-small-only">
-          <a href="">More</a>
-          <ul>
+        <li class="show-for-small-only"><!--
+          --><a href="">More</a>
+          <ul id="nav-dropdown">
             <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
             <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li>
             <% if current_customer || current_agent || current_admin %>
