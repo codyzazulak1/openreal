@@ -8,12 +8,7 @@
     <div class="top-bar-right">
       <ul class="menu nav-menu">
         <li>
-          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'new' || controller.action_name == 'create' %>>Sell</a>
-          <!-- <ul class="menu vertical">
-            <li><a href="#">One</a></li>
-            <li><a href="#">Two</a></li>
-            <li><a href="#">Three</a></li>
-          </ul> -->
+          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
         <li><a href=<%= properties_path %> class=<%= "active" if controller.controller_name == 'properties' && ['index', 'show'].include?(controller.action_name) %>>Buy</a></li>
         <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
