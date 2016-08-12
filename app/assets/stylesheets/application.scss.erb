@@ -388,3 +388,58 @@ footer {
     font-style: normal;
   }
 }
+
+#faq-nav {
+  // width: 250px;
+  h5 {
+    font-weight: 600;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+
+    li{
+      // display: block;
+      margin: 1rem 0;
+
+
+      a{
+        color: $nav-anchor;
+        position: relative;
+        font-weight: 100;
+      }
+
+      a.active {
+        color: $primary-color;
+      }
+
+      a:after {
+        -webkit-transition: all 0.15s ease;
+        -moz-transition: all 0.15s ease;
+        -o-transition: all 0.15s ease;
+        transition: all 0.15s ease;
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        height: 2px;
+        left: 0;
+        right: 0;
+        background-color: $nav-hover;
+        // background-color: $light-yellow;
+        transform: translateY(6px);
+        opacity: 0;
+      }
+
+      a.active:after {
+        background-color: $primary-color;
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+#faq-content {
+  padding-right: 1rem;
+}
