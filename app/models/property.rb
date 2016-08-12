@@ -42,6 +42,10 @@ class Property < ActiveRecord::Base
     end
   end
 
+  def self.within(city_name)
+    Property.joins(:address).where(:addresses => {:city => city_name})
+  end
+
   def price
     self.list_price.format(:no_cents => true, :symbol => '')
   end

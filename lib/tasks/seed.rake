@@ -75,4 +75,30 @@ namespace :seed do
     puts "-------------------------------"
   end
 
+  desc "Seed a few wishlists"
+  task :wishlists, [] => :environment do
+    raise "Can't run on Production" if Rails.env.production?
+
+    steven = Customer.find_by(first_name: "Steven")
+    patrick = Customer.find_by(first_name: "Patrick")
+
+    3.times do |u|
+
+      properties = Property.all.sample(6)
+
+      wishlist1 = steven.wishlists.create(name: "Wishlist #{u}")
+
+      wishlist1.favorites.create(customer: steven, property: properties[0])
+      wishlist1.favorites.create(customer: steven, property: properties[1])
+      wishlist1.favorites.create(customer: steven, property: properties[2])
+
+      wishlist2 = patrick.wishlists.create(name: "Wishlist #{u + 3}")
+
+      wishlist2.favorites.create(customer: patrick, property: properties[3])
+      wishlist2.favorites.create(customer: patrick, property: properties[4])
+      wishlist2.favorites.create(customer: patrick, property: properties[5])
+
+    end
+  end
+
 end

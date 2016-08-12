@@ -10,10 +10,13 @@ class ContactFormsController < ApplicationController
 
   def create
     @cform = ContactForm.new(contact_form_params)
+
     if @cform.save
-      redirect_to contact_forms_path
-    else
-      redirect_to new_contact_form_path
+
+      respond_to do |format|
+        format.js
+      end
+
     end
   end
 

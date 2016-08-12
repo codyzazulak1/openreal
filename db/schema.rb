@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725225736) do
+ActiveRecord::Schema.define(version: 20160811185240) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20160725225736) do
     t.datetime "updated_at",  null: false
     t.integer  "property_id"
     t.integer  "customer_id"
+    t.integer  "wishlist_id"
   end
 
   add_index "favorites", ["customer_id"], name: "index_favorites_on_customer_id"
@@ -157,6 +158,13 @@ ActiveRecord::Schema.define(version: 20160725225736) do
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "wishlists", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
 
 end

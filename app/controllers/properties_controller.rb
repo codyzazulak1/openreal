@@ -1,14 +1,40 @@
 class PropertiesController < ApplicationController
 
   def index
-    @properties = Property.all.order('created_at DESC')
+    if params[:city]
+      @city = params[:city]
+      @properties = Property.within(@city)
+      uri = "https://maps.googleapis.com/maps/api/geocode/json?address=#{@city}&region=ca&key=#{ENV['GEOCODER']}"
+      address = JSON.parse(open(uri).read)["results"]
+      geo = address[0]["geometry"]
+      center = geo["location"].to_json
+      results = [@properties, center]
 
-    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
-    respond_to do |format|
-      format.html
-      format.js
-      format.json do
-        render json: Property.all.to_json(include: [:address])
+
+      if @properties.empty?
+
+        @errorcode = 'notfound'
+        render :city_error
+
+      else
+
+        respond_to do |format|
+          format.json do
+            render json: results
+          end
+        end
+
+      end
+    else
+      @properties = Property.all.order('created_at DESC')
+
+      @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+      respond_to do |format|
+        format.html
+        format.js
+        format.json do
+          render json: Property.all.to_json(include: [:address])
+        end
       end
     end
   end
@@ -80,11 +106,11 @@ class PropertiesController < ApplicationController
 
   def show
     if Property.all.count != 0
+
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
 
       if customer_signed_in?
-
         @favorite = Favorite.find_by(property: @property, customer: current_customer)
       end
 
@@ -95,8 +121,6 @@ class PropertiesController < ApplicationController
           render json: @property.to_json(include: [:address])
         end
       end
-    else
-      redirect_to :index
     end
 
     if customer_signed_in?
@@ -153,19 +177,10 @@ class PropertiesController < ApplicationController
   end
 
   def city
-    @city = params[:city].downcase.capitalize!
-    @properties = Property.joins(:address).where(:addresses => {:city => @city})
-    if @properties.empty?
-      @errorcode = 'notfound'
-      render :city_error
-    else
-      render :city
-    end
   end
 
   def cities
     @addresses = Address.select(:city).distinct
-    render :cities
   end
 
   # def favorite
@@ -201,5 +216,4 @@ class PropertiesController < ApplicationController
   def contact_params
     params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes)
   end
-
 end
