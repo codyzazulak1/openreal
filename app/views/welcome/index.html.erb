@@ -117,8 +117,8 @@
 
     <div class="row">
 
-    <% @new_properties.each do |p| %>
-      <div class="small-12 medium-6 large-4 columns">
+    <% @new_properties.each_with_index do |p, index| %>
+      <div class="small-12 medium-6 large-4 columns <%= index == @new_properties.size - 1 ? 'end' : '' %>">
         <div class="listing-item">
           <%= link_to "", property_path(p.id), class: "listing-link" %>
           <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
