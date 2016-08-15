@@ -158,12 +158,6 @@ class PropertiesController < ApplicationController
     end
   end
 
-  
-
-  # def cities
-  #   @addresses = Address.select(:city).distinct
-  # end
-
 
   private
 
