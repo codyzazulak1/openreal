@@ -23,7 +23,7 @@ namespace :seed do
   task :properties, [] => :environment do
     raise "Can't run on Production" if Rails.env.production?
 
-    city = "address=Vancouver"
+    city = "address=Greater+Vancouver"
     region = "region=ca"
 
     request_uri = "https://maps.googleapis.com/maps/api/geocode/json?"
@@ -47,8 +47,13 @@ namespace :seed do
         reverse_url = "#{request_uri}#{reverse_params}#{key}"
         @place_json = JSON.parse(open(reverse_url).read)["results"]
 
+        @addr_city = @place_json[0]["address_components"][3]["long_name"]
         break if @place_json &&
-          @place_json[0]["address_components"][0]["types"] == ["street_number"]
+          @place_json[0]["address_components"][0]["types"] == ["street_number"] &&
+          (@addr_city == "Surrey") ||
+          (@addr_city == "Burnaby") ||
+          (@addr_city == "Vancouver") ||
+          (@addr_city == "Langley")
       end
 
       addr = @place_json[0]
@@ -56,12 +61,11 @@ namespace :seed do
 
       addr_first = "#{addr_c[0]["long_name"]} #{addr_c[1]["long_name"]}"
       addr_postal = addr_c[-1]["long_name"]
-      addr_city = addr_c[3]["long_name"]
       addr_street = addr_c[1]["long_name"]
 
       rand_date = Faker::Date.backward(6)
 
-      property = Property.create(
+      Property.create(
         description: "Elegance & luxury exudes in this amazing Chandler home in a gated community! Enter through the ornate wrought iron gate & behold the beauty of travertine tile, wood shutters, built in bookcases, fireplaces, and the professional interior design throughout. Chef's kitchen features top of the line stainless steel appliances, dark wood cabinets, granite countertops & backsplash, 2 wine coolers, center island, breakfast bar & a walk in pantry. 14' ceiling in the living room. Master suite is complete with sitting area, fireplace, separate exit, and luxurious spa like bathroom. Each spacious bedroom has direct access to a bath. Resort style backyard with sparkling blue pool, extended covered patio, built in BBQ and a firepit both with ample seating. Multiple fruit trees in the courtyard/backyard.",
         list_price_cents: Faker::Number.number(8),
         floor_area: rand(1900..2100),
@@ -79,14 +83,13 @@ namespace :seed do
         updated_at: rand_date
       )
 
-      Address.create(
+      address = Address.create(
         address_first: addr_first,
         street: addr_street,
-        city: addr_city,
+        city: @addr_city,
         postal_code: addr_postal,
         latitude: @rand_lat,
         longitude: @rand_lng,
-        property_id: property.id
       )
 
       ContactForm.create(
@@ -94,7 +97,7 @@ namespace :seed do
         email: Faker::Internet.email
       )
 
-      puts "#{property.id} CREATED"
+      puts "#{address.address_first} ".ljust(40) + "(#{address.city} CREATED)".rjust(40)
 
     end
 

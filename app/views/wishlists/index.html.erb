@@ -1,0 +1,8 @@
+<h1>Wish</h1>
+<% if @wishlists.count > 0%>
+  <% @wishlists.each do |wl| %>
+    <span><%= wl.name %>
+  <% end %>
+<% else %>
+  <h1>There are no wishlists here </h1>
+<%end%>
