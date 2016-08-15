@@ -17,11 +17,29 @@ class Property < ActiveRecord::Base
   monetize :list_price_cents, as: :list_price
 
   def self.just_listed(num = 3)
-    Property.where("CREATED_AT >= ?", 3.days.ago).order("CREATED_AT DESC").limit(num)
+    new_listing = where("CREATED_AT >= ?", 7.days.ago).order("CREATED_AT DESC").limit(num)
+    if new_listing.size > 0
+      return new_listing
+    else
+      return all.order("CREATED_AT DESC").limit(num)
+    end
   end
 
   def is_new?
     self.created_at >= 3.days.ago
+  end
+
+  def self.similar_listings(property, num = 3)
+    bed_range = (property.bedrooms - 2)..(property.bedrooms + 2)
+    bath_range = (property.bathrooms - 2)..(property.bathrooms + 2)
+    price_range = (property.list_price_cents - 5000000)..(property.list_price_cents + 5000000)
+
+    similar_listings = where(bedrooms: bed_range, bathrooms: bath_range, list_price_cents: price_range).order("CREATED_AT DESC").limit(num)
+    if similar_listings
+      return similar_listings
+    else
+      return all.order("CREATED_AT DESC").limit(num)
+    end
   end
 
   def self.within(city_name)
@@ -29,7 +47,7 @@ class Property < ActiveRecord::Base
   end
 
   def price
-    self.list_price.format(:drop_trailing_zeros => true, :symbol => '')
+    self.list_price.format(:no_cents => true, :symbol => '')
   end
 
   def city_province

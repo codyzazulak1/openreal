@@ -1,28 +1,41 @@
 <nav>
   <div class="top-bar">
-    <div class="top-bar-left">
+    <div class="float-left">
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text"><a id="logo" href=<%= root_path %>>OpenReal</a></li>
       </ul>
     </div>
-    <div class="top-bar-right">
-      <ul class="menu nav-menu">
+    <div class="float-right">
+      <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
         <li>
-          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'new' || controller.action_name == 'create' %>>Sell</a>
-          <!-- <ul class="menu vertical">
-            <li><a href="#">One</a></li>
-            <li><a href="#">Two</a></li>
-            <li><a href="#">Three</a></li>
-          </ul> -->
+          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
-        <li><a href=<%= properties_path %> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Buy</a></li>
-        <li><a href="#">How it works</a></li>
-        <li><a href="#">FAQ</a></li>
+        <li>
+          <a href=<%= properties_path %> class=<%= "active" if controller.controller_name == 'properties' && ['index', 'show'].include?(controller.action_name) %>>Buy</a>
+        </li>
+        <li class="show-for-medium">
+          <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
+        </li>
+        <li class="show-for-medium">
+          <a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a>
+        </li>
         <% if current_customer || current_agent || current_admin %>
-          <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
+          <li class="show-for-medium"><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
         <%else%>
-          <li><a data-open="signinmodal">Sign in</a></li>
+          <li class="show-for-medium"><a data-open="signinmodal">Sign in</a></li>
         <%end%>
+        <li class="show-for-small-only"><!--
+          --><a href="">More</a>
+          <ul id="nav-dropdown">
+            <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
+            <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li>
+            <% if current_customer || current_agent || current_admin %>
+              <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
+            <%else%>
+              <li><a data-open="signinmodal">Sign in</a></li>
+            <%end%>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

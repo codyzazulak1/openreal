@@ -13,31 +13,29 @@ Rails.application.routes.draw do
   devise_for :admins, :controllers => {
                       registrations: 'registrations',
                       sessions: 'users/sessions'
-                      }
+  }
 
+  # customers
   resources :customers, :only => [:show] do
     resources :favorites
     resources :wishlists
   end
 
-  get '/dashboard', action: :get_dash, controller: 'dashboard'
-  get '/login', action: :login, controller: 'welcome'
-  get '/register', action: :register, controller: 'welcome'
+  # properties
+  resources :properties
+  resources :photos
+  resources :contact_forms
 
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
 
-  resources :properties do
-    collection do
-      get 'cities'
-    end
-  end
+  # static pages
+  get 'howitworks', action: :howitworks, controller: 'welcome'
+  get 'contact_us', action: :new, controller: 'contact_forms'
+  get 'faq', action: :faq, controller: 'welcome'
 
-  resources :photos
-
-  resources :contact_forms
-  get 'welcome/howitworks', action: :howitworks, controller: 'welcome'
-  get 'welcome/contact_us', action: :new, controller: 'contact_forms'
-
+  get '/dashboard', action: :get_dash, controller: 'dashboard'
+  get '/login', action: :login, controller: 'welcome'
+  get '/register', action: :register, controller: 'welcome'
 end

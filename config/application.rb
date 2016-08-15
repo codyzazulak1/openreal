@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 Dotenv::Railtie.load
 
+
+
 module Openreal
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

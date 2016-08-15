@@ -28,9 +28,11 @@
  *****************/
 
 html, body {
-  height: 100%;
+  height: auto;
+  min-width: 480px;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .container {
@@ -83,6 +85,11 @@ input.btn {
     background-color: lighten($primary-color, 15%);
     border-color: lighten($primary-color, 15%);
     border-bottom-color: darken($primary-color, 15%);
+  }
+
+  &:focus { 
+    color: $white;
+    background-color: $primary-color; 
   }
 }
 
@@ -201,6 +208,28 @@ nav {
         text-transform: uppercase;
       }
 
+      li>ul#nav-dropdown {
+        top: 55px;
+        background-color: $white;
+        padding: 0;
+        margin: 0;
+
+        >li {
+          margin: 0;
+          display: block;
+          
+          >a{
+            width: 100%;
+            padding: 0.5rem 1rem;
+            display: block;
+
+            &:hover {
+              background-color: $light-gray;
+            }
+          }
+        }
+      }
+
       a {
         color: $nav-anchor;
         line-height: 1.25rem;
@@ -208,7 +237,12 @@ nav {
         position: relative;
       }
 
-      a:after {
+      >li.is-dropdown-submenu-parent>a {
+        padding-right: 0;
+      }
+      
+      >li>a:after,
+      >li.is-dropdown-submenu-parent>a:after {
         -webkit-transition: all 0.15s ease;
         -moz-transition: all 0.15s ease;
         -o-transition: all 0.15s ease;
@@ -225,15 +259,23 @@ nav {
         opacity: 0;
       }
 
-      a:hover:after {
+      >li>a:hover:after,
+      >li.is-dropdown-submenu-parent>a:hover:after {
         transform: translateY(0);
         opacity: 1;
       }
 
-      a.active:after {
+      >li>a.active:after {
         background-color: $primary-color;
         transform: translateY(0);
         opacity: 1;
+      }
+
+      >li.is-dropdown-submenu-parent>a:after {
+        border: none;
+        width: initial;
+        margin: 0;
+        top: inherit;
       }
     }
   }      
@@ -312,6 +354,8 @@ footer {
   }
 
   .listing-item {
+    position: relative;
+
     &:hover {
       cursor: pointer;
     }
@@ -383,5 +427,91 @@ footer {
     display: inline-block;
     border-radius: 4px;
     font-style: normal;
+  }
+}
+
+#faq-nav {
+  // width: 250px;
+  h5 {
+    font-weight: 600;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+
+    li{
+      // display: block;
+      margin: 1rem 0;
+
+
+      a{
+        color: $nav-anchor;
+        position: relative;
+        font-weight: 100;
+      }
+
+      a.active {
+        color: $primary-color;
+      }
+
+      a:after {
+        -webkit-transition: all 0.15s ease;
+        -moz-transition: all 0.15s ease;
+        -o-transition: all 0.15s ease;
+        transition: all 0.15s ease;
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        height: 2px;
+        left: 0;
+        right: 0;
+        background-color: $nav-hover;
+        // background-color: $light-yellow;
+        transform: translateY(6px);
+        opacity: 0;
+      }
+
+      a.active:after {
+        background-color: $primary-color;
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+// faq page
+#faq-content {
+  padding-right: 1rem;
+
+  .faq-section {
+    position: relative;
+
+    &:not(:last-child):after {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      width: 2rem;
+      height: 2px;
+      left: 0;
+      background-color: $primary-color;
+    }
+  }
+
+  h3 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-weight: 100;
+  }
+}
+
+@media #{$small-only} {
+  #faq-content {
+    padding-right: 0;
   }
 }
