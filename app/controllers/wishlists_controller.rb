@@ -1,8 +1,10 @@
 class WishlistsController < ApplicationController
 
   def index
-    @wishlists = Customer.find(params[:customer_id]).wishlists
-    @favorites = Customer.find(params[:customer_id]).favorites
+    @customer = Customer.find(params[:customer_id])
+    @wishlists = @customer.wishlists
+    @favorites = @customer.favorites
+    @list = Wishlist.new(customer: @customer)
   end
 
   def show
@@ -14,6 +16,11 @@ class WishlistsController < ApplicationController
   end
 
   def create
+    @list = Wishlist.new(name: params[:name])
+
+    if @list.save
+
+    end
 
   end
 

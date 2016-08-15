@@ -6,3 +6,9 @@
 <% else %>
   <h1>There are no wishlists here </h1>
 <%end%>
+<span>
+  <% form_for [@customer, @list] do |f|%>
+    <%= f.text_field :name %>
+    <%= f.submit "Create" %>
+  <% end %>
+</span>

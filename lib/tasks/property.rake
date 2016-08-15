@@ -65,7 +65,7 @@ namespace :seed do
 
       rand_date = Faker::Date.backward(6)
 
-      Property.create(
+      property = Property.create(
         description: "Elegance & luxury exudes in this amazing Chandler home in a gated community! Enter through the ornate wrought iron gate & behold the beauty of travertine tile, wood shutters, built in bookcases, fireplaces, and the professional interior design throughout. Chef's kitchen features top of the line stainless steel appliances, dark wood cabinets, granite countertops & backsplash, 2 wine coolers, center island, breakfast bar & a walk in pantry. 14' ceiling in the living room. Master suite is complete with sitting area, fireplace, separate exit, and luxurious spa like bathroom. Each spacious bedroom has direct access to a bath. Resort style backyard with sparkling blue pool, extended covered patio, built in BBQ and a firepit both with ample seating. Multiple fruit trees in the courtyard/backyard.",
         list_price_cents: Faker::Number.number(8),
         floor_area: rand(1900..2100),
@@ -83,13 +83,14 @@ namespace :seed do
         updated_at: rand_date
       )
 
-      address = Address.create(
+      property = Address.create(
         address_first: addr_first,
         street: addr_street,
         city: @addr_city,
         postal_code: addr_postal,
         latitude: @rand_lat,
         longitude: @rand_lng,
+        property_id: property.id
       )
 
       ContactForm.create(
