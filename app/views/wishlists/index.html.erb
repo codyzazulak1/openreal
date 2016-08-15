@@ -1,13 +1,13 @@
 <h1>Wish</h1>
 <% if @wishlists.count > 0%>
   <% @wishlists.each do |wl| %>
-    <span><%= wl.name %>
+    <span><%= wl.name %></span>
   <% end %>
 <% else %>
   <h1>There are no wishlists here </h1>
 <%end%>
 <span>
-  <% form_for [@customer, @list] do |f|%>
+  <% form_for @list do |f|%>
     <%= f.text_field :name %>
     <%= f.submit "Create" %>
   <% end %>

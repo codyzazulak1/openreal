@@ -83,7 +83,7 @@ namespace :seed do
         updated_at: rand_date
       )
 
-      property = Address.create(
+      address = Address.create(
         address_first: addr_first,
         street: addr_street,
         city: @addr_city,
