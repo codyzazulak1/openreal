@@ -2,27 +2,21 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:city]
-      city = params[:city]
-      @center = city_center(city)
-      @properties = Property.within(city)
-
-      if @properties.empty?
-        @errorcode = 'notfound'
-        render :city_error
-      end
+      @city = params[:city]
+      @center = city_center(@city)
+      @properties = Property.within(@city)
 
     else
       @properties = Property.all.order('created_at DESC')
       @center = {lat: 49.2447, lng: -123.1359}
     end
 
-
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
       format.json do
-        render json: [{properties: @properties.as_json(:include => :address)}, {center: @center}]
+        render json: {properties: @properties.as_json(:include => :address), center: @center}
       end
     end
   end
@@ -177,7 +171,7 @@ class PropertiesController < ApplicationController
     uri = "https://maps.googleapis.com/maps/api/geocode/json?address=#{city}&region=ca&key=#{ENV['GEOCODER']}"
     address = JSON.parse(open(uri).read)["results"]
     geo = address[0]["geometry"]
-    center = geo["location"].to_json
+    center = geo["location"]
   end
 
   def property_params
