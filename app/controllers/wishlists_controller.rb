@@ -8,7 +8,9 @@ class WishlistsController < ApplicationController
   end
 
   def show
-    @wishlist = Wishlist.find(params[:wishlist])
+    @wishlist = Wishlist.find(params[:id])
+    @favorites = @wishlist.favorites
+    @customer = Customer.find(params[:customer_id])
   end
 
   def new
@@ -16,16 +18,18 @@ class WishlistsController < ApplicationController
   end
 
   def create
-    @list = Wishlist.new(name: params[:name])
-
-    if @list.save
-
-    end
-
+    @list = Wishlist.new(customer_id: params[:customer_id], name: params[:wishlist][:name])
+    @list.save
+    @customer = Customer.find(params[:customer_id])
+    @wishlists = @customer.wishlists
   end
 
   def destroy
 
   end
+
+  private
+
+
 
 end
