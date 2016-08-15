@@ -18,7 +18,7 @@ class Property < ActiveRecord::Base
 
   def self.just_listed(num = 3)
     new_listing = where("CREATED_AT >= ?", 7.days.ago).order("CREATED_AT DESC").limit(num)
-    if new_listing
+    if new_listing.size > 0
       return new_listing
     else
       return all.order("CREATED_AT DESC").limit(num)
