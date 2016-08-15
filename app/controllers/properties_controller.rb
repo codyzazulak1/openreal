@@ -2,39 +2,27 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:city]
-      @city = params[:city]
-      @properties = Property.within(@city)
-      uri = "https://maps.googleapis.com/maps/api/geocode/json?address=#{@city}&region=ca&key=#{ENV['GEOCODER']}"
-      address = JSON.parse(open(uri).read)["results"]
-      geo = address[0]["geometry"]
-      center = geo["location"].to_json
-      results = [@properties, center]
-
+      city = params[:city]
+      @center = city_center(city)
+      @properties = Property.within(city)
 
       if @properties.empty?
-
         @errorcode = 'notfound'
         render :city_error
-
-      else
-
-        respond_to do |format|
-          format.json do
-            render json: results
-          end
-        end
-
       end
+
     else
       @properties = Property.all.order('created_at DESC')
+      @center = {lat: 49.2447, lng: -123.1359}
+    end
 
-      @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
-      respond_to do |format|
-        format.html
-        format.js
-        format.json do
-          render json: Property.all.to_json(include: [:address])
-        end
+
+    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+    respond_to do |format|
+      format.html
+      format.js
+      format.json do
+        render json: [{properties: @properties.as_json(:include => :address)}, {center: @center}]
       end
     end
   end
@@ -176,34 +164,21 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def city
-  end
+  
 
-  def cities
-    @addresses = Address.select(:city).distinct
-  end
-
-  # def favorite
-  #   @property = Property.find(params[:property_id])
-  #   @customer = current_customer
-  #   @favorite = Favorite.new(property: @property, customer: @customer)
-
-  #   if @favorite.save
-  #     redirect_to @property
-  #   end
+  # def cities
+  #   @addresses = Address.select(:city).distinct
   # end
 
-  # def unfavorite
-  #   @property = Property.find(params[:property_id])
-  #   @customer = current_customer
-  #   @favorite = Favorite.find_by(property: @property, customer: @customer)
-
-  #   @favorite.destroy
-
-  #   redirect_to @property
-  # end
 
   private
+
+  def city_center(city)
+    uri = "https://maps.googleapis.com/maps/api/geocode/json?address=#{city}&region=ca&key=#{ENV['GEOCODER']}"
+    address = JSON.parse(open(uri).read)["results"]
+    geo = address[0]["geometry"]
+    center = geo["location"].to_json
+  end
 
   def property_params
     params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])

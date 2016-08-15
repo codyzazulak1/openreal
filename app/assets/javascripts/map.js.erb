@@ -2,14 +2,6 @@ var map;
 var infoWindows = [];
 var mapMarkers = [];
 
-// var markers = [];
-// var markers = [
-//   ['Property 1', 49.2447, -123.1359, 4],
-//   ['Property 2', 49.2512, -123.1482, 5],
-//   ['Property 3', 49.2524, -123.1598, 3]
-// ];
-// console.log(markers);
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 49.2512, lng: -123.1482},
@@ -133,8 +125,6 @@ function updateMarkers(properties) {
     });
 
     mapMarkers.push(marker);
-
-    // window.markers = mapMarkers;
 
     infowindow.addListener('domready', function() {
       $('.listing-overview').hide();
