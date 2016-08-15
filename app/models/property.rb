@@ -6,7 +6,7 @@ class Property < ActiveRecord::Base
   has_one :address, dependent: :destroy
   has_one :contact_form, dependent: :destroy
   has_many :photos, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
 
   accepts_nested_attributes_for :address
   validates_associated :address
