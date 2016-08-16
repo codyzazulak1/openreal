@@ -3,7 +3,12 @@ var infoWindows = [];
 var mapMarkers = [];
 
 function initMap() {
-  $.getJSON("/properties.json", function(data){
+  url = "/properties.json";
+  if ($("#map").data("city") && $("#map").data("city") !== "") {
+    url += "?city=" + $("#map").data("city");
+  }
+
+  $.getJSON(url, function(data){
     if ($("#map").data("lat") === "" || $("#map").data("lng") === "") {
       mapCenter = data.center === undefined ? {lat: 49.2512, lng: -123.1482} : data.center;
     } else {
@@ -148,35 +153,3 @@ function closeAllInfoWin() {
     infoWindows[i].close();
   }
 }
-
-// var pin = [49.2447, -123.1359, 4];
-
-// function propertyMap() {
-//   var mapCenter;
-//   $.getJSON("/properties.json", function(data){
-//     mapCenter = data.center;
-//     data.properties.forEach(function(property){
-//       setMarkers(property);
-//     });
-//   });
-
-//   map = new google.maps.Map(document.getElementById('listing-map'), {
-//     // center: {lat: pin[0], lng: pin[1]},
-//     center: mapCenter,
-//     zoom: 12,
-//     zoomControl: true,
-//     zoomControlOptions: {
-//         position: google.maps.ControlPosition.RIGHT_TOP
-//     },
-//     mapTypeControl: false,
-//     scaleControl: false,
-//     streetViewControl: false,
-//     rotateControl: false,
-//     fullscreenControl: false
-//   });
-
-//   var marker = new google.maps.Marker({
-//     position: {lat: pin[1], lng: pin[2]},
-//     map: map
-//   });
-// }

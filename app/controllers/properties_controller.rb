@@ -2,10 +2,9 @@ class PropertiesController < ApplicationController
 
   def index
     if params[:city]
-      @city = params[:city]
+      @city = params[:city].capitalize
       @center = city_center(@city)
       @properties = Property.within(@city)
-
     else
       @properties = Property.all.order('created_at DESC')
       @center = {lat: 49.2447, lng: -123.1359}
