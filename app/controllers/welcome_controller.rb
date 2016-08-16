@@ -22,11 +22,12 @@ class WelcomeController < ApplicationController
   end
 
   def howitworks
-
   end
 
   def faq
-    
+  end
+
+  def terms
   end
 
 end

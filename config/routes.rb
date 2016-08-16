@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'howitworks', action: :howitworks, controller: 'welcome'
   get 'contact_us', action: :new, controller: 'contact_forms'
   get 'faq', action: :faq, controller: 'welcome'
+  get 'terms', action: :terms, controller: 'welcome'
 
   get '/dashboard', action: :get_dash, controller: 'dashboard'
   get '/login', action: :login, controller: 'welcome'
