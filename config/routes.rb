@@ -30,12 +30,17 @@ Rails.application.routes.draw do
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
 
+  # dashboard
+  namespace :dashboard do
+    resources :properties
+  end
+  get 'dashboard', action: :index, controller: 'dashboard'
+
   # static pages
   get 'howitworks', action: :howitworks, controller: 'welcome'
   get 'contact_us', action: :new, controller: 'contact_forms'
   get 'faq', action: :faq, controller: 'welcome'
 
-  get '/dashboard', action: :get_dash, controller: 'dashboard'
   get '/login', action: :login, controller: 'welcome'
   get '/register', action: :register, controller: 'welcome'
 end

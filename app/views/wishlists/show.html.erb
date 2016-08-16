@@ -10,5 +10,13 @@
 <% end %>
 
 <% if @customer == current_customer %>
-  
+
+  <ul>
+    <% @wishlist.favorites.each do |f|%>
+      <li>
+        <%= f.property.address_name %>
+      </li>
+    <% end %>
+  </ul>
+
 <% end %>

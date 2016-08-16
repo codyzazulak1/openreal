@@ -151,6 +151,12 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    redirect_to dashboard_properties_path
+  end
+
   def all_valid?
     steps.all? do |step|
       self.current_step = step
