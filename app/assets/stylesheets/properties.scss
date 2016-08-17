@@ -357,6 +357,7 @@
     margin-top: calc(-5rem - 1rem - 2px);
 
     .floating-box {
+      
 
       &.is-floating {
         position: fixed;
@@ -401,7 +402,7 @@
         border-top-right-radius: 0;
         border-top: none;
         background-color: $white;
-        padding: 1.25rem 0;
+        padding: 1.25rem $grid-column-gutter/4;
 
         .btn-large {
           width: 100%;
