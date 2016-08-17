@@ -265,7 +265,7 @@
     color: $primary-color;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 0.25rem;
+    // margin-bottom: 0.25rem;
     font-size: 0.75rem;
   }
 
@@ -275,6 +275,7 @@
       font-size: 1.75rem;
       display: inline;
       vertical-align: baseline;
+      line-height: 1;
     }
 
     h4 {
@@ -291,6 +292,11 @@
     h3 {
       font-size: 1rem;
     }
+  }
+
+  #sticky-top {
+    margin-top: 0.9rem;
+    height: calc(1.75rem + 1.625rem * 2 - 1rem);
   }
 }
 

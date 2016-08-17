@@ -24,15 +24,15 @@
 <div class="row expanded property-overview">
   <div class="medium-10 medium-centered columns">
     <div class="property-status"><span>Active</span></div>
-    <div class="property-address">
-      <h1><%= @property.address.address_first %></h1><!-- 
-   --><h4><span><%= @property.address.city %></span>,&nbsp;<span>BC</span></h4>
+    <div id="sticky-top">
+      <div class="property-address">
+        <h1><%= @property.address.address_first %></h1><!-- 
+     --><h4><span><%= @property.address.city %></span>,&nbsp;<span>BC</span></h4>
+      </div>
+      <div class="property-bullets">
+        <h3><span><%= @property.bedrooms %></span> beds &middot; <span><%= @property.bathrooms %></span> baths &middot; <span><%= @property.lot_area %></span> sqft</h3>
+      </div>
     </div>
-    <div class="property-bullets">
-      <h3><span><%= @property.bedrooms %></span> beds &middot; <span><%= @property.bathrooms %></span> baths &middot; <span><%= @property.lot_area %></span> sqft</h3>
-    </div>
-
-    
   </div>
 </div>
 <!-- end property-overview -->
@@ -40,7 +40,7 @@
 <div class="row expanded collapse property-details">
   <div class="medium-10 medium-centered columns">
     <div class="row">
-      <div class="medium-8 columns" id="details-column">
+      <div class="large-8 medium-12 columns" id="details-column">
         <div class="row collapse">
           <div class="medium-12 columns">
             <h2>About this home</h2>
@@ -102,8 +102,8 @@
         </div>
       </div>
 
-      <div class="medium-4 columns floating-container is-static">
-        <div class="floating-box">
+      <div class="large-4 medium-12 columns show-for-large floating-container" data-sticky-container>
+        <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1">
           <div class="property-price">
             <h2><small>List price: </small><sup>$</sup><%= @property.price %></h2>
           </div>
@@ -151,7 +151,7 @@
               </div>
               <div class="row">
                 <div class="medium-12 columns text-center">
-                  <span class="legalese">By sending, you agree to OpenReal's Terms of Use &amp; Privacy Policy.</span>
+                  <span class="legalese">By sending, you agree to OpenReal's <a target="_blank" href=<%= terms_path %>>Terms of Use &amp; Privacy Policy</a>.</span>
                 </div>
               </div>
 
@@ -197,78 +197,6 @@
           </div>
         </div>
       <% end %>
-
-      <!-- <div class="medium-4 columns">
-        <div class="listing-item">
-          <div class="listing-img" data-bg="img/01.jpg">
-            <div class="listing-badge">
-              <span>Just Listed</span>
-            </div>
-            <div class="listing-price">
-              <sup>$</sup>
-              <span style="">3,955,000</span>
-            </div>
-          </div>
-          <div class="listing-meta clearfix">
-            <div class="float-left">
-              <span>3616 W 1st Ave</span>
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
-            </div>
-            <div class="float-right text-right">
-              <span>3743 sqft &middot; 4 bed 3 bath</span>
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="medium-4 columns">
-        <div class="listing-item">
-          <div class="listing-img" data-bg="img/02.jpg">
-            <div class="listing-badge">
-              <span>Just Listed</span>
-            </div>
-            <div class="listing-price">
-              <sup>$</sup>
-              <span style="">3,955,000</span>
-            </div>
-          </div>
-          <div class="listing-meta clearfix">
-            <div class="float-left">
-              <span>3616 W 1st Ave</span>
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
-            </div>
-            <div class="float-right text-right">
-              <span>3743 sqft &middot; 4 bed 3 bath</span>
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="medium-4 columns">
-        <div class="listing-item">
-          <div class="listing-img" data-bg="img/03.jpg">
-            <div class="listing-badge">
-              <span>Just Listed</span>
-            </div>
-            <div class="listing-price">
-              <sup>$</sup>
-              <span style="">3,955,000</span>
-            </div>
-          </div>
-          <div class="listing-meta clearfix">
-            <div class="float-left">
-              <span>3616 W 1st Ave</span>
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Vancouver, BC</span>
-            </div>
-            <div class="float-right text-right">
-              <span>3743 sqft &middot; 4 bed 3 bath</span>
-              <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
     </div>
   </div>
