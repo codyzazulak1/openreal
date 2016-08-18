@@ -95,8 +95,9 @@
         <div class="row collapse property-map">
           <div class="medium-12 columns">
             <div id="listing-map">
-
-              <img src=<%= signURL(ENV['MAP_SECRET'], "https://maps.googleapis.com/maps/api/staticmap?center=#{@property.address.latitude},#{@property.address.longitude}&zoom=12&size=640x400&markers=color:blue%7C#{@property.address.latitude},#{@property.address.longitude}&key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw") %> />  
+              <a href="http://www.google.com/maps/place/<%=@property.address.latitude%>,<%=@property.address.longitude%>" target="_blank">
+                <img src=<%= signURL(ENV['MAP_SECRET'], "https://maps.googleapis.com/maps/api/staticmap?center=#{@property.address.latitude},#{@property.address.longitude}&zoom=12&size=640x400&markers=color:blue%7C#{@property.address.latitude},#{@property.address.longitude}&key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw") %> />  
+              </a>
             </div>
           </div>
         </div>
