@@ -20,4 +20,8 @@
 
     <%= render 'layouts/footer' unless controller.controller_name == 'properties' && controller.action_name == 'index' %>
   </body>
+  <% if controller.controller_name == "properties" || (controller.controller_name == "welcome" && controller.action_name == "index") %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap&libraries=places&callback=autoComplete"
+    async defer></script>
+  <% end %>
 </html>
