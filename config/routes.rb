@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   end
 
   # properties
-  resources :properties
+  resources :properties do
+    resources :address
+  end
   resources :photos
   resources :contact_forms
 
