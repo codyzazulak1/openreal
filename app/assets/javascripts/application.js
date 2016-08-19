@@ -156,6 +156,32 @@ $(document).ready(function(){
   });
   
   // sign in modal
+  $.validate({
+    form: "#customer-signin",
+    module: 'html5',
+    errorMessagePosition : 'top',
+    scrollToTopOnError: true,
+    borderColorOnError: '#ec5840',
+    submitErrorMessageCallback: function($form, errorMessages, config) {
+      var container = $form.children('.form-error');
+      var result = "";
+      // console.log(errorMessages);
+      if (errorMessages.length) {
+        errorMessages.forEach(function(msg){
+          result += "<div>" + msg + "</div>";
+        });
+
+        if (!container.length) {
+          $form.prepend("<div class='form-error'>"+ result +"</div>");
+        } else {
+          container.html(result);
+        }
+      } else {
+        container.remove();
+      }
+    }
+  });
+
   $('#signinmodal form').on('submit', function(e){
     e.preventDefault();
     var email = $(this).find('input[name*="email"]').attr('name');
@@ -165,6 +191,7 @@ $(document).ready(function(){
     // var remember_me = $(this).find('input[name="remember_me"]:checked');
     // console.log($(this), email, password,remember_me);
     var data = {};
+    var form = $(this);
     data[email] = emailVar;
     data[password] = passwordVar;
     
@@ -177,8 +204,9 @@ $(document).ready(function(){
       headers: {
         'X-CSRF-Token': $(this).find('input[name="authenticity_token"]').val(),
       },
-      error: function(xhr) {
-        console.error (xhr);
+      error: function(response) {
+        // console.error (response.responseJSON.error);
+        form.prepend("<div class='form-error'><span>"+ response.responseJSON.error +"</span></div>");
       },
       success(data) {
         $('#signinmodal').foundation('close');
@@ -202,6 +230,7 @@ $(document).ready(function(){
     var validate;
     if (event.target.attributes.name.nodeValue==="commit") {
       validate = $.validate({
+        module: 'html5',
         errorMessagePosition : 'inline',
         borderColorOnError: '',
       });

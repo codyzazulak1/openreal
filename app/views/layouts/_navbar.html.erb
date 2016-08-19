@@ -58,10 +58,10 @@
       <%= form_tag (customer_session_path), id: "customer-signin" do |f| %>
         <div class="row column log-in-form">
           <label>Email
-            <%= email_field_tag('customer[email]') %>
+            <%= email_field_tag('customer[email]',nil, data: {"validation" => "required email"}) %>
           </label>
           <label>Password
-            <%= password_field_tag("customer[password]") %>
+            <%= password_field_tag("customer[password]", nil, data: {"validation" => "required"}) %>
           </label>
           <% if Devise.mappings[:customer].rememberable? %>
             <%= check_box_tag('remember_me', "0", false) %>
