@@ -45,7 +45,7 @@ class PropertiesController < ApplicationController
     if params["min-lot"] && params["min-floor"] != ''
       @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
     end
-    if params["bound-east"] && params["bound-west"] && params["bound-north"] && params["bound-south"]
+    if params["bound-east"] && params["bound-west"] && params["bound-north"] && params["bound-south"] && !(params["bound-east"] == "" || params["bound-west"] == "" || params["bound-north"] == "" || params["bound-south"] == "")
       @properties = @properties
         .joins(:address)
         .where("addresses.latitude BETWEEN ? AND ?", params["bound-south"].to_f, params["bound-north"].to_f)

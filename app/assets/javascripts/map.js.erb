@@ -179,7 +179,6 @@ function UpdateControl(div, map) {
   controlUI.style.border = '2px solid #fff';
   controlUI.style.borderRadius = '3px';
   controlUI.style.boxShadow = 'rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px';
-  controlUI.style.cursor = 'pointer';
   controlUI.style.margin = '10px';
   controlUI.style.textAlign = 'center';
   controlUI.title = 'Update result as I move the map';
@@ -191,7 +190,7 @@ function UpdateControl(div, map) {
   cb.id = "update-checkbox";
   cb.name = "update-checkbox";
   cb.style.margin = '0';
-  cb.style.marginRight = '0.5rem';
+  cb.style.marginLeft = '0.5rem';
 
   controlText.style.color = 'rgb(25,25,25)';
   controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
@@ -199,8 +198,11 @@ function UpdateControl(div, map) {
   controlText.style.lineHeight = '2rem';
   controlText.style.paddingLeft = '0.5rem';
   controlText.style.paddingRight = '0.5rem';
+  controlText.style.display = 'inline-block';
+  controlText.style.cursor = 'pointer';
   controlText.innerHTML = 'Update result as I move the map';
-  controlText.insertBefore(cb, controlText.firstChild);
+  // controlText.insertBefore(cb, controlText.firstChild);
+  controlUI.appendChild(cb);
   controlUI.appendChild(controlText);
 
   cb.addEventListener('click', function() {
@@ -209,10 +211,19 @@ function UpdateControl(div, map) {
       updateOnDrag = true;
     } else {
       updateOnDrag = false;
+      clearBounds();
     }
   });
 
-  controlUI.addEventListener('click', function() {
+  controlText.addEventListener('click', function() {
     cb.click();
   });
+}
+
+function clearBounds() {
+  var filters = document.getElementsByClassName("listing-filters")[0].children[0];
+  filters.querySelectorAll('input[name="bound-east"]')[0].removeAttribute('value');
+  filters.querySelectorAll('input[name="bound-west"]')[0].removeAttribute('value');
+  filters.querySelectorAll('input[name="bound-north"]')[0].removeAttribute('value');
+  filters.querySelectorAll('input[name="bound-south"]')[0].removeAttribute('value');
 }
