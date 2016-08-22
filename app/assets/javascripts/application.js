@@ -263,7 +263,6 @@ $(document).ready(function(){
   $('#addressForm').submit(function(e){
     if (!formFilled) {
       e.preventDefault();
-      // console.log('cancel submission');
     }
   });
   
@@ -284,11 +283,6 @@ $(document).ready(function(){
     }
       
   });
-
-  $('#back-btn').click(function(){
-    // $('#new-property-form').get(0).reset();
-    // $('#new-property-form').submit();
-  })
 
 });
 
