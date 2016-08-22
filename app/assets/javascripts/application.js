@@ -18,7 +18,6 @@
 //= require jquery.form-validator.min
 
 $(function(){ $(document).foundation(); });
-// hey
 var autocomplete;
 var formFilled = false;
 var overviewToggled = false;
@@ -40,10 +39,55 @@ function autoComplete() {
   autocomplete.addListener('place_changed', populateFormFields);
 }
 
+// autocomplete in seller form
+function autoCompleteSeller() {
+  var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(55.04841493732514, 180),
+    new google.maps.LatLng(75.87533278202616, -180)
+  );
+  var addressInput = document.getElementById('addressInput');
+  var options = {
+    bounds: defaultBounds,
+    types: ['address'],
+    componentRestrictions: {country: 'ca'}
+  };
+
+  // only attach autocomplete on the address form
+  if (addressInput) {
+    autocomplete = new google.maps.places.Autocomplete(addressInput, options);
+    autocomplete.addListener('place_changed', populateSellerForm);
+  }
+
+  // prevent form submission
+  document.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  });
+}
+
+function populateSellerForm() {
+  var place = autocomplete.getPlace();
+
+  if (place.address_components) {
+    var addressFirst = place.address_components[0].long_name + ' ' + place.address_components[1].long_name;
+    // var addressSecond = place.address_components[0].long_name + ' ' + place.address_components[1].long_name;
+    var addressCity = place.address_components.reverse()[4].long_name;
+    var addressPostal = place.address_components[0].long_name;
+    var addressLat = place.geometry.location.lat;
+    var addressLng = place.geometry.location.lng;
+    $('#addressForm').find('#addressInput').val(addressFirst);
+    // $('#addressForm').find('#addressSecond').val(addressSecond);
+    $('#addressForm').find('#addressCity').val(addressCity);
+    $('#addressForm').find('#addressPostal').val(addressPostal);
+    $('#addressForm').find('#addressLat').val(addressLat);
+    $('#addressForm').find('#addressLng').val(addressLng);
+  }
+}
+
 // populate the address form based on the google places api response
 function populateFormFields() {
-  place = autocomplete.getPlace();
-  // console.log(place);
+  var place = autocomplete.getPlace();
 
   if (place.address_components) {
     var addressFirst = place.address_components[0].long_name + ' ' + place.address_components[1].long_name;
@@ -226,9 +270,10 @@ $(document).ready(function(){
 
   // validation before form submission
   $('#new-property-form').on('click', function(event) {
-    // console.log(event.target.attributes.name.nodeValue);
+    // console.log(event);
     var validate;
-    if (event.target.attributes.name.nodeValue==="commit") {
+    var node = event.target.id === "submit-btn" ? event.target.attributes.name.nodeValue : undefined;
+    if (node && node === "commit") {
       validate = $.validate({
         module: 'html5',
         errorMessagePosition : 'inline',

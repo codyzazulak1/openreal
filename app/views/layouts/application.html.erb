@@ -24,8 +24,13 @@
   <!-- google maps api -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap"
     async defer></script>
+
   <% elsif (controller.controller_name == "welcome" && controller.action_name == "index") %>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoComplete"
+    async defer></script>
+
+  <% elsif controller.controller_name == "properties" && (["new", "create"].include? controller.action_name) %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&libraries=places&callback=autoCompleteSeller"
     async defer></script>
   <% end %>
 </html>
