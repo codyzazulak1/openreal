@@ -1,6 +1,7 @@
 var map;
 var infoWindows = [];
 var mapMarkers = [];
+var updateOnDrag = false;
 
 function initMap() {
   url = "/properties.json";
@@ -19,7 +20,7 @@ function initMap() {
       zoom: 12,
       zoomControl: true,
       zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_TOP
+          position: google.maps.ControlPosition.TOP_RIGHT
       },
       mapTypeControl: false,
       scaleControl: false,
@@ -36,6 +37,24 @@ function initMap() {
     map.addListener('click', function() {
       closeAllInfoWin();
     });
+
+    map.addListener('dragend', function() {
+      // console.info("bound: ",this.getBounds().toJSON());
+      if (updateOnDrag) {
+        bounds = this.getBounds().toJSON();
+        var filters = $('.listing-filters>form');
+        filters.find('input[name="bound-east"]').val(bounds.east);
+        filters.find('input[name="bound-west"]').val(bounds.west);
+        filters.find('input[name="bound-north"]').val(bounds.north);
+        filters.find('input[name="bound-south"]').val(bounds.south);
+        filters.submit();
+      }
+    });
+
+    var updateDiv = document.createElement('div');
+    var updateControl = new UpdateControl(updateDiv, map);
+    updateDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(updateDiv);
   });
 }
 
@@ -152,4 +171,31 @@ function closeAllInfoWin() {
   for (var i=0; i<infoWindows.length; i++) {
     infoWindows[i].close();
   }
+}
+
+function UpdateControl(div, map) {
+  var controlUI = document.createElement('div');
+  controlUI.style.backgroundColor = '#fff';
+  controlUI.style.border = '2px solid #fff';
+  controlUI.style.borderRadius = '3px';
+  controlUI.style.boxShadow = 'rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.margin = '10px';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Click to recenter the map';
+  div.appendChild(controlUI);
+
+  var controlText = document.createElement('div');
+  controlText.style.color = 'rgb(25,25,25)';
+  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+  controlText.style.fontSize = '0.75rem';
+  controlText.style.lineHeight = '2rem';
+  controlText.style.paddingLeft = '5px';
+  controlText.style.paddingRight = '5px';
+  controlText.innerHTML = 'Update result as I move the map';
+  controlUI.appendChild(controlText);
+
+  controlUI.addEventListener('click', function() {
+    updateOnDrag = true;
+  });
 }
