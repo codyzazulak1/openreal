@@ -186,6 +186,18 @@ $(document).ready(function(){
     overviewToggled = false;
   });
 
+  $('#submit-filter').click(function(e){
+    e.preventDefault();
+    $('#update-checkbox').attr("checked", false);
+    updateOnDrag = false;
+    var filters = $('.listing-filters>form');
+    filters.find('input[name="bound-east"]').removeAttr("value");
+    filters.find('input[name="bound-west"]').removeAttr("value");
+    filters.find('input[name="bound-north"]').removeAttr("value");
+    filters.find('input[name="bound-south"]').removeAttr("value");
+    filters.submit();
+  });
+
   initListings();
 
   $('.loader').hide();
