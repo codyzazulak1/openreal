@@ -22,13 +22,13 @@ Rails.application.routes.draw do
   end
 
   # properties
+  post 'properties/new', action: :create, controller: 'properties'
+  post 'properties/sell', action: :sell, controller: 'properties'
+  get 'properties/filter', action: :filter, controller: 'properties'
   resources :properties
   resources :photos
   resources :contact_forms
 
-  post 'properties/new', action: :create, controller: 'properties'
-  post 'properties/sell', action: :sell, controller: 'properties'
-  get 'properties/filter', action: :filter, controller: 'properties'
 
   # static pages
   get 'howitworks', action: :howitworks, controller: 'welcome'
