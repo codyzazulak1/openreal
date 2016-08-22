@@ -182,20 +182,37 @@ function UpdateControl(div, map) {
   controlUI.style.cursor = 'pointer';
   controlUI.style.margin = '10px';
   controlUI.style.textAlign = 'center';
-  controlUI.title = 'Click to recenter the map';
+  controlUI.title = 'Update result as I move the map';
   div.appendChild(controlUI);
-
+  
   var controlText = document.createElement('div');
+  var cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.id = "update-checkbox";
+  cb.name = "update-checkbox";
+  cb.style.margin = '0';
+  cb.style.marginRight = '0.5rem';
+
   controlText.style.color = 'rgb(25,25,25)';
   controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
   controlText.style.fontSize = '0.75rem';
   controlText.style.lineHeight = '2rem';
-  controlText.style.paddingLeft = '5px';
-  controlText.style.paddingRight = '5px';
+  controlText.style.paddingLeft = '0.5rem';
+  controlText.style.paddingRight = '0.5rem';
   controlText.innerHTML = 'Update result as I move the map';
+  controlText.insertBefore(cb, controlText.firstChild);
   controlUI.appendChild(controlText);
 
+  cb.addEventListener('click', function() {
+    // alert('checked');
+    if (cb.checked) {
+      updateOnDrag = true;
+    } else {
+      updateOnDrag = false;
+    }
+  });
+
   controlUI.addEventListener('click', function() {
-    updateOnDrag = true;
+    cb.click();
   });
 }
