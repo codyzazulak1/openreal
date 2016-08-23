@@ -1,0 +1,26 @@
+<h1><%= @property.address_name %></h1>
+<%= link_to "Edit this Property", edit_dashboard_property_path(@property) %>
+
+  <div class="row">
+    <div class="small-6 columns">
+      <ul>
+        <% @property_attributes.each do |u| %>
+          <li>
+            <h5><%= u %></h5>
+            <p><%= @property[u] %></p>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+    <div class="small-6 columns">
+      <ul>
+        <% @address_attributes.each do |u| %>
+          <li>
+            <h5><%= u %></h5>
+            <p><%= @property.address[u] %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<%=link_to "Destroy this Property", @property, method: :delete %>

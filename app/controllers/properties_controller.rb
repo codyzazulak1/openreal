@@ -20,6 +20,26 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def edit
+    @property = Property.find(params[:id])
+    @address = @property.address
+
+    if @property.update_attributes(property_params)
+      redirect_to dashboard_property_path(@property)
+    end
+
+  end
+
+  def update
+    @property = Property.find(params[:id])
+    @address = @property.address
+
+    if @property.update_attributes(property_params)
+      redirect_to dashboard_property_path(@property)
+    end
+
+  end
+
   def filter
     @properties = Property.all
       .order('list_price_cents ASC')
@@ -156,6 +176,12 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    redirect_to dashboard_properties_path
+  end
+
   def all_valid?
     steps.all? do |step|
       self.current_step = step
@@ -174,11 +200,14 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
-  end
-
-  def address_params
-    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms,
+                                     :seller_info, :pid, :dwelling_class, :property_type, :building_type,
+                                     :title_to_land, :sellers_interest, :architecture_style, :number_of_floors, :year_built,
+                                     :list_price_cents, :fireplaces, :lot_length, :lot_width, :status,
+                                     photos_attributes: [:picture],
+                                     address_attributes: [:id, :address_first, :address_second, :street, :city, :postal_code],
+                                     contact_form_attributes: [:name, :email, :phone, :notes])
+# : [:address_first, :address_second, :city, :postal_code]
   end
 
   def contact_params

@@ -25,10 +25,18 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
-  resources :properties
+  resources :properties do
+    resources :address
+  end
   resources :photos
   resources :contact_forms
 
+
+  # dashboard
+  namespace :dashboard do
+    resources :properties
+  end
+  get 'dashboard', action: :index, controller: 'dashboard'
 
   # static pages
   get 'howitworks', action: :howitworks, controller: 'welcome'
@@ -36,7 +44,6 @@ Rails.application.routes.draw do
   get 'faq', action: :faq, controller: 'welcome'
   get 'terms', action: :terms, controller: 'welcome'
 
-  get '/dashboard', action: :get_dash, controller: 'dashboard'
   get '/login', action: :login, controller: 'welcome'
   get '/register', action: :register, controller: 'welcome'
 end

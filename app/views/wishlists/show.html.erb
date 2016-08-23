@@ -1,0 +1,22 @@
+<h1><%= @wishlist.name %></h1>
+<% if @favorites %>
+  <ul>
+    <% @favorites.each do |f| %>
+      <li>
+        <%= f.property.address.address_first %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @customer == current_customer %>
+
+  <ul>
+    <% @wishlist.favorites.each do |f|%>
+      <li>
+        <%= f.property.address_name %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>

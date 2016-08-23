@@ -15,7 +15,7 @@
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
     <%= render 'layouts/navbar' %>
-    
+
     <%= yield %>
 
     <%= render 'layouts/footer' unless controller.controller_name == 'properties' && controller.action_name == 'index' %>

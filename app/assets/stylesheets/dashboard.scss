@@ -1,0 +1,29 @@
+@import "foundation_and_overrides";
+
+#side-panel {
+  background-color: $panel-bg;
+  min-height: calc(100vh - 60px - 230px);
+  padding: 0;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+
+    li {
+      padding-left: 2rem;
+
+      &.active,
+      &:hover {
+        background-color: $medium-gray;
+      }
+
+      a {
+        color: $black;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        line-height: 2rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
