@@ -16,6 +16,7 @@
 //= require_tree .
 //= require map
 //= require jquery.form-validator.min
+//= require dropzone
 
 $(function(){ $(document).foundation(); });
 var autocomplete;

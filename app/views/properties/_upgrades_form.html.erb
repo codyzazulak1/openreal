@@ -4,6 +4,6 @@
 <%= fp.fields_for :photos do |ffp| %>
   <div>
     <%= ffp.label :picture %>
-    <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+    <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]", class: "file-upload" %>
   </div>
 <%end%>
