@@ -2,15 +2,20 @@
 
 #side-panel {
   background-color: $panel-bg;
-  min-height: calc(100vh - 60px - 230px);
+  // min-height: calc(100vh - 60px - 230px);
+  position: fixed;
+  height: 100%;
+  top: 0;
   padding: 0;
+  z-index: 9;
 
   ul {
     list-style-type: none;
     margin: 0;
+    padding-top: 4rem;
 
     li {
-      padding-left: 2rem;
+      margin: 0.5rem 0;
 
       &.active,
       &:hover {
@@ -21,8 +26,12 @@
         color: $black;
         text-transform: uppercase;
         font-size: 0.75rem;
-        line-height: 2rem;
+        line-height: 3rem;
+        letter-spacing: 1px;
         font-weight: 600;
+        display: block;
+        padding-left: 2rem;
+
       }
     }
   }

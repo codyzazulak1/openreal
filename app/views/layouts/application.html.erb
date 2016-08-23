@@ -18,7 +18,7 @@
 
     <%= yield %>
 
-    <%= render 'layouts/footer' unless controller.controller_name == 'properties' && controller.action_name == 'index' %>
+    <%= render 'layouts/footer' unless get_namespace != 'dashboard' && controller.controller_name == 'properties' && controller.action_name == 'index' %>
   </body>
   <% if controller.controller_name == "properties" && controller.action_name == "index" %>
   <!-- google maps api -->

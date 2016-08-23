@@ -1,12 +1,26 @@
-<h4><%= link_to "Add a new property", new_dashboard_property_path %></h4>
-<% if @properties.count > 0 %>
-  <ul>
-    <% @properties.each do |p| %>
-      <li>
-        <%= link_to p.address_name, property_path(p) %></br>
-        <%= link_to "Detailed View", dashboard_property_path(p) %></br>
-        <%= link_to "Edit", edit_dashboard_property_path(p) %></br>
-      </li>
+<div class="row expanded">
+  <%= render "dashboard/side_panel" %>
+
+  <div class="medium-9 columns">
+    <h1>Properties page</h1>
+    <%= get_namespace %>
+    <%= params[:controller] %>
+    
+    <h4><%= link_to "Add a new property", new_dashboard_property_path %></h4>
+    <% if @properties.count > 0 %>
+      <ul>
+        <% @properties.each do |p| %>
+          <li>
+            <%= link_to p.address_name, property_path(p) %></br>
+            <%= link_to "Detailed View", dashboard_property_path(p) %></br>
+            <%= link_to "Edit", edit_dashboard_property_path(p) %></br>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
+
+
+  </div>
+</div>
+
+

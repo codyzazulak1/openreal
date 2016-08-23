@@ -32,4 +32,8 @@ module ApplicationHelper
     signedUrl = parsedURL.scheme+"://"+ parsedURL.host + urlToSign + "&signature=#{signature}"
     return signedUrl
   end
+
+  def get_namespace
+    params[:controller].split("/")[0]
+  end
 end
