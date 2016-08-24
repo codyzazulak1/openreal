@@ -2,11 +2,11 @@
   <ul class="side-panel-menu">
     <li class="<%= 'active' if controller.controller_name == "dashboard" %>">
       <a href="<%= dashboard_path %>">Dashboard</a>
-    </li>
-    <li class="<%= 'active' if controller.controller_name == "properties" && controller.action_name == 'index' %>">
+    </li><!--
+ --><li class="<%= 'active' if controller.controller_name == "properties" && controller.action_name == 'index' %>">
       <a href="<%= dashboard_properties_path %>">Listings</a>
-    </li>
-    <li><a href="#">Contacts</a></li>
-    <li><a href="#">Users</a></li>
+    </li><!--
+ --><li><a href="#">Contacts</a></li><!--
+ --><li><a href="#">Users</a></li>
   </ul>
 </nav>
