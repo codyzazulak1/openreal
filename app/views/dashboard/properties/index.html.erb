@@ -9,9 +9,9 @@
         <%= link_to "Add a new property", new_dashboard_property_path, class: "btn btn-primary" %>
       </div>
 
-      <% if @properties.count > 0 %>
+      <% if @properties_paged.count > 0 %>
       <ul class="dashboard-list-body">
-        <% @properties.each do |p| %>
+        <% @properties_paged.each do |p| %>
         <li class="dashboard-list-item row collapse">
           <div class="small-2 columns dashboard-listing-img">
             <a href="<%= dashboard_property_path(p) %>">
@@ -24,7 +24,7 @@
                 <a href=""><span><%= p.address_name %></span></a>
               </h3>
               <div>
-                <%= link_to "Edit", edit_dashboard_property_path(p) %>
+                <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
               </div>
             </div>
             
@@ -33,13 +33,9 @@
         <% end %>
       </ul>
       <% end %>
-
     </div>
 
-    
-      <ul>
-          
-      </ul>
+    <%= will_paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
 
 
   </div>

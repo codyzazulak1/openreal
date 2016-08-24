@@ -2,6 +2,7 @@ class Dashboard::PropertiesController < ApplicationController
 
   def index
     @properties = Property.all
+    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show

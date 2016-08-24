@@ -84,6 +84,7 @@
 
 .dashboard-list {
   border: 1px solid $border-color;
+  margin-bottom: 1rem;
 
   .dashboard-list-header {
     background-color: $panel-bg;
@@ -120,5 +121,10 @@
 
 .dashboard-listing-overview {
   padding-left: 1rem;
+  font-size: 0.75rem;
+
+  a {
+    font-size: 0.75rem;
+  }
 }
 

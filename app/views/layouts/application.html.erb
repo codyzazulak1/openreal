@@ -20,7 +20,7 @@
 
     <%= render 'layouts/footer' unless get_namespace != 'dashboard' && controller.controller_name == 'properties' && controller.action_name == 'index' %>
   </body>
-  <% if controller.controller_name == "properties" && controller.action_name == "index" %>
+  <% if !get_namespace == "dashboard" && controller.controller_name == "properties" && controller.action_name == "index" %>
   <!-- google maps api -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap"
     async defer></script>
