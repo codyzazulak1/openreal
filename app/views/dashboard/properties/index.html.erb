@@ -1,23 +1,45 @@
 <div class="row expanded">
   <%= render "dashboard/side_panel" %>
 
-  <div class="medium-9 columns">
-    <h1>Properties page</h1>
-    <%= get_namespace %>
-    <%= params[:controller] %>
-    
-    <h4><%= link_to "Add a new property", new_dashboard_property_path %></h4>
-    <% if @properties.count > 0 %>
-      <ul>
+  <div class="medium-9 columns dashboard-content">
+    <h1>Listings</h1>
+    <hr>
+    <div class="dashboard-list">
+      <div class="dashboard-list-header">
+        <%= link_to "Add a new property", new_dashboard_property_path, class: "btn btn-primary" %>
+      </div>
+
+      <% if @properties.count > 0 %>
+      <ul class="dashboard-list-body">
         <% @properties.each do |p| %>
-          <li>
-            <%= link_to p.address_name, property_path(p) %></br>
-            <%= link_to "Detailed View", dashboard_property_path(p) %></br>
-            <%= link_to "Edit", edit_dashboard_property_path(p) %></br>
-          </li>
+        <li class="dashboard-list-item row collapse">
+          <div class="small-2 columns dashboard-listing-img">
+            <a href="<%= dashboard_property_path(p) %>">
+              <img src="<%= p.photos.first.picture %>">
+            </a>
+          </div>
+          <div class="small-10 columns end">
+            <div class="dashboard-listing-overview">
+              <h3>
+                <a href=""><span><%= p.address_name %></span></a>
+              </h3>
+              <div>
+                <%= link_to "Edit", edit_dashboard_property_path(p) %>
+              </div>
+            </div>
+            
+          </div>
+        </li>
         <% end %>
       </ul>
-    <% end %>
+      <% end %>
+
+    </div>
+
+    
+      <ul>
+          
+      </ul>
 
 
   </div>
