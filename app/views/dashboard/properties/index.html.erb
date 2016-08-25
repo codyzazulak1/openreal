@@ -19,13 +19,22 @@
             </a>
           </div>
           <div class="small-10 columns end">
-            <div class="dashboard-listing-overview">
+            <div class="dashboard-listing-overview float-left">
               <h3>
                 <a href=""><span><%= p.address_name %></span></a>
               </h3>
               <div>
                 <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
               </div>
+            </div>
+
+            <div class="float-right" style="max-width: 6rem;">
+              <select>
+                <option value="1">Pengding</option>
+                <option value="2" selected="">Active</option>
+                <option value="3">Unlisted</option>
+                <option value="4">Archived</option>
+              </select>
             </div>
             
           </div>
