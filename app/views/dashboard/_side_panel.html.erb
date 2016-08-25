@@ -3,7 +3,7 @@
     <li class="<%= 'active' if controller.controller_name == "dashboard" %>">
       <a href="<%= dashboard_path %>">Dashboard</a>
     </li><!--
- --><li class="<%= 'active' if controller.controller_name == "properties" && controller.action_name == 'index' %>">
+ --><li class="<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "properties" %>">
       <a href="<%= dashboard_properties_path %>">Listings</a>
     </li><!--
  --><li><a href="#">Contacts</a></li><!--
