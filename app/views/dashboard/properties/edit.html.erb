@@ -4,22 +4,21 @@
   <div class="medium-9 columns dashboard-content">
     <h1><%= @property.address_name %></h1>
     <hr>
-    <%= form_for @property, html: {id: "property-form"} do |f| %>
-      <div id="edit-property-1">
-        <% @property_attributes.each do |u| %>
-          <%= f.label u %>
-          <%= f.text_field u.to_sym %>
-        <% end %>
-        <%= f.submit "Save" %>
-      </div>
-      <div id="edit-property-2">
-        <%= fields_for :address do |fa| %>
+    <%= form_for @property, html: {id: "property-form", multipart: true} do |f| %>
+      <div>
+        <%= f.fields_for :address do |fa| %>
           <% @address_attributes.each do |a| %>
             <%= fa.label a %>
             <%= fa.text_field a.to_sym %>
           <% end %>
         <% end %>
-        <%= f.submit "Save" %>
+
+        <% @property_attributes.each do |u| %>
+          <%= f.label u %>
+          <%= f.text_field u.to_sym %>
+        <% end %>
+
+        <%= f.submit "Save", class: "btn btn-primary float-right" %>
       </div>
     <%end%>
   </div>
