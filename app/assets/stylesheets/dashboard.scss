@@ -90,6 +90,11 @@
     background-color: $panel-bg;
     padding: 1rem;
     border-bottom: 1px solid $border-color;
+
+    select {
+      font-size: 0.75rem;
+      height: 2.125rem;
+    }
   }
 
   .dashboard-list-body {
@@ -102,11 +107,13 @@
 
       &:not(:last-child):after {
         content: "";
-        display: inline-block;
+        display: block;
         width: 100%;
         height: 1px;
         background-color: $border-color;
         margin: 1rem 0;
+        float: left;
+        clear: both;
       }
     }
   }

@@ -5,8 +5,19 @@
     <h1>Listings</h1>
     <hr>
     <div class="dashboard-list">
-      <div class="dashboard-list-header">
-        <%= link_to "Add a new property", new_dashboard_property_path, class: "btn btn-primary" %>
+      <div class="dashboard-list-header row collapse">
+        <div class="small-8 columns">
+          <%= link_to "Add a new property", new_dashboard_property_path, class: "btn btn-primary" %>
+        </div>
+
+        <div class="small-4 columns">
+          <select style="margin:0;">
+            <option value="1" selected>Show all listings</option>
+            <option value="2">Show active listings</option>
+            <option value="3">Show unlisted</option>
+            <option value="4">Show archived</option>
+          </select>
+        </div>
       </div>
 
       <% if @properties_paged.count > 0 %>
@@ -31,7 +42,7 @@
             <div class="float-right" style="max-width: 6rem;">
               <select>
                 <option value="1">Pengding</option>
-                <option value="2" selected="">Active</option>
+                <option value="2" selected>Active</option>
                 <option value="3">Unlisted</option>
                 <option value="4">Archived</option>
               </select>
