@@ -4,22 +4,37 @@
   <div class="medium-9 columns dashboard-content">
     <h1><%= @property.address_name %></h1>
     <hr>
-    <%= form_for @property, html: {id: "property-form", multipart: true} do |f| %>
-      <div>
-        <%= f.fields_for :address do |fa| %>
-          <% @address_attributes.each do |a| %>
-            <%= fa.label a %>
-            <%= fa.text_field a.to_sym %>
-          <% end %>
-        <% end %>
+    <%= form_for @property, html: {class: "dashboard-form clearfix", id: "property-form", multipart: true} do |f| %>
+      <ul class="accordion" data-accordion data-multi-expand="true">
+        <li class="accordion-item is-active" data-accordion-item>
+          <a href="#" class="accordion-title">Address</a>
+          <div class="accordion-content" data-tab-content>
+            <%= f.fields_for :address do |fa| %>
+              <% @address_attributes.each do |a| %>
+                <%= fa.label a %>
+                <%= fa.text_field a.to_sym %>
+              <% end %>
+            <% end %>
+          </div>
+        </li>
 
-        <% @property_attributes.each do |u| %>
-          <%= f.label u %>
-          <%= f.text_field u.to_sym %>
-        <% end %>
+        <li class="accordion-item" data-accordion-item>
+          <a href="#" class="accordion-title">Basics</a>
+          <div class="accordion-content" data-tab-content>
+            <% @property_attributes.each do |u| %>
+              <%= f.label u %>
+              <%= f.text_field u.to_sym %>
+            <% end %>
+          </div>
+        </li>
 
-        <%= f.submit "Save", class: "btn btn-primary float-right" %>
+
+      </ul>
+      <div class="float-right">
+        <a href="<%= dashboard_properties_path %>" class="btn btn-secondary">Back</a>
+        <%= f.submit "Save", class: "btn btn-primary" %>
       </div>
+      
     <%end%>
   </div>
 </div>
