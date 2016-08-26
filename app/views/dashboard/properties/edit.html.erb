@@ -5,8 +5,10 @@
     <h1><%= @property.address_name %></h1>
     <hr>
     <%= form_for @property, html: {class: "dashboard-form clearfix", id: "property-form", multipart: true} do |f| %>
-      <div class="float-right">
+      <div class="float-left">
         <a href="<%= dashboard_properties_path %>" class="btn btn-secondary">Back</a>
+      </div>
+      <div class="float-right">
         <%= f.submit "Save", class: "btn btn-primary" %>
       </div>
 
