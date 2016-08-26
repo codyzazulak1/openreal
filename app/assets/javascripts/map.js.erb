@@ -41,6 +41,8 @@ function initMap() {
     map.addListener('dragend', function() {
       // console.info("bound: ",this.getBounds().toJSON());
       if (updateOnDrag) {
+        closeAllInfoWin();
+        hideOverview();
         bounds = this.getBounds().toJSON();
         var filters = $('.listing-filters>form');
         filters.find('input[name="bound-east"]').val(bounds.east);

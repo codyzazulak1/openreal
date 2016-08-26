@@ -129,6 +129,13 @@ function toggleOverview(pid) {
   }
 }
 
+function hideOverview() {
+  $('#close-btn').addClass('hide');
+  $('#filter-btn').show();
+  $('.listing-footer').hide();
+  overviewToggled = false;
+}
+
 // initialize listings
 function initListings() {
 
