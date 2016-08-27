@@ -194,6 +194,13 @@ $(document).ready(function(){
     overviewToggled = false;
   });
 
+  $('.switch-btn').click(function(e){
+    e.preventDefault();
+    $('#map-view').toggleClass('show-for-medium');
+    $('#listing-view').toggleClass('show-for-medium');
+    google.maps.event.trigger(map, "resize");
+  });
+
   $('#submit-filter').click(function(e){
     e.preventDefault();
     $('#update-checkbox').attr("checked", false);

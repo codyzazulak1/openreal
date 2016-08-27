@@ -7,9 +7,20 @@
  *              *
  ****************/
 
+.map-header {
+  height: 60px;
+  padding: 0 1.25rem;
+  background-color: $panel-bg;
+} 
+
 #map {
   height: calc(100vh - 62px);
   overflow: hidden;
+
+  @include breakpoint(small only) {
+    // minus the height of .map-header
+    height: calc(100vh - 62px - 60px);
+  }
 
   .gm-style-iw {
     // width: 100% !important;
