@@ -1,0 +1,18 @@
+<h1>Contact Forms</h1>
+
+<ul>
+  <% @forms.each do |cf| %>
+    <li>
+      <h4><%= cf.name %></h6>
+      <span><strong>Email</strong></span>
+      <p><%= cf.email %></p>
+      <span><strong>Phone</strong></span>
+      <p><%= cf.phone %></p>
+      <span><strong>Created at:</strong></span>
+      <p><%= cf.created_at %></p>
+      <span><strong>Notes</strong></span>
+      <p><%= cf.notes %></p>
+    </li>
+    <% end %>
+</ul>
+
