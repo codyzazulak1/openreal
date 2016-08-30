@@ -32,7 +32,7 @@
           <div class="small-10 columns end">
             <div class="dashboard-listing-overview float-left">
               <h3>
-                <a href=""><span><%= p.address_name %></span></a>
+                <%= link_to p.address_name, dashboard_property_path(p) %>
               </h3>
               <div>
                 <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
