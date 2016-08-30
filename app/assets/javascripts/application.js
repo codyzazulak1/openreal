@@ -297,16 +297,19 @@ $(document).ready(function(){
   // validation before form submission
   $('#new-property-form').on('click', function(event) {
     // console.log(event);
-    var validate;
     var node = event.target.id === "submit-btn" ? event.target.attributes.name.nodeValue : undefined;
     if (node && node === "commit") {
-      validate = $.validate({
+      $.validate({
         module: 'html5',
         errorMessagePosition : 'inline',
         borderColorOnError: '',
       });
     } else {
-      validate = null;
+      // skip all validation if 'back' button is pressed
+      $('input').on('beforeValidation', function(value, lang, config) {
+        console.log('Input "'+this.name+'" is about to become validated');
+        $(this).attr('data-validation-skipped', 1);
+      });
     }
       
   });

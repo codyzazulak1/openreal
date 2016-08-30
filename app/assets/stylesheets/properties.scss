@@ -448,12 +448,51 @@
     display: block;
   }
 
-  .file-upload {
-    font-size: 1rem;
-    min-height: 20rem;
-    padding: calc((20rem - 1rem) / 2 ) 0;
-    // border: 3px dashed $dark-gray;
+  .file-upload-box {
+    background-color: $panel-bg;
     border-radius: $global-radius;
-    background-color: $light-gray;
+    width: 100%;
+    text-align: center;
+    min-height: 15rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .file-upload {
+    // padding: calc((20rem - 1rem) / 2 ) 0;
+
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    + label {
+      font-size: 1em;
+      padding: 0.25rem 1.25rem;
+      color: white;
+      background-color: $primary-color;
+      border-radius: $global-radius;
+      display: inline-block;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include translate (-50% , -50%);
+    }
+
+    &:focus + label,
+    & + label:hover {
+      color: #fefefe;
+      background-color: #4dd2ff;
+      border-color: #4dd2ff;
+      border-bottom-color: #0086b3;
+    }
+
+    &:focus + label {
+      outline: 1px dotted #000;
+      outline: -webkit-focus-ring-color auto 5px;
+    }
   }
 }
