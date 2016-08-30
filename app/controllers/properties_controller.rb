@@ -9,7 +9,6 @@ class PropertiesController < ApplicationController
       @properties = Property.all.order('created_at DESC')
       @center = {lat: 49.2447, lng: -123.1359}
     end
-
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
@@ -188,6 +187,8 @@ class PropertiesController < ApplicationController
       valid?
     end
   end
+
+  
 
 
   private

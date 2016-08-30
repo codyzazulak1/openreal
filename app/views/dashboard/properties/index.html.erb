@@ -39,12 +39,11 @@
               </div>
             </div>
 
-            <div class="float-right" style="max-width: 6rem;">
+            <div class="float-right" style="width: 5rem;">
               <select>
-                <option value="1">Pengding</option>
-                <option value="2" selected>Listed</option>
-                <option value="3">Unlisted</option>
-                <option value="4">Archived</option>
+                <% @statuses.each do |status, name| %>
+                  <option value=<%= status %> <%= "selected" if p.status == status %>><%= name %></option>
+                <% end %>
               </select>
             </div>
           </div>

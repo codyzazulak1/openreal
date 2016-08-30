@@ -1,7 +1,9 @@
 class Dashboard::PropertiesController < ApplicationController
 
   def index
+    @statuses = status_list
     @properties = Property.all
+    @statuses = status_list
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
   end
 
@@ -36,6 +38,15 @@ class Dashboard::PropertiesController < ApplicationController
   end
 
   private
+
+  def status_list
+    {
+      "pending" => "Pending",
+      "unlisted" => "Unlisted",
+      "listed" => "Listed",
+      "archived" => "Archived"
+    }
+  end
 
   def property_params
     params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
