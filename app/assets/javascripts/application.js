@@ -307,7 +307,6 @@ $(document).ready(function(){
     } else {
       // skip all validation if 'back' button is pressed
       $('input').on('beforeValidation', function(value, lang, config) {
-        console.log('Input "'+this.name+'" is about to become validated');
         $(this).attr('data-validation-skipped', 1);
       });
     }
