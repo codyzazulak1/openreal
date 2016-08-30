@@ -3,6 +3,10 @@
 <ul>
   <% @forms.each do |cf| %>
     <li>
+      <% if cf.property %>
+        <h5>Associated home: </h5>
+        <%= link_to cf.property.address_name, property_path(cf.property) %>
+      <%end%>
       <h4><%= cf.name %></h6>
       <span><strong>Email</strong></span>
       <p><%= cf.email %></p>
