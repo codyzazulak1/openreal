@@ -26,7 +26,7 @@
         <li class="dashboard-list-item row collapse">
           <div class="small-2 columns dashboard-listing-img">
             <a href="<%= dashboard_property_path(p) %>">
-              <img src="<%= p.photos.first.picture %>">
+              <img src="<%= p.photos.count == 0 ? 'http://placehold.it/350x150?text=%20' : p.photos.first.picture %>">
             </a>
           </div>
           <div class="small-10 columns end">
@@ -47,7 +47,6 @@
                 <option value="4">Archived</option>
               </select>
             </div>
-            
           </div>
         </li>
         <% end %>
