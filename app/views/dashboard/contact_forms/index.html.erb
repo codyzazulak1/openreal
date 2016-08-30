@@ -5,9 +5,9 @@
     <li>
       <% if cf.property %>
         <h5>Associated home: </h5>
-        <%= link_to cf.property.address_name, property_path(cf.property) %>
+        <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
       <%end%>
-      <h4><%= cf.name %></h6>
+      <h4><%= link_to cf.name, dashboard_contact_form_path(cf) %></h6>
       <span><strong>Email</strong></span>
       <p><%= cf.email %></p>
       <span><strong>Phone</strong></span>
@@ -16,6 +16,7 @@
       <p><%= cf.created_at %></p>
       <span><strong>Notes</strong></span>
       <p><%= cf.notes %></p>
+      <%= link_to "Delete", cf, method: :delete %>
     </li>
     <% end %>
 </ul>

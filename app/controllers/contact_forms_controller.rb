@@ -10,6 +10,7 @@ class ContactFormsController < ApplicationController
 
   def create
     @cform = ContactForm.new(contact_form_params)
+    @cform[:status] = 'unanswered'
 
     if @cform.save
 
@@ -23,7 +24,7 @@ class ContactFormsController < ApplicationController
   private
 
   def contact_form_params
-    params.require(:contact_form).permit(:name, :email, :phone, :notes, :property_id)
+    params.require(:contact_form).permit(:name, :email, :phone, :notes, :property_id, :status)
   end
 
 end
