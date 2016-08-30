@@ -1,0 +1,11 @@
+<h1><%= @form.name %></h1>
+<p>Email: <%= @form.email %></p>
+<p>Phone: <%= @form.phone %></p>
+<%= form_for @form, url: dashboard_contact_form_path(@form), html: {method: :put} do |f| %>
+  <p>Status: <%= select_tag(:status, options_for_select([
+      ['Unanswered', 'unanswered'],
+      ['Answered', 'answered'],
+      ['Important', 'important']],
+      selected: @form.status))%> <%= submit_tag 'Save' %></p>
+  <% end %>
+<textarea readonly>Notes: <%= @form.notes %></textarea>

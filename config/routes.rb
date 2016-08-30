@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   # dashboard
   namespace :dashboard do
     resources :properties
+    resources :contact_forms
   end
   get 'dashboard', action: :index, controller: 'dashboard'
 

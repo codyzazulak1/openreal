@@ -1,0 +1,23 @@
+<h1>Contact Forms</h1>
+
+<ul>
+  <% @forms.each do |cf| %>
+    <li>
+      <% if cf.property %>
+        <h5>Associated home: </h5>
+        <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
+      <%end%>
+      <h4><%= link_to cf.name, dashboard_contact_form_path(cf) %></h6>
+      <span><strong>Email</strong></span>
+      <p><%= cf.email %></p>
+      <span><strong>Phone</strong></span>
+      <p><%= cf.phone %></p>
+      <span><strong>Created at:</strong></span>
+      <p><%= cf.created_at %></p>
+      <span><strong>Notes</strong></span>
+      <p><%= cf.notes %></p>
+      <%= link_to "Delete", cf, method: :delete %>
+    </li>
+    <% end %>
+</ul>
+
