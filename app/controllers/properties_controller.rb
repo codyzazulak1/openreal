@@ -9,6 +9,7 @@ class PropertiesController < ApplicationController
       @properties = Property.all.order('created_at DESC')
       @center = {lat: 49.2447, lng: -123.1359}
     end
+    @cities = Property.cities
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
@@ -63,6 +64,11 @@ class PropertiesController < ApplicationController
     end
     if params["min-lot"] && params["min-floor"] != ''
       @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
+    end
+    if params["city"] && params["city"] != ''
+      @properties = @properties
+        .joins(:address)
+        .where("LOWER(addresses.city) = LOWER(?)", params["city"])
     end
     if params["bound-east"] && params["bound-west"] && params["bound-north"] && params["bound-south"] && !(params["bound-east"] == "" || params["bound-west"] == "" || params["bound-north"] == "" || params["bound-south"] == "")
       @properties = @properties
@@ -187,8 +193,6 @@ class PropertiesController < ApplicationController
       valid?
     end
   end
-
-  
 
 
   private

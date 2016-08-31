@@ -90,6 +90,33 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="medium-6 columns">
+        <label>City
+          <select name="city">
+            <option>Any</option>
+            <% unless @cities.nil? %>
+              <% @cities.each do |city| %>
+              <option value=<%= city %>><%= city %></option>
+              <% end %>
+            <% end %>
+          </select>
+        </label>
+      </div>
+     <!--  <div class="medium-6 columns">
+        <label>Storeys
+          <select name="storeys">
+            <option value="0">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
+          </select>
+        </label>
+      </div> -->
+    </div>
+
     <div>
       <input type="hidden" name="bound-east">
       <input type="hidden" name="bound-west">
