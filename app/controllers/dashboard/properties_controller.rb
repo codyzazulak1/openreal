@@ -3,6 +3,11 @@ class Dashboard::PropertiesController < ApplicationController
   def index
     @properties = Property.all
     @statuses = Property.status_list
+
+    if params[:filter] && @statuses.key?(params[:filter])
+      @properties = @properties.where(status: params[:filter])
+    end
+
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
   end
 

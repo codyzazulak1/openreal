@@ -10,14 +10,14 @@
           <%= link_to "Add a new property", new_dashboard_property_path, class: "btn btn-primary" %>
         </div>
 
-        <div class="small-4 columns">
-          <select style="margin:0;">
-            <option value="1" selected>Show all listings</option>
-            <option value="2">Show listed listings</option>
-            <option value="3">Show unlisted listings</option>
-            <option value="4">Show archived listings</option>
+        <form class="small-4 columns" method="get">
+          <select style="margin:0;" name="filter" onChange="submit();">
+            <option value="all" <%= "selected" if ["all", ""].include?(request.parameters[:filter]) %>>Show all listings</option>
+            <option value="listed" <%= "selected" if request.parameters[:filter] == "listed" %>>Show listed listings</option>
+            <option value="unlisted" <%= "selected" if request.parameters[:filter] == "unlisted" %>>Show unlisted listings</option>
+            <option value="archived" <%= "selected" if request.parameters[:filter] == "archived" %>>Show archived listings</option>
           </select>
-        </div>
+        </form>
       </div>
 
       <% if @properties_paged.count > 0 %>
@@ -32,7 +32,7 @@
           <div class="small-10 columns end">
             <div class="dashboard-listing-overview float-left">
               <h3>
-                <%= link_to p.address_name, dashboard_property_path(p)+"?from="+request.parameters[:page] %>
+                <%= link_to p.address_name, dashboard_property_path(p)+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) %>
               </h3>
               <div>
                 <%= link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
@@ -50,6 +50,8 @@
         </li>
         <% end %>
       </ul>
+      <% else %>
+        <div class="text-center">No record</div>
       <% end %>
     </div>
 
