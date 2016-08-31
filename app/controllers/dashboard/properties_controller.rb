@@ -1,7 +1,7 @@
 class Dashboard::PropertiesController < ApplicationController
 
   def index
-    @properties = Property.all
+    @properties = Property.all.order(created_at: :desc)
     @statuses = Property.status_list
 
     if params[:filter] && @statuses.key?(params[:filter])

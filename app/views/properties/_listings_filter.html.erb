@@ -94,7 +94,7 @@
       <div class="medium-6 columns">
         <label>City
           <select name="city">
-            <option>Any</option>
+            <option value>Any</option>
             <% unless @cities.nil? %>
               <% @cities.each do |city| %>
               <option value=<%= city %>><%= city %></option>
