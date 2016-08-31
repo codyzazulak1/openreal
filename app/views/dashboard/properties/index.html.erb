@@ -32,7 +32,7 @@
           <div class="small-10 columns end">
             <div class="dashboard-listing-overview float-left">
               <h3>
-                <%= link_to p.address_name, dashboard_property_path(p) %>
+                <%= link_to p.address_name, dashboard_property_path(p)+"?from="+request.parameters[:page] %>
               </h3>
               <div>
                 <%= link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
@@ -40,7 +40,7 @@
             </div>
 
             <div class="float-right" style="width: 5rem;">
-              <select>
+              <select class="dashboard-listing-status" data-url="<%= dashboard_property_status_path(p) %>">
                 <% @statuses.each do |status, name| %>
                   <option value=<%= status %> <%= "selected" if p.status == status %>><%= name %></option>
                 <% end %>

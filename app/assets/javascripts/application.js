@@ -310,8 +310,9 @@ $(document).ready(function(){
         $(this).attr('data-validation-skipped', 1);
       });
     }
-      
   });
+
+  
 
 });
 
