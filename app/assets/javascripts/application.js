@@ -306,9 +306,9 @@ $(document).ready(function(){
       });
     } else {
       // skip all validation if 'back' button is pressed
-      $('input').on('beforeValidation', function(value, lang, config) {
-        $(this).attr('data-validation-skipped', 1);
-      });
+      // $('input').on('beforeValidation', function(value, lang, config) {
+      //   $(this).attr('data-validation-skipped', 1);
+      // });
     }
   });
 
