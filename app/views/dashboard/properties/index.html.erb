@@ -7,7 +7,7 @@
     <div class="dashboard-list">
       <div class="dashboard-list-header row collapse">
         <div class="small-8 columns">
-          <%= link_to "Add a new property", new_dashboard_property_path, class: "btn btn-primary" %>
+          <%= link_to "Add a new property", new_dashboard_property_path+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]), class: "btn btn-primary" %>
         </div>
 
         <form class="small-4 columns" method="get">
