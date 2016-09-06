@@ -10,9 +10,6 @@
         <li>
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
-        <li>
-          <a href=<%= properties_path %> class=<%= "active" if get_namespace != "dashboard" && controller.controller_name == 'properties' && ['index', 'show'].include?(controller.action_name) %>>Buy</a>
-        </li>
         <li class="show-for-medium">
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
         </li>
