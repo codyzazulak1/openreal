@@ -164,8 +164,8 @@ class PropertiesController < ApplicationController
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
-        # byebug
         @property.list_price_cents = 0
+        byebug
         @property.save if @property.all_valid?
       else
         @property.next_step
@@ -187,12 +187,12 @@ class PropertiesController < ApplicationController
     redirect_to dashboard_properties_path
   end
 
-  def all_valid?
-    steps.all? do |step|
-      self.current_step = step
-      valid?
-    end
-  end
+  # def all_valid?
+  #   steps.all? do |step|
+  #     self.current_step = step
+  #     valid?
+  #   end
+  # end
 
 
   private
