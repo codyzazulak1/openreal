@@ -129,6 +129,13 @@ function toggleOverview(pid) {
   }
 }
 
+function hideOverview() {
+  $('#close-btn').addClass('hide');
+  $('#filter-btn').show();
+  $('.listing-footer').hide();
+  overviewToggled = false;
+}
+
 // initialize listings
 function initListings() {
 
@@ -185,6 +192,13 @@ $(document).ready(function(){
     toggleOverview();
     $('.listing-overview').hide();
     overviewToggled = false;
+  });
+
+  $('.switch-btn').click(function(e){
+    e.preventDefault();
+    $('#map-view').toggleClass('show-for-medium');
+    $('#listing-view').toggleClass('show-for-medium');
+    google.maps.event.trigger(map, "resize");
   });
 
   $('#submit-filter').click(function(e){
@@ -283,19 +297,22 @@ $(document).ready(function(){
   // validation before form submission
   $('#new-property-form').on('click', function(event) {
     // console.log(event);
-    var validate;
     var node = event.target.id === "submit-btn" ? event.target.attributes.name.nodeValue : undefined;
     if (node && node === "commit") {
-      validate = $.validate({
+      $.validate({
         module: 'html5',
         errorMessagePosition : 'inline',
         borderColorOnError: '',
       });
     } else {
-      validate = null;
+      // skip all validation if 'back' button is pressed
+      // $('input').on('beforeValidation', function(value, lang, config) {
+      //   $(this).attr('data-validation-skipped', 1);
+      // });
     }
-      
   });
+
+  
 
 });
 

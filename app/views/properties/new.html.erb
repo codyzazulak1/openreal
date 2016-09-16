@@ -9,20 +9,12 @@
       <div class="row collapse">
         <div class="medium-12 columns text-right">
           <%= fp.submit "Back", :name => "back_button", class: "btn btn-secondary", id: "back-btn" unless @property.first_step? %>
-          <%= fp.submit "Next", class: "btn btn-primary", id: "submit-btn" unless @property.last_step? %>
+          <%= fp.submit "Next", class: "btn btn-primary", id: "submit-btn" unless @property.last_step? || @property.current_step == 'upgrades' %>
+          <%= fp.submit "Skip", class: "btn btn-primary", id: "submit-btn" if @property.current_step == 'upgrades' %>
           <%= fp.submit "Submit", class: "btn btn-primary" if @property.last_step? %>
         </div>
       </div>
     </div>
   </div>
 <%end%>
-
-<div class="row expanded">
-  <div class="medium-6 medium-centered columns">
-    <% if @property.current_step == "upgradessssssss" %>
-    <form action="/upload-target" class="dropzone">
-    </form>
-    <% end %>
-  </div>
-</div>
     

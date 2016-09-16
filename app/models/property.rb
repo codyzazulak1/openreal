@@ -70,6 +70,20 @@ class Property < ActiveRecord::Base
     return "#{self.address.address_first}, #{self.address.city}"
   end
 
+  def self.cities
+    Address.select(:city).distinct.map { |address| address.city }
+  end
+
+  def self.status_list
+    {
+      "pending" => "Pending",
+      "unlisted" => "Unlisted",
+      "listed" => "Listed",
+      "archived" => "Archived"
+    }
+  end
+
+  # for seller form
   def current_step
     @current_step || steps.first
   end

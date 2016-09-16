@@ -1,4 +1,4 @@
-<div>Step 4</div>
+<div>Step 4 of 5</div>
 <h3>How can we contact you?</h3>
 
 <%= fp.fields_for :contact_form, @contact do |cf| %>
@@ -6,7 +6,7 @@
     <%= cf.label :name %>
     <%= cf.text_field :name, data: {
      validation: "required" 
-    } %>
+    }, placeholder: "What can we call you?" %>
   </div>
 
   <div>
@@ -18,11 +18,11 @@
 
   <div>
     <%= cf.label :phone %>
-    <%= cf.text_field :phone %>
+    <%= cf.text_field :phone, placeholder: "" %>
   </div>
 
   <div>
-    <%= cf.label :notes %>
-    <%= cf.text_field :notes %>
+    <%= cf.label :notes, "Message" %>
+    <%= cf.text_field :notes, placeholder: "" %>
   </div>
 <%end%>

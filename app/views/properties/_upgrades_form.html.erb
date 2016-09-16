@@ -1,9 +1,8 @@
-<div>Step 2</div>
+<div>Step 2 of 5</div>
 <h3>Upgrades</h3>
-<br>
 <%= fp.fields_for :photos do |ffp| %>
-  <div>
-    <%= ffp.label :picture %>
-    <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]", class: "file-upload" %>
+  <div class="file-upload-box">
+    <%= ffp.file_field :picture, :multiple => true, name: "photos[picture][]", class: "file-upload", data: {"multiple-caption" => "{count} files selected"}, multiple: true %>
+    <%= ffp.label :picture, "Choose a file" %>
   </div>
 <%end%>

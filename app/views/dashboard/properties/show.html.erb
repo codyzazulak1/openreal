@@ -1,26 +1,52 @@
-<h1><%= @property.address_name %></h1>
-<%= link_to "Edit this Property", edit_dashboard_property_path(@property) %>
+<div class="row expanded">
+  <%= render "dashboard/side_panel" %>
 
-  <div class="row">
-    <div class="small-6 columns">
-      <ul>
-        <% @property_attributes.each do |u| %>
-          <li>
-            <h5><%= u %></h5>
-            <p><%= @property[u] %></p>
-          </li>
-        <%end%>
-      </ul>
-    </div>
-    <div class="small-6 columns">
-      <ul>
-        <% @address_attributes.each do |u| %>
-          <li>
-            <h5><%= u %></h5>
-            <p><%= @property.address[u] %></p>
-          </li>
-        <% end %>
-      </ul>
+  <div class="medium-9 columns dashboard-content">
+    <h1><%= @property.address_name %></h1>
+    <hr>
+
+    <div class="dashboard-list">
+      <div class="dashboard-list-header row collapse">
+        <div class="small-12 columns">
+          <div class="float-left">
+            <a href="<%= dashboard_properties_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
+          </div>
+          <div class="float-right">
+            <%= link_to "Edit", edit_dashboard_property_path(@property), class: "btn btn-primary" %>
+            <%=link_to "Delete", @property, method: :delete, class: "btn btn-secondary" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-list-body">
+        <div class="row">
+          <div class="small-6 columns">
+            <ul>
+              <% @address_attributes.each do |u| %>
+                <li>
+                  <h5><%= u %></h5>
+                  <p><%= @property.address[u] %></p>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="small-6 columns">
+            <ul>
+              <% @property_attributes.each do |u| %>
+                <li>
+                  <h5><%= u %></h5>
+                  <p><%= @property[u] %></p>
+                </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-<%=link_to "Destroy this Property", @property, method: :delete %>
+</div>
+
+
+
+
+

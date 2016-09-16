@@ -2,7 +2,7 @@
   <div class="top-bar">
     <div class="float-left">
       <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text"><a id="logo" href=<%= root_path %>>OpenReal</a></li>
+        <li class="menu-text"><a id="logo" href=<%= root_path %>><img src=<%= asset_path('logo.png') %>></a></li>
       </ul>
     </div>
     <div class="float-right">
@@ -10,111 +10,21 @@
         <li>
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
-        <li>
-          <a href=<%= properties_path %> class=<%= "active" if get_namespace != "dashboard" && controller.controller_name == 'properties' && ['index', 'show'].include?(controller.action_name) %>>Buy</a>
-        </li>
         <li class="show-for-medium">
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
         </li>
         <li class="show-for-medium">
           <a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a>
         </li>
-        <% if current_customer || current_agent || current_admin %>
-          <li class="show-for-medium"><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
-        <%else%>
-          <li class="show-for-medium"><a data-open="signinmodal">Sign in</a></li>
-        <%end%>
+        
         <li class="show-for-small-only"><!--
           --><a href="">More</a>
           <ul id="nav-dropdown">
             <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
             <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li>
-            <% if current_customer || current_agent || current_admin %>
-              <li><%= link_to 'Sign Out', destroy_customer_session_path, method: :delete %></li>
-            <%else%>
-              <li><a data-open="signinmodal">Sign in</a></li>
-            <%end%>
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-
-<% unless current_customer || current_agent || current_admin %>
-<div class="reveal" id="signinmodal" data-reveal>
-  <div class="row">
-    <div class="medium-7 medium-centered large-7 large-centered columns">
-      <div class="text-center">
-        <h3>Sign In</h3>
-      </div>
-      <div class="row">
-        <fieldset class="large-12 columns text-center" id="signin-radios">
-          <input type="radio" name="customer" checked><label>Customer</label>
-          <input type="radio" name="agent"><label>Agent</label>
-          <input type="radio" name="admin"><label>Admin</label>
-        </fieldset>
-      </div>
-      <%= form_tag (customer_session_path), id: "customer-signin" do |f| %>
-        <div class="row column log-in-form">
-          <label>Email
-            <%= email_field_tag('customer[email]',nil, data: {
-              "validation" => "required email",
-              "validation-error-msg-required" => "Please enter your Email"
-            }) %>
-          </label>
-          <label>Password
-            <%= password_field_tag("customer[password]", nil, data: {
-              "validation" => "required",
-              "validation-error-msg-required" => "Please enter your password"
-            }) %>
-          </label>
-          <% if Devise.mappings[:customer].rememberable? %>
-            <%= check_box_tag('remember_me', "0", false) %>
-            <%= label_tag :remember_me %>
-          <% end %>
-          <%= submit_tag "SIGN IN", class: "button expanded", name: 'commit' %>
-          <p class="text-center"><a href="#">Forgot your password?</a></p>   
-        </div>
-      <% end %>
-
-      <%= form_tag (agent_session_path), id: "agent-signin" do |f| %>
-        <div class="row column log-in-form">
-          <label>Email
-            <%= email_field_tag('agent[email]') %>
-          </label>
-          <label>Password
-            <%= password_field_tag("agent[password]") %>
-          </label>
-          <% if Devise.mappings[:agent].rememberable? %>
-            <%= check_box_tag('remember_me', "0", false) %>
-            <%= label_tag :remember_me %>
-          <% end %>
-          <%= submit_tag "SIGN IN", class: "button expanded", name: 'commit' %>
-          <p class="text-center"><a href="#">Forgot your password?</a></p>   
-        </div>
-      <% end %>
-
-      <%= form_tag (admin_session_path), id: "admin-signin" do |f| %>
-        <div class="row column log-in-form">
-          <label>Email
-            <%= email_field_tag('admin[email]') %>
-          </label>
-          <label>Password
-            <%= password_field_tag("admin[password]") %>
-          </label>
-          <% if Devise.mappings[:admin].rememberable? %>
-            <%= check_box_tag('remember_me', "0", false) %>
-            <%= label_tag :remember_me %>
-          <% end %>
-          <%= submit_tag "SIGN IN", class: "button expanded", name: 'commit' %>
-          <p class="text-center"><a href="#">Forgot your password?</a></p>   
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<%end%>

@@ -34,7 +34,9 @@ Rails.application.routes.draw do
 
   # dashboard
   namespace :dashboard do
-    resources :properties
+    resources :properties do
+      patch 'status', action: :status
+    end
     resources :contact_forms
   end
   get 'dashboard', action: :index, controller: 'dashboard'

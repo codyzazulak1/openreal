@@ -1,7 +1,13 @@
 class Dashboard::PropertiesController < ApplicationController
 
   def index
-    @properties = Property.all
+    @properties = Property.all.order(created_at: :desc)
+    @statuses = Property.status_list
+
+    if params[:filter] && @statuses.key?(params[:filter])
+      @properties = @properties.where(status: params[:filter])
+    end
+
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
   end
 
@@ -27,8 +33,22 @@ class Dashboard::PropertiesController < ApplicationController
     end
   end
 
-  def new
+  def status
+    property = Property.find(params[:property_id])
+    property.update(status: params[:status])
 
+    respond_to do |format|
+      format.json do
+       render json: property.as_json(only: [:status])
+     end
+    end
+  end
+
+  def new
+    @property = Property.new
+    @address = Address.new(property: @property)
+    @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
+    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
   end
 
   def create

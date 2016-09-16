@@ -189,6 +189,10 @@ nav#navbar {
     color: deepskyblue;
     font-size: 1.25em;
     padding: 0;
+
+    img {
+      height: 1.25rem;
+    }
   }
 
   .top-bar {
@@ -286,19 +290,20 @@ nav#navbar {
 
 
 footer {
-  background-color: $dark-gray;
-  background-color: darken($primary-color, 10%);
+  background-color: $primary-color;
+  // background-color: darken($primary-color, 10%);
   color: $light-gray;
   padding: 1.5rem 0 0;
   position: relative;
   z-index: 9;
 
   .top {
-    background-color: darken($primary-color, 10%);
+    // background-color: darken($primary-color, 10%);
+    background-color: $primary-color;
   }
 
   .bottom {
-    background-color: darken($primary-color, 15%);
+    background-color: darken($primary-color, 5%);
   }
 
   .small-6 {

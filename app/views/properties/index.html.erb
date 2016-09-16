@@ -1,12 +1,17 @@
 <div class="row collapse container">
-      <div class="medium-7 columns">
+      <div class="small-12 medium-7 show-for-medium columns" id="map-view">
+        <div class="map-header vertical-align show-for-small-only ">
+          <a href="#" class="btn btn-secondary switch-btn">Listings</a>
+        </div>
         <div id="map" data-city='<%= @city %>' data-lat='<%= @center["lat"] %>' data-lng='<%= @center["lng"] %>'><img src="http://placehold.it/1000?text=%20"></div>
       </div>
-      <div class="medium-5 columns">
+      <div class="small-12 medium-5 columns" id="listing-view">
         <div id="listings">
           <div class="row collapse">
             <div class="large-12 columns clearfix listing-header vertical-align"><!-- 
-               --><a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+               --><a href="#" class="btn btn-secondary show-for-small-only switch-btn">Map</a>
+                  <a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+
                --><a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
                --><div class="float-right listing-count">
                <span id="listing-count"><%= @properties.count %> active listings</span>

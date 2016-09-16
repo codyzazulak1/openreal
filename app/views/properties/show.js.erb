@@ -1,2 +1,3 @@
 $("#listings .listing-overview").html("<%= escape_javascript(render partial: 'properties/listing_overview', locals: {p: @property}) %>").attr("id", '<%= escape_javascript("p-#{@property.id}") %>').show(); 
+$("#listings .listing-overview>.loader").delay(500).fadeOut(500);
 initListingImg();

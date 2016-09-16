@@ -1,0 +1,40 @@
+<section class="row expanded collapse new-listings" style="background-color:#f5f5f5;" id="new-listings">
+  <div class="medium-10 medium-centered columns">
+    <div class="row text-center section-title">
+      <h2 class="medium-6 medium-push-3 columns">New listings</h2>
+    </div>
+
+    <div class="row">
+
+    <% @new_properties.each_with_index do |p, index| %>
+      <div class="small-12 medium-6 large-4 columns <%= index == @new_properties.size - 1 ? 'end' : '' %>">
+        <div class="listing-item">
+          <%= link_to "", property_path(p.id), class: "listing-link" %>
+          <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
+            <% if p.is_new? %>
+            <div class="listing-badge">
+              <span>Just Listed</span>
+            </div>
+            <% end %>
+            <div class="listing-price">
+              <sup>$</sup>
+              <span style=""><%= p.price %></span>
+            </div>
+          </div>
+          <div class="listing-meta clearfix">
+            <div class="float-left">
+              <span><%= p.address.address_first %></span>
+              <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.address.city %>, BC</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    </div>
+
+    <div class="row text-center section-title">
+      <a href=<%= properties_path %> class="btn btn-secondary">See all listings</a>
+    </div>
+  </div>
+</section>

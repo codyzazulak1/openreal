@@ -9,7 +9,7 @@ class PropertiesController < ApplicationController
       @properties = Property.all.order('created_at DESC')
       @center = {lat: 49.2447, lng: -123.1359}
     end
-
+    @cities = Property.cities
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
@@ -64,6 +64,11 @@ class PropertiesController < ApplicationController
     end
     if params["min-lot"] && params["min-floor"] != ''
       @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
+    end
+    if params["city"] && params["city"] != ''
+      @properties = @properties
+        .joins(:address)
+        .where("LOWER(addresses.city) = LOWER(?)", params["city"])
     end
     if params["bound-east"] && params["bound-west"] && params["bound-north"] && params["bound-south"] && !(params["bound-east"] == "" || params["bound-west"] == "" || params["bound-north"] == "" || params["bound-south"] == "")
       @properties = @properties
@@ -159,8 +164,8 @@ class PropertiesController < ApplicationController
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
-        # byebug
         @property.list_price_cents = 0
+        #byebug
         @property.save if @property.all_valid?
       else
         @property.next_step
@@ -182,12 +187,12 @@ class PropertiesController < ApplicationController
     redirect_to dashboard_properties_path
   end
 
-  def all_valid?
-    steps.all? do |step|
-      self.current_step = step
-      valid?
-    end
-  end
+  # def all_valid?
+  #   steps.all? do |step|
+  #     self.current_step = step
+  #     valid?
+  #   end
+  # end
 
 
   private
@@ -200,14 +205,11 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms,
-                                     :seller_info, :pid, :dwelling_class, :property_type, :building_type,
-                                     :title_to_land, :sellers_interest, :architecture_style, :number_of_floors, :year_built,
-                                     :list_price_cents, :fireplaces, :lot_length, :lot_width, :status,
-                                     photos_attributes: [:picture],
-                                     address_attributes: [:id, :address_first, :address_second, :street, :city, :postal_code],
-                                     contact_form_attributes: [:name, :email, :phone, :notes])
-# : [:address_first, :address_second, :city, :postal_code]
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+  end
+
+  def address_params
+    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
   end
 
   def contact_params

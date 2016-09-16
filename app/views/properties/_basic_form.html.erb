@@ -1,4 +1,4 @@
-<div>Step 1</div>
+<div>Step 1 of 5</div>
 <h3>Start with the basics</h3>
 <div id="addressForm">
   <%= fp.fields_for :address do |ffa| %>
@@ -7,11 +7,11 @@
       <%= ffa.text_field :address_first, id: "addressInput", data: { 
         'validation' => "required", 
         'validation-error-msg' => "You did not enter an address" 
-      } %>
+      }, placeholder: "Street address" %>
     </div>
     <div>
       <%= ffa.label :address_second %>
-      <%= ffa.text_field :address_second, id: "addressSecond" %>
+      <%= ffa.text_field :address_second, id: "addressSecond", placeholder: "Apartment, Suit, Unit, Floor (Optional)" %>
     </div>
     <div>
       <%= ffa.label :city %>
@@ -32,9 +32,4 @@
       <%= ffa.hidden_field :longitude, id: "addressLng" %>
     </div>
   <% end %>
-</div>
-
-<div>
-  <%= fp.label :description %>
-  <%= fp.text_field :description %>
 </div>
