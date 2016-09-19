@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get 'contact_us', action: :new, controller: 'contact_forms'
   get 'faq', action: :faq, controller: 'welcome'
   get 'terms', action: :terms, controller: 'welcome'
-
+  get 'contact', action: :contact, controller: 'welcome'
   get '/login', action: :login, controller: 'welcome'
   get '/register', action: :register, controller: 'welcome'
 end
