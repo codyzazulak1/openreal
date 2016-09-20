@@ -77,17 +77,15 @@ hr {
 	padding: 10px 0px 100px 0px;
 }
 
-
-#map {
-	height: 15%;
+.box-size {
+	box-sizing: border-box;
+}
+.map {
+	height: 300px;
 	width: 25%;
 	border-radius: 20px;
 	/*margin-left:10px;*/
 	/*display: inline-block;*/
-}
-
-.address > p {
-	
 }
 
 .address {
@@ -97,11 +95,9 @@ hr {
 	padding: 30px 30px;
   /*margin: 0px -16px;*/
   width: 202px;
-  height: calc(100vh - 62px);
+  /*height: calc(50vh - 62px);*/
+  height: 250px;
   overflow: hidden;
+}
 
-}
-.box-size {
-	box-sizing: border-box;
-}
 
