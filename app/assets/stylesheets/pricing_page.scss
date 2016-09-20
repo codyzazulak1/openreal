@@ -1,1 +1,74 @@
-@import 'variables'
+@import 'variables';
+
+body {
+ font-size: 28;	
+}
+
+/* * * * *
+* Header  *
+* * * * * */
+
+.top-header-contain {
+  text-align: center;
+}
+.headers{
+  margin-top: 60px;
+  font-family: Questrial;
+}
+
+h1.headers{
+  font-size: 30px;
+}
+
+h2.headers{
+  margin-top: 0px;
+  background-color: #68c0ea;
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+  
+}
+
+/* * * * *
+*  Grid   *
+* * * * * */
+
+.title-row{
+  margin-top: 8rem;
+}
+.align-center{
+  // margin-top: 7rem;
+  text-align: center;
+}
+.align-right{
+  text-align: center;
+}
+.columns{
+  margin: 10px 0
+}
+.second-c{
+
+}
+
+hr {
+  // display:none;
+  // margin: 0 1px;
+}
+
+.pricing .focus-blue{
+  position: relative;
+}
+
+.pricing .focus-blue:before{
+  content: ' ';
+  position: absolute;
+  top: 0px;
+  left: 37%;
+  border-radius: 5px;
+  border: 2px solid #2ba8de;
+  height: 100%;
+  width: 27%;
+  z-index: 2;
+  // -webkit-transition: all 0.2s ease;
+  // transition: all 0.2s ease;
+}
