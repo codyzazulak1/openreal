@@ -1,0 +1,107 @@
+@import 'variables';
+
+/* * * * * * *
+* First Section *
+* * * * * * * *
+*/
+
+section{
+	padding-top: 10px;
+	width: 100%;
+	text-align: center;
+}
+
+.contact-hi {
+    color: #194e84;
+    display: inline-block;
+    padding: 1px 30px;
+    padding-top: 40px;
+    border-radius: 10px;
+}
+div.first-section {
+	/*background-color: aliceblue;*/
+	/*padding: 100px 0;	*/
+	width: 53%;
+	text-align: justify;
+}
+
+.small-12 {
+  width: 100%;
+  /*padding: 0 5px;*/
+}
+.title-text {
+  font-size: 21px;
+  font-weight: 100;
+}
+
+/*fix padding when size small screen*/
+
+
+/* * * * * * *
+* Second Section *
+* * * * * * * *
+*/
+
+.two > a {
+	color: white;
+}
+.two >a:hover {
+	text-decoration: underline;
+	color:white;
+}
+
+.dos-h2 {
+	font-size: 28px;
+}
+section.two {
+	color:white;
+	text-align: center;
+  background-color: lightskyblue;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+hr {
+	width: 59px;
+}
+
+/* * * * * * *
+* Map Section *
+* * * * * * * *
+*/
+
+
+.title-maps {
+	font-size: 27px;
+	font-weight: 200;
+	display: block;
+	padding: 10px 0px 100px 0px;
+}
+
+
+#map {
+	height: 15%;
+	width: 25%;
+	border-radius: 20px;
+	/*margin-left:10px;*/
+	/*display: inline-block;*/
+}
+
+.address > p {
+	
+}
+
+.address {
+	font-weight: 400;
+	font-size: 15px;
+	text-align: left;
+	padding: 30px 30px;
+  /*margin: 0px -16px;*/
+  width: 202px;
+  height: calc(100vh - 62px);
+  overflow: hidden;
+
+}
+.box-size {
+	box-sizing: border-box;
+}
+
