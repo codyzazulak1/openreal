@@ -16,5 +16,19 @@
 - `destroy:EVERYTHING` - Destroys EVERYTHING
 
 ## TODO
-* All static pages
-* Working sale process
+
+- How It Works
+  - Overview
+  - Inspection
+    - Wall of text (div)
+  - Closing
+    - Wall of text (div)
+
+- Contact page (Fio)
+  - Add info@openreal.ca for contact
+- FAQ
+  - See file from CodyZ for exclusions from opendoor
+- Homepage
+  - Change carousel to have dynamic links
+  - Remove anchor cursor on locations and change header
+- Admin Panel migration (Steven)
