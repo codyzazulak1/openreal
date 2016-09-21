@@ -27,6 +27,9 @@ class WelcomeController < ApplicationController
   def faq
   end
 
+  def pricing
+  end
+
   def terms
   end
 

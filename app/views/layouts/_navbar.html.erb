@@ -10,6 +10,11 @@
         <li>
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
+
+        <li>
+          <a href=<%= pricing_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'pricing' %>>Pricing</a>  
+        </li>
+
         <li class="show-for-medium">
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
         </li>
@@ -25,7 +30,10 @@
           <ul id="nav-dropdown">
             <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
             <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li>
+
             <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
+
+            <li><a href=<%= pricing_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'pricing' %>>Pricing</a></li>
           </ul>
         </li>
       </ul>
