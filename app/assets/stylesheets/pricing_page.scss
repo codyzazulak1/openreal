@@ -1,9 +1,20 @@
 @import 'variables';
 
+
 body {
  font-size: 18px;	
 }
 
+/* * * * *
+* Pop ups *
+* * * * * */
+.has-tip {
+  font-weight: 600!important;
+  position: absolute!important;
+  display: inline-block;
+  border: none!important;
+  color: grey!important;
+}
 
 /* * * * *
 * Header  *
@@ -91,6 +102,28 @@ hr-pricing {
 	height: 1.25rem;
 }
 
+.pricing .focus-blue{
+  position: relative;
+}
+/* IN THE WORKS- highlight openreal
+.pricing .focus-blue:before{
+  content: ' ';
+  position: absolute;
+  background-color: lightgrey;
+  top: 0px;
+  left: 37%;
+  border-radius: 5px;
+  border: 2px solid white;
+  height: 100%;
+  width: 27%;
+  z-index: -2;
+}
+@media (max-width:320px){
+	.focus-blue:before {
+		display:none;
+	}
+}
+*/
 
 /* * * * * *
 *  Grid 2 & 3  *

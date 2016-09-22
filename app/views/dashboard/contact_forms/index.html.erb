@@ -1,23 +1,29 @@
-<h1>Contact Forms</h1>
+<div class="row expanded">
+  <%= render "dashboard/side_panel"%>
 
-<ul>
-  <% @forms.each do |cf| %>
-    <li>
-      <% if cf.property %>
-        <h5>Associated home: </h5>
-        <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
-      <%end%>
-      <h4><%= link_to cf.name, dashboard_contact_form_path(cf) %></h6>
-      <span><strong>Email</strong></span>
-      <p><%= cf.email %></p>
-      <span><strong>Phone</strong></span>
-      <p><%= cf.phone %></p>
-      <span><strong>Created at:</strong></span>
-      <p><%= cf.created_at %></p>
-      <span><strong>Notes</strong></span>
-      <p><%= cf.notes %></p>
-      <%= link_to "Delete", cf, method: :delete %>
-    </li>
-    <% end %>
-</ul>
+  <div class="medium-9 columns dashboard-content">
+    <h1 class="cf-title">Contact Forms</h1>
+
+    <ul class="cf-ul">
+      <% @forms.each do |cf| %>
+        <li class="cf-li">
+          <% if cf.property %>
+            <h5>Associated home: </h5>
+            <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
+          <%end%>
+          <h4 class="cf-name"><%= link_to cf.name, dashboard_contact_form_path(cf) %></h6>
+          <span class="cf-contact"><strong>Email</strong></span>
+          <p class="cf-contact"><%= cf.email %></p>
+          <span class="cf-contact"><strong>Phone</strong></span>
+          <p class="cf-contact"><%= cf.phone %></p>
+          <span class="cf-contact"><strong>Created at:</strong></span>
+          <p class="cf-contact"><%= cf.created_at %></p>
+          <span class="cf-contact"><strong>Notes</strong></span>
+          <p class="cf-contact"><%= cf.notes %></p>
+          <%= link_to "Delete", cf, method: :delete %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+</div>
 
