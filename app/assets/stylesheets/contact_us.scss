@@ -58,7 +58,7 @@ section.two {
 	text-align: center;
   background-color: lightskyblue;
   font-weight: 300;
-  padding-bottom: 20px;
+  padding: 3.2em;
 }
 .hr-contact {
 	width: 59px;
@@ -74,30 +74,28 @@ section.two {
 	font-size: 27px;
 	font-weight: 200;
 	display: block;
-	padding: 10px 0px 100px 0px;
+	padding: 4% 25%;
+	margin: 8px;
 }
 
-.box-size {
-	box-sizing: border-box;
-}
 .map {
-	height: 300px;
-	width: 25%;
-	border-radius: 20px;
-	/*margin-left:10px;*/
-	/*display: inline-block;*/
+	padding: 1% 7% 1% 7%;
+  margin: 1% 4.1%;
 }
 
 .address {
-	font-weight: 400;
-	font-size: 15px;
-	text-align: left;
-	padding: 30px 30px;
-  /*margin: 0px -16px;*/
-  width: 202px;
-  /*height: calc(50vh - 62px);*/
-  height: 250px;
-  overflow: hidden;
+	text-align:left;
+	font-size: .9rem;
 }
-
+.city {
+	text-align: left;
+}
+@media (max-width: 340px){
+	.address{
+		text-align: center;
+	}
+	.city{
+		text-align: center;
+	} 
+}
 
