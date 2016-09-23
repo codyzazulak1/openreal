@@ -12,10 +12,19 @@
 
         <form class="small-4 columns" method="get">
           <select style="margin:0;" name="filter" onChange="submit();">
-            <option value="all" <%= "selected" if ["all", ""].include?(request.parameters[:filter]) %>>Show all listings</option>
-            <option value="listed" <%= "selected" if request.parameters[:filter] == "listed" %>>Show listed listings</option>
-            <option value="unlisted" <%= "selected" if request.parameters[:filter] == "unlisted" %>>Show unlisted listings</option>
-            <option value="archived" <%= "selected" if request.parameters[:filter] == "archived" %>>Show archived listings</option>
+            <option style="color: blue;" value="All" <%= "selected" if request.parameters[:filter] == "All" %>>Show All</option>
+            <option style="color: blue;" value="Customer Submitted" <%= "selected" if request.parameters[:filter] == "Customer Submitted" %>>Show Customer Listings</option>
+            <% @customer_submitted.each do |cs| %>
+              <option value="<%= cs.name %>"><%= cs.name %></option>
+            <%end%>
+            <option style="color: blue;" value="Agent Submitted" <%= "selected" if request.parameters[:filter] == "Agent Submitted" %>>Show Agent Listings</option>
+            <% @agent_submitted.each do |as| %>
+              <option value="<%= as.name %>"><%= as.name %></option>
+            <%end%>
+            <option style="color: blue;" value="Owned Properties" <%= "selected" if request.parameters[:filter] == "Owned Properties" %>>Show Owned Listings</option>
+            <% @owned.each do |os| %>
+              <option value="<%= os.name %>"><%= os.name %></option>
+            <%end%>
           </select>
         </form>
       </div>
@@ -43,18 +52,19 @@
               <select class="dashboard-listing-status" data-url="<%= dashboard_property_status_path(p) %>">
                 <optgroup label="Customer Submitted">
                   <% @customer_submitted.each do |cs| %>
-                    <option value=<%=cs.name%>><%= cs.name %></option>
+                    <option value=<%=cs.name%> <%= "selected" if p.status.name == cs.name %> ><%= cs.name %></option>
                   <%end%>
                 </optgroup>
                 <optgroup label="Agent Submitted">
                   <% @agent_submitted.each do |as| %>
-                    <option value=<%=as.name%>><%= as.name %></option>
+                    <option value=<%=as.name%> <%= "selected" if p.status.name == as.name %>><%= as.name %></option>
                   <%end%>
                 </optgroup>
                 <optgroup label="Owned Properties">
                   <% @owned.each do |o| %>
-                    <option value=<%=o.name%>><%= o.name %></option>
+                    <option value=<%=o.name%> <%= "selected" if p.status.name == o.name %>><%= o.name %></option>
                   <%end%>
+                </optgroup>
               </select>
             </div>
           </div>

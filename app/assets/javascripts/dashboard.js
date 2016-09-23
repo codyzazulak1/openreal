@@ -15,8 +15,18 @@ $(document).ready(function(){
         console.log(response);
       },
       success(data) {
-        el.val(data.status);
+        console.log(data);
       }
     });
+  });
+
+  $('.side-panel-menu li').on('click', function(){
+
+    console.log("clicked");
+    $el = $(this);
+
+    $('.side-panel-menu li.active').removeClass('active');
+    $el.addClass('active');
+
   });
 });

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     end
     resources :contact_forms
   end
+  get 'dashboard/owned', action: :owned, controller: 'dashboard'
   get 'dashboard', action: :index, controller: 'dashboard'
 
   # static pages

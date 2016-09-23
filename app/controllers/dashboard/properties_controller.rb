@@ -2,12 +2,24 @@ class Dashboard::PropertiesController < ApplicationController
 
   def index
     @properties = Property.all.order(created_at: :desc)
+
     @customer_submitted = Status.where(category: "Customer Submitted")
     @agent_submitted = Status.where(category: "Agent Submitted")
     @owned = Status.where(category: "Owned Properties")
+    categories = ["Customer Submitted", "Agent Submitted", "Owned Properties"]
+    names = @customer_submitted.map{|cs| cs.name}
+            .push(@agent_submitted
+              .map{|as| as.name})
+            .push(@owned
+              .map{|o| o.name})
+            .flatten!
 
-    if params[:filter] && @statuses.key?(params[:filter])
-      @properties = @properties.where(status: params[:filter])
+    if categories.include?(params[:filter])
+      @properties = Property.joins(:status).where(statuses: {category: params[:filter]})
+    elsif names.include?(params[:filter])
+      @properties = Property.joins(:status).where(statuses: {name: params[:filter]})
+    else
+      @properties = Property.all.order(created_at: :desc)
     end
 
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
@@ -37,7 +49,7 @@ class Dashboard::PropertiesController < ApplicationController
 
   def status
     property = Property.find(params[:property_id])
-    property.update(status: params[:status])
+    property.update(status_id: Status.find_by(name: params["status"]).id)
 
     respond_to do |format|
       format.json do

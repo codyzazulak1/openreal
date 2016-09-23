@@ -28,8 +28,8 @@ class Property < ActiveRecord::Base
 
   def is_new?
     self.created_at >= 3.days.ago
-  end
 
+  end
   def self.similar_listings(property, num = 3)
     bed_range = (property.bedrooms - 2)..(property.bedrooms + 2)
     bath_range = (property.bathrooms - 2)..(property.bathrooms + 2)

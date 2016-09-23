@@ -6,4 +6,8 @@ class DashboardController < ApplicationController
     @customers = Customer.all
   end
 
+  def owned
+
+  end
+
 end
