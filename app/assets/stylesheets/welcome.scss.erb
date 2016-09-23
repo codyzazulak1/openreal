@@ -192,12 +192,13 @@
     -o-transition: all 1s ease;
   }
 
-  a {
+  container {
     display: block;
     text-align: center;
     width: 100%;
     height: 100%;
     color: $white;
+    cursor: default;
 
     font-weight: 200;
     font-family: Circular,"Helvetica Neue";
@@ -216,10 +217,20 @@
     }
 
     span {
+      color: $white;
+      font-weight: 200;
+      font-family: Circular, "Helvetica Nueue";
+      font-size: 1.75rem;
+      letter-spacing: 1px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      
+
+      &:hover {
+        color: $white;
+      }
     }
   }
 }
