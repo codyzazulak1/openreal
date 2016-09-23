@@ -2,28 +2,45 @@
   <%= render "dashboard/side_panel"%>
 
   <div class="medium-9 columns dashboard-content">
-    <h1 class="cf-title">Contact Forms</h1>
-
+    <h1>Contact Forms</h1>
+    <hr>
+ 
+    <% if @forms_pagination.count > 0 %>
     <ul class="cf-ul">
-      <% @forms.each do |cf| %>
+      <% @forms_pagination.each do |cf| %>
         <li class="cf-li">
           <% if cf.property %>
             <h5>Associated home: </h5>
             <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
           <%end%>
-          <h4 class="cf-name"><%= link_to cf.name, dashboard_contact_form_path(cf) %></h6>
-          <span class="cf-contact"><strong>Email</strong></span>
-          <p class="cf-contact"><%= cf.email %></p>
-          <span class="cf-contact"><strong>Phone</strong></span>
-          <p class="cf-contact"><%= cf.phone %></p>
-          <span class="cf-contact"><strong>Created at:</strong></span>
-          <p class="cf-contact"><%= cf.created_at %></p>
-          <span class="cf-contact"><strong>Notes</strong></span>
-          <p class="cf-contact"><%= cf.notes %></p>
-          <%= link_to "Delete", cf, method: :delete %>
+          <h6><%= link_to cf.name, dashboard_contact_form_path(cf), class: "cf-name" %></h6>
+        <div class="row expand">
+          <div  class="medium-6 columns">
+            <span class="cf-contact top-text"><strong>Email</strong></span>
+            <p class="cf-contact bottom-text"><%= cf.email %></p>
+ 
+            <span class="cf-contact top-text"><strong>Phone</strong></span>
+            <p class="cf-contact bottom-text"><%= cf.phone %></p>
+
+            <span class="cf-contact top-text"><strong>Created at:</strong></span>
+            <p class="cf-contact bottom-text"><%= cf.created_at %></p>
+          </div>
+
+          <div class="medium-5 columns text-box">
+            <span class="cf-contact notes"><strong>Notes</strong></span>
+            <p class="cf-contact"><%= cf.notes %></p>
+          </div>
+
+          <div class="medium-expand columns">
+            <%= link_to "Delete", cf, method: :delete, class: "delete-button" %>
+          </div>
+        </div>
+
         </li>
         <% end %>
     </ul>
+    <% end %>
+    <%= will_paginate @forms_pagination, {previous_label: "◀", next_label: "▶"}%>
   </div>
 </div>
 
