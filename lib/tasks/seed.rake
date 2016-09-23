@@ -14,15 +14,15 @@ namespace :seed do
     raise "Can't run on Production" if Rails.env.production?
 
     Admin.create(first_name: "Steven", last_name: "Admin", email: "steven@admin.com", password: "butts1", password_confirmation: "butts1")
-    Admin.create(first_name: "Patrick", last_name: "Admin", email: "shiming@admin.com", password: "butts1", password_confirmation: "butts1")
-    Admin.create(first_name: "Shiming", last_name: "Admin", email: "patrick@admin.com", password: "butts1", password_confirmation: "butts1")
+    Admin.create(first_name: "Patrick", last_name: "Admin", email: "fio@admin.com", password: "butts1", password_confirmation: "butts1")
+    Admin.create(first_name: "Fio", last_name: "Admin", email: "patrick@admin.com", password: "butts1", password_confirmation: "butts1")
 
     puts "Steven Admin"
     puts "steven@admin.com"
     puts "butts1"
     puts "-------------------------------"
-    puts "Shiming Admin"
-    puts "shiming@admin.com"
+    puts "Fio Admin"
+    puts "fio@admin.com"
     puts "butts1"
     puts "-------------------------------"
     puts "Patrick Admin"
@@ -36,15 +36,15 @@ namespace :seed do
     raise "Can't run on Production" if Rails.env.production?
 
     Agent.create(first_name: "Steven", last_name: "Agent", email: "steven@agent.com", password: "butts1", password_confirmation: "butts1")
-    Agent.create(first_name: "Patrick", last_name: "Agent", email: "shiming@agent.com", password: "butts1", password_confirmation: "butts1")
-    Agent.create(first_name: "Shiming", last_name: "Agent", email: "patrick@agent.com", password: "butts1", password_confirmation: "butts1")
+    Agent.create(first_name: "Patrick", last_name: "Agent", email: "fio@agent.com", password: "butts1", password_confirmation: "butts1")
+    Agent.create(first_name: "Fio", last_name: "Agent", email: "patrick@agent.com", password: "butts1", password_confirmation: "butts1")
 
     puts "Steven Agent"
     puts "steven@agent.com"
     puts "butts1"
     puts "-------------------------------"
-    puts "Shiming Agent"
-    puts "shiming@agent.com"
+    puts "Fio Agent"
+    puts "fio@agent.com"
     puts "butts1"
     puts "-------------------------------"
     puts "Patrick Agent"
@@ -58,15 +58,15 @@ namespace :seed do
     raise "Can't run on Production" if Rails.env.production?
 
     Customer.create(first_name: "Steven", last_name: "Customer", email: "steven@customer.com", password: "butts1", password_confirmation: "butts1")
-    Customer.create(first_name: "Patrick", last_name: "Customer", email: "shiming@customer.com", password: "butts1", password_confirmation: "butts1")
-    Customer.create(first_name: "Shiming", last_name: "Customer", email: "patrick@customer.com", password: "butts1", password_confirmation: "butts1")
+    Customer.create(first_name: "Patrick", last_name: "Customer", email: "fio@customer.com", password: "butts1", password_confirmation: "butts1")
+    Customer.create(first_name: "Fio", last_name: "Customer", email: "patrick@customer.com", password: "butts1", password_confirmation: "butts1")
 
     puts "Steven Customer"
     puts "steven@customer.com"
     puts "butts1"
     puts "-------------------------------"
-    puts "Shiming Customer"
-    puts "shiming@customer.com"
+    puts "Fio Customer"
+    puts "fio@customer.com"
     puts "butts1"
     puts "-------------------------------"
     puts "Patrick Customer"
@@ -99,6 +99,31 @@ namespace :seed do
       wishlist2.favorites.create(customer: patrick, property: properties[5])
 
     end
+  end
+
+  desc "Add status options"
+  task :statuses, [] => :environment do
+    raise "Can't run on Production" if Rails.env.production?
+
+    customer_submitted = ["Unappraised", "Awaiting Response", "Closing"]
+    agent_submitted = ["Unapproved", "Approved"]
+    owned_properties = ["Unlisted", "Listed", "Archived"]
+
+    customer_submitted.each do |u|
+      Status.create(category: "Customer Submitted", name: u)
+      puts "Customer Submitted ------ #{u}"
+    end
+
+    agent_submitted.each do |u|
+      Status.create(category: "Agent Submitted", name: u)
+      puts "Agent Submitted ------ #{u}"
+    end
+
+    owned_properties.each do |u|
+      Status.create(category: "Owned Properties", name: u)
+      puts "Owned Properties ------ #{u}"
+    end
+
   end
 
 end

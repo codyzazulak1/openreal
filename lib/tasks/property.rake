@@ -79,7 +79,7 @@ namespace :seed do
         bedrooms: rand(2..5),
         bathrooms: rand(2..4),
         fireplaces: rand(1..15),
-        status: ['pending', 'listed', 'unlisted', 'archived'].sample,
+        status: Status.all.sample,
         created_at: rand_date,
         updated_at: rand_date
       )

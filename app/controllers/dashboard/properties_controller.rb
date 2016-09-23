@@ -2,7 +2,9 @@ class Dashboard::PropertiesController < ApplicationController
 
   def index
     @properties = Property.all.order(created_at: :desc)
-    @statuses = Property.status_list
+    @customer_submitted = Status.where(category: "Customer Submitted")
+    @agent_submitted = Status.where(category: "Agent Submitted")
+    @owned = Status.where(category: "Owned Properties")
 
     if params[:filter] && @statuses.key?(params[:filter])
       @properties = @properties.where(status: params[:filter])

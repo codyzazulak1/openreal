@@ -62,6 +62,8 @@ namespace :db do
     Rake::Task['db:migrate'].execute
     puts "Seeding users..."
     Rake::Task['seed:users'].execute
+    puts "Seeding Statuses..."
+    Rake::Task['seed:statuses'].execute
     puts "Seeding properties..."
     Rake::Task['seed:properties'].execute
     puts "Done!"

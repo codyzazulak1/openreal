@@ -41,9 +41,20 @@
 
             <div class="float-right" style="width: 5rem;">
               <select class="dashboard-listing-status" data-url="<%= dashboard_property_status_path(p) %>">
-                <% @statuses.each do |status, name| %>
-                  <option value=<%= status %> <%= "selected" if p.status == status %>><%= name %></option>
-                <% end %>
+                <optgroup label="Customer Submitted">
+                  <% @customer_submitted.each do |cs| %>
+                    <option value=<%=cs.name%>><%= cs.name %></option>
+                  <%end%>
+                </optgroup>
+                <optgroup label="Agent Submitted">
+                  <% @agent_submitted.each do |as| %>
+                    <option value=<%=as.name%>><%= as.name %></option>
+                  <%end%>
+                </optgroup>
+                <optgroup label="Owned Properties">
+                  <% @owned.each do |o| %>
+                    <option value=<%=o.name%>><%= o.name %></option>
+                  <%end%>
               </select>
             </div>
           </div>

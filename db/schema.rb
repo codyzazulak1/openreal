@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831082554) do
+ActiveRecord::Schema.define(version: 20160923191559) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -154,11 +154,21 @@ ActiveRecord::Schema.define(version: 20160831082554) do
     t.decimal  "lot_width",                    precision: 8, scale: 2
     t.string   "status",                                               default: "Listed"
     t.text     "description"
+    t.integer  "status_id"
   end
+
+  add_index "properties", ["status_id"], name: "index_properties_on_status_id"
 
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "category"
+    t.string   "name"
   end
 
   create_table "wishlists", force: :cascade do |t|
