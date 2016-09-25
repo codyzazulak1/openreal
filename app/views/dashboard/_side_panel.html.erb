@@ -1,13 +1,15 @@
 <nav id="side-panel" class="medium-3 columns expanded">
   <ul class="side-panel-menu">
-    <li class="<%= 'active' if controller.controller_name == "dashboard" %>">
+    <li class=<%= 'active' if controller.controller_name == "dashboard" %>>
       <a href="<%= dashboard_path %>">Dashboard</a>
     </li>
-    <li class="<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "properties" %>">
+    <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "properties" %>>
       <a href="<%= dashboard_properties_path %>">Listings</a>
     </li>
-    <!-- <li><a href="<%= dashboard_owned_path %>">Owned</a></li>-->
-    <li><a href="<%= dashboard_contact_forms_path %>">Contacts</a></li>
+    <!--<li><a href="<%= dashboard_owned_path %>">Owned</a></li>-->
+    <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "contact_forms" %>>
+      <a href="<%= dashboard_contact_forms_path %>">Contacts</a>
+    </li>
     <li><a href="#">Users</a></li>
   </ul>
 </nav>
