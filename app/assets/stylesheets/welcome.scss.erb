@@ -180,6 +180,7 @@
     -webkit-transform: scale(1.2);
     -o-transform: scale(1.2);
     -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-filter: blur(5px);
   }
 
   .card-bg {
@@ -212,30 +213,26 @@
       rgba($black, 0.45)
     );
 
-    &:hover {
-      color: $white;
+    .coming-soon {
+      display:none;
     }
 
-    .hidden {
-      display: none;
-      background: linear-gradient(
-        rgba($black, 0.45), 
-        rgba($black, 0.45)
-      );
+    &:hover .city-name {
       color: $white;
-      font-weight: 200;
-      font-family: Circular, "Helvetica Nueue";
+      -webkit-filter: blur(5px);
+    }
+    &:hover .coming-soon{
+      display: inline;
+      color:white;
+      font-family: Circular,"Helvetica Neue";
       font-size: 1.75rem;
-     }
-
+      transition: all 2s ease-in-out;
+      border: 3px solid white;
+      padding: 3px;
+    }
 
 
     span {
-      color: $white;
-      font-weight: 200;
-      font-family: Circular, "Helvetica Nueue";
-      font-size: 1.75rem;
-      letter-spacing: 1px;
       position: absolute;
       top: 50%;
       left: 50%;
