@@ -96,7 +96,9 @@ namespace :seed do
 
       ContactForm.create(
         name: Faker::Name.name,
-        email: Faker::Internet.email
+        email: Faker::Internet.email,
+        status: ["Answered", "Unanswered"].sample,
+        sub_type: ["Property Inquiry", "Property Submission", "General"].sample
       )
 
       puts "#{address.address_first} ".ljust(40) + "(#{address.city} CREATED)".rjust(40)

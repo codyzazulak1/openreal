@@ -5,44 +5,51 @@
 
     <ul>
       <div class="row">
-        <div class="medium-2 columns">
+        <div class="medium-1 columns">
+          <h3>Context</h3>
+        </div>
+        <div class="medium-1 columns">
           <h3>Property</h3>
         </div>
-        <div class="medium-2 columns">
+        <div class="medium-1 columns">
           <h3>Name</h3>
         </div>
-        <div class="medium-2 columns">
-          <h3>Email
+        <div class="medium-3 columns">
+          <h3>Email</h3>
         </div>
-        <div class="medium-2 columns">
+        <div class="medium-1 columns">
           <h3>Phone</h3>
         </div>
-        <div class="medium-2 columns">
+        <div class="medium-1 columns">
           <h3>Created At</h3>
         </div>
         <div class="medium-2 columns">
           <h3>Notes</h3>
         </div>
+      </div>
       <% @forms.each do |cf| %>
         <div class="row">
           <li class="dashboard-contact-form">
-            <div class="medium-2 columns">
+            <div class="medium-1 columns text-center">
+              <p>S</p>
+            </div>
+            <div class="medium-1 columns">
               <% if cf.property %>
                 <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
               <% else %>
                 <p>None</p>
               <%end%>
             </div>
-            <div class="medium-2 columns">
+            <div class="medium-1 columns">
               <p><%= link_to cf.name, dashboard_contact_form_path(cf) %></p>
             </div>
-            <div class="medium-2 columns">
+            <div class="medium-3 columns">
               <p><%= cf.email %></p>
             </div>
-            <div class="medium-2 columns">
+            <div class="medium-1 columns">
               <p><%= cf.phone %></p>
             </div>
-            <div class="medium-2 columns">
+            <div class="medium-1 columns">
               <p><%= cf.created_at %></p>
             </div>
             <div class="medium-2 columns">
