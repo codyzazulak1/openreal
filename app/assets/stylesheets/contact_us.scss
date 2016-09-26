@@ -18,6 +18,7 @@ section{
    	background-color:#52b7e7;
    	line-height: 79px;
    	margin-bottom: .8em;
+   	transform: skewX(-11deg);
 }
 div.first-section {
 	/*background-color: aliceblue;*/
@@ -46,6 +47,7 @@ div.first-section {
 
 .two > a {
 	color: white;
+	text-decoration: underline;
 }
 .two >a:hover {
 	text-decoration: underline;
