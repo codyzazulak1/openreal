@@ -55,9 +55,32 @@
     }
   }
 
-  div.tabs li {
-    display: inline-block
+  
+  .title_icons {
+    width: 5rem;
+  }
+  a.remove-greybkgr {
+    background-color: transparent;
+    color: white;
+  }
+  .icon-holder {
+    background-color:#6ec2ea;
+    margin-top: 3em; 
+  }
+
+  .icon-columns {
+    margin-left: 13em;
+    background-color: inherit;
+  }
+
+  .tabs {
+    background: inherit;
+    border: none;
   } 
+
+  .padding-fix-inspection-tab {
+    padding-top: 1em;
+  }
 
 }
 
