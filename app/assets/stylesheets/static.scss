@@ -112,6 +112,13 @@
   p {
     font-weight: 100;
   }
+
+  .terms-section {
+   text-align: justify;
+  }
+  .terms-section h4 {
+    text-align: center;
+  }
 }
 
 @media #{$small-only} {

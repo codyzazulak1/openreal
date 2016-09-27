@@ -165,7 +165,7 @@ class PropertiesController < ApplicationController
         @property.previous_step
       elsif @property.last_step?
         @property.list_price_cents = 0
-        byebug
+        # byebug
         @property.save if @property.all_valid?
       else
         @property.next_step
