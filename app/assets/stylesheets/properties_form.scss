@@ -1,0 +1,47 @@
+
+
+.confirmed-section {
+	font-size: 18px;
+	width: 100%;
+	padding-top: 2rem;
+	text-align: center;
+}
+
+
+.confirmed-logo{
+	width: 5.556rem;
+}
+.confirm-b {
+	margin-left: 5em;
+}
+.button {
+	background-color: white;
+	color: #68c0ea;
+	width: 13em;
+	margin-left: 3em;	
+}
+.button:hover {
+  background-color: white;
+  color: #68c0ea;
+  border: 1px solid;
+}
+
+div.confirmed-columns{
+  text-align: center;
+  font-size: smaller;
+  padding-bottom: 3em;
+  padding-top: 3em;
+  padding-left: 18em;
+  padding-right: 18em;
+}
+
+@media screen and (max-width: 320px){
+	div.confirmed-columns {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.confirm-b .button{
+		margin-left:auto;
+		width: auto;
+	}
+}
