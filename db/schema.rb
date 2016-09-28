@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830201931) do
+ActiveRecord::Schema.define(version: 20160927214816) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160830201931) do
     t.datetime "updated_at",  null: false
     t.integer  "property_id"
     t.string   "status"
+    t.integer  "timeframe"
   end
 
   add_index "contact_forms", ["property_id"], name: "index_contact_forms_on_property_id"
