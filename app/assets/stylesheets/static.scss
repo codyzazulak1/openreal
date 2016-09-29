@@ -55,21 +55,42 @@
     }
   }
 
-  
+  .x li {
+    padding-top: 25px;
+    width: 11em;
+    height: 9em;
+    border-radius: 9px;
+  }
+
   .title_icons {
-    width: 5rem;
+    width: 3rem;
   }
   a.remove-greybkgr {
     background-color: transparent;
     color: white;
   }
+  .tabs-title {
+    border: 1px solid skyblue;
+    width: 10em;
+  }
+
+  .tabs-title:hover {
+    box-sizing: border-box;
+    box-shadow: 2px 1px 12px whitesmoke;
+    cursor: pointer;
+  }
+
   .icon-holder {
     background-color:#6ec2ea;
     margin-top: 3em; 
   }
 
+  a + h6 {
+    display: block;
+    line-height: 2em;
+  }
+
   .icon-columns {
-    margin-left: 13em;
     background-color: inherit;
   }
 
@@ -82,6 +103,14 @@
     padding-top: 1em;
   }
 
+  @media screen and (max-width:900px){
+    .x li {
+    padding-top: auto;
+    width: auto;
+    height: auto;
+    border: none;
+    }
+  }
 }
 
 

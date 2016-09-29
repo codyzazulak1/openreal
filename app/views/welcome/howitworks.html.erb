@@ -2,17 +2,18 @@
   <%= render "howitworks_header" %>
 
   <section class="row expanded icon-holder">
-    <div class="small-8 medium-9 columns icon-columns">
+    <div class="small-8 medium-6 medium-offset-3 columns icon-columns">
       <ul class="tabs" data-tabs id="howitworks-tabs">
-        <div class="small-4 columns">
+        
+        <div class="small-4 columns x">
           <li class="tabs-title is-active">
-            <%= image_tag('icons/howitworks.svg', class: "title_icons")%>
-            <a class="text-center remove-greybkgr" aria-selected="true" href="#panel1">
-              How it Works
-            </a>
+            
+              <%= image_tag('icons/howitworks.svg', class: "title_icons")%>
+              <a href="#panel1" class="text-center remove-greybkgr" aria-selected="true">How it Works</a>
           </li>
         </div>
-        <div class="small-4 columns">
+
+        <div class="small-4 columns x">
           <li class="tabs-title">
           <%= image_tag('icons/inspection.svg', class: "title_icons")%>
             <a class="text-center remove-greybkgr" href="#panel2">
@@ -20,7 +21,7 @@
             </a>
           </li>
         </div>
-        <div class="small-4 columns">
+        <div class="small-4 columns x">
           <li class="tabs-title">
           <%= image_tag('icons/closing.svg', class: "title_icons")%>
             <a class="text-center remove-greybkgr" href="#panel3">
