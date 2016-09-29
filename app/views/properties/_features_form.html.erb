@@ -1,22 +1,23 @@
+
 <div>Step 3 of 5</div>
 <h3>Tell us about your home</h3>
 
 <div>
   <%= fp.label :floor_area %>
-  <%= fp.text_field :floor_area, data: { 'validation' => "required" } %>
+  <%= fp.text_field :floor_area, data: { 'validation' => "required" }, placeholder: "#,### sqft" %>
 </div>
 
 <div>
-  <%= fp.label :storeys %>
-  <%= fp.text_field :stories, data: { 'validation' => "required" } %>
+  <%= fp.label :stories %>
+  <%= fp.select :stories, options_for_select([1,2,3,4,5,6],1), {data: { 'validation' => "required" }}, required: true %>
 </div>
 
 <div>
   <%= fp.label :bedrooms %>
-  <%= fp.text_field :bedrooms, data: { 'validation' => "required" } %>
+  <%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6],1), {data: { 'validation' => "required" }}, required: true %>
 </div>
 
 <div>
   <%= fp.label :bathrooms %>
-  <%= fp.text_field :bathrooms, data: { 'validation' => "required" } %>
+  <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6],1), {data: { 'validation' => "required" }}, required: true %>
 </div>
