@@ -36,8 +36,10 @@ div.first-section {
   font-size: 21px;
   font-weight: 100;
 }
-
-/*fix padding when size small screen*/
+//fix small screen text width
+@media (max-width: 600px){
+	
+}
 
 
 /* * * * * * *
