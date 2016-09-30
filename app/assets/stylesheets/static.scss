@@ -70,13 +70,13 @@
     color: white;
   }
   .tabs-title {
-    border: 1px solid skyblue;
+    border: 1px solid white;
     width: 10em;
   }
 
   .tabs-title:hover {
     box-sizing: border-box;
-    box-shadow: 2px 1px 12px whitesmoke;
+    box-shadow: 1px 1px 10px whitesmoke;
     cursor: pointer;
   }
 
@@ -148,6 +148,14 @@
   .terms-section h4 {
     text-align: center;
   }
+}
+
+#panel2, #panel3 {
+  .paragraph {
+    font-weight: 100;
+    text-align: justify;
+  }
+  padding-top: 2em;
 }
 
 @media #{$small-only} {
