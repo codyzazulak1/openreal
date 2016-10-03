@@ -1,0 +1,195 @@
+@import 'variables';
+
+
+body {
+ font-size: 18px;	
+}
+
+/* * * * *
+* Pop ups *
+* * * * * */
+.has-tip {
+  font-weight: 600!important;
+  position: absolute!important;
+  display: inline-block;
+  border: none!important;
+  color: grey!important;
+}
+
+/* * * * *
+* Header  *
+* * * * * */
+
+.top-header-contain {
+  text-align: center;
+}
+.headers{
+  margin-top: 7rem;
+  font-family: Questrial;
+}
+
+h1.headers{
+  font-size: 1.9rem;
+}
+ 
+h2.headers{
+  margin-top: 0rem;
+  background-color: #68c0ea;
+  display: inline-block;
+  padding: 1rem 2rem;
+  color: white; 
+}
+
+@media (max-width:320px){
+	.top-header-contain {
+		width: auto;
+		padding-right:10px;
+		padding-left: 10px;
+	}
+	.logo-price {
+		padding: 2px 1px;
+	}
+	
+}
+
+.pricing .focus-blue:before{
+    content: ' ';
+    position: absolute;
+    /* background-color: lightblue; */
+    top: -18px;
+    left: 37%;
+    border-radius: 5px;
+    border: 5px solid #2ba8de;
+    border-radius: 12px;
+   /* height: 100%; */
+    width: 26%;
+    z-index: -2;
+    margin-top: -19px;
+    height: 28em;
+}
+
+@media (max-width: 513px){
+  .pricing .focus-blue:before{
+    display: none;
+  }
+}
+
+
+/* * * * *
+*  Grid   *
+* * * * * */
+
+.bold {
+	font-weight: 700;
+}
+.title-row{
+  margin-top: 8rem;
+}
+
+.make-space {
+	margin: 1rem;
+} 
+
+hr-pricing {
+	padding: 0;
+	margin: 0;
+	max-width: 64rem;
+}
+.contain-rows{
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 200;
+  margin-bottom: 2em;
+  padding-bottom: 1rem;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.offer-link {
+	background-color: #2ba8de;
+	color: white;
+	font-size: 24px;
+	padding: 6px 18px;
+	border-radius: 4px;
+}
+.offer-link:hover {
+	color: white;
+	background-color: #2ba8de;
+}
+.logo-price {
+	box-sizing: border-box;
+	border: none;
+	height: 1.25rem;
+}
+
+.pricing .focus-blue{
+  position: relative;
+  padding-bottom: 2em;
+}
+
+/* * * * * *
+*  Grid 2 & 3  *
+* * * * * * */
+
+.title {
+	text-align: center;
+}
+@media (max-width: 40rem){
+	.contain-row-2-mobile {
+	  font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+   }
+}
+.grid-two {
+	background-color: #f5f5f5;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-top: 28px;
+  margin-bottom: 1px;
+}
+.grid-three {
+	background-color: #fefefe;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-top: 1.5em;
+  padding-bottom: 2.7em;
+  margin-bottom: 1px;
+  padding-top: 2.5em;
+}
+
+h1.header-2 {
+	font-size: 30px;
+	font-weight: 300;
+}
+
+h2.header-2 {
+	font-size:20px;
+	font-weight: 300;
+}
+
+.bottom-row {
+	bottom: 5px;
+}
+
+.fa {
+	color: #2ba8de;
+}
+.fa-times{
+	color: red;
+}
+.text {
+	text-align: right;
+  line-height: 29px;
+	font-size: 17px;
+  font-weight: 300;
+}
+.get-offer {
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+

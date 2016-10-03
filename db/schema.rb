@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926174312) do
+ActiveRecord::Schema.define(version: 20160930183229) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160926174312) do
     t.integer  "property_id"
     t.string   "status"
     t.string   "sub_type"
+    t.integer  "timeframe"
   end
 
   add_index "contact_forms", ["property_id"], name: "index_contact_forms_on_property_id"
@@ -170,6 +171,18 @@ ActiveRecord::Schema.define(version: 20160926174312) do
     t.string   "category"
     t.string   "name"
   end
+
+  create_table "upgrades", force: :cascade do |t|
+    t.boolean  "kitchen"
+    t.boolean  "bathroom"
+    t.boolean  "pool"
+    t.boolean  "basement"
+    t.integer  "property_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "upgrades", ["property_id"], name: "index_upgrades_on_property_id"
 
   create_table "wishlists", force: :cascade do |t|
     t.string   "name"

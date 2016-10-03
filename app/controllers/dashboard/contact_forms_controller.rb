@@ -2,6 +2,8 @@ class Dashboard::ContactFormsController < ApplicationController
 
   def index
     @forms = ContactForm.all
+
+    @forms_pagination = @forms.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show

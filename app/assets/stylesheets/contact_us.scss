@@ -1,0 +1,113 @@
+@import 'variables';
+
+/* * * * * * *
+* First Section *
+* * * * * * * *
+*/
+
+section{
+	padding-top: 10px;
+	width: 100%;
+	text-align: center;
+}
+
+.contact-hi {
+    color: white;
+    display: inline-block;
+    padding: 1px 30px;
+   	background-color:#52b7e7;
+   	line-height: 79px;
+   	margin-bottom: .8em;
+   	transform: skewX(-11deg);
+}
+div.first-section {
+	/*background-color: aliceblue;*/
+	/*padding: 100px 0;	*/
+	width: 53%;
+	text-align: justify;    margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.small-12 {
+  width: 100%;
+  /*padding: 0 5px;*/
+}
+.title-text {
+  font-size: 21px;
+  font-weight: 100;
+}
+//fix small screen text width
+@media (max-width: 600px){
+	
+}
+
+
+/* * * * * * *
+* Second Section *
+* * * * * * * *
+*/
+
+.two > a {
+	color: white;
+	text-decoration: underline;
+}
+.two >a:hover {
+	text-decoration: underline;
+	color:white;
+}
+
+.dos-h2 {
+	font-size: 28px;
+}
+section.two {
+	color:white;
+	text-align: center;
+  background-color: lightskyblue;
+  font-weight: 300;
+  padding: 3.2em;
+}
+.hr-contact {
+	width: 59px;
+}
+
+/* * * * * * *
+* Map Section *
+* * * * * * * *
+*/
+
+
+.title-maps {
+	font-size: 27px;
+	font-weight: 200;
+	display: block;
+	padding: 4% 25%;
+	margin: -20px 0;
+}
+
+.map {
+	padding: 1% 7% 1% 7%;
+  margin: 1% 4.1%;
+}
+
+.address {
+	text-align:left;
+	font-size: .9rem;
+}
+.city {
+	text-align: left;
+}
+@media (max-width: 340px){
+	.address{
+		text-align: center;
+	}
+	.city{
+		text-align: center;
+	} 
+}
+
+@media (max-width: 639px){
+	.box-size {
+		margin: 15px;
+	}
+}
+

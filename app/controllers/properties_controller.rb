@@ -114,7 +114,6 @@ class PropertiesController < ApplicationController
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
-  end
 
   def show
     if Property.all.count != 0
@@ -134,6 +133,7 @@ class PropertiesController < ApplicationController
         end
       end
     end
+  end
 
     if customer_signed_in?
       if current_customer.favorites.where(property: @property).exists?
@@ -165,7 +165,6 @@ class PropertiesController < ApplicationController
         @property.previous_step
       elsif @property.last_step?
         @property.list_price_cents = 0
-        #byebug
         @property.save if @property.all_valid?
       else
         @property.next_step
@@ -205,6 +204,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
+
     params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
   end
 

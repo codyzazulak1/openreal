@@ -3,17 +3,17 @@
 
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
-    <%= cf.label :name %>
+    <%= cf.label :name, 'Name *'%>
     <%= cf.text_field :name, data: {
      validation: "required" 
     }, placeholder: "What can we call you?" %>
   </div>
 
   <div>
-    <%= cf.label :email %>
+    <%= cf.label :email, 'E-mail *'%>
     <%= cf.email_field :email, data: {
      validation: "required" 
-    } %>
+    }, placeholder: "example@email.com" %>
   </div>
 
   <div>

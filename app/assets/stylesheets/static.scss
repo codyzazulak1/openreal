@@ -27,7 +27,7 @@
 
   .steps-right {
     position: relative;
-    padding-left: 6rem;
+    //padding-left: 6rem;
 
     .order {
       position: absolute;
@@ -38,6 +38,12 @@
         font-size: 5.5rem;
         line-height: 1;
         color: $medium-gray;
+        font-size: 80px;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        border-radius: 100px;
       }
     }
 
@@ -53,6 +59,62 @@
     }
   }
 
+  .x li {
+    padding-top: 25px;
+    width: 11em;
+    height: 9em;
+    border-radius: 9px;
+  }
+
+  .title_icons {
+    width: 3rem;
+  }
+  a.remove-greybkgr {
+    background-color: transparent;
+    color: white;
+  }
+  .tabs-title {
+    border: 1px solid white;
+    width: 10em;
+  }
+
+  .tabs-title:hover {
+    box-sizing: border-box;
+    box-shadow: 1px 1px 10px whitesmoke;
+    cursor: pointer;
+  }
+
+  .icon-holder {
+    background-color:#6ec2ea;
+    margin-top: 3em; 
+  }
+
+  a + h6 {
+    display: block;
+    line-height: 2em;
+  }
+
+  .icon-columns {
+    background-color: inherit;
+  }
+
+  .tabs {
+    background: inherit;
+    border: none;
+  } 
+
+  .padding-fix-inspection-tab {
+    padding-top: 1em;
+  }
+
+  @media screen and (max-width:900px){
+    .x li {
+    padding-top: auto;
+    width: auto;
+    height: auto;
+    border: none;
+    }
+  }
 }
 
 
@@ -83,6 +145,21 @@
   p {
     font-weight: 100;
   }
+
+  .terms-section {
+   text-align: justify;
+  }
+  .terms-section h4 {
+    text-align: center;
+  }
+}
+
+#panel2, #panel3 {
+  .paragraph {
+    font-weight: 100;
+    text-align: justify;
+  }
+  padding-top: 2em;
 }
 
 @media #{$small-only} {
