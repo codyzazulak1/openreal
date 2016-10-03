@@ -115,7 +115,10 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of e6de5f7... upgrades feature, in the works
   end
 >>>>>>> parent of e6de5f7... upgrades feature, in the works
 
@@ -212,7 +215,10 @@ class PropertiesController < ApplicationController
 
   def property_params
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of e6de5f7... upgrades feature, in the works
 =======
 >>>>>>> parent of e6de5f7... upgrades feature, in the works
     params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
