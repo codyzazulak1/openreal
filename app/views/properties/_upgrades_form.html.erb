@@ -4,20 +4,13 @@
  <div class="small-12 medium-12 grid-content">
  <hr>
 		<label>1. Have any of the following been upgraded?</label>
-		<%= fp.fields_for :upgrades do |fpu| %>
-			<br>
-			<%= fpu.label :kitchen%>
-			<%= fpu.check_box :kitchen%>
-			<%= fpu.label :bathroom%>
-			<%= fpu.check_box :bathroom%>
-			<%= fpu.label :basement%>
-			<%= fpu.check_box :basement%>
-			<%= fpu.label :pool%>
-			<%= fpu.check_box :pool%>
-		
-	
-	</div>
 
+		<input id="checkbox1" type="checkbox"><label for="checkbox1">Kitchen</label>
+		<input id="checkbox2" type="checkbox"><label for="checkbox2">Bathroom</label>
+		<input id="checkbox2" type="checkbox"><label for="checkbox2">Basement</label>
+		<input id="checkbox2" type="checkbox"><label for="checkbox2">Pool</label>
+
+	</div>
 <label>2. You can share images of your imporved home below</label>
 <%= fp.fields_for :photos do |ffp| %>
   <div class="file-upload-box">
@@ -25,4 +18,3 @@
     <%= ffp.label :picture, "Choose a file" %>
   </div>
 <%end%>
-<% end %>
