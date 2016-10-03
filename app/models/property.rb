@@ -8,6 +8,8 @@ class Property < ActiveRecord::Base
   has_many :photos, dependent: :destroy
   has_many :favorites, dependent: :destroy
   belongs_to :status
+  has_many :property_upgrades
+  has_many :upgrades, through: :property_upgrades
 
   accepts_nested_attributes_for :address
   validates_associated :address

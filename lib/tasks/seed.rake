@@ -126,4 +126,24 @@ namespace :seed do
 
   end
 
+  desc "Add upgrade options"
+  task :upgrades, [] => :environment do
+    raise "Can't run on Production" if Rails.env.production?
+
+    arr =
+    [
+      "bathroom",
+      "pool",
+      "basement",
+      "kitchen"
+    ]
+
+    arr.each do |u|
+
+      Upgrade.create(name: u)
+
+    end
+
+  end
+
 end

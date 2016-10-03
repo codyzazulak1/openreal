@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930183229) do
+ActiveRecord::Schema.define(version: 20161003203626) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address_first"
@@ -160,6 +160,14 @@ ActiveRecord::Schema.define(version: 20160930183229) do
 
   add_index "properties", ["status_id"], name: "index_properties_on_status_id"
 
+  create_table "property_upgrades", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "upgrade_id"
+  end
+
+  add_index "property_upgrades", ["property_id"], name: "index_property_upgrades_on_property_id"
+  add_index "property_upgrades", ["upgrade_id"], name: "index_property_upgrades_on_upgrade_id"
+
   create_table "services", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -173,16 +181,8 @@ ActiveRecord::Schema.define(version: 20160930183229) do
   end
 
   create_table "upgrades", force: :cascade do |t|
-    t.boolean  "kitchen"
-    t.boolean  "bathroom"
-    t.boolean  "pool"
-    t.boolean  "basement"
-    t.integer  "property_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string "name"
   end
-
-  add_index "upgrades", ["property_id"], name: "index_upgrades_on_property_id"
 
   create_table "wishlists", force: :cascade do |t|
     t.string   "name"
