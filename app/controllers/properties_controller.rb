@@ -114,8 +114,7 @@ class PropertiesController < ApplicationController
     @contact = ContactForm.new
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
-    @upgrade = @property.upgrades.build
-    puts @upgrade.any?
+    @property.upgrades.build
   end
 
   def show
@@ -160,6 +159,9 @@ class PropertiesController < ApplicationController
     @contact = ContactForm.new(session[:contact])
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
+    if @property.upgrades.any? 
+      @property.upgrades.save
+    end
 
     # if @property.valid?
     if params
@@ -207,7 +209,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes], properties_upgrades_attributes: [:upgrade_id, :id, :_destroy, upgrades_attributes:[:kitchen, :bathroom, :pool, :basement]])
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes], properties_upgrades_attributes: [:upgrade_id, :id, :_destroy, upgrades_attributes:[:id, :kitchen, :bathroom, :pool, :basement]])
   end
 
   def address_params

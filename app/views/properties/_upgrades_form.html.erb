@@ -4,7 +4,7 @@
  <div class="small-12 medium-12 grid-content">
  <hr>
 		<label>1. Have any of the following been upgraded?</label>
-		<%= fp.fields_for :upgrades_attributes do |fpu| %>
+		<%= fp.fields_for :upgrades do |fpu| %>
 			<br>
 			<%= fpu.label :kitchen%>
 			<%= fpu.check_box :kitchen%>
