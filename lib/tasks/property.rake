@@ -100,6 +100,13 @@ namespace :seed do
         sub_type: ["Property Inquiry", "Property Submission", "General"].sample
       )
 
+      rand(5).times do
+        PropertyUpgrade.create(
+          property: property,
+          upgrade: Upgrade.all.sample
+        )
+      end
+
       puts "#{address.address_first} ".ljust(40) + "(#{address.city} CREATED)".rjust(40)
 
     end
