@@ -46,7 +46,6 @@ namespace :seed do
         reverse_params = "latlng=#{@rand_lat},#{@rand_lng}"
         reverse_url = "#{request_uri}#{reverse_params}#{key}"
         @place_json = JSON.parse(open(reverse_url).read)["results"]
-        puts @place_json
         @addr_city = @place_json[0]["address_components"][3]["long_name"]
         break if @place_json &&
           @place_json[0]["address_components"][0]["types"] == ["street_number"] &&
