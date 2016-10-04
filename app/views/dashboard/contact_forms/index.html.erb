@@ -4,7 +4,7 @@
   <div class="medium-9 columns dashboard-content">
     <h1>Contact Forms</h1>
     <hr>
- 
+
     <% if @forms_pagination.count > 0 %>
     <ul class="cf-ul">
       <% @forms_pagination.each do |cf| %>
@@ -18,7 +18,7 @@
           <div  class="medium-6 columns">
             <span class="cf-contact top-text"><strong>Email</strong></span>
             <p class="cf-contact bottom-text"><%= cf.email %></p>
- 
+
             <span class="cf-contact top-text"><strong>Phone</strong></span>
             <p class="cf-contact bottom-text"><%= cf.phone %></p>
 

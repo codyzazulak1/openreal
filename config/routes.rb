@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   # static pages
   get 'howitworks', action: :howitworks, controller: 'welcome'
   get 'contact_us', action: :new, controller: 'contact_forms'
-  
+
   get 'pricing', action: :pricing, controller: 'welcome'
   get 'faq', action: :faq, controller: 'welcome'
   get 'terms', action: :terms, controller: 'welcome'

@@ -157,15 +157,22 @@ class PropertiesController < ApplicationController
     @address = Address.new(session[:address])
     @contact = ContactForm.new(session[:contact])
     @property.current_step = session[:property_step]
-    @photo = @property.photos.build
+    @photos = @property.photos.build
+    @contact.property = @property
+    @contact.status = "Unanswered"
+    @contact.sub_type = "Property Submission"
+    @property.list_price_cents = 0
 
     # if @property.valid?
     if params
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
-        @property.list_price_cents = 0
-        @property.save if @property.all_valid?
+        if @property.all_valid?
+          puts "valid"
+          @property.save
+          @contact.save
+        end
       else
         @property.next_step
       end
@@ -205,7 +212,7 @@ class PropertiesController < ApplicationController
 
   def property_params
 
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe])
   end
 
   def address_params
@@ -213,6 +220,6 @@ class PropertiesController < ApplicationController
   end
 
   def contact_params
-    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes)
+    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes, :timeframe)
   end
 end
