@@ -2,24 +2,24 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  devise_for :agents, :controllers => {
-                          registrations: 'registrations',
-                          sessions: 'users/sessions'
-                          }
-  devise_for :customers, :controllers => {
-                          registrations: 'registrations',
-                          sessions: 'users/sessions'
-                          }
+  #devise_for :agents, :controllers => {
+  #                        registrations: 'registrations',
+  #                        sessions: 'users/sessions'
+  #                        }
+  #devise_for :customers, :controllers => {
+  #                        registrations: 'registrations',
+  #                        sessions: 'users/sessions'
+  #                        }
   devise_for :admins, :controllers => {
                       registrations: 'registrations',
                       sessions: 'users/sessions'
   }
 
   # customers
-  resources :customers, :only => [:show] do
-    resources :favorites
-    resources :wishlists
-  end
+  #resources :customers, :only => [:show] do
+  #  resources :favorites
+  #  resources :wishlists
+  #end
 
   # properties
   post 'properties/new', action: :create, controller: 'properties'

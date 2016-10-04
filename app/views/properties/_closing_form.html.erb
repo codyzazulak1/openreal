@@ -4,8 +4,9 @@
 <div style="padding:1.25rem 0 10rem;">
   <fieldset class="">
   <legend>What’s your ideal sale timeline?</legend>
-  <%= fp.fields_for :contact_form do |cf| %>
-    <input type="hidden" name="timeframe" value="0"></input>
+  <%= fp.fields_for :contact_form, @contact do |cf| %>
+    <%= cf.label "Timeframe" %>
+    <%= cf.number_field :timeframe %>
   <%end%>
   </fieldset>
 </div>

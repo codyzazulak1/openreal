@@ -8,7 +8,7 @@ class Property < ActiveRecord::Base
   has_many :photos, dependent: :destroy
   has_many :favorites, dependent: :destroy
   belongs_to :status
-  has_many :property_upgrades
+  has_many :property_upgrades, dependent: :destroy
   has_many :upgrades, through: :property_upgrades
 
   accepts_nested_attributes_for :address
@@ -87,7 +87,8 @@ class Property < ActiveRecord::Base
   end
 
   def steps
-    %w[basic upgrades features contact closing]
+    %w[basic upgrades features contact]
+    #closing
   end
 
   def next_step

@@ -169,7 +169,6 @@ class PropertiesController < ApplicationController
         @property.previous_step
       elsif @property.last_step?
         if @property.all_valid?
-          puts "valid"
           @property.save
           @contact.save
         end
@@ -211,8 +210,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe])
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
   end
 
   def address_params
