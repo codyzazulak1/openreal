@@ -11,11 +11,13 @@ class Property < ActiveRecord::Base
   has_many :property_upgrades
   has_many :upgrades, through: :property_upgrades
 
+  accepts_nested_attributes_for :property_upgrades
   accepts_nested_attributes_for :address
   validates_associated :address
   accepts_nested_attributes_for :contact_form
   validates_associated :contact_form
   accepts_nested_attributes_for :photos
+
 
   monetize :list_price_cents, as: :list_price
 
