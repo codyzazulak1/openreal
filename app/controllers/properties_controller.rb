@@ -104,14 +104,20 @@ class PropertiesController < ApplicationController
   end
 
   def new
+
     session[:property_params] ||= {}
     session[:address_params] ||= {}
+    # session[:property_upgrades_params] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
 
     @property = Property.new
     @address = Address.new(session[:address_params].merge({property: @property}))
     @address ||= Address.new(property: @property)
     @contact = ContactForm.new
+
+ 
+    @property_upgrades = @property.property_upgrades.build
+
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
 
@@ -153,11 +159,20 @@ class PropertiesController < ApplicationController
     session[:address] = address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
     session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 
+    session[:upgrades] = upgrade_params if !params[:property].nil? && !params[:property][:upgrades].nil?
+    session[:property_upgrades] = property_upgrade_params if !params[:property].nil? && !params[:property][:property_upgrades].nil?
+
+
     @property = Property.new(session[:property])
     @address = Address.new(session[:address])
     @contact = ContactForm.new(session[:contact])
+
+   
+    @property_upgrade = @property.property_upgrades.new(session[:property_upgrades])
+
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
+    
 
     # if @property.valid?
     if params
@@ -205,14 +220,22 @@ class PropertiesController < ApplicationController
 
   def property_params
 
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe],property_upgrades_attributes: [:property_id, :upgrade_id], upgrades_attributes: [:id, :name])
   end
+
+  # def property_upgrade_params
+  #   params.require(:property).require(:property_upgrades_attributes).permit(:property_id, :upgrade_id,:id)   
+  # end
+
+  # def upgrade_params
+  #   params.require(:property).require(:upgrades_attributes).permit(:id, :name)
+  # end
 
   def address_params
     params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
   end
 
   def contact_params
-    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes)
+    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes, :timeframe)
   end
 end
