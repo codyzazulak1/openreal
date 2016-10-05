@@ -159,7 +159,6 @@ class PropertiesController < ApplicationController
     session[:address] = address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
     session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 
-    session[:upgrades] = upgrade_params if !params[:property].nil? && !params[:property][:upgrades].nil?
     session[:property_upgrades] = property_upgrade_params if !params[:property].nil? && !params[:property][:property_upgrades].nil?
 
 
