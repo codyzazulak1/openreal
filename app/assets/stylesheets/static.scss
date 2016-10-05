@@ -76,6 +76,8 @@
   .tabs-title {
     border: 1px solid white;
     width: 10em;
+    margin: 0 0.5em;
+    padding-top: 0.5em;
   }
 
   .tabs-title a {
@@ -102,6 +104,7 @@
 
   .icon-columns {
     background-color: inherit;
+    padding-left: 3.5em;
   }
 
   .tabs {
@@ -113,10 +116,10 @@
     padding-top: 1em;
   }
 
-  @media screen and (max-width:900px){
+  @media screen and (max-width:1328px){
     .x li {
     padding-top: auto;
-    width: 7em;
+    width: 6em;
     height: auto;
     border: none;
     }
@@ -124,6 +127,24 @@
     .title-icons {
       width: 2rem;
     }
+
+    .icon-columns {
+      padding: 1em 0.6em;
+    }
+
+    .tabs-title {
+      border: none;
+      display: list-item;
+      width: 7rem;
+      overflow: hidden;
+      margin: auto;
+
+    }
+    .tabs-title a {
+      font-size: 1rem;
+      padding: 1em 0.6em;
+    }
+
   }
 }
 
