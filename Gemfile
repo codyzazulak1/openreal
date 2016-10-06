@@ -76,13 +76,12 @@ group :development do
   # Faker for seeding fake data
   gem 'faker'
 
-  # Rack livereload
-  gem "rack-livereload"
-
-  # Guard
-  gem 'guard'
-
-  # Guard livereload
-  gem 'guard-livereload', '~> 2.5', require: false
 end
 
+group :production do
+
+  gem 'rails_12factor'
+
+end
+
+ruby '2.3.1'

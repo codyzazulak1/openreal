@@ -48,6 +48,5 @@ Rails.application.routes.draw do
   get 'faq', action: :faq, controller: 'welcome'
   get 'terms', action: :terms, controller: 'welcome'
   get 'contact', action: :contact, controller: 'welcome'
-  get '/login', action: :login, controller: 'welcome'
   #get '/register', action: :register, controller: 'welcome'
 end
