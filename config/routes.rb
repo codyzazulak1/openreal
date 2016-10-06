@@ -24,13 +24,12 @@ Rails.application.routes.draw do
   # properties
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
-  get 'properties/filter', action: :filter, controller: 'properties'
-  resources :properties do
+  #get 'properties/filter', action: :filter, controller: 'properties'
+  resources :properties, only: [:new, :create] do
     resources :address
   end
   resources :photos
   resources :contact_forms
-
 
   # dashboard
   namespace :dashboard do

@@ -24,7 +24,11 @@
       <div class="accordion-content" data-tab-content>
         <% @property_attributes.each do |u| %>
           <%= f.label u %>
-          <%= f.text_field u.to_sym %>
+          <% if u == "status" %>
+            <%= f.text_field u.name %>
+          <%else%>
+            <%= f.text_field u.to_sym %>
+          <%end%>
         <% end %>
       </div>
     </li>
@@ -35,5 +39,4 @@
   <div class="float-right">
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
-  
 <%end%>
