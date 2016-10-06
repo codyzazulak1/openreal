@@ -1,9 +1,12 @@
 class Dashboard::ContactFormsController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @forms = ContactForm.all
 
     @forms_pagination = @forms.paginate(:page => params[:page], :per_page => 5)
+
   end
 
   def show
@@ -21,7 +24,7 @@ class Dashboard::ContactFormsController < ApplicationController
     @form = ContactForm.find(params[:id])
 
     if @form.update_attributes({status: params[:status]})
-      redirect_to dashboard_contact_form_path(@form)
+      redirect_to dashboard_contact_forms_path
     end
   end
 
