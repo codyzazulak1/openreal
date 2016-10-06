@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   resources :properties, only: [:new, :create] do
     resources :address
   end
-  resources :photos
-  resources :contact_forms
+  #resources :photos
+  #resources :contact_forms
 
   # dashboard
   namespace :dashboard do
