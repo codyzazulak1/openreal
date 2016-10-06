@@ -1,11 +1,40 @@
-<h1><%= @form.name %></h1>
-<p>Email: <%= @form.email %></p>
-<p>Phone: <%= @form.phone %></p>
-<%= form_for @form, url: dashboard_contact_form_path(@form), html: {method: :put} do |f| %>
-  <p>Status: <%= select_tag(:status, options_for_select([
-      ['Unanswered', 'unanswered'],
-      ['Answered', 'answered'],
-      ['Important', 'important']],
-      selected: @form.status))%> <%= submit_tag 'Save' %></p>
-  <% end %>
-<textarea readonly>Notes: <%= @form.notes %></textarea>
+
+
+ <div class="row padded-r-t">
+ 	<div class="small-6 small-centered columns">
+		<h2>Contact information</h2>
+		<h3><%= @form.name %></h3>
+
+
+		<div class="row"></div>
+		<div class="small-6 columns">
+			<p>Email: </p>
+			<p>Phone: </p>
+		</div>
+
+		<div class="small-6 columns">
+			<%= @form.email %>
+			<%= @form.phone %>
+		</div>
+
+		<div class="row">
+			<div class="small-12 columns">
+			<%= form_for @form, url: dashboard_contact_form_path(@form), html: {method: :put} do |f| %>
+			  <p>Status: <%= select_tag(:status, options_for_select([
+			      ['Unanswered', 'unanswered'],
+			      ['Answered', 'answered'],
+			      ['Important', 'important']],
+			      selected: @form.status))%> <%= submit_tag 'Save', {class: 'btn btn-primary'} %></p>
+			  <% end %>
+			 </div>
+		</div>
+
+		<div class="row padded-r-b">
+			<div class="columns">
+				<textarea readonly>Notes: <%= @form.notes %></textarea>
+			</div>
+		</div>
+
+
+	</div>
+</div>
