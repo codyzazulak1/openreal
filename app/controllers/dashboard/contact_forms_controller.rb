@@ -29,7 +29,9 @@ class Dashboard::ContactFormsController < ApplicationController
   end
 
   def destroy
-    @form = Contactform.find(params[:id])
+    @form = ContactForm.find(params[:id])
+    @form.destroy
+    redirect_to dashboard_contact_forms_path, notice: "Deleted #{@form.name}"
   end
 
   private
