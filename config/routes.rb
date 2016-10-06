@@ -28,8 +28,8 @@ Rails.application.routes.draw do
   resources :properties, only: [:new, :create] do
     resources :address
   end
-  resources :photos
-  resources :contact_forms
+  #resources :photos
+  #resources :contact_forms
 
   # dashboard
   namespace :dashboard do
@@ -38,7 +38,6 @@ Rails.application.routes.draw do
     end
     resources :contact_forms
   end
-  get 'dashboard/owned', action: :owned, controller: 'dashboard'
   get 'dashboard', action: :index, controller: 'dashboard'
 
   # static pages
@@ -49,6 +48,5 @@ Rails.application.routes.draw do
   get 'faq', action: :faq, controller: 'welcome'
   get 'terms', action: :terms, controller: 'welcome'
   get 'contact', action: :contact, controller: 'welcome'
-  get '/login', action: :login, controller: 'welcome'
-  get '/register', action: :register, controller: 'welcome'
+  #get '/register', action: :register, controller: 'welcome'
 end

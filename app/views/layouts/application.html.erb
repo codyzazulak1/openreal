@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
     <title><%= content_for?(:title) ? yield(:title) : "OpenReal" %></title>
     <!-- TypeKit -->
     <script src="https://use.typekit.net/otn4kyo.js"></script>
@@ -15,6 +16,12 @@
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
     <%= render 'layouts/navbar' %>
+    <% flash.each do |name, msg| %>
+      <div data-alert class="alert-box info radius flash-<%=name%>">
+        msg
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
 
     <%= yield %>
 

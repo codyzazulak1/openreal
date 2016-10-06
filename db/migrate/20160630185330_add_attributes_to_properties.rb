@@ -13,15 +13,15 @@ class AddAttributesToProperties < ActiveRecord::Migration
       t.integer :number_of_floors
       t.integer :floor_area
       t.integer :year_built
-      t.integer :list_price, limit: 9
+      t.integer :list_price
       t.integer :stories
       t.integer :bedrooms
       t.integer :bathrooms
       t.integer :fireplaces
     end
 
-    add_column :properties, :lot_length, :decimal, precision: 8, scale: 2
-    add_column :properties, :lot_width, :decimal, precision: 8, scale: 2
+    add_column :properties, :lot_length, :decimal, precision: 6, scale: 2
+    add_column :properties, :lot_width, :decimal, precision: 6, scale: 2
 
   end
 end
