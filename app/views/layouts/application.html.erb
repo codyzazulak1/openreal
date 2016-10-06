@@ -17,7 +17,7 @@
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
     <%= render 'layouts/navbar' %>
     <% flash.each do |name, msg| %>
-      <div class="alert callout flash-<%=name%> <%= 'small-offset-3 columns' if get_namespace == 'dashboard'%> text-center" data-closable>
+      <div class="alert callout flash-<%=name%> text-center" data-closable>
         <h5><%=msg%></h5>
         <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
           <span aria-hidden="true">&times;</span>
