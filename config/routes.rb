@@ -38,7 +38,6 @@ Rails.application.routes.draw do
     end
     resources :contact_forms
   end
-  get 'dashboard/owned', action: :owned, controller: 'dashboard'
   get 'dashboard', action: :index, controller: 'dashboard'
 
   # static pages
@@ -50,5 +49,5 @@ Rails.application.routes.draw do
   get 'terms', action: :terms, controller: 'welcome'
   get 'contact', action: :contact, controller: 'welcome'
   get '/login', action: :login, controller: 'welcome'
-  get '/register', action: :register, controller: 'welcome'
+  #get '/register', action: :register, controller: 'welcome'
 end

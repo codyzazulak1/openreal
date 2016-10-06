@@ -155,7 +155,6 @@ class PropertiesController < ApplicationController
     @address = Address.new(session[:address])
     @contact = ContactForm.new(session[:contact])
 
-   
     @property_upgrade = @property.property_upgrades.new(session[:property_upgrades])
 
     @property.current_step = session[:property_step]

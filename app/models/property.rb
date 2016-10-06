@@ -89,9 +89,13 @@ class Property < ActiveRecord::Base
   end
 
   def steps
-    %w[basic features contact]
-    #upgrades
-    #closing
+    [
+      "basic",
+      "features",
+      #"upgrades",
+      "contact"
+      #"closing"
+    ]
   end
 
   def next_step
