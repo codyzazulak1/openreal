@@ -1,12 +1,12 @@
-<div>Step 1 of 5</div>
+<div>Step 1 of 3</div>
 <h3>Start with the basics</h3>
 <div id="addressForm">
   <%= fp.fields_for :address do |ffa| %>
     <div>
       <%= ffa.label :address_first %>
-      <%= ffa.text_field :address_first, id: "addressInput", data: { 
-        'validation' => "required", 
-        'validation-error-msg' => "You did not enter an address" 
+      <%= ffa.text_field :address_first, id: "addressInput", data: {
+        'validation' => "required",
+        'validation-error-msg' => "You did not enter an address"
       }, placeholder: "Street address" %>
     </div>
     <div>
@@ -15,16 +15,16 @@
     </div>
     <div>
       <%= ffa.label :city %>
-      <%= ffa.text_field :city, id: "addressCity", data: { 
-        'validation' => "required", 
-        'validation-error-msg' => "You did not enter a city" 
+      <%= ffa.text_field :city, id: "addressCity", data: {
+        'validation' => "required",
+        'validation-error-msg' => "You did not enter a city"
       } %>
     </div>
     <div>
       <%= ffa.label :postal_code %>
-      <%= ffa.text_field :postal_code, id: "addressPostal", data: { 
-        'validation' => "required", 
-        'validation-error-msg' => "You did not enter a postal code" 
+      <%= ffa.text_field :postal_code, id: "addressPostal", data: {
+        'validation' => "required",
+        'validation-error-msg' => "You did not enter a postal code"
       } %>
     </div>
     <div>

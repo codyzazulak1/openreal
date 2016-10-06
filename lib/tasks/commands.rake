@@ -8,6 +8,7 @@ namespace :commands do
     ["db:rebuild", "Rebuilds database and seeds everything"],
     ]
     seed_commands = [
+    ["seed:everything", "Seed everything"],
     ["seed:admins", "Seeds 3 admins (Same names every time)"],
     ["seed:agents", "Seeds 3 agents (Same names every time)"],
     ["seed:customers", "Seeds 3 customers (Same names every time)"],

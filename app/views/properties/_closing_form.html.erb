@@ -1,13 +1,29 @@
 <div>Step 5 of 5</div>
 <h3>About your sale</h3>
-
+<div id="propertiesNewContactForm">
 <div style="padding:1.25rem 0 10rem;">
+<<<<<<< HEAD
   <fieldset class="">
+  <legend>What’s your ideal sale timeline?</legend>
+  <%= fp.fields_for :contact_form, @contact do |cf| %>
+    <%= cf.label "Timeframe" %>
+    <%= cf.number_field :timeframe %>
+  <%end%>
+  </fieldset>
+</div>
+=======
+	<%= fp.fields_for :contact_form do |this|%>
+		<%=this.radio_button 'timeframe', '1'%>
+
+	<% end %>
+
+ <!--  <fieldset class="">
     <legend>What’s your ideal sale timeline?</legend>
     <input type="radio" name="timeline" value="1" ><label >ASAP</label>
     <input type="radio" name="timeline" value="2" ><label >2 - 4 weeks</label>
     <input type="radio" name="timeline" value="3" ><label >4 - 6 weeks</label>
     <input type="radio" name="timeline" value="4" ><label >6+ weeks</label>
     <input type="radio" name="timeline" value="5" ><label >Don't care</label>
-  </fieldset>
+  </fieldset> -->
 </div>
+>>>>>>> cee8e090dc4cecdc8f2538749790e195197c959b

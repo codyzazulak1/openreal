@@ -9,8 +9,7 @@ class CreateStatuses < ActiveRecord::Migration
 
     end
 
-    add_reference :properties, :status, index: true
-    add_foreign_key :properties, :status
+    add_reference :properties, :status, index: true, foreign_key: true
 
   end
 end

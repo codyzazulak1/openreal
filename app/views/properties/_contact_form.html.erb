@@ -1,4 +1,4 @@
-<div>Step 4 of 5</div>
+<div>Step 3 of 3</div>
 <h3>How can we contact you?</h3>
 
 <%= fp.fields_for :contact_form, @contact do |cf| %>
@@ -24,5 +24,14 @@
   <div>
     <%= cf.label :notes, "Message" %>
     <%= cf.text_field :notes, placeholder: "" %>
+  </div>
+  <div>
+    <%= cf.label :timeframe, "How soon do you want to sell your home?" %>
+    <%= cf.select :timeframe, options_for_select([
+      ["ASAP", 0],
+      ["2-4 weeks", 1],
+      ["4-6 weeks", 2],
+      ["6+ weeks", 3],
+      ["No preference", 4]]) %>
   </div>
 <%end%>

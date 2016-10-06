@@ -104,16 +104,23 @@ class PropertiesController < ApplicationController
   end
 
   def new
+
     session[:property_params] ||= {}
     session[:address_params] ||= {}
+    # session[:property_upgrades_params] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
 
     @property = Property.new
     @address = Address.new(session[:address_params].merge({property: @property}))
     @address ||= Address.new(property: @property)
     @contact = ContactForm.new
+
+    @property_upgrades = @property.property_upgrades.build
+
     @property.current_step = session[:property_step]
     @photo = @property.photos.build
+
+  end
 
   def show
     if Property.all.count != 0
@@ -121,9 +128,6 @@ class PropertiesController < ApplicationController
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
 
-      if customer_signed_in?
-        @favorite = Favorite.find_by(property: @property, customer: current_customer)
-      end
 
       respond_to do |format|
         format.html
@@ -131,15 +135,6 @@ class PropertiesController < ApplicationController
         format.json do
           render json: @property.to_json(include: [:address])
         end
-      end
-    end
-  end
-
-    if customer_signed_in?
-      if current_customer.favorites.where(property: @property).exists?
-        @has_favorite = true
-      else
-        @has_favorite = false
       end
     end
 
@@ -153,19 +148,31 @@ class PropertiesController < ApplicationController
     session[:address] = address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
     session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 
+    session[:property_upgrades] = property_upgrade_params if !params[:property].nil? && !params[:property][:property_upgrades].nil?
+
+
     @property = Property.new(session[:property])
     @address = Address.new(session[:address])
     @contact = ContactForm.new(session[:contact])
+
+    @property_upgrade = @property.property_upgrades.new(session[:property_upgrades])
+
     @property.current_step = session[:property_step]
-    @photo = @property.photos.build
+    @photos = @property.photos.build
+    @contact.property = @property
+    @contact.status = "Unanswered"
+    @contact.sub_type = "Property Submission"
+    @property.list_price_cents = 0
 
     # if @property.valid?
     if params
       if params[:back_button]
         @property.previous_step
       elsif @property.last_step?
-        @property.list_price_cents = 0
-        @property.save if @property.all_valid?
+        if @property.all_valid?
+          @property.save
+          @contact.save
+        end
       else
         @property.next_step
       end
@@ -204,15 +211,22 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
   end
+
+  # def property_upgrade_params
+  #   params.require(:property).require(:property_upgrades_attributes).permit(:property_id, :upgrade_id,:id)   
+  # end
+
+  # def upgrade_params
+  #   params.require(:property).require(:upgrades_attributes).permit(:id, :name)
+  # end
 
   def address_params
     params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
   end
 
   def contact_params
-    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes)
+    params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes, :timeframe)
   end
 end

@@ -1,5 +1,7 @@
 class Dashboard::PropertiesController < ApplicationController
 
+  before_action :authenticate_admin!
+
   def index
     @properties = Property.all.order(created_at: :desc)
 

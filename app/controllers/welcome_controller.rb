@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
   def login
     if logged_in?
       flash[:notice] = "You're already logged in"
-      redirect_to dashboard_path
+      redirect_to :root
     end
   end
 
@@ -19,6 +19,13 @@ class WelcomeController < ApplicationController
       flash[:notice] = "You're already logged in"
       redirect_to dashboard_path
     end
+  end
+
+  def logout
+    if logged_in?
+      current_admin.destroy
+    end
+    redirect_to dashboard_path
   end
 
   def howitworks
@@ -33,7 +40,7 @@ class WelcomeController < ApplicationController
   def terms
   end
 
-  def contact 
+  def contact
   end
 
 end
