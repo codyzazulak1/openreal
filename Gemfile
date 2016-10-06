@@ -48,6 +48,9 @@ gem 'ruby-hmac'
 # fancybox
 gem 'fancybox2-rails', '~> 0.2.8'
 
+#puma
+gem 'puma'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
