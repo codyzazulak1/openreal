@@ -24,6 +24,11 @@
         <li class="show-for-medium">
           <a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>> Contact</a>
         </li>
+        <% if admin_signed_in?%>
+        <li class="show-for-medium">
+          <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
+        </li>
+        <%end%>
         
         <li class="show-for-small-only"><!--
           --><a href="">More</a>

@@ -1,0 +1,42 @@
+
+#admin_login{
+	font-size: 18px;
+	padding-top: 30px;
+	padding-bottom: 9rem;
+	
+
+	h3 {
+		color: #52b7e7;
+		text-align: center;
+	}
+	img {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.field {
+		max-width: 15rem;
+    margin: auto; 
+    text-align: center;
+    line-height: 1rem;
+	}
+	.actions {
+		max-width: 15rem;
+    margin: auto; 
+    text-align: center;
+    padding-top: 1em;
+	}
+	.p-the-image {
+		text-align: center;
+	}
+	.x {	
+    background: white;
+    padding: 7px;
+    width: 13em;
+    color: #52b7e7;
+    border: 1px grey solid;
+    box-sizing: border-box;
+    box-shadow: 1px 2px 8px -1px lightgray;
+    font-weight: 700;
+	}
+}
