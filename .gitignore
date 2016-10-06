@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -16,6 +17,7 @@
 !/log/.keep
 /tmp
 Gemfile.lock
+.ruby-version
 /public/uploads
 config/local_env.yml
 config/secrets.yml

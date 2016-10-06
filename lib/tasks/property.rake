@@ -1,5 +1,22 @@
 namespace :seed do
 
+  desc "seed contact forms alone"
+  task :contacts, [] => :environment do
+    raise "Can't run on production" if Rails.env.production?
+
+    15.times do
+      ContactForm.create(
+        name: Faker::Name.name,
+        email: Faker::Internet.email,
+        status: ["Answered", "Unanswered"].sample,
+        sub_type: ["Property Inquiry", "Property Submission", "General"].sample,
+        property: [Property.all.sample, nil].sample
+      )
+    end
+
+  end
+
+
   desc "add photos"
   task :photos, [] => :environment do
 
@@ -97,7 +114,8 @@ namespace :seed do
         name: Faker::Name.name,
         email: Faker::Internet.email,
         status: ["Answered", "Unanswered"].sample,
-        sub_type: ["Property Inquiry", "Property Submission", "General"].sample
+        sub_type: ["Property Inquiry", "Property Submission", "General"].sample,
+        property: [Property.all.sample, nil].sample
       )
 
       rand(5).times do
