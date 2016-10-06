@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 20161006190448) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
 
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contact_forms", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -61,6 +66,11 @@ ActiveRecord::Schema.define(version: 20161006190448) do
   end
 
   add_index "contact_forms", ["property_id"], name: "index_contact_forms_on_property_id", using: :btree
+
+  create_table "features", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "photos", force: :cascade do |t|
     t.integer  "property_id"
@@ -105,6 +115,11 @@ ActiveRecord::Schema.define(version: 20161006190448) do
 
   add_index "property_upgrades", ["property_id"], name: "index_property_upgrades_on_property_id", using: :btree
   add_index "property_upgrades", ["upgrade_id"], name: "index_property_upgrades_on_upgrade_id", using: :btree
+
+  create_table "services", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "statuses", force: :cascade do |t|
     t.datetime "created_at"
