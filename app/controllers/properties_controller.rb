@@ -219,7 +219,7 @@ class PropertiesController < ApplicationController
 
   def property_params
 
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe],property_upgrades_attributes: [:property_id, :upgrade_id], upgrades_attributes: [:id, :name])
+    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe],property_upgrades_attributes: [:property_id, :upgrade_id, upgrades: [:id, :name]])
   end
 
   # def property_upgrade_params
