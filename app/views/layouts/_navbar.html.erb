@@ -11,7 +11,7 @@
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
 
-        <li>
+        <li class="show-for-medium">
           <a href=<%= pricing_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'pricing' %>>Pricing</a>  
         </li>
 

@@ -47,7 +47,7 @@ h2.headers{
 		padding-left: 10px;
 	}
 	.logo-price {
-		padding: 2px 1px;
+		//padding: 2px 1px;
 	}
 	
 }
@@ -68,7 +68,7 @@ h2.headers{
     height: 28em;
 }
 
-@media (max-width: 513px){
+@media (max-width: 1125px){
   .pricing .focus-blue:before{
     display: none;
   }
@@ -134,11 +134,15 @@ hr-pricing {
 .title {
 	text-align: center;
 }
-@media (max-width: 40rem){
+@media (max-width: 45rem){
 	.contain-row-2-mobile {
 	  font-size: 14px;
     font-weight: 400;
     line-height: 25px;
+   }
+   .logo-price {
+    height:inherit;
+
    }
 }
 .grid-two {
@@ -155,7 +159,7 @@ hr-pricing {
   width: 100%;
   position: relative;
   padding-top: 1.5em;
-  padding-bottom: 2.7em;
+  
   margin-bottom: 1px;
   padding-top: 2.5em;
 }
@@ -188,8 +192,8 @@ h2.header-2 {
 }
 .get-offer {
 	text-align: center;
-	padding-top: 1em;
-	padding-bottom: 1em;
+	padding-top: 2em;
+	padding-bottom: 2em;
 }
 
 
