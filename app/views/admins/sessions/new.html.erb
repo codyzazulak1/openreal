@@ -4,7 +4,7 @@
     <%= image_tag("logo_med.png") %>
   </p>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(:admin, url: session_path(:admin)) do |f| %>
     <div class="field">
       <%#= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, placeholder: 'Please enter your e-mail' %>
