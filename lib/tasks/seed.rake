@@ -1,5 +1,12 @@
 namespace :seed do
 
+  desc "Production"
+  task :prod, [] => :environment do
+    Rake::Task ['seed:users'].execute
+    Rake::Task['seed:statuses'].execute
+    Rake::Task['seed:upgrades'].execute
+  end
+
   desc "Everything"
   task :everything, [] => :environment do
     Rake::Task['seed:users'].execute
