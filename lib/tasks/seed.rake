@@ -2,9 +2,44 @@ namespace :seed do
 
   desc "Production"
   task :prod, [] => :environment do
-    Rake::Task ['seed:users'].execute
-    Rake::Task['seed:statuses'].execute
-    Rake::Task['seed:upgrades'].execute
+
+    Admin.create(first_name: 'Steven', email: 'stevenk@openreal.ca', password: 'skopenadmin', password_confirmation: 'skopenadmin')
+    Admin.create(first_name: 'Fio', email: 'fiorellal@openreal', password: 'flopenadmin', password_confirmation: 'flopenadmin')
+    Admin.create(first_name: 'Cody', email: 'codyz@openreal.ca', password: 'czopenadmin', password_confirmation: 'czopenadmin')
+
+    customer_submitted = ["Unappraised", "Awaiting Response", "Closing"]
+    agent_submitted = ["Unapproved", "Approved"]
+    owned_properties = ["Unlisted", "Listed", "Archived"]
+
+    customer_submitted.each do |u|
+      Status.create(category: "Customer Submitted", name: u)
+      puts "Customer Submitted ------ #{u}"
+    end
+
+    agent_submitted.each do |u|
+      Status.create(category: "Agent Submitted", name: u)
+      puts "Agent Submitted ------ #{u}"
+    end
+
+    owned_properties.each do |u|
+      Status.create(category: "Owned Properties", name: u)
+      puts "Owned Properties ------ #{u}"
+    end
+
+    arr =
+    [
+      "bathroom",
+      "pool",
+      "basement",
+      "kitchen"
+    ]
+
+    arr.each do |u|
+
+      Upgrade.create(name: u)
+
+    end
+
   end
 
   desc "Everything"
