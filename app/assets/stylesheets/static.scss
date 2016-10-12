@@ -79,9 +79,12 @@
       cursor: pointer;
     }
 
+    .tabs-title {
+       // border: 1px solid white;
+      }
+
     li {
       padding: 1rem 0;
-
 
       div {
         width: 50px;
@@ -90,7 +93,7 @@
 
       p {
         display: inline-block;
-        font-size: 12px;
+        font-size: 14px;
         text-transform: uppercase;
       }
 
@@ -99,101 +102,22 @@
         color: white;
       }
     }
-
   }
-
-  @media (max-width: 479px) {
-    .on-tab {
-      li {
-        padding: 0.5rem 0;
-        div{
-          width: 30px;
-        }
-        p {
-          font-size:10px;
-        }
-
-
-      }
-    }
-  }
-
-
-
-
-
-
-
-
-// Old stuff starts here
-
-
-
- 
-
-
-
-
- 
-
-
-
-   
 
   .padding-fix-inspection-tab {
     padding-top: 1em;
   }
 
-  @media screen and (max-width:1100px){
-
-    .div-1 {
-  //    text-align: center;
+  @media (max-width: 436px){
+    li {
+      div > img {
+        width: 30px;
+        display:inline-block;
+        padding-bottom: 5px;
+      }
     }
-
-    .x {
-  //  padding-top: auto;
- //   width: 6em;
- //   height: auto;
- //   border: none;
-    }
-
-    .title-icons {
- //     width: 2rem;
-    }
-
-    .icon-columns {
- //     padding: 1em 0.6em;
-      transition: all 1s ease-in-out;
-    }
-
-    .tabs-title {
-   //   border: none;
-   //   display: list-item;
-      //width: 7rem;
-  //    overflow: hidden;
-    //  margin: auto;
-
-    }
-    .tabs-title a {
- //     font-size: 1rem;
- //     padding: 1em 0.6em;
-    }
-
-  }
-  @media (max-width: 479px){
- //   font-size: 12px;
-
-  }
-
-  @media (max-width: 1343px){
-    //padding-left: 0.5em;
-    .icon-holder {
-
-    }
-
   }
 }
-////////////////////////
 
 #faq-content,
 #terms-content {
