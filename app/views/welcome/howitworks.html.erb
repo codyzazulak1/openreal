@@ -1,32 +1,52 @@
 <div id="howitworks">
   <%= render "howitworks_header" %>
 
-  <section class="row expanded icon-holder">
-    <div class="small-6 small-centered columns icon-columns">
-      <ul class="tabs inline-list" data-tabs id="howitworks-tabs">
-        <div class="div-1">
-          <li class="tabs-title small-4 columns x is-active">
-              <%= image_tag('icons/howitworks.svg', class: "title_icons")%>
-              <a href="#panel1" class="text-center remove-greybkgr" aria-selected="true">How it Works</a>
-          </li>
-        </div>
+  <section class="row expanded tab-holder">
+    <div class="small-6 small-centered columns on-tab">
 
-        <div class="div-1">
-          <li class="tabs-title small-4 columns x">
-          <%= image_tag('icons/inspection.svg', class: "title_icons")%>
-            <a class="text-center remove-greybkgr" href="#panel2">
-              Inspection Process
+      <ul class="tabs" data-tabs id="howitworks-tabs">
+        
+
+        <li class="tabs-title small-4 columns is-active">
+           <div> 
+              <%= image_tag('icons/howitworks.svg')%> 
+            </div> 
+            <br>
+            <p>
+              <a href="#panel1" class="text-center" aria-selected="true"> How it Works
+              </a>
+            </p>
+        </li>
+
+
+
+        <li class="tabs-title small-4 columns">
+         <div> 
+            <%= image_tag('icons/inspection.svg')%>
+          </div> 
+          <br>
+          <p>
+            <a class="text-center" href="#panel2">
+            Inspection Process
             </a>
-          </li>
-        </div>
-        <div class="div-1">
-          <li class="tabs-title small-4 columns x">
-          <%= image_tag('icons/closing.svg', class: "title_icons")%>
-            <a class="text-center remove-greybkgr" href="#panel3">
+          </p>
+        </li>
+
+
+
+        <li class="tabs-title small-4 columns">
+          <div> 
+            <%= image_tag('icons/closing.svg')%>
+          </div> 
+          <br>
+          <p>
+            <a class="text-center" href="#panel3">
               Closing the Deal
             </a>
-          </li>
-        </div>
+          </p>
+        </li>
+
+
       </ul>
     </div>
   </section>

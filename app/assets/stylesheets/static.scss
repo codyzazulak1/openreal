@@ -59,59 +59,86 @@
     }
   }
 
-  .x li {
-    padding-top: 25px;
-    width: 11em;
-    height: 9em;
-    border-radius: 9px;
-  }
 
-  .title_icons {
-    width: 3rem;
-  }
-  a.remove-greybkgr {
-    background-color: transparent;
-    color: white;
-  }
-  .tabs-title {
-    border: 1px solid white;
-    width: 10em;
-    margin: 0 0.5em;
-    padding-top: 0.5em;
-  }
-
-  .tabs-title a {
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-  }
-
-  .tabs-title:hover {
-    box-sizing: border-box;
-    box-shadow: 1px 1px 10px whitesmoke;
-    cursor: pointer;
-  }
-
-  .icon-holder {
+  .tab-holder {
     background-color:#6ec2ea;
-    margin-top: 3em; 
+    margin-top: 4em;
   }
 
-  a + h6 {
-    display: block;
-    line-height: 2em;
-  }
-
-  .icon-columns {
-    background-color: inherit;
-    padding-left: 3.5em;
-    width: 625px;
-  }
-
-  .tabs {
+  .on-tab {
     background: inherit;
-    border: none;
-  } 
+
+    .tabs {
+      background: inherit;
+      border: none;
+    }
+
+    .tabs-title:hover {
+      box-sizing: border-box;
+      box-shadow: 1px 1px 10px whitesmoke;
+      cursor: pointer;
+    }
+
+    li {
+      padding: 1rem 0;
+
+
+      div {
+        width: 50px;
+        display: inline-block;
+      }
+
+      p {
+        display: inline-block;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      a {
+        background-color: transparent;
+        color: white;
+      }
+    }
+
+  }
+
+  @media (max-width: 479px) {
+    .on-tab {
+      li {
+        padding: 0.5rem 0;
+        div{
+          width: 30px;
+        }
+        p {
+          font-size:10px;
+        }
+
+
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+// Old stuff starts here
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+   
 
   .padding-fix-inspection-tab {
     padding-top: 1em;
@@ -120,41 +147,41 @@
   @media screen and (max-width:1100px){
 
     .div-1 {
-      text-align: center;
+  //    text-align: center;
     }
 
     .x {
-    padding-top: auto;
-    width: 6em;
-    height: auto;
-    border: none;
+  //  padding-top: auto;
+ //   width: 6em;
+ //   height: auto;
+ //   border: none;
     }
 
     .title-icons {
-      width: 2rem;
+ //     width: 2rem;
     }
 
     .icon-columns {
-      padding: 1em 0.6em;
+ //     padding: 1em 0.6em;
       transition: all 1s ease-in-out;
     }
 
     .tabs-title {
-      border: none;
-      display: list-item;
+   //   border: none;
+   //   display: list-item;
       //width: 7rem;
-      overflow: hidden;
-      margin: auto;
+  //    overflow: hidden;
+    //  margin: auto;
 
     }
     .tabs-title a {
-      font-size: 1rem;
-      padding: 1em 0.6em;
+ //     font-size: 1rem;
+ //     padding: 1em 0.6em;
     }
 
   }
   @media (max-width: 479px){
-    font-size: 12px;
+ //   font-size: 12px;
 
   }
 
@@ -166,7 +193,7 @@
 
   }
 }
-
+////////////////////////
 
 #faq-content,
 #terms-content {
