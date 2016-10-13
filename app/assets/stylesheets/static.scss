@@ -1,5 +1,18 @@
 @import 'variables';
 
+$deep-blue-color: #2ba8de;
+
+// DIV for max-width 1024px
+//    width: 9em;
+//    border: 1px solid white;
+//    padding-top: 0.5em;
+
+// DIV for max-width 768px
+// width: 9em;
+// border and padding same
+
+//DIV for max-width 375px
+// width: 5.7em;
 
 // how it works page
 #howitworks {
@@ -75,16 +88,20 @@
 
     .tabs-title:hover {
       box-sizing: border-box;
+      border: 1px white solid;
       box-shadow: 1px 1px 10px whitesmoke;
       cursor: pointer;
     }
 
-    .tabs-title {
-       // border: 1px solid white;
-      }
-
+  ul {     
+    .columns {
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+    }
+  }
     li {
       padding: 1rem 0;
+
 
       div {
         width: 50px;
@@ -114,6 +131,9 @@
         width: 30px;
         display:inline-block;
         padding-bottom: 5px;
+      }
+      p > a {
+        font-size: 10px;
       }
     }
   }

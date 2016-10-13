@@ -1,13 +1,12 @@
 <div id="howitworks">
   <%= render "howitworks_header" %>
 
-  <section class="row expanded tab-holder">
+  <section class="row expanded small-uncollapse medium-collapse tab-holder">
     <div class="small-12 medium-6 small-centered columns on-tab">
 
       <ul class="tabs" data-tabs id="howitworks-tabs">
-        
-
         <li class="tabs-title small-4 medium-4 columns is-active">
+          <div>
            <div> 
               <%= image_tag('icons/howitworks.svg')%> 
             </div> 
@@ -16,34 +15,37 @@
               <a href="#panel1" class="text-center" aria-selected="true"> How it Works
               </a>
             </p>
+          </div> 
+        </li>
+
+        <li class="tabs-title small-4 medium-4 columns">
+          <div>
+           <div> 
+              <%= image_tag('icons/inspection.svg')%>
+            </div> 
+            <br>
+            <p>
+              <a class="text-center" href="#panel2">
+              Inspection Process
+              </a>
+            </p>
+          </div>
         </li>
 
 
 
-        <li class="tabs-title small-4 medium-4 columns">
-         <div> 
-            <%= image_tag('icons/inspection.svg')%>
-          </div> 
-          <br>
-          <p>
-            <a class="text-center" href="#panel2">
-            Inspection Process
-            </a>
-          </p>
-        </li>
-
-
-
-        <li class="tabs-title small-4 medium-4 columns">
-          <div> 
-            <%= image_tag('icons/closing.svg')%>
-          </div> 
-          <br>
-          <p>
-            <a class="text-center" href="#panel3">
-              Closing the Deal
-            </a>
-          </p>
+        <li class="tabs-title small-4 medium-4 columns end">
+          <div>
+            <div> 
+              <%= image_tag('icons/closing.svg')%>
+            </div> 
+            <br>
+            <p>
+              <a class="text-center" href="#panel3">
+                Closing the Deal
+              </a>
+            </p>
+          </div>
         </li>
 
 
