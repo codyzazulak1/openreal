@@ -1,4 +1,7 @@
 
+///Confirmation Page
+
+
 
 .confirmed-section {
 	font-size: 18px;
@@ -36,11 +39,31 @@ div.confirmed-columns{
   padding-right: 18em;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 425px){
+	div.confirmed-columns{
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		p {
+			font-size: 14px;
+		}
+	}
+
+	div.row-2 {
+			button {
+				width: 13em;
+			}
+		}
+}
+
+@media (min-width:426px) and (max-width: 768px){
 	div.confirmed-columns {
 		padding-left: 0.5em;
 		padding-right: 0.5em;
 		font-size: 0.5em;
+
+		p {
+			font-size: 16px;
+		}
 
 	}
 	.confirm-b .button{
@@ -51,4 +74,21 @@ div.confirmed-columns{
 	.confirmed-logo {
 		width:5rem;
 	}
+
+	div.row-2 {
+		.button {
+			width: 8.5em;
+		}
+	}
 }
+
+
+
+@media (min-width:769px) and (max-width: 1024px) {
+	div.row-2 {
+		.button {
+			width: 11.5em;
+		}
+	}
+}
+
