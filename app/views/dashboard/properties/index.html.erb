@@ -29,51 +29,53 @@
         </form>
       </div>
 
-      <% if @properties_paged.count > 0 %>
-      <ul class="dashboard-list-body">
-        <% @properties_paged.each do |p| %>
-        <li class="dashboard-list-item row collapse">
-          <div class="small-2 columns dashboard-listing-img">
-            <a href="<%= dashboard_property_path(p) %>">
-              <img src="<%= p.photos.count == 0 ? 'http://placehold.it/350x150?text=%20' : p.photos.first.picture %>">
-            </a>
-          </div>
-          <div class="small-10 columns end">
-            <div class="dashboard-listing-overview float-left">
-              <h3>
-                <%= link_to p.address_name, dashboard_property_path(p)+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) %>
-              </h3>
-              <div>
-                <%#=# link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+      <% if @properties.count > 0 %>
+        <% if @properties_paged.count > 0 %>
+        <ul class="dashboard-list-body">
+          <% @properties_paged.each do |p| %>
+          <li class="dashboard-list-item row collapse">
+            <div class="small-2 columns dashboard-listing-img">
+              <a href="<%= dashboard_property_path(p) %>">
+                <img src="<%= p.photos.count == 0 ? 'http://placehold.it/350x150?text=%20' : p.photos.first.picture %>">
+              </a>
+            </div>
+            <div class="small-10 columns end">
+              <div class="dashboard-listing-overview float-left">
+                <h3>
+                  <%= link_to p.address_name, dashboard_property_path(p)+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) %>
+                </h3>
+                <div>
+                  <%#=# link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+                </div>
+              </div>
+
+              <div class="float-right" style="width: 5rem;">
+                <select class="dashboard-listing-status" data-url="<%= dashboard_property_status_path(p) %>">
+                  <optgroup label="Customer Submitted">
+                    <% @customer_submitted.each do |cs| %>
+                      <option value=<%=cs.name%> <%= "selected" if p.status.name == cs.name %> ><%= cs.name %></option>
+                    <%end%>
+                  </optgroup>
+                  <optgroup label="Agent Submitted">
+                    <% @agent_submitted.each do |as| %>
+                      <option value=<%=as.name%> <%= "selected" if p.status.name == as.name %>><%= as.name %></option>
+                    <%end%>
+                  </optgroup>
+                  <optgroup label="Owned Properties">
+                    <% @owned.each do |o| %>
+                      <option value=<%=o.name%> <%= "selected" if p.status.name == o.name %>><%= o.name %></option>
+                    <%end%>
+                  </optgroup>
+                </select>
               </div>
             </div>
-
-            <div class="float-right" style="width: 5rem;">
-              <select class="dashboard-listing-status" data-url="<%= dashboard_property_status_path(p) %>">
-                <optgroup label="Customer Submitted">
-                  <% @customer_submitted.each do |cs| %>
-                    <option value=<%=cs.name%> <%= "selected" if p.status.name == cs.name %> ><%= cs.name %></option>
-                  <%end%>
-                </optgroup>
-                <optgroup label="Agent Submitted">
-                  <% @agent_submitted.each do |as| %>
-                    <option value=<%=as.name%> <%= "selected" if p.status.name == as.name %>><%= as.name %></option>
-                  <%end%>
-                </optgroup>
-                <optgroup label="Owned Properties">
-                  <% @owned.each do |o| %>
-                    <option value=<%=o.name%> <%= "selected" if p.status.name == o.name %>><%= o.name %></option>
-                  <%end%>
-                </optgroup>
-              </select>
-            </div>
-          </div>
-        </li>
+          </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <div class="text-center">No record</div>
         <% end %>
-      </ul>
-      <% else %>
-        <div class="text-center">No record</div>
-      <% end %>
+      <%end%>
     </div>
 
     <%= will_paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
