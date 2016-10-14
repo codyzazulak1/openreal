@@ -86,33 +86,32 @@ $deep-blue-color: #2ba8de;
       border: none;
     }
 
-    .tabs-title:hover {
-      div.activity {
-        box-sizing: border-box;
-        border: 1px white solid;
-        box-shadow: 1px 1px 10px whitesmoke;
-        cursor: pointer;
-        width: 64%;
-        padding-top: 6%;
-        border: 1px solid white;
-        max-width: 200px;
-        min-width: 102px;
-        }
-    }
 
-  ul {     
-    .columns {
-      padding-left: 0.9375rem;
-      padding-right: 0.9375rem;
-    }
-  }
     li {
       padding: 1rem 0;
       position: relative;
 
-      .activity {
+      &.is-active {
+        div.activity {
+          box-sizing: border-box;
+          border: 1px white solid;
+          box-shadow: 1px 1px 10px whitesmoke;
+          cursor: pointer;
+          width: 65%;
+          padding-top: 6%;
+          border: 1px solid white;
+          max-width: 200px;
+          min-width: 102px;
+          max-height: 120px;
+          min-height: 100px;
+        }
+      }
+
+      div.activity {
         width: 64%;
         padding-top: 6%;
+        max-height: 120px;
+        min-height: 100px;
       }
       div {
         width: 50px;
