@@ -9,7 +9,8 @@ class Dashboard::PropertiesController < ApplicationController
     @agent_submitted = Status.where(category: "Agent Submitted")
     @owned = Status.where(category: "Owned Properties")
     categories = ["Customer Submitted", "Agent Submitted", "Owned Properties"]
-    names = @customer_submitted.map{|cs| cs.name}
+    names = [].push(@customer_submitted
+              .map{|cs| cs.name})
             .push(@agent_submitted
               .map{|as| as.name})
             .push(@owned
