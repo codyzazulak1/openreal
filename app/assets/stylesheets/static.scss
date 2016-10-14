@@ -2,18 +2,6 @@
 
 $deep-blue-color: #2ba8de;
 
-// DIV for max-width 1024px
-//    width: 9em;
-//    border: 1px solid white;
-//    padding-top: 0.5em;
-
-// DIV for max-width 768px
-// width: 9em;
-// border and padding same
-
-//DIV for max-width 375px
-// width: 5.7em;
-
 // how it works page
 #howitworks {
   #hero {
@@ -51,7 +39,7 @@ $deep-blue-color: #2ba8de;
         font-size: 5.5rem;
         line-height: 1;
         color: $medium-gray;
-        font-size: 80px;
+     //   font-size: 80px;
         width: 100px;
         height: 100px;
         text-align: center;
@@ -147,6 +135,32 @@ $deep-blue-color: #2ba8de;
       }
     }
   }
+@media (max-width: 436px){
+  .steps-right {
+    .order {
+      position: relative;
+      margin-left: auto;
+      h2 {
+        width: auto;
+        font-size: 55px;
+      }
+    }
+    h3 {
+      margin-top:auto;
+    }
+  }
+}
+@media (min-width: 426px) and (max-width: 638px){
+  .steps-right {
+    .order {
+      padding-left: 15px;
+
+      h2{
+        font-size:45px;
+      }
+    }
+  }
+}
 }
 
 #faq-content,
