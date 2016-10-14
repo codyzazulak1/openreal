@@ -184,7 +184,13 @@
   </div>
   <hr>
   <%= render 'get_offer' %>
-
+<script type="text/javascript">
+  $('.tabs-title').click(function(){
+    if($('li').hasClass('is-active'){
+      console.log("it works");
+    });
+  });
+</script>
 </div>
 
 
