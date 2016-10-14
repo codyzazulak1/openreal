@@ -16,9 +16,6 @@
           <li>
             <a href="/contact">Contact us</a>
           </li>
-          <li>
-            <%= link_to 'Admin Access', new_admin_session_path %>
-          </li>
         </ul>
       </div>
 
@@ -43,7 +40,7 @@
   </div>
   <div class="row bottom">
       <div class="small-12 columns text-center">
-        <h6>&copy; <%= Time.now.year %> OpenReal.ca</h6>
+        <h6>&copy; <%= Time.now.year %> OpenReal.ca | <span><small><%= link_to 'Admin Access', dashboard_path, style: "color:white;"%></small></span></h6>
       </div>
     </div>
 </footer>
