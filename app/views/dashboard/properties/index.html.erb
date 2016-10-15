@@ -44,7 +44,7 @@
                   <% if p.address %>
                     <%= link_to p.address_name, dashboard_property_path(p)+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) %>
                   <%else%>
-                    No associated address
+                    No associated address. (<%= p.created_at %>)
                   <%end%>
                 </h3>
                 <div>
