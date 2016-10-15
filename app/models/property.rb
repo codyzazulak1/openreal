@@ -3,7 +3,7 @@ class Property < ActiveRecord::Base
 
   validates :list_price_cents, presence: true
 
-  has_one :address, dependent: :destroy, validates: true
+  has_one :address, dependent: :destroy
   has_one :contact_form, dependent: :destroy
   has_many :photos, dependent: :destroy
   belongs_to :status
