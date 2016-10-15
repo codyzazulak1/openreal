@@ -30,7 +30,6 @@
       </div>
 
       <% if @properties.count > 0 %>
-        <% if @properties_paged.count > 0 %>
         <ul class="dashboard-list-body">
           <% @properties_paged.each do |p| %>
           <li class="dashboard-list-item row collapse">
@@ -42,7 +41,11 @@
             <div class="small-10 columns end">
               <div class="dashboard-listing-overview float-left">
                 <h3>
-                  <%= link_to p.address_name, dashboard_property_path(p)+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) %>
+                  <% if p.address %>
+                    <%= link_to p.address_name, dashboard_property_path(p)+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) %>
+                  <%else%>
+                    No associated address
+                  <%end%>
                 </h3>
                 <div>
                   <%#=# link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete", dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
@@ -75,7 +78,6 @@
         <% else %>
           <div class="text-center">No record</div>
         <% end %>
-      <%end%>
     </div>
 
     <%= will_paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
