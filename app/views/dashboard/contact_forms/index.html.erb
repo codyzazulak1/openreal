@@ -1,7 +1,7 @@
 <div class="row expanded">
   <%= render "dashboard/side_panel"%>
 
-  <div class="medium-9 columns dashboard-content">
+  <div class="medium-9 columns dashboard-content push-footer">
     <h1>Contact Forms</h1>
     <hr>
 
@@ -15,7 +15,11 @@
             <% if cf.property.nil? %>
             No property associated with <%= cf.name%>
             <% else %>
-              <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
+              <% if cf.property.address %>
+                <%= link_to cf.property.address_name, dashboard_property_path(cf.property) %>
+              <%else%>
+                No associated address. (<%= cf.property.created_at %>)
+              <%end%>
             <%end%> 
           </span>
           </h6>

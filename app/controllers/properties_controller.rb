@@ -160,7 +160,7 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photos = @property.photos.build
     @contact.property = @property
-    @contact.status = "Unanswered"
+    @contact.status = Status.find_by(name: "Unappraised")
     @contact.sub_type = "Property Submission"
     @property.list_price_cents = 0
 

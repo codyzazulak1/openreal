@@ -2,32 +2,52 @@
 <div id="howitworks">
   <%= render "howitworks_header" %>
 
-  <section class="row expanded icon-holder">
-    <div class="medium-6 medium-centered columns icon-columns">
-      <ul class="tabs inline-list" data-tabs id="howitworks-tabs">
-        <div class="div-1">
-          <li class="tabs-title small-4 columns x is-active">
-              <%= image_tag('icons/howitworks.svg', class: "title_icons")%>
-              <a href="#panel1" class="text-center remove-greybkgr" aria-selected="true">How it Works</a>
-          </li>
-        </div>
+  <section class="row expanded small-uncollapse medium-collapse tab-holder">
+    <div class="small-12 medium-6 small-centered columns on-tab">
 
-        <div class="div-1">
-          <li class="tabs-title small-4 columns x">
-          <%= image_tag('icons/inspection.svg', class: "title_icons")%>
-            <a class="text-center remove-greybkgr" href="#panel2">
+      <ul class="tabs" data-tabs id="howitworks-tabs">
+        <li class="tabs-title small-4 medium-4 columns is-active">
+          <div class="activity">
+             <div> 
+                <%= image_tag('icons/howitworks.svg')%> 
+              </div> 
+              <br>
+              <p>
+                <a href="#panel1" class="text-center" aria-selected="true"> How it Works
+                </a>
+              </p> 
+          </div>
+        </li>
+
+        <li class="tabs-title small-4 medium-4 columns">
+          <div class="activity">
+           <div> 
+              <%= image_tag('icons/inspection.svg')%>
+            </div> 
+            <br>
+            <p>
+              <a class="text-center" href="#panel2">
               Inspection Process
-            </a>
-          </li>
-        </div>
-        <div class="div-1">
-          <li class="tabs-title small-4 columns x">
-          <%= image_tag('icons/closing.svg', class: "title_icons")%>
-            <a class="text-center remove-greybkgr" href="#panel3">
-              Closing the Deal
-            </a>
-          </li>
-        </div>
+              </a>
+            </p>
+          </div>
+        </li>
+
+        <li class="tabs-title small-4 medium-4 columns end">
+          <div class="activity">
+            <div> 
+              <%= image_tag('icons/closing.svg')%>
+            </div> 
+            <br>
+            <p>
+              <a class="text-center" href="#panel3">
+                Closing the Deal
+              </a>
+            </p>
+          </div>
+        </li>
+
+
       </ul>
     </div>
   </section>
@@ -36,13 +56,13 @@
 
     <div class="tabs-panel is-active" id="panel1">
       <section class="row">
-        <div class="medium-8 medium-centered columns">
+        <div class="medium-6 medium-offset-3 columns">
 
           <div class="row">
             <div class="small-3 medium-2 columns steps-left">
 
             </div>
-            <div class="small-9 medium-10 columns steps-right">
+            <div class="columns steps-right">
               <div class="order">
                 <h2>1</h2>
               </div>
@@ -54,7 +74,7 @@
           <div class="row">
             <div class="small-3 medium-2 columns steps-left">
             </div>
-            <div class="small-9 medium-10 columns steps-right">
+            <div class="columns steps-right">
               <div class="order">
                 <h2>2</h2>
               </div>
@@ -66,11 +86,11 @@
           <div class="row">
             <div class="small-3 medium-2 columns steps-left">
             </div>
-            <div class="small-9 medium-10 columns steps-right">
+            <div class="columns steps-right">
               <div class="order">
                 <h2>3</h2>
               </div>
-              <h3>Schedule your home inspection and guarantee</h3>
+              <h3>Schedule your home inspection</h3>
               <p>If you like the price we’ll do a free, quick home inspection to confirm your home’s condition and guarantee your price in writing.</p>
             </div>
           </div>
@@ -80,11 +100,11 @@
             <div class="small-3 medium-2 columns steps-left">
 
             </div>
-            <div class="small-9 medium-10 columns steps-right">
+            <div class="columns steps-right">
               <div class="order">
                 <h2>4</h2>
               </div>
-              <h3>Choose your move-out date.</h3>
+              <h3>Choose your move-out date</h3>
               <p>Select the closing date you want, from 3 to 60 days from today.</p>
             </div>
           </div>
@@ -93,11 +113,11 @@
             <div class="small-3 medium-2 columns steps-left">
 
             </div>
-            <div class="small-9 medium-10 columns steps-right">
+            <div class="columns steps-right">
               <div class="order">
                 <h2>5</h2>
               </div>
-              <h3>We’ll take care of the rest.</h3>
+              <h3>We’ll take care of the rest</h3>
               <p>Watch the progress of your sale while we take care of all of the details, including arranging escrow.</p>
             </div>
           </div>
@@ -106,7 +126,7 @@
             <div class="small-3 medium-2 columns steps-left">
 
             </div>
-            <div class="small-9 medium-10 columns steps-right">
+            <div class="columns steps-right">
               <div class="order">
                 <h2>6</h2>
               </div>
@@ -167,3 +187,5 @@
   <%= render 'get_offer' %>
 
 </div>
+
+

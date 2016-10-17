@@ -43,4 +43,8 @@ class WelcomeController < ApplicationController
   def contact
   end
 
+  def mortcalc
+
+  end
+
 end

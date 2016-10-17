@@ -24,11 +24,7 @@
       <div class="accordion-content" data-tab-content>
         <% @property_attributes.each do |u| %>
           <%= f.label u %>
-          <% if u == "status" %>
-            <%= f.text_field u.name %>
-          <%else%>
-            <%= f.text_field u.to_sym %>
-          <%end%>
+          <%= f.text_field u.to_sym %>
         <% end %>
       </div>
     </li>
