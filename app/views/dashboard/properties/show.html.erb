@@ -13,7 +13,7 @@
           </div>
           <div class="float-right">
             <%= link_to "Edit", edit_dashboard_property_path(@property), class: "btn btn-primary" %>
-            <%=link_to "Delete", @property, method: :delete, class: "btn btn-secondary" %>
+            <%=link_to "Delete", dashboard_property_path(@property), method: :delete, class: "btn btn-secondary" %>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <ul>
               <% @address_attributes.each do |u| %>
                 <li>
-                  <h5><%= u %></h5>
+                  <h5><u><%= u.gsub('_', ' ').titleize %></u>:</h5>
                   <p><%= @property.address[u] %></p>
                 </li>
               <% end %>
@@ -34,7 +34,7 @@
             <ul>
               <% @property_attributes.each do |u| %>
                 <li>
-                  <h5><%= u %></h5>
+                  <h5><u><%= u.gsub('_', ' ').titleize %></u>:</h5>
                   <p><%= @property[u] %></p>
                 </li>
               <%end%>
