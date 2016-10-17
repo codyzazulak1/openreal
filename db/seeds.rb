@@ -34,3 +34,20 @@ arr.each do |u|
   Upgrade.create(name: u)
 
 end
+
+Admin.create(first_name: "Steven", last_name: "Kang", email: "steven@admin.com", password: "openadminsk", password_confirmation: "openadminsk")
+Admin.create(first_name: "Fio", last_name: "Leon-Gomez", email: "fiol@openreal.ca", password: "openadminfl", password_confirmation: "openadminfl")
+Admin.create(first_name: "Cody", last_name: "Zazulak", email: "codyz@openreal.ca", password: "openadmincz", password_confirmation: "openadmincz")
+
+puts "Steven Admin"
+puts "stevenk@openreal.ca"
+puts "openadminsk"
+puts "-------------------------------"
+puts "Fio Admin"
+puts "fio@openreal.ca"
+puts "openadminfl"
+puts "-------------------------------"
+puts "Cody Admin"
+puts "patrick@openreal.ca"
+puts "openadmincz"
+puts "-------------------------------"

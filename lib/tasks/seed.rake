@@ -65,21 +65,21 @@ namespace :seed do
   task :admins, [] => :environment do
     raise "Can't run on Production" if Rails.env.production?
 
-    Admin.create(first_name: "Steven", last_name: "Admin", email: "steven@admin.com", password: "butts1", password_confirmation: "butts1")
-    Admin.create(first_name: "Patrick", last_name: "Admin", email: "fio@admin.com", password: "butts1", password_confirmation: "butts1")
-    Admin.create(first_name: "Fio", last_name: "Admin", email: "patrick@admin.com", password: "butts1", password_confirmation: "butts1")
+    Admin.create(first_name: "Steven", last_name: "Kang", email: "steven@admin.com", password: "openadminsk", password_confirmation: "openadminsk")
+    Admin.create(first_name: "Fio", last_name: "Leon-Gomez", email: "fiol@openreal.ca", password: "openadminfl", password_confirmation: "openadminfl")
+    Admin.create(first_name: "Cody", last_name: "Zazulak", email: "codyz@openreal.ca", password: "openadmincz", password_confirmation: "openadmincz")
 
     puts "Steven Admin"
-    puts "steven@admin.com"
-    puts "butts1"
+    puts "stevenk@openreal.ca"
+    puts "openadminsk"
     puts "-------------------------------"
     puts "Fio Admin"
-    puts "fio@admin.com"
-    puts "butts1"
+    puts "fio@openreal.ca"
+    puts "openadminfl"
     puts "-------------------------------"
-    puts "Patrick Admin"
-    puts "patrick@admin.com"
-    puts "butts1"
+    puts "Cody Admin"
+    puts "patrick@openreal.ca"
+    puts "openadmincz"
     puts "-------------------------------"
   end
 
