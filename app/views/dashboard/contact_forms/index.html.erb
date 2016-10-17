@@ -16,7 +16,7 @@
             No property associated with <%= cf.name%>
             <% else %>
               <% if cf.property.address %>
-                <%= link_to cf.property.address_name, dashboard_properties_path(cf.property) %>
+                <%= link_to cf.property.address_name, dashboard_property_path(cf.property) %>
               <%else%>
                 No associated address. (<%= cf.property.created_at %>)
               <%end%>
