@@ -23,10 +23,8 @@
       <a href="#" class="accordion-title">Basics</a>
       <div class="accordion-content" data-tab-content>
         <% @property_attributes.each do |u| %>
-          <%= f.label u %>
-          <% if u == "status" %>
-            <%= f.text_field u.name %>
-          <%else%>
+          <% if u != "status" %>
+            <%= f.label u %>
             <%= f.text_field u.to_sym %>
           <%end%>
         <% end %>

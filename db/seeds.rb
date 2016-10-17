@@ -35,7 +35,7 @@ arr.each do |u|
 
 end
 
-Admin.create(first_name: "Steven", last_name: "Kang", email: "steven@admin.com", password: "openadminsk", password_confirmation: "openadminsk")
+Admin.create(first_name: "Steven", last_name: "Kang", email: "stevenk@openreal.ca", password: "openadminsk", password_confirmation: "openadminsk")
 Admin.create(first_name: "Fio", last_name: "Leon-Gomez", email: "fiol@openreal.ca", password: "openadminfl", password_confirmation: "openadminfl")
 Admin.create(first_name: "Cody", last_name: "Zazulak", email: "codyz@openreal.ca", password: "openadmincz", password_confirmation: "openadmincz")
 
