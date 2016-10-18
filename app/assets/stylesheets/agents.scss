@@ -1,0 +1,17 @@
+//Agents
+
+.agent_landingpage {
+	min-height: calc(100vh - 266px);
+	.section-1 {
+		font-size: 20px;
+		font-weight: 400;
+		margin-top: 8rem;
+		background-image: url("paper.gif");
+		text-align: center;
+		//border: 1px solid grey;
+
+		h2 {
+			color: #52b7e7;
+		}
+	}
+}
