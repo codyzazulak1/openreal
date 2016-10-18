@@ -14,7 +14,6 @@
 
 		h2 {
 			color: #52b7e7;
-
 		}
 
 		h6 {
@@ -36,9 +35,27 @@
 	}
 
 	.info {
-		p {
-			color: black;
-			font-weight: 400;
+
+		
+		h6 {
+			display: inline-block;
+			text-transform: uppercase;
+			font-weight: 200;
+			font-size: smaller;
+		}
+		h3 {
+			font-weight: 100;
+			
+		}
+
+		.boxed {
+			text-align: right;
+			display: inline-block;
+
+			img {
+				//display: inline-block;
+				max-width: 50px;
+			}
 		}
 	}
 
