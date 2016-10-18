@@ -44,12 +44,12 @@
 			font-size: smaller;
 		}
 		h3 {
-			font-weight: 100;
+			font-weight: 300;
 			
 		}
 
 		.boxed {
-			text-align: right;
+			text-align: -webkit-auto;
 			display: inline-block;
 
 			img {
@@ -57,6 +57,37 @@
 				max-width: 50px;
 			}
 		}
+
+		.contained-paragraphs {
+	    font-weight: 100;
+	    text-align: justify;
+	    font-size: 1rem;
+
+	    .sole-paragraph {
+	    	margin-bottom: 0.5rem;
+	    }
+
+	    .small-print {
+	    	line-height: 1rem;
+	    	color: grey;
+	    }
+
+	    span {
+	    	display: block;
+    		margin-top: 1rem;
+
+    		a {
+			    text-decoration: none;
+			    padding: 0.5rem 0.5rem;
+			    font-weight: 100;
+			    border: 0.5px solid #52b7e7;
+			    background: #52b7e7;
+			    color: white;
+	    	}
+	    }
+
+		}
+
 	}
 
 	@media screen and (max-width: 450px){
@@ -65,6 +96,19 @@
 				span {
 					padding: 0.5rem 3rem;
 				}
+			}
+		}
+
+		.info {
+			h3 {
+				font-weight: 400;
+			}
+			.boxed {
+				margin-bottom: 1.5rem;
+			}
+			.columns:nth-child(1),
+			.columns:nth-child(2) {
+				margin-bottom: 2rem;
 			}
 		}
 }
