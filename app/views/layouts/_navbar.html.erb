@@ -10,7 +10,9 @@
         <li>
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
-
+        <li class="show-for-medium">
+          <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
+        </li>
         <li class="show-for-medium">
           <a href=<%= pricing_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'pricing' %>>Pricing</a>  
         </li>
@@ -24,6 +26,7 @@
         <li class="show-for-medium">
           <a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>> Contact</a>
         </li>
+        
         <% if admin_signed_in?%>
         <li class="show-for-medium">
           <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
@@ -33,6 +36,9 @@
         <li class="show-for-small-only"><!--
           --><a href="">More</a>
           <ul id="nav-dropdown">
+            <li>
+              <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
+            </li>
             <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
             <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li>
 
