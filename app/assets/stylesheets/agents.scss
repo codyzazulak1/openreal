@@ -8,7 +8,7 @@
 		font-weight: 400;
 		padding-top: 8rem;
 		padding-bottom: 8rem;
-		background-image: url("paper.gif");
+		background-image: url("http://cdn.wallpapersafari.com/86/82/cWR4gJ.jpg");
 		text-align: center;
 		//border: 1px solid grey;
 
@@ -88,6 +88,33 @@
 
 		}
 
+	}
+
+	.accepting-cities {
+		background-color: whitesmoke;
+		.city-grid {
+			//color: #52b7e7;
+			background-color: #52b7e7;
+	 		text-align: center;
+	 		overflow: hidden;
+	 		padding: 30px 10px;
+		  text-transform: uppercase;
+		  letter-spacing: 2px;
+		  color: #eceef0;
+
+		  h3 {
+		  	font-weight: 200;
+		  }
+		}
+		.bkg-white {
+			background-color: white;
+		}
+	}
+
+	.form-start {
+		.form-title {
+			color: #52b7e7;
+		}
 	}
 
 	@media screen and (max-width: 450px){
