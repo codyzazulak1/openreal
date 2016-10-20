@@ -47,4 +47,7 @@ class WelcomeController < ApplicationController
 
   end
 
+  def agents
+    
+  end
 end

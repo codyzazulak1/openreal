@@ -44,10 +44,11 @@ Rails.application.routes.draw do
   get 'howitworks', action: :howitworks, controller: 'welcome'
   get 'contact_us', action: :new, controller: 'contact_forms'
 
+  get 'agents', action: :agents, controller: 'welcome'
   get 'pricing', action: :pricing, controller: 'welcome'
   get 'faq', action: :faq, controller: 'welcome'
   get 'terms', action: :terms, controller: 'welcome'
   get 'contact', action: :contact, controller: 'welcome'
-  get 'mortcalc', action: :mortcalc, controller: 'welcome'
   #get '/register', action: :register, controller: 'welcome'
+  get 'agents', action: :agents, controller: 'welcome'
 end
