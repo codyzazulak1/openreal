@@ -1,0 +1,29 @@
+<div class="row expanded">
+
+  <%= render "dashboard/side_panel" %>
+
+  <div class="medium-9 columns dashboard-content push-footer">
+    <h1>
+      Agent Forms
+    </h1>
+
+    <ul>
+      <% @aforms.each do |u| %>
+        <li>
+          <ul>
+            <li>
+              Name: <%= u.full_name %>
+            </li>
+            <li>
+              Email: <%= u.email %>
+            </li>
+            <li>
+              Company: <%= u.company_name %>
+            </li>
+          </ul>
+          <br>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>
