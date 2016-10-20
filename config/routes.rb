@@ -37,9 +37,10 @@ Rails.application.routes.draw do
       patch 'status', action: :status
     end
     resources :contact_forms
+    resources :agent_forms
   end
 
-  resources :agent_forms
+  resources :agent_forms, only: [:new, :create]
 
   get 'dashboard', action: :index, controller: 'dashboard'
 
