@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   #get 'properties/filter', action: :filter, controller: 'properties'
-  resources :properties, only: [:new, :create] do
+  resources :properties, only: [:new, :create, :destroy] do
     resources :address
   end
   #resources :photos
@@ -38,6 +38,9 @@ Rails.application.routes.draw do
     end
     resources :contact_forms
   end
+
+  resources :agent_forms
+
   get 'dashboard', action: :index, controller: 'dashboard'
 
   # static pages

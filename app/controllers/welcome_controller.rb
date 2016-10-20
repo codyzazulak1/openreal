@@ -44,10 +44,9 @@ class WelcomeController < ApplicationController
   end
 
   def mortcalc
-
   end
 
   def agents
-    
+    @aform = AgentForm.new
   end
 end
