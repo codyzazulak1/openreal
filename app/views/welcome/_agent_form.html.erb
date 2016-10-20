@@ -1,0 +1,19 @@
+<div class="agent-form">
+  <%= form_for aform do |f| %>
+    <div>
+      <%= f.label :full_name %>
+      <%= f.text_field :full_name %>
+    </div>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :company_name %>
+      <%= f.text_field :company_name %>
+    </div>
+    <div>
+      <%= f.submit "Submit" %>
+    </div>
+  <%end%>
+</div>
