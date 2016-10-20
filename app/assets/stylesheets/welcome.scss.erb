@@ -253,4 +253,37 @@
       }
     }
   }
+  @media screen and (max-width: 450px){
+    container {
+
+      span {
+        position: relative;
+        top: 25%;
+        left: 0;
+        transform: translate(0,-50%);
+        vertical-align: -webkit-baseline-middle;
+      }
+      .coming-soon {
+        display: block;
+        color: white;
+        font-family: Circular, "Helvetica Nueue";
+        font-size: 0.8em;
+        transition: all 2s ease-in-out;
+        padding: 3px;
+      }
+      &:hover .coming-soon{
+        display: none;
+        color:white;
+        font-family: Circular,"Helvetica Neue";
+        font-size: 0.8em;
+        transition: all 2s ease-in-out;
+        padding: 3px;
+      }
+      &:hover .city-name {
+        color: $white;
+        -webkit-filter: blur(0px);
+      }
+    }
+  }
+  
 }
