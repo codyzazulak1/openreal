@@ -8,7 +8,7 @@
 		font-weight: 400;
 		padding-top: 8rem;
 		padding-bottom: 8rem;
-		background-image: url("http://cdn.wallpapersafari.com/86/82/cWR4gJ.jpg");
+		background-image: url('agents_page.jpg');
 		text-align: center;
 		//border: 1px solid grey;
 
@@ -91,19 +91,24 @@
 	}
 
 	.accepting-cities {
-		background-color: whitesmoke;
+	//	background-color: whitesmoke;
+		img {
+			vertical-align: center;
+			width: 3rem;
+		}
 		.city-grid {
 			//color: #52b7e7;
-			background-color: #52b7e7;
+			//background-color: #52b7e7;
 	 		text-align: center;
 	 		overflow: hidden;
 	 		padding: 30px 10px;
-		  text-transform: uppercase;
-		  letter-spacing: 2px;
-		  color: #eceef0;
+		 // text-transform: uppercase;
+		//  letter-spacing: 2px;
+		//  color: #eceef0;
+		  margin-top: -19px;
 
 		  h3 {
-		  	font-weight: 200;
+		  	font-weight: 300;
 		  }
 		}
 		.bkg-white {
@@ -114,6 +119,57 @@
 	.form-start {
 		.form-title {
 			color: #52b7e7;
+		}
+		.form-content {
+	    border: 1px solid transparent;
+	    box-sizing: border-box;
+	    box-shadow: 1px 1px 27px #52b7e7;
+
+			img {
+				vertical-align: center;
+				width: 3rem;
+			}
+
+			h6 {
+				font-weight: 100;
+				margin-bottom: 1em;
+			}
+
+			h3 {
+				color: #52b7e7;
+			}
+
+	}
+
+		.agent-form {
+			.field {
+		    text-align: initial;
+		   // display: inline-block;
+
+		    label {
+		    	font-size: large;
+		    	font-weight: 100;
+		    	color: #484848;
+		    }
+		  .reveal {
+	    	display: none;
+	    	top: 0;
+	    	margin: 0.5em 0;
+    		width: 100%;
+    		min-height: 0;
+	    }
+			}
+			.agent-submit {
+				input {
+		    	background-color: #52b7e7;
+		    	color: white;
+		    	border: 1px solid #52b7e7;
+		    	padding: 0.6em 0;
+			    margin: 1em 0px;
+			    width: 100%;
+	    	}
+
+	    }
 		}
 	}
 
@@ -138,6 +194,24 @@
 				margin-bottom: 2rem;
 			}
 		}
-}
+	}
+
+	@media screen and (max-width: 639px){
+		.form-start {
+			.agent-form {
+				.reveal {
+					font-size: 12px;
+					padding: 0 0.7em;
+					height: 2.5em;
+				}
+			}
+
+			.form-content {
+				border: none;
+		    box-sizing: border-box;
+		    box-shadow: none;
+			}
+		}
+	}
 }
 

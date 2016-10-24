@@ -11,8 +11,8 @@
 				<h6>Guarantee your sales(and peace of mind). Every time.</h6>
 			</div>
 			<div class="small-12 small-centered columns">
-        <%= render 'agent_form', aform: @aform %>
-			  <a href="#form-signup"> <!--add transitions -->
+			  <a href="#form-signup" data-animation-duration> <!--add transitions -->
+			  	<span>SIGN UP</span>
 			  </a>
 		  </div>
 		</div>
@@ -92,9 +92,10 @@
 		</div>
 	</section>
 
-
+<hr>
 	<section class="accepting-cities">
 		<div class="row">
+			<div><%= image_tag 'logo_med.png' %></div>
 			<div class="columns city-grid">
 				<h3>Where we're accepting agents and listings</h3>
 			</div>
@@ -149,9 +150,40 @@
 	</section>
 
 	<section class="form-start" id="form-signup">
-		<div class="row form-title">
-			<h5>LET US WORK FOR YOU</h5>
+		<!-- <div class="row form-title">
+			<h3>Let us work for you</h3>
+		</div>
+ -->
+		<div class="row">
+			<div class="form-content small-12 small-centered medium-6 medium-centered columns">
+				<div>
+					<h3>Let us work for you</h3>
+					<h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquet nunc eu. </h6>
+					<%#= image_tag 'logo_med.png' %>
+				</div>
+				<div>
+					<%= render 'agent_form', aform: @aform %>
+				</div>
+			</div>
 		</div>
 	</section>
 
 </div>	
+
+<script type="text/javascript">
+	$(function() {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+
+</script>
