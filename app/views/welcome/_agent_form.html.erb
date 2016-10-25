@@ -14,32 +14,26 @@
  
       <%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag"}%>
 
-      <div id="div1"></div>
-
-  <p class="reveal">Load</p>     
+      <div id="div1"></div>   
     </div>
-    <div class="field agent-submit">
-      <%= f.submit "Submit" %>
+    <div class="field agent-submit" data-reveal-id="myModal">
+      <%= f.submit "Submit", "data-reveal-id" => "myModal" %>
+    </div>
+    <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <span>&#10004;</span>
+      <h2 id="modalTitle">Success!</h2>
+      <p>Great! You'll hear from us soon.</p>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
     </div>
   <%end%>
 </div>
 
 <script type="text/javascript">
-  function text_field(){
-    var form = document.getElementById("options-tag");
-    
-    form.addEventListener("change", function(){
-        var value = form.options[form.selectedIndex].value;
-        if (value === 'other'){
-          document.getElementById('div1').innerHTML='<input type="text" name="agent_form[company_name]" />';
-          document.getElementsByClassName('reveal')[1].style.display = "inherit"; 
-          } else {
-            document.getElementById('div1').innerHTML='';
-            document.getElementsByClassName('reveal')[1].style.display = "none";
-          }
-        });//close form event
-    };
   
 text_field();
-
+$(document).ready(function() {
+    $(".agent-submit").click(function() {
+      $('#myModal').foundation('open')
+    });
+});
 </script>
