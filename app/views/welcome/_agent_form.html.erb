@@ -13,7 +13,6 @@
 
  
       <%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag"}%>
-      <%= f.collection_select :company_name%>
 
       <%= f.label :company_name, :class => "reveal" %>
       <%= f.text_field :company_name, placeholder: "Your company's name", :class => "reveal" %>
