@@ -12,3 +12,12 @@ function text_field(){
         }
   });//close form event
 };
+
+function reset(){
+  var form = document.getElementById("options-tag")
+  var element = form.querySelectorAll("[type='submit']");
+  console.log(element);
+  element.addEventListener("click", function(){
+    form.reset();
+  });
+}
