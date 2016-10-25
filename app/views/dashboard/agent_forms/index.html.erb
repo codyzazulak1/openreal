@@ -11,24 +11,20 @@
       <% @aforms.each do |u| %>
         <li class="dashboard-aform">
           <div>
-            <h5>Name:</h5>
-            <span><%= u.full_name %></span>
-          </div>
-          <div>
-            <h5>Email:</h5>
-            <span><%= u.email %></span>
-          </div>
-          <div>
-            <h5>Company: </h5>
-            <span><%= u.company_name %></span>
-          </div>
+            <span><strong>NAME:</strong> <%= u.full_name%></span>
+            |
+            <span><strong>EMAIL:</strong> <%= u.email%></span>
+            |
+            <span><strong>COMPANY:</strong> <%= u.company_name%></span>
           <div>
             <span>
               <%= link_to "Edit", edit_dashboard_agent_form_path(u) %>
+               |
               <%= link_to "Delete", dashboard_agent_form_path(u), method: :delete %>
             </span>
           </div>
         </li>
+        <hr>
       <%end%>
     </ul>
   </div>
