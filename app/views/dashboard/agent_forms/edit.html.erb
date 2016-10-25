@@ -1,0 +1,9 @@
+<%= form_for [:dashboard, @aform] do |af| %>
+  <%= af.label :full_name %>
+  <%= af.text_field :full_name %>
+  <%= af.label :email %>
+  <%= af.text_field :email %>
+  <%= af.label :company_name %>
+  <%= af.text_field :company_name %>
+  <%= af.submit :submit %>
+<%end%>

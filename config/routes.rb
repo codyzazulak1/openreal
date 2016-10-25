@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   #get 'properties/filter', action: :filter, controller: 'properties'
-  resources :properties, only: [:new, :create] do
+  resources :properties, only: [:new, :create, :destroy] do
     resources :address
   end
   #resources :photos
@@ -37,7 +37,11 @@ Rails.application.routes.draw do
       patch 'status', action: :status
     end
     resources :contact_forms
+    resources :agent_forms
   end
+
+  resources :agent_forms, only: [:new, :create]
+
   get 'dashboard', action: :index, controller: 'dashboard'
 
   # static pages
@@ -49,5 +53,6 @@ Rails.application.routes.draw do
   get 'terms', action: :terms, controller: 'welcome'
   get 'contact', action: :contact, controller: 'welcome'
   get 'mortcalc', action: :mortcalc, controller: 'welcome'
+  get 'agents', action: :agents, controller: 'welcome'
   #get '/register', action: :register, controller: 'welcome'
 end

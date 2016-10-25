@@ -1,0 +1,40 @@
+<div class="agent-form" id="agents">
+  <%= form_for aform,  html: {id: :agentf }, remote: true do |f| %>
+    <div class="field">
+      <%= f.label :full_name %>
+      <%= f.text_field :full_name %>
+    </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :company_name %>
+
+ 
+      <%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag"}%>
+
+      <div id="div1"></div>   
+    </div>
+    <div class="field agent-submit" data-reveal-id="myModal">
+      <%= f.submit "Submit", "data-reveal-id" => "myModal" %>
+    </div>
+    <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+      <span>&#10004;</span>
+      <h2 id="modalTitle">Success!</h2>
+      <p>Great! You'll hear from us soon.</p>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+  <%end%>
+</div>
+
+<script type="text/javascript">
+  
+text_field();
+$(document).ready(function() {
+    $(".agent-submit").click(function() {
+      $('#myModal').foundation('open')
+    });
+});
+reset();
+</script>

@@ -1,0 +1,31 @@
+<div class="row expanded">
+
+  <%= render "dashboard/side_panel" %>
+
+  <div class="medium-9 columns dashboard-content push-footer">
+    <h1>
+      Agent Forms
+    </h1>
+
+    <ul>
+      <% @aforms.each do |u| %>
+        <li class="dashboard-aform">
+          <div>
+            <span><strong>NAME:</strong> <%= u.full_name%></span>
+            |
+            <span><strong>EMAIL:</strong> <%= u.email%></span>
+            |
+            <span><strong>COMPANY:</strong> <%= u.company_name%></span>
+          <div>
+            <span>
+              <%= link_to "Edit", edit_dashboard_agent_form_path(u) %>
+               |
+              <%= link_to "Delete", dashboard_agent_form_path(u), method: :delete %>
+            </span>
+          </div>
+        </li>
+        <hr>
+      <%end%>
+    </ul>
+  </div>
+</div>

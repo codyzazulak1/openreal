@@ -1,0 +1,275 @@
+//Agents
+
+.agent_landingpage {
+
+	min-height: calc(100vh - 266px);
+	.header {
+		font-size: 20px;
+		font-weight: 400;
+		padding-top: 8rem;
+		padding-bottom: 8rem;
+		background-image: url(<%= asset_path 'agentsw.jpg' %>);
+		text-align: center;
+		//border: 1px solid grey;
+		background-position-y: 857px;
+    background-color: black;
+    background-blend-mode: luminosity;
+
+		h2 {
+			color: #52b7e7;
+		}
+
+		.bold-span {
+			font-weight: 500;
+			color: #52b7e7;
+		}
+		.display-inline-block {
+			display: inline-block;
+		}
+
+		h6 {
+			font-weight: 400;
+			text-shadow: 1px 1px rgba(0, 0, 0, 0.65);
+			color: white;
+
+
+		}
+
+		.small-12:last-child {
+			padding-top: 5rem;
+
+			span {
+				padding: 1rem 5rem;
+				background-color: #52b7e7;
+				color:white;
+			}
+		}
+
+	}
+
+	.info {
+
+		
+		h6 {
+			display: inline-block;
+			text-transform: uppercase;
+			font-weight: 200;
+			font-size: smaller;
+		}
+		h3 {
+			font-weight: 300;
+			
+		}
+
+		.boxed {
+			text-align: -webkit-auto;
+			display: inline-block;
+
+			img {
+				//display: inline-block;
+				max-width: 50px;
+			}
+		}
+
+		.contained-paragraphs {
+	    font-weight: 100;
+	    text-align: justify;
+	    font-size: 1rem;
+
+	    .sole-paragraph {
+	    	margin-bottom: 0.5rem;
+	    }
+
+	    .small-print {
+	    	line-height: inherit;
+	    	color: grey;
+	    }
+
+	    span {
+	    	display: block;
+    		margin-top: 1rem;
+
+    		a {
+			    text-decoration: none;
+			    padding: 0.5rem 0.5rem;
+			    font-weight: 100;
+			    border: 0.5px solid #52b7e7;
+			    background: #52b7e7;
+			    color: white;
+	    	}
+	    }
+
+		}
+
+	}
+
+	.accepting-cities {
+	//	background-color: whitesmoke;
+		img {
+			vertical-align: center;
+			width: 3rem;
+		}
+		.city-grid {
+			//color: #52b7e7;
+			//background-color: #52b7e7;
+	 		text-align: center;
+	 		overflow: hidden;
+	 		padding: 30px 10px;
+		 // text-transform: uppercase;
+		//  letter-spacing: 2px;
+		//  color: #eceef0;
+		  margin-top: -19px;
+
+		  h3 {
+		  	font-weight: 300;
+		  }
+		}
+		.bkg-white {
+			background-color: white;
+		}
+	}
+
+	.form-start {
+		margin-bottom: 2em;
+		.form-title {
+			color: #52b7e7;
+		}
+		.form-content {
+	    border: 1px solid transparent;
+	    box-sizing: border-box;
+	    box-shadow: 1px 1px 27px #52b7e7;
+
+			img {
+				vertical-align: center;
+				width: 3rem;
+			}
+
+			h6 {
+				font-weight: 100;
+				margin-bottom: 1em;
+			}
+
+			h3 {
+				color: #52b7e7;
+			}
+
+	}
+
+		.agent-form {
+			.field {
+		    text-align: initial;
+		   // display: inline-block;
+
+		    label {
+		    	font-size: large;
+		    	font-weight: 100;
+		    	color: #484848;
+		    }
+		  .reveal {
+	    	display: none;
+	    	top: 0;
+	    	margin: 0.5em 0;
+    		width: 100%;
+    		min-height: 0;
+	    }
+			}
+			.agent-submit {
+				input {
+		    	background-color: #52b7e7;
+		    	color: white;
+		    	border: 1px solid #52b7e7;
+		    	padding: 0.6em 0;
+			    margin: 1em 0px;
+			    width: 100%;
+	    	}
+
+	    }
+		}
+	}
+
+	@media screen and (max-width: 450px){
+		.header {
+			.small-12:last-child {
+				span {
+					padding: 0.5rem 3rem;
+				}
+			.display-inline-block {
+					display: block;
+				}
+
+			}
+		}
+
+		.info {
+			h3 {
+				font-weight: 400;
+			}
+			.boxed {
+				margin-bottom: 1.5rem;
+			}
+			.columns:nth-child(1),
+			.columns:nth-child(2) {
+				margin-bottom: 2rem;
+			}
+		}
+	}
+
+	@media screen and (max-width: 639px){
+		.form-start {
+			.agent-form {
+				.reveal {
+					font-size: 12px;
+					padding: 0 0.7em;
+					height: 2.5em;
+				}
+			}
+
+			.form-content {
+				border: none;
+		    box-sizing: border-box;
+		    box-shadow: none;
+			}
+
+		}
+	}
+}
+.reveal-modal {
+	top: 42px;
+	display: block;
+	text-align: center;
+	background-color: white;
+	max-width: 50%;
+	margin: auto;
+		span {
+	  font-size: 2.5em;
+	  padding: 0.2em 0.4em;
+	  color: white;
+	  border: 1px solid #4caf50;
+	  background-color: #4caf50;
+	  border-radius: 100%;
+		}
+		p {
+		 font-weight: 200;
+		 font-size: 1em;
+		}
+
+		a {
+			font-size: 2em;
+		}
+
+}
+@media only screen and (max-width: 768px){
+	.reveal-modal {
+		max-width: 80%;
+		span {
+			font-size: 2em;
+		}
+		p {
+			font-size: 15px;
+	    padding: 0px 1px;
+		}
+	}
+}
+
+
+

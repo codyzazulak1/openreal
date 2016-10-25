@@ -1,0 +1,23 @@
+function text_field(){
+  var form = document.getElementById("options-tag");
+  
+  form.addEventListener("change", function(){
+      var value = form.options[form.selectedIndex].value;
+      if (value === 'other'){
+        document.getElementById('div1').innerHTML='<input type="text" name="agent_form[company_name]" />';
+        document.getElementsByClassName('reveal')[1].style.display = "inherit"; 
+        } else {
+          document.getElementById('div1').innerHTML='';
+          document.getElementsByClassName('reveal')[1].style.display = "none";
+        }
+  });//close form event
+};
+
+function reset(){
+  var form = document.getElementById("options-tag")
+  var element = form.querySelectorAll("[type='submit']");
+  console.log(element);
+  element.addEventListener("click", function(){
+    form.reset();
+  });
+}
