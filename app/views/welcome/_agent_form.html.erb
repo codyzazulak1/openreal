@@ -1,5 +1,5 @@
-<div class="agent-form">
-  <%= form_for aform do |f| %>
+<div class="agent-form" id="agents">
+  <%= form_for aform,  html: {id: :agentf }, remote: true do |f| %>
     <div class="field">
       <%= f.label :full_name %>
       <%= f.text_field :full_name %>
@@ -10,12 +10,15 @@
     </div>
     <div class="field">
       <%= f.label :company_name %>
+
  
       <%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag"}%>
+      <%= f.collection_select :company_name%>
 
       <%= f.label :company_name, :class => "reveal" %>
       <%= f.text_field :company_name, placeholder: "Your company's name", :class => "reveal" %>
 
+  <p class="reveal">Load</p>     
     </div>
     <div class="field agent-submit">
       <%= f.submit "Submit" %>
@@ -26,15 +29,19 @@
 <script type="text/javascript">
   function text_field(){
     var form = document.getElementById("options-tag");
+    
     form.addEventListener("change", function(){
         var value = form.options[form.selectedIndex].value;
         if (value === 'other'){
+         
           document.getElementsByClassName('reveal')[1].style.display = "inherit"; 
           } else {
+          
             document.getElementsByClassName('reveal')[1].style.display = "none";
           }
         });//close form event
     };
+  
 text_field();
 
 </script>
