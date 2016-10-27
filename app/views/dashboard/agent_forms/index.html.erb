@@ -6,26 +6,42 @@
     <h1>
       Agent Forms
     </h1>
+    <hr>
 
-    <ul>
+    <div class= "row dashboard-aform" id="agent-columns">
+      <div class="small-4 medium-3 columns titles">
+        <p>Name</p>
+      </div>
+      <div class="small-4 medium-3 columns titles">
+        <p>Email</p>
+      </div>
+      <div class="small-4 medium-3 medium columns end titles">
+        <p>Company</p>
+      </div>
+      <!-- <div class="small-0 medium-4 columns actions"></div> -->
+    </div>
+
+    <div class="row dashboard-aform" id="agent-contents">
       <% @aforms.each do |u| %>
-        <li class="dashboard-aform">
-          <div>
-            <span><strong>NAME:</strong> <%= u.full_name%></span>
-            |
-            <span><strong>EMAIL:</strong> <%= u.email%></span>
-            |
-            <span><strong>COMPANY:</strong> <%= u.company_name%></span>
-          <div>
-            <span>
-              <%= link_to "Edit", edit_dashboard_agent_form_path(u) %>
-               |
-              <%= link_to "Delete", dashboard_agent_form_path(u), method: :delete %>
-            </span>
-          </div>
-        </li>
-        <hr>
-      <%end%>
-    </ul>
+      <div class="small-4 medium-3 columns details">
+        <p><%= u.full_name%></p>
+      </div>
+      <div class="small-4 medium-3 columns details">
+        <p><%= u.email%></p>
+      </div>
+      <div class="small-4 medium-3 columns details">
+        <p><%= u.company_name%></p>
+      </div>
+      <div class="row">
+        <span class="small-12 medium-3 medium-offset-9 columns c">
+          <%= link_to "Edit", edit_dashboard_agent_form_path(u) %>
+           |
+          <%= link_to "Delete", dashboard_agent_form_path(u), method: :delete %>
+        </span>
+      </div>
+      <hr>
+      <% end %>
+    </div>
+
   </div>
 </div>
