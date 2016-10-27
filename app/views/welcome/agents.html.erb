@@ -5,11 +5,10 @@
 		<div class="row expanded">
 
 			<div class="small-12 columns">
-				<h2>Let OpenReal Do The Work</h2>
+				<h1>Let OpenReal Do The Work</h1>
 			</div>
 			<div class="small-12 small-centered columns">
-				<h6 class="display-inline-block">Guarantee your sales (and peace of mind).</h6>
-				<span class="bold-span">Every time.</span>
+				<h5 class="display-inline-block">Guarantee your sales (and peace of mind), every time.</h5>
 			</div>
 			<div class="small-12 small-centered columns">
 			  <a href="#form-signup">
@@ -160,6 +159,13 @@
 				<div>
 					<%= render 'agent_form', aform: @aform %>
 				</div>
+
+				<div id="success">
+					<%= image_tag 'success.svg'%>
+					<h2>Success!</h2>
+      		<p>Great! You'll hear from us soon.</p>
+				</div>
+
 			</div>
 		</div>
 	</section>
