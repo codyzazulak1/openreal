@@ -1,9 +1,19 @@
-<%= form_for [:dashboard, @aform] do |af| %>
-  <%= af.label :full_name %>
-  <%= af.text_field :full_name %>
-  <%= af.label :email %>
-  <%= af.text_field :email %>
-  <%= af.label :company_name %>
-  <%= af.text_field :company_name %>
-  <%= af.submit :submit %>
-<%end%>
+
+
+<div class="row push-footer edit-aform">
+
+	<div class="medium-6 medium-centered column">
+		<p>Edit information for <%= @aform.full_name%></p> <hr>
+			<%= form_for [:dashboard, @aform] do |af| %>
+			  <%= af.label :full_name %>
+			  <%= af.text_field :full_name, placeholder: 'Full name' %>
+			  <%= af.label :email %>
+			  <%= af.text_field :email, placeholder: 'E-mail' %>
+			  <%= af.label :company_name %>
+			  <%= af.text_field :company_name, placeholder: 'Company name' %>
+			  <%= af.submit :submit, class: 'submit' %>
+			  <br>
+			  <%= link_to 'cancel', dashboard_agent_forms_path, class: 'cancel'%>
+			<%end%>
+		</div>
+</div>

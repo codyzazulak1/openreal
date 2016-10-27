@@ -166,18 +166,61 @@
 
 .dashboard-aform {
 
-  list-style-type: none;
   margin-bottom: 10px;
   margin-top: 10px;
+  text-align: -webkit-center;
+
+  .titles {
+    padding: 1px 1px;
+
+    p {
+      font-family: 'Questrial', sans-serif;
+      background: rgba(104, 192, 234, 0.65);
+      text-align: -webkit-center;
+      color: white;
+    }
+  }
+
+  .details {
+    p{
+      text-align: -webkit-center;
+      overflow-wrap: break-word;
+    }
+  }
 
 }
 
-.dashboard-aform span {
+//Edit agent form
+.edit-aform{
+  margin-bottom: 0;
+  //width: 40%;
+ // margin-left: 2em;
 
+  p {
+    font-weight: 200;
+    font-size: 1.5em;
+    color: #68c0ea;
+    margin-bottom: -20px;
+    margin-top: 1.5em;
+  }
 
+  .submit {
+    background-color: white;
+    border: 3px solid #68c0ea;
+    width: 8em;
+    margin-bottom: 0.5em;
+    color: #68c0ea;
+  }
+  .cancel {
+    color: #68c0ea;
+    margin-bottom: 2em;
+    font-size: smaller;
+  }
+
+  label {
+    display: inline-block;
+  }
 }
 
-.dashboard-aform div {
 
-}
 
