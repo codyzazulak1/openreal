@@ -46,7 +46,7 @@ class Dashboard::PropertiesController < ApplicationController
     @address = @property.address
 
     if @property.update_attributes(property_params)
-      redirect_to dashboard_property_path(@property)
+      redirect_to dashboard_properties_path(@property)
     end
   end
 
@@ -75,7 +75,7 @@ class Dashboard::PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(:description, :floor_area, :list_price_cents,:dwelling_class,:building_type,:title_to_land,:year_built,:fireplaces,:number_of_floors, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
   end
 
   def address_params
