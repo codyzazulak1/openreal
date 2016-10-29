@@ -9,15 +9,15 @@
 
 <div>
   <%= fp.label :stories %>
-  <%= fp.select :stories, options_for_select([1,2,3,4,5,6],1), {data: { 'validation' => "required" }}, required: true %>
+  <%= fp.select :stories, options_for_select([1,2,3,4,5,6]), {data: { 'validation' => "required" }}, {prompt: true}%>
 </div>
 
 <div>
   <%= fp.label :bedrooms %>
-  <%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6],1), {data: { 'validation' => "required" }}, required: true %>
+  <%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6,7]), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
 
 <div>
   <%= fp.label :bathrooms %>
-  <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6],1), {data: { 'validation' => "required" }}, required: true %>
+  <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6,7]), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
