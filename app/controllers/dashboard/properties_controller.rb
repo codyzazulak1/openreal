@@ -69,13 +69,28 @@ class Dashboard::PropertiesController < ApplicationController
   end
 
   def create
+    @property = Property.new(property_params)
+    @address = @property.address
 
+    if @property.save
+      flash[:success] = "Property has been added!"
+      redirect_to dashboard_properties_path
+    else
+      flash[:error] = "Something went wrong, please fill again."
+      render 'new'
+    end
+  end
+
+  def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    redirect_to dashboard_properties_path
   end
 
   private
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :list_price_cents,:dwelling_class,:building_type,:title_to_land,:year_built,:fireplaces,:number_of_floors, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(:description, :floor_area, :list_price_cents,:dwelling_class,:building_type,:property_type,:title_to_land,:year_built,:fireplaces,:number_of_floors, :stories, :bedrooms, :bathrooms,:lot_length,:lot_width, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
   end
 
   def address_params
