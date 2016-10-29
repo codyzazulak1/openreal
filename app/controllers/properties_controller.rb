@@ -162,7 +162,7 @@ class PropertiesController < ApplicationController
     @contact.property = @property
     @contact.status = Status.find_by(name: "Unappraised")
     @contact.sub_type = "Property Submission"
-    @property.list_price_cents = 0
+    # @property.list_price_cents = 0
 
     # if @property.valid?
     if params
@@ -187,11 +187,11 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def destroy
-    @property = Property.find(params[:id])
-    @property.destroy
-    redirect_to dashboard_properties_path
-  end
+  # def destroy
+  #   @property = Property.find(params[:id])
+  #   @property.destroy
+  #   redirect_to dashboard_properties_path
+  # end
 
   # def all_valid?
   #   steps.all? do |step|
@@ -211,7 +211,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
+    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
   end
 
   # def property_upgrade_params
