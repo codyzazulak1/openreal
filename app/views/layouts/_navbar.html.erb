@@ -11,6 +11,9 @@
           <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
         </li>
         <li class="show-for-medium">
+          <a href=<%=listings_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'listings' %>>Listings</a>
+        </li>
+        <li class="show-for-medium">
           <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
         </li>
 
@@ -27,6 +30,7 @@
         <li class="show-for-medium">
           <a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>> Contact</a>
         </li>
+
         <% if admin_signed_in?%>
         <li class="show-for-medium">
           <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
