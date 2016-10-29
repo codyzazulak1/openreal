@@ -393,7 +393,7 @@ footer {
   }
 
   .listing-img {
-    height: 240px;
+    height: 318px;
     -webkit-transition: all ease-in-out 0.1s;
     transition: all ease-in-out 0.1s;
     background-color: #dedede;
@@ -442,6 +442,24 @@ footer {
     padding: 0.5rem 0.75rem;
     // border: 1px solid $border-color;
     // border-top: none;
+
+    div:first-child{
+      text-align: left;
+    }
+    & > p:first-child {
+      font-size: 1.25em;
+      font-weight: 300;
+
+    }
+    .attributes {
+      p {
+        padding: 0 0.5em;
+        font-weight: 300;
+      }
+      p:first-child{
+        padding: 0;
+      }
+    }
   }
 }
 
