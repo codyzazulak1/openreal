@@ -70,7 +70,7 @@ class Dashboard::PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
-    @address = Address.new
+    @address = Address.new(address_params)
     # @address.property = @property[:id]
 
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
@@ -94,11 +94,11 @@ class Dashboard::PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :list_price_cents,:dwelling_class,:building_type,:property_type,:title_to_land,:year_built,:fireplaces,:number_of_floors, :stories, :bedrooms, :bathrooms,:lot_length,:lot_width, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(:description, :floor_area, :list_price_cents,:dwelling_class,:building_type,:property_type,:title_to_land,:year_built,:fireplaces,:number_of_floors, :stories, :bedrooms, :bathrooms,:lot_length,:lot_width, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :property_id], contact_form_attributes: [:name, :email, :phone, :notes])
   end
 
   def address_params
-    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
+    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :property_id)
   end
 
 end
