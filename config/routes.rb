@@ -55,5 +55,6 @@ Rails.application.routes.draw do
   get 'mortcalc', action: :mortcalc, controller: 'welcome'
   get 'agents', action: :agents, controller: 'welcome'
   get 'listings', action: :listings, controller: 'welcome'
+  get 'view_listing', action: :view_listing, controller: 'welcome'
   #get '/register', action: :register, controller: 'welcome'
 end

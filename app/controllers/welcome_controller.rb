@@ -51,11 +51,12 @@ class WelcomeController < ApplicationController
   end
 
   def listings
-    @just_listed = Property.where('created_at >= ?', 2.days.ago)
-    @featured = Property.all.sample(8)
-    @new_properties = Property.just_listed(8)
     @properties_p = Property.all
   end
 
+  def view_listing
+    @properties = Property.all
+    @prop = Property.find(params[:id])
+  end
 
 end
