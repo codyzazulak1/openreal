@@ -70,7 +70,11 @@ class Dashboard::PropertiesController < ApplicationController
 
   def create
     @property = Property.new(property_params)
-    @address = @property.address
+    @address = Address.new
+    # @address.property = @property[:id]
+
+    @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
+    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
 
     if @property.save
       flash[:success] = "Property has been added!"
