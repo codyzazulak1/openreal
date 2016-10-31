@@ -12,7 +12,6 @@
       <div class="accordion-content" data-tab-content>
         <%= f.fields_for :address do |fa| %>
           <% @address_attributes.each do |a| %>
-          <%= fa.hidden_field :property_id, value: @property.id %>
             <%= fa.label a %>
             <%= fa.text_field a.to_sym %>
 
@@ -27,7 +26,6 @@
         <% @property_attributes.each do |u| %>
           <%= f.label u %>
           <%= f.text_field u.to_sym %>
-           <% p 'property id' + @property.id%>
         <% end %>
       </div>
     </li>
