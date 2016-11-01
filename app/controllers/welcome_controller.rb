@@ -54,9 +54,5 @@ class WelcomeController < ApplicationController
     @properties_p = Property.all
   end
 
-  def view_listing
-    @properties = Property.all
-    @prop = Property.find(params[:id])
-  end
 
 end
