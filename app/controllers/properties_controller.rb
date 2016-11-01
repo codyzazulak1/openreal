@@ -20,6 +20,11 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def listing
+    @property = Property.find(params[:id])
+    
+  end
+
   def edit
     @property = Property.find(params[:id])
     @address = @property.address

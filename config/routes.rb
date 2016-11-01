@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   #get 'properties/filter', action: :filter, controller: 'properties'
   resources :properties, only: [:new, :create] do
     resources :address
+    member do 
+      get 'listing'
+    end
   end
   #resources :photos
   #resources :contact_forms
@@ -55,6 +58,5 @@ Rails.application.routes.draw do
   get 'mortcalc', action: :mortcalc, controller: 'welcome'
   get 'agents', action: :agents, controller: 'welcome'
   get 'listings', action: :listings, controller: 'welcome'
-  get 'view_listing', action: :view_listing, controller: 'welcome'
   #get '/register', action: :register, controller: 'welcome'
 end
