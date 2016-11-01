@@ -20,9 +20,9 @@ class Property < ActiveRecord::Base
 
   monetize :list_price_cents, as: :list_price
 
-  def to_param
-    "#{id}-#{title.parameterize}"  
-  end
+  # def to_param
+  #   "#{id}-#{title.parameterize}"  
+  # end
 
   def self.just_listed(num = 3)
     new_listing = where("CREATED_AT >= ?", 7.days.ago).order("CREATED_AT DESC").limit(num)
