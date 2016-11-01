@@ -12,13 +12,13 @@
       <% @properties_p.each do |p|%>
         <div class="small-12 medium-12 large-6 columns">
           <div class="listing-item">
-            <%= link_to "", view_listing_path, class: "listing-link" %>
+            <%= link_to "", listing_property_path(p.id), class: "listing-link" %>
             <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
-              <% if p.is_new? %>
+
               <div class="listing-badge">
                 <span>For Sale</span>
               </div>
-              <% end %>
+
               <div class="listing-price">
                 <sup>$</sup>
                 <span style=""><%= p.price %></span>
