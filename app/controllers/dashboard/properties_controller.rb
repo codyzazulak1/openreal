@@ -32,6 +32,7 @@ class Dashboard::PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    # @photos = @property.photos.all
   end
 
   def edit
@@ -39,14 +40,16 @@ class Dashboard::PropertiesController < ApplicationController
     @address = @property.address
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    # @photos = @property.photos
   end
 
   def update
     @property = Property.find(params[:id])
     @address = @property.address
+    # @photos = @property.photos.picture
 
     if @property.update_attributes(property_params)
-      redirect_to dashboard_property_path(@property)
+      redirect_to dashboard_properties_path(@property)
     end
   end
 
@@ -66,20 +69,62 @@ class Dashboard::PropertiesController < ApplicationController
     @address = Address.new(property: @property)
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    @photos = @property.photos.build
   end
 
   def create
+    @property = Property.new(property_params)
+    @address = Address.new(address_params)
+    # @address.property = @property[:id]
 
+    @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
+    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+
+    if @property.save
+      params[:photos]['picture'].each do |a|
+          @photos = @property.photos.create!(:picture => a)
+      end
+      flash[:success] = "Property has been added!"
+      redirect_to dashboard_properties_path
+    else
+      flash[:error] = "Something went wrong, please fill again."
+      render 'new'
+    end
+  end
+
+  def destroy
+    @property = Property.find(params[:id])
+    @property.destroy
+    redirect_to dashboard_properties_path
   end
 
   private
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes])
+    params.require(:property).permit(
+      :description, :floor_area, :list_price_cents,
+      :dwelling_class,:building_type,:property_type,
+      :title_to_land,:year_built,:fireplaces,
+      :number_of_floors, :stories, :bedrooms,
+      :bathrooms,:lot_length,:lot_width, :pid,
+      :seller_info, :sellers_interest, :architecture_style,
+      photos_attributes: [
+        :picture, :property_id, :id
+      ],
+      address_attributes:
+      [
+        :address_first, :address_second, :street,
+        :city, :postal_code, :property_id
+      ],
+      contact_form_attributes:
+      [
+        :name, :email, :phone,
+        :notes
+      ])
   end
 
   def address_params
-    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
+    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :street)
   end
 
 end

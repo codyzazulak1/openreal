@@ -20,6 +20,14 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def listing
+    @property = Property.find(params[:id])
+  end
+
+  def listings
+    @properties_p = Property.all
+  end
+
   def edit
     @property = Property.find(params[:id])
     @address = @property.address
@@ -37,7 +45,6 @@ class PropertiesController < ApplicationController
     if @property.update_attributes(property_params)
       redirect_to dashboard_property_path(@property)
     end
-
   end
 
   def filter
@@ -118,7 +125,7 @@ class PropertiesController < ApplicationController
     @property_upgrades = @property.property_upgrades.build
 
     @property.current_step = session[:property_step]
-    @photo = @property.photos.build
+    @photos = @property.photos.build
 
   end
 
@@ -127,7 +134,6 @@ class PropertiesController < ApplicationController
 
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
-
 
       respond_to do |format|
         format.html
@@ -162,7 +168,7 @@ class PropertiesController < ApplicationController
     @contact.property = @property
     @contact.status = Status.find_by(name: "Unappraised")
     @contact.sub_type = "Property Submission"
-    @property.list_price_cents = 0
+    # @property.list_price_cents = 0
 
     # if @property.valid?
     if params
@@ -187,11 +193,11 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def destroy
-    @property = Property.find(params[:id])
-    @property.destroy
-    redirect_to dashboard_properties_path
-  end
+  # def destroy
+  #   @property = Property.find(params[:id])
+  #   @property.destroy
+  #   redirect_to dashboard_properties_path
+  # end
 
   # def all_valid?
   #   steps.all? do |step|
@@ -211,7 +217,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
+    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
   end
 
   # def property_upgrade_params

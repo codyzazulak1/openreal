@@ -25,10 +25,13 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   #get 'properties/filter', action: :filter, controller: 'properties'
-  resources :properties, only: [:new, :create, :destroy] do
+  resources :properties, only: [:new, :create, :show] do
     resources :address
+    member do 
+      get 'listing'
+    end
   end
-  #resources :photos
+  resources :photos, only: [:edit, :new, :create, :show]
   #resources :contact_forms
 
   # dashboard
@@ -54,5 +57,6 @@ Rails.application.routes.draw do
   get 'contact', action: :contact, controller: 'welcome'
   get 'mortcalc', action: :mortcalc, controller: 'welcome'
   get 'agents', action: :agents, controller: 'welcome'
+  get 'listings', action: :listings, controller: 'properties'
   #get '/register', action: :register, controller: 'welcome'
 end

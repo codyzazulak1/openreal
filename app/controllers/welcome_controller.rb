@@ -50,4 +50,9 @@ class WelcomeController < ApplicationController
     @aform = AgentForm.new
   end
 
+  def listings
+    @properties_p = Property.all
+  end
+
+
 end

@@ -141,24 +141,25 @@
                 </div>
               </div>
             </form>
-            <div>
+<!--             <div>
               <div class="row">
                 <div class="medium-12 columns">
-                  <% if customer_signed_in? %>
-                    <% if @favorite %>
-                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%=current_customer.id%> data-pid=<%=@property.id%> data-fid=<%=@favorite.id%> data-state="true" >Saved</a>
-                    <% else %>
-                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%=current_customer.id%> data-pid=<%=@property.id%> data-fid="" data-state="false" >Save as favorite</a>
-                    <% end %>
-                  <% end %>
+                  <%# if customer_signed_in? %>
+                    <%# if @favorite %>
+                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%#=current_customer.id%> data-pid=<%#=@property.id%> data-fid=<%#=@favorite.id%> data-state="true" >Saved</a>
+                    <%# #else %>
+                      <a href="#" class="btn btn-large btn-secondary" id="favorite-btn" data-uid=<%#=current_customer.id%> data-pid=<%#=@property.id%> data-fid="" data-state="false" >Save as favorite</a>
+                    <%# #end %>
+                  <%# #end %>
                 </div>
               </div>
               <div class="row">
                 <div class="medium-12 columns text-center">
-                  <span class="legalese">By sending, you agree to OpenReal's <a target="_blank" href=<%= terms_path %>>Terms of Use &amp; Privacy Policy</a>.</span>
+                  <span class="legalese">By sending, you agree to OpenReal's <a target="_blank" href=<%#= terms_path %>>Terms of Use &amp; Privacy Policy</a>.</span>
                 </div>
               </div>
-            </div>
+            </div> -->
+
           </div>
         </div>
       </div>

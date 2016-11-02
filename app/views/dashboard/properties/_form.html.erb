@@ -1,4 +1,4 @@
-<%= form_for @property, html: {class: "dashboard-form clearfix", id: "property-form", multipart: true} do |f| %>
+<%= form_for [:dashboard, @property], html: {class: "dashboard-form clearfix", id: "property-form", multipart: true} do |f| %>
   <div class="float-left">
     <a href="<%= dashboard_properties_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
   </div>
@@ -14,6 +14,7 @@
           <% @address_attributes.each do |a| %>
             <%= fa.label a %>
             <%= fa.text_field a.to_sym %>
+
           <% end %>
         <% end %>
       </div>
@@ -26,9 +27,22 @@
           <%= f.label u %>
           <%= f.text_field u.to_sym %>
         <% end %>
+        <% if new_dashboard_property_path %>
+        <div>
+          <div>
+            <%=f.fields_for :photos do |photo|%>
+              <%= photo.label :picture, 'Upload picture' %><br>
+              <%= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+            <% end %>
+          </div>
+        </div>
+         <% end %>
+
       </div>
     </li>
   </ul>
+
+  
   <div class="float-left">
     <a href="<%= dashboard_properties_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
   </div>

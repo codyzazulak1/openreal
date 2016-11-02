@@ -1,0 +1,58 @@
+<%- title "Sell Your Home"%>
+<div style="background-color: #f5f5f5 ">
+  <section class="row collapse new-listings" id="new-listings">
+    <div class="medium-10 medium-centered columns">
+      <div class="row text-center section-title">
+        <h2 class="medium-6 medium-push-3 columns title-list">Homes for Sale</h2>
+        <h4 class="medium-12 columns sub-title-list">Inspected and verified, now you can buy with a peace-of-mind</h4>
+      </div>
+
+      <div class="row property_p">
+      <%# @new_properties.each_with_index do |p, index| %>
+      <% @properties_p.each do |p|%>
+        <div class="small-12 medium-12 large-6 columns">
+          <div class="listing-item">
+            <%#= link_to "", property_path(p.id), class: "listing-link" %>
+            <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
+
+              <div class="listing-badge">
+              <%if p.list_price_cents != 0%>
+                <span>For Sale</span>
+              <% else %>
+                <span class="sold">Sold</span>
+              <% end %>
+              </div>
+              
+              <% if p.list_price_cents > 0 %>
+              <div class="listing-price">
+                <sup>$</sup>
+                <span style=""><%= p.price %></span>
+              </div>
+               <% end %>
+            </div>
+            <div class="listing-meta clearfix">
+              <div>
+                <p><%= p.address.address_first %></p>
+                <span style="font-size: 0.90rem; display: block; font-weight: 200;" class="dark-grey"><%= p.address.city %>, BC</span>
+              </div>
+              <div class=" row attributes">
+                <p class=" small-2 medium-2 columns"><small><strong><%= p[:bedrooms] %></strong> Beds</small></p>
+
+                <p class="small-3 medium-2 columns"><small><strong><%= p[:bathrooms] %></strong> Bath</small></p>
+
+                <p class="small-4 medium-3 columns"><small><strong><%= p[:floor_area]%></strong> Sq.Ft.</small></p>
+
+                <p class="small-1 medium-2 end columns"><small>Yr.<strong><%= p[:year_built]%></strong></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %> <!-- p ends 49999900 -->
+      </div>
+    </div>
+  </section>
+</div>
+<script type="text/javascript">
+  blur_sale_listings();
+  remove_sold_from_listing();
+</script>
