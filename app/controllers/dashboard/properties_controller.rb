@@ -32,6 +32,7 @@ class Dashboard::PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    # @photos = @property.photos.all
   end
 
   def edit
@@ -39,11 +40,13 @@ class Dashboard::PropertiesController < ApplicationController
     @address = @property.address
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    # @photos = @property.photos
   end
 
   def update
     @property = Property.find(params[:id])
     @address = @property.address
+    # @photos = @property.photos.picture
 
     if @property.update_attributes(property_params)
       redirect_to dashboard_properties_path(@property)
@@ -66,6 +69,7 @@ class Dashboard::PropertiesController < ApplicationController
     @address = Address.new(property: @property)
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    @photos = @property.photos.build
   end
 
   def create
@@ -77,6 +81,9 @@ class Dashboard::PropertiesController < ApplicationController
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
 
     if @property.save
+      params[:photos]['picture'].each do |a|
+          @photos = @property.photos.create!(:picture => a)
+      end
       flash[:success] = "Property has been added!"
       redirect_to dashboard_properties_path
     else
@@ -102,7 +109,7 @@ class Dashboard::PropertiesController < ApplicationController
       :bathrooms,:lot_length,:lot_width, :pid,
       :seller_info, :sellers_interest, :architecture_style,
       photos_attributes: [
-        :picture
+        :picture, :property_id, :id
       ],
       address_attributes:
       [
