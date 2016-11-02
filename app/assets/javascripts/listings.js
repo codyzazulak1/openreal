@@ -8,7 +8,7 @@ function blur_sale_listings(){
 }
 
 function sold_banner(element){
-  $(element).prepend("<p style='z-index: 10000;top: 17em;font-size: 1.3rem;padding: 6px 3rem;color: white;background-color: #2da7e2;position: absolute;top: 0;right: 0;padding: 0.5rem 1.95rem;'> Sold </p>");
+  $(element).prepend("<p style='z-index: 10000;top: 17em;font-size: 1rem;padding: 6px 3rem;color: white;background-color: #a4e125; position: absolute;top: 0;right: 0;padding: 0.5rem 1.95rem;'> Sold </p>");
  
 }
 
