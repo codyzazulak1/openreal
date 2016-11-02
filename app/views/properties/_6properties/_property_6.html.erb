@@ -1,0 +1,38 @@
+
+      <% p6 = Property.limit(6).order('id desc').last%>
+        <div class="small-12 medium-12 large-6 columns">
+          <div class="listing-item">
+            <div class="listing-img" data-bg=<%= asset_path '6properties/6.jpg' %>>
+
+              <div class="listing-badge">
+              <%if p6.list_price_cents != 0%>
+                <span>For Sale</span>
+              <% else %>
+                <span class="sold">Sold</span>
+              <% end %>
+              </div>
+              
+              <% if p6.list_price_cents > 0 %>
+              <div class="listing-price">
+                <sup>$</sup>
+                <span style=""><%= p6.price %></span>
+              </div>
+               <% end %>
+            </div>
+            <div class="listing-meta clearfix">
+              <div>
+                <p><%= p6.address.address_first %></p>
+                <span style="font-size: 0.90rem; display: block; font-weight: 200;" class="dark-grey"><%= p6.address.city %>, BC</span>
+              </div>
+              <div class=" row attributes">
+                <p class=" small-2 medium-2 columns"><small><strong><%= p6.bedrooms %></strong> Beds</small></p>
+
+                <p class="small-3 medium-2 columns"><small><strong><%= p6.bathrooms %></strong> Bath</small></p>
+
+                <p class="small-4 medium-3 columns"><small><strong><%= p6.floor_area%></strong> Sq.Ft.</small></p>
+
+                <p class="small-1 medium-2 end columns"><small>Yr.<strong><%= p6.year_built%></strong></small></p>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,25 @@
+<%- title "Sell Your Home"%>
+<div style="background-color: #f5f5f5 " class="push-footer">
+  <section class="row collapse new-listings" id="new-listings">
+    <div class="medium-10 medium-centered columns">
+      <div class="row text-center section-title">
+        <h2 class="medium-6 medium-push-3 columns title-list">Homes for Sale</h2>
+        <h4 class="medium-12 columns sub-title-list">Inspected and verified, now you can buy with a peace-of-mind</h4>
+      </div>
+
+      <div class="row property_p">
+      <%# @new_properties.each_with_index do |p, index| %>
+<%= render 'properties/_6properties/property_1'%>
+<%= render 'properties/_6properties/property_2'%>
+<%= render 'properties/_6properties/property_3'%>
+<%= render 'properties/_6properties/property_4'%>
+<%= render 'properties/_6properties/property_5'%>
+<%= render 'properties/_6properties/property_6'%>
+      </div>
+    </div>
+  </section>
+</div>
+<script type="text/javascript">
+  blur_sale_listings();
+  remove_sold_from_listing();
+</script>

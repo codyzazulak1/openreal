@@ -81,9 +81,9 @@ class Dashboard::PropertiesController < ApplicationController
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
 
     if @property.save
-      params[:photos]['picture'].each do |a|
-          @photos = @property.photos.create!(:picture => a)
-      end
+      # params[:photos]['picture'].each do |a|
+      #     @photos = @property.photos.create!(:picture => a)
+      # end
       flash[:success] = "Property has been added!"
       redirect_to dashboard_properties_path
     else
