@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
   resources :photos, only: [:edit, :new, :create, :show]
-  #resources :contact_forms
+  resources :contact_forms, only: [:create]
 
   # dashboard
   namespace :dashboard do

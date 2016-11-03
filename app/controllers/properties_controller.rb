@@ -134,6 +134,7 @@ class PropertiesController < ApplicationController
 
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
+      @inquiry = ContactForm.new
 
       respond_to do |format|
         format.html
