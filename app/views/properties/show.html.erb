@@ -13,7 +13,7 @@
     <div class="fancybox" style="display: none;">
       <%# @property.photos.each do |p|  %>
         <a class="photo-thumb" rel="photo-thumb" href=<%= asset_path "6properties/#{@property.id}.jpg" %> >
-          <img src=<%#= p.picture %> alt="" />
+          <img src=<%= "#{@property.id}.jpg" %> />
         </a>
       <%# end %>
        <%# end %>
