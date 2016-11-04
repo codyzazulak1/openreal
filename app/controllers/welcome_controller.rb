@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
 
   def index
+    @properties_p = Property.all
     @user = current_user
     @just_listed = Property.where('created_at >= ?', 2.days.ago)
     @featured = Property.all.sample(3)
