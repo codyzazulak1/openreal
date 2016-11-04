@@ -79,14 +79,15 @@
           <div class="medium-9 columns">
             <div class="row collapse">
               <div class="medium-6 columns">
-                <div><span>Storeys: </span><strong><%= @property.number_of_floors.nil? ? 'N/A' : @property.number_of_floors %></strong></div>
+                <div><span>Storeys: </span><strong><%= @property.stories.nil? ? 'N/A' : @property.stories %></strong></div>
                 <div><span>Bedroom: </span><strong><%= @property.bedrooms.nil? ? 'N/A' : @property.bedrooms %></strong></div>
                 <div><span>Bathroom: </span><strong><%= @property.bathrooms.nil? ? 'N/A' : @property.bathrooms %></strong></div>
               </div>
               <div class="medium-6 columns">
                 <div><span>Fireplace: </span><strong><%= @property.fireplaces.nil? ? 'N/A' : @property.fireplaces %></strong></div>
-                <div><span>MLS #: </span><strong>5467535</strong></div>
-                <div><span>More...</span></div>
+                <div><span>Number of floors: </span><strong><%= @property.number_of_floors.nil? ? 'N/A' : @property.number_of_floors %></strong></div>
+                <!-- <div><span>MLS #: </span><strong>5467535</strong></div>
+                <div><span>More...</span></div> -->
               </div>
             </div>
           </div>
