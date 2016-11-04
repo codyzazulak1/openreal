@@ -39,36 +39,25 @@
 <!--end of hero-->
 
 <!-- listing banner -->
-<section class="listing-banner row expanded" id="listing-banner">
-  <div class="medium-10 medium-centered columns">
+<section class="listing-banner row expanded homepage-listings" id="listing-banner">
+  <div class="medium-12 medium-centered columns" style="
+    padding: 0;">
     <div class="row collapse">
       <!-- photo carousel -->
-      <div class="medium-8 columns">
-        <div class="orbit photo-carousel" role="region" data-orbit>
-          <ul class="orbit-container">
-            <li class="orbit-slide">
-              <div class="photo-slide" data-bg=<%= asset_path('P1.jpg') %>></div>
-            </li>
-            <li class="orbit-slide">
-              <div class="photo-slide" data-bg=<%= asset_path('P5.jpg') %>></div>
-            </li>
-            <li class="orbit-slide">
-              <div class="photo-slide" data-bg=<%= asset_path('P4.jpg') %>></div>
-            </li>
-            <li class="orbit-slide">
-              <div class="photo-slide" data-bg=<%= asset_path('P5.jpg') %>></div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- CTA -->
-      <div class="medium-4 columns cta text-center">
-        <div class="v-align">
-          <h2>Buy an OpenReal home that you’re guaranteed to love.</h2>
-          <a href="<%= listings_path %>#guarantee" class="btn btn-primary">OpenReal Listings</a>
-        </div>
+      <div class="medium-10 medium-centered columns">
+        <%= render 'properties/_6properties/property_1'%>
+        <%= render 'properties/_6properties/property_2'%>
       </div>
 
+    
+      <!-- CTA -->
+      <div class="row cta text-center">
+        <div class="v-align columns">
+          <h2>Buy an OpenReal home that you’re guaranteed to love.</h2>
+          <a href="<%= listings_path %>#guarantee" class="offer-link" style="font-size: inherit; padding: 0.8em">See All OpenReal Listings</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 <!-- end of listing banner -->
@@ -107,7 +96,7 @@
     </div>
   </div>
   <div class="row text-center section-title">
-    <a href="/howitworks" class="btn btn-secondary">Learn more</a>
+    <a href="/howitworks" class="offer-link" style="font-size: inherit;">Learn more</a>
   </div>
 </section>
 <!-- end of why -->
