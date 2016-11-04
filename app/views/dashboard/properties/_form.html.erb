@@ -26,6 +26,10 @@
         <% @property_attributes.each do |u| %>
           <%= f.label u %>
           <%= f.text_field u.to_sym %>
+          <%# if u.include? "status_id" %>
+            <%#= f.label u %>
+            <%#= f.select u, options_for_select(["first option", "second option", "third option"]), {:prompt => true} %>
+          <%# end %>
         <% end %>
         <% if new_dashboard_property_path %>
 <!--         <div>
