@@ -167,10 +167,10 @@ class PropertiesController < ApplicationController
     @property.current_step = session[:property_step]
     @photos = @property.photos.build
     @contact.property = @property
-    @contact.status = Status.find_by(name: "Unappraised")
+    @contact.status = Status.find_by(name: "Unappraised").name
+ 
     @contact.sub_type = "Property Submission"
-    # @property.list_price_cents = 0
-
+    @property.list_price_cents = 0
     # if @property.valid?
     if params
       if params[:back_button]
