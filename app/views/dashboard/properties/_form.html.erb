@@ -32,16 +32,18 @@
           <%# end %>
         <% end %>
         <% if new_dashboard_property_path %>
-<!--         <div>
+        <div>
           <div>
-            <%#=f.fields_for :photos do |photo|%>
-              <%#= photo.label :picture, 'Upload picture' %><br>
-              <%#= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
-            <%# end %>
+            <%=f.fields_for :photos do |photo|%>
+              <%= photo.label :picture, 'Upload picture' %><br>
+              <%= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+            <% end %>
           </div>
-        </div> -->
+        </div>
          <% end %>
-
+         <%if params[:controller] == "property" && params[:action] == "edit"%>
+          <p>this here</p>
+         <% end %>
       </div>
     </li>
   </ul>
