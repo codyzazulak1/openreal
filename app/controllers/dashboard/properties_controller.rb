@@ -40,15 +40,19 @@ class Dashboard::PropertiesController < ApplicationController
     @address = @property.address
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    @photos = @property.photos
    
   end
 
   def update
     @property = Property.find(params[:id])
     @address = @property.address
-   
+    
 
     if @property.update_attributes(property_params)
+      params[:photos]['picture'].each do |p|
+        @photos = @property.photos.create!(picture: p, property_id: @property.id)
+      end
       redirect_to dashboard_properties_path(@property)
     end
   end
