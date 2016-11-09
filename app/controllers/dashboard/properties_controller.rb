@@ -119,7 +119,7 @@ class Dashboard::PropertiesController < ApplicationController
       address_attributes:
       [
         :address_first, :address_second, :street,
-        :city, :postal_code, :property_id
+        :city, :postal_code, :property_id, :latitude, :longitude
       ],
       contact_form_attributes:
       [
@@ -129,7 +129,7 @@ class Dashboard::PropertiesController < ApplicationController
   end
 
   def address_params
-    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :street)
+    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :street, :latitude, :longitude)
   end
 
 
