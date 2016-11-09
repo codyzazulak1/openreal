@@ -41,9 +41,13 @@
           </div>
         </div>
          <% end %>
-         <%if params[:controller] == "property" && params[:action] == "edit"%>
-          <p>this here</p>
-         <% end %>
+         <div>
+           <%# if !@property.%>
+            <%# @property.photos.each do |p|%>
+              <%#= image_tag(p.picture_url, :size => "150x150", class: 'img-upload')%>
+            <%# end %>
+         </div>
+          <%# end %>
       </div>
     </li>
   </ul>
