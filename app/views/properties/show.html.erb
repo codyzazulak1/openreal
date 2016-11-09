@@ -97,7 +97,7 @@
         <div class="row collapse property-map">
           <div class="medium-12 columns">
             <div id="listing-map">
-              <a href="http://www.google.com/maps/place/<%=@property.address.latitude%>,<%=@property.address.longitude%>" target="_blank">
+              <a href="http://www.google.com/maps/place/<%=@property.address.latitude.to_f.to_json%>,<%=@property.address.longitude.to_f.to_json%>" target="_blank">
                 <img src=<%= signURL(ENV['MAP_SECRET'], "https://maps.googleapis.com/maps/api/staticmap?center=#{@property.address.latitude},#{@property.address.longitude}&zoom=12&size=640x400&markers=color:blue%7C#{@property.address.latitude},#{@property.address.longitude}&key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw") %> />  
               </a>
             </div>
@@ -106,9 +106,10 @@
       </div>
 
       <div class="large-4 medium-12 columns show-for-large floating-container" data-sticky-container>
-        <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1">
+        <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1" style="width: 350px;">
           <div class="property-price">
-            <h2><small>List price: </small><sup>$</sup><%= @property.price %></h2>
+            <h2 style="display: inline-block;"><small>List price: </small>$<%= @property.price %></h2>
+              <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=(@property.list_price_cents)/(@property.floor_area)%>/ft<sup>2</sup><small></span>
           </div>
           <div class="contact-form">
             <form action="/contact_forms" data-remote="true" method="post">
@@ -168,7 +169,14 @@
     </div>
   </div>
 </div>
-
+<!--- metaport -->
+<div class="row expanded">
+  <div class="small-12 medium-offset-1 small-centered columns">
+    <h2 style="font-weight: 200; color: #68c0ea; padding-top: 1.85rem;">3D Virtual Tour</h2>
+  </div>
+</div>
+<hr>
+<!--- Homes -->
 <div class="row expanded collapse similar-listings">
   <div class="medium-10 medium-centered columns">
     <div class="row">
