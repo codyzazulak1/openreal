@@ -207,3 +207,22 @@
     </div>
   </div>
 </div>
+<script>
+var lat = <%=@property.address.latitude.to_f.to_json%>;
+var lng = <%= @property.address.longitude.to_f.to_json %>;
+
+function initMap() {
+  var uluru = {lat: lat, lng: lng};
+  var map = new google.maps.Map(document.getElementById('listing-map'), {
+    zoom: 13,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+    }
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?AIzaSyC1Q7t2vZAStT0Rg1ZmgELJBR7DzCLpKIU&callback=initMap">
+  </script>
