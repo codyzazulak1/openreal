@@ -19,6 +19,8 @@ gem 'json'
 
 # Image upload gems
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 # Money
 gem 'money', '~> 6.7'
