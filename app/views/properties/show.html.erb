@@ -2,20 +2,20 @@
   <div class="medium-12 columns">
     <div class="orbit photo-carousel" role="region" aria-label="home photos" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-pause-on-hover="false" data-timer-delay="3000">
       <ul class="orbit-container">
-        <%# @property.photos.each do |p|  %>
+        <% @property.photos.each do |p|  %>
         <li class="orbit-slide is-active">
-          <div class="photo-slide" data-bg=<%= asset_path "6properties/#{@property.id}.jpg" %>></div>
+          <div class="photo-slide" data-bg=<%= p.picture_url %>></div>
         </li>
-      <%# end %>
+      <% end %>
       </ul>
     </div>
     <!-- fancybox -->
     <div class="fancybox" style="display: none;">
-      <%# @property.photos.each do |p|  %>
-        <a class="photo-thumb" rel="photo-thumb" href=<%= asset_path "6properties/#{@property.id}.jpg" %> >
-          <img src=<%= "#{@property.id}.jpg" %> />
+      <% @property.photos.each do |p|  %>
+        <a class="photo-thumb" rel="photo-thumb" href=<%= p.picture_url%> >
+          <img src=<%= p.picture_url %>, alt="" />
         </a>
-      <%# end %>
+      <% end %>
        <%# end %>
     </div>
   </div>
@@ -183,7 +183,7 @@
         <div class="small-12 medium-6 large-4 columns <%= index == @similar_properties.size - 1 ? 'end' : '' %>">
           <div class="listing-item">
             <%= link_to "", property_path(p.id), class: "listing-link" %>
-            <div class="listing-img" data-bg=<%= asset_path "6properties/#{p.id}.jpg" %>>
+            <div class="listing-img" data-bg=<%=p.photos.first.picture if p.has_photos? %>>
               <% if p.is_new? %>
               <div class="listing-badge">
                 <span>Just Listed</span>
