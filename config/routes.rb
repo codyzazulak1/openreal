@@ -27,11 +27,12 @@ Rails.application.routes.draw do
   #get 'properties/filter', action: :filter, controller: 'properties'
   resources :properties, only: [:new, :create, :show] do
     resources :address
+    resources :photos, only: [:new, :create, :update]
     member do 
       get 'listing'
     end
   end
-  resources :photos, only: [:edit, :new, :create, :show]
+  resources :photos, only: [:new, :create, :show]
   resources :contact_forms, only: [:create]
 
   # dashboard
