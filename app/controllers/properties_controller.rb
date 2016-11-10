@@ -132,6 +132,7 @@ class PropertiesController < ApplicationController
   def show
     if Property.all.count != 0
 
+      @properties = Property.all
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
       @inquiry = ContactForm.new
@@ -236,4 +237,6 @@ class PropertiesController < ApplicationController
   def contact_params
     params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes, :timeframe)
   end
+
+ 
 end
