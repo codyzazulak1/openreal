@@ -1,7 +1,7 @@
       <% p1 = @properties_p.first%>
         <div class="small-12 medium-12 large-6 columns">
           <div class="listing-item">
-          <%#= link_to "", property_path(p1.id), class: "listing-link" %>
+          <%= link_to "", property_path(p1.id), class: "listing-link" %>
           <%# @properties_p.first.photos.each do |p|%>
             <div class="listing-img" data-bg=<%= @properties_p.first.photos[0].picture_url %>>
           <%# end %>
