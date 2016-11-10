@@ -285,6 +285,19 @@
   margin-bottom: -15%;
 }
 
+.price-badge-listing {
+  border-top: 2px solid rgba(128,128,128,0.19);
+  border-left: 2px solid rgba(128,128,128,0.19);
+  border-right: 2px solid rgba(128,128,128,0.19);
+}
+
+.medium-form {
+  border: 2px solid whitesmoke;
+  padding-bottom: 2rem;
+  float: none!important;
+}
+
+
 .property-overview {
   background-color: $white;
   border-bottom: 1px solid $border-color;
