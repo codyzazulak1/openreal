@@ -1,37 +1,39 @@
-  <div class="small-12 small-centered medium-6 medium-centered columns property-price">
+  <div class="small-10 small-centered medium-10 columns price-badge-listing"> 
     <h2 style="display: inline-block;"><small>List price: </small>$<%= @property.price %></h2>
-      <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=((@property.list_price_cents)/(@property.floor_area))/100%>/ft<sup>2</sup><small></span>
+    <p style=" display: inline;">
+      $<%=((@property.list_price_cents)/(@property.floor_area)/100)%>/ft<sup>2</sup>
+    </p>
   </div>
-  <div class="contact-form columns small-12 small-centered medium-6 medium-centered">
+  <div class="small-10 small-centered medium-10 columns medium-form">
     <form action="/contact_forms" data-remote="true" method="post">
     <input type="hidden" name="contact_form[property_id]" value=<%=@property.id%> >
       <div class="row">
-        <div class="medium-12 columns">
+        <div class="small-12 medium-12 columns" style="padding-top: 2em;">
           <label class="show-for-sr">Name:</label>
-          <input type="text" placeholder="Your name" name="[contact_form]name">
+          <input type="text" placeholder="Your name" name="[contact_form]name" required>
         </div>
       </div>
       <div class="row">
-        <div class="medium-12 columns">
+        <div class="small-12 medium-12 columns">
           <label class="show-for-sr">Email:</label>
-          <input type="text" placeholder="Your email" name="[contact_form]email">
+          <input type="text" placeholder="Your email" name="[contact_form]email" required>
         </div>
       </div>
       <div class="row">
-        <div class="medium-12 columns">
+        <div class="small-12 medium-12 columns">
           <label class="show-for-sr">Phone number:</label>
           <input type="text" placeholder="Phone number" name="[contact_form]phone">
         </div>
       </div>
       <div class="row">
-        <div class="medium-12 columns">
+        <div class="small-12 medium-12 columns">
           <label class="show-for-sr">Message (optional):</label>
           <textarea placeholder="Message" rows="4" name="[contact_form]notes"></textarea>
         </div>
       </div>
       <div class="row">
-        <div class="medium-12 columns">
-          <input type="submit" class="btn btn-large btn-primary medium-12 columns" value="Request info">
+        <div class="small-12 medium-12 columns">
+          <input type="submit" class="medium-12 columns offer-link" value="Request info">
         </div>
       </div>
     </form> 
