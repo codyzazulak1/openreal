@@ -2,21 +2,20 @@
   <div class="medium-12 columns">
     <div class="orbit photo-carousel" role="region" aria-label="home photos" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;" data-pause-on-hover="false" data-timer-delay="3000">
       <ul class="orbit-container">
-        <%# @property.photos.each do |p|  %>
+        <% @property.photos.each do |p|  %>
         <li class="orbit-slide is-active">
-          <div class="photo-slide" data-bg=<%= asset_path "6properties/#{@property.id}.jpg" %>></div>
+          <div class="photo-slide" data-bg=<%= p.picture_url %>></div>
         </li>
-      <%# end %>
+      <% end %>
       </ul>
     </div>
     <!-- fancybox -->
-    <div class="fancybox" style="display: none;">
-      <%# @property.photos.each do |p|  %>
-        <a class="photo-thumb" rel="photo-thumb" href=<%= asset_path "6properties/#{@property.id}.jpg" %> >
-          <img src=<%= "#{@property.id}.jpg" %> />
+    <div class="columns medium-11 fancybox thumbnail-listing">
+      <% @property.photos.each do |p|  %>
+        <a class="photo-thumb" rel="photo-thumb" href=<%= p.picture_url%> >
+          <img src=<%= p.picture.thumb %> />
         </a>
-      <%# end %>
-       <%# end %>
+      <% end %>
     </div>
   </div>
 </div>
@@ -24,14 +23,26 @@
 <!-- property-overview -->
 <div class="row expanded property-overview">
   <div class="medium-10 medium-centered columns">
-    <div class="property-status"><span>Active</span></div>
+    <div class="property-status" style="font-size: 26px"><span>For Sale</span></div>
+    <div class="show-for-small-only price-below-forsale">
+      <h2 style="display: inline-block;"><p style="display: inline;">List price: </p>$<%= @property.price %></h2>
+      <p style=" display: inline;">
+      $<%=((@property.list_price_cents)/(@property.floor_area)/100)%>/ft<sup>2</sup>
+      </p>
+    </div>
+    <div class="show-for-medium-only price-below-forsale">
+      <h4 style="display: inline-block;"><p style="display: inline;">List price: </p>$<%= @property.price %></h4>
+      <p style=" display: inline;">
+      $<%=((@property.list_price_cents)/(@property.floor_area)/100)%>/ft<sup>2</sup>
+      </p>
+    </div>
     <div id="sticky-top">
       <div class="property-address">
         <h1><%= @property.address.address_first %></h1><!-- 
      --><h4><span><%= @property.address.city %></span>,&nbsp;<span>BC</span></h4>
       </div>
       <div class="property-bullets">
-        <h3><span><%= @property.bedrooms %></span> beds &middot; <span><%= @property.bathrooms %></span> baths &middot; <span><%= @property.lot_area %></span> sqft</h3>
+        <h3><span><%= @property.bedrooms %></span> beds &middot; <span><%= @property.bathrooms %></span> baths &middot; <span><%= @property.floor_area %></span> sqft</h3>
       </div>
     </div>
   </div>
@@ -97,8 +108,8 @@
         <div class="row collapse property-map">
           <div class="medium-12 columns">
             <div id="listing-map">
-              <a href="http://www.google.com/maps/place/<%=@property.address.latitude%>,<%=@property.address.longitude%>" target="_blank">
-                <img src=<%= signURL(ENV['MAP_SECRET'], "https://maps.googleapis.com/maps/api/staticmap?center=#{@property.address.latitude},#{@property.address.longitude}&zoom=12&size=640x400&markers=color:blue%7C#{@property.address.latitude},#{@property.address.longitude}&key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw") %> />  
+              <a href="http://www.google.com/maps/place/<%=@property.address.latitude.to_f.to_json%>,<%=@property.address.longitude.to_f.to_json%>" target="_blank">
+              <div id="map"></div>
               </a>
             </div>
           </div>
@@ -106,9 +117,10 @@
       </div>
 
       <div class="large-4 medium-12 columns show-for-large floating-container" data-sticky-container>
-        <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1">
+        <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1" style="width: 350px;">
           <div class="property-price">
-            <h2><small>List price: </small><sup>$</sup><%= @property.price %></h2>
+            <h2 style="display: inline-block;"><small>List price: </small>$<%= @property.price %></h2>
+              <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=((@property.list_price_cents)/(@property.floor_area))/100%>/ft<sup>2</sup><small></span>
           </div>
           <div class="contact-form">
             <form action="/contact_forms" data-remote="true" method="post">
@@ -116,13 +128,13 @@
               <div class="row">
                 <div class="medium-12 columns">
                   <label class="show-for-sr">Name:</label>
-                  <input type="text" placeholder="Your name" name="[contact_form]name">
+                  <input type="text" placeholder="Your name" name="[contact_form]name" required>
                 </div>
               </div>
               <div class="row">
                 <div class="medium-12 columns">
                   <label class="show-for-sr">Email:</label>
-                  <input type="text" placeholder="Your email" name="[contact_form]email">
+                  <input type="text" placeholder="Your email" name="[contact_form]email" required>
                 </div>
               </div>
               <div class="row">
@@ -139,7 +151,7 @@
               </div>
               <div class="row">
                 <div class="medium-12 columns">
-                  <input type="submit" class="btn btn-large btn-primary" value="Request info">
+                  <input type="submit" class="offer-link" style="width: 100%;" value="Request info">
                 </div>
               </div>
             </form>
@@ -161,6 +173,7 @@
                 </div>
               </div>
             </div> -->
+          
 
           </div>
         </div>
@@ -168,7 +181,49 @@
     </div>
   </div>
 </div>
+<!--- metaport -->
+<div class="row expanded">
+  <div class="small-12 medium-offset-1 small-centered columns">
+    <h2 style="font-weight: 200; color: #68c0ea; padding-top: 1.85rem;">3D Virtual Tour</h2>
+    <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0; overflow: hidden;" class="metaport-container">
+      <iframe width="853" height="480"
+          <% metas = {
+            Brooks: "https://my.matterport.com/show/?m=uTUifjUBiFy?medialink=104353",
+            Surrey2680: "https://my.matterport.com/show/?m=qzi9wZeRki6?medialink=101517",
+            Beach: "https://my.matterport.com/show/?m=S7w4oUiDd1j?medialink=92937",
+            Homer: "https://my.matterport.com/show/?m=iSnKvPeCqZF?medialink=101501",
+            Montgomery: "https://my.matterport.com/show/?m=WVbwMU7VKGA?medialink=106884"
+            }
+          %>
+          <% case @property.address.address_first
+            when "107 - 215 Brookes Street"
+              @metastuff = metas[:Brooks]
+            when "2680 143A Street"
+              @metastuff = metas[:Surrey2680]
+            when "102 - 426 Beach Crescent"
+              @metastuff = metas[:Beach]
+            when "303 - 1560 Homer Mews"
+              @metastuff = metas[:Homer]
+            when "484 Montgomery Street"
+              @metastuff = metas[:Montgomery]
+            else
+              @metastuff = "nada "
+            end
+          %>
+        src="<%= @metastuff%>" frameborder="0" allow-fullscreen class="iframe-mport"></iframe>
+    </div>
+  </div>
+</div>
+<br>
+<div class="show-for-small-only row">
+<%= render "inquiry_form"%>
+</div>
 
+<div class="show-for-medium-only row" style="padding: 1.5rem 0;">
+  <%= render "inquiry_form"%>
+</div>
+<!--- Homes -->
+<hr>
 <div class="row expanded collapse similar-listings">
   <div class="medium-10 medium-centered columns">
     <div class="row">
@@ -183,7 +238,7 @@
         <div class="small-12 medium-6 large-4 columns <%= index == @similar_properties.size - 1 ? 'end' : '' %>">
           <div class="listing-item">
             <%= link_to "", property_path(p.id), class: "listing-link" %>
-            <div class="listing-img" data-bg=<%= asset_path "6properties/#{p.id}.jpg" %>>
+            <div class="listing-img" data-bg=<%=p.photos.first.picture if p.has_photos? %>>
               <% if p.is_new? %>
               <div class="listing-badge">
                 <span>Just Listed</span>
@@ -207,3 +262,20 @@
     </div>
   </div>
 </div>
+<script>
+var lat = <%=@property.address.latitude.to_f.to_json%>;
+var lng = <%= @property.address.longitude.to_f.to_json %>;
+
+function initMap() {
+  var uluru = {lat: lat, lng: lng};
+  var map = new google.maps.Map(document.getElementById('listing-map'), {
+    zoom: 13,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+    }
+</script>
+

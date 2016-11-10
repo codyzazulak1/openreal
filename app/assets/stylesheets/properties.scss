@@ -259,13 +259,49 @@
 
   .photo-slide {
     // height: calc(50vh - 62px);
-    height: 400px;
+    height: 490px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(http://placehold.it/1200)
   }
 }
+
+.thumbnail-listing {
+  display: inline-block;
+  padding-left: 130px;
+  margin-top: 5px;
+}
+
+.iframe-mport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75%;
+  height: 75%;
+}
+
+.metaport-container {
+  margin-bottom: -15%;
+}
+
+.price-badge-listing {
+  border-top: 2px solid whitesmoke;
+  border-left: 2px solid whitesmoke;
+  border-right: 2px solid whitesmoke;
+}
+
+.medium-form {
+  border: 2px solid whitesmoke;
+  padding-bottom: 2rem;
+  float: none!important;
+}
+
+.price-below-forsale {
+  font-weight: 200;
+  
+}
+
 
 .property-overview {
   background-color: $white;
@@ -278,7 +314,8 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     // margin-bottom: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
+    font-weight: bolder;
   }
 
   .property-address {
@@ -494,5 +531,26 @@
       outline: 1px dotted #000;
       outline: -webkit-focus-ring-color auto 5px;
     }
+  }
+}
+@media screen and (max-width: 590px){
+  .thumbnail-listing {
+    display: none;
+  }
+  .iframe-mport{
+    width: 100%;
+    height: 100%;
+  }
+  .metaport-container {
+    margin-bottom: 0;
+  }
+
+  .medium-form {
+    border: 0;
+  }
+  .price-badge-listing {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
   }
 }
