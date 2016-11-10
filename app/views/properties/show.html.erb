@@ -267,5 +267,5 @@ function initMap() {
     }
 </script>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?AIzaSyC1Q7t2vZAStT0Rg1ZmgELJBR7DzCLpKIU&callback=initMap">
+    src=<%= "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_SECRET']}&callback=initMap"%>
   </script>
