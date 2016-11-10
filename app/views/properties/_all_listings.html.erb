@@ -9,7 +9,7 @@
 
       <div class="row property_p">
       <%# @new_properties.each_with_index do |p, index| %>
-        <% @properties_p.each do |p|%>
+        <% @properties_p.limit(8).each do |p|%>
           <div class="small-12 medium-12 large-6 columns">
             <div class="listing-item">
               <%= link_to "", property_path(p.id), class: "listing-link" %>
