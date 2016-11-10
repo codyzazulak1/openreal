@@ -1,10 +1,8 @@
-  <div class="small-10 small-centered medium-10 columns price-badge-listing"> 
-    <h2 style="display: inline-block;"><small>List price: </small>$<%= @property.price %></h2>
-    <p style=" display: inline;">
-      $<%=((@property.list_price_cents)/(@property.floor_area)/100)%>/ft<sup>2</sup>
-    </p>
+  <div class="small-12 small-centered medium-10 columns price-badge-listing"> 
+    <h4 style="display: inline-block; color: #68c0ea; margin: 0.3em 0; font-size: 26px;">Request Info</h2>
+    
   </div>
-  <div class="small-10 small-centered medium-10 columns medium-form">
+  <div class="small-12 small-centered medium-10 columns medium-form">
     <form action="/contact_forms" data-remote="true" method="post">
     <input type="hidden" name="contact_form[property_id]" value=<%=@property.id%> >
       <div class="row">
