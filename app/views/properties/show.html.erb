@@ -10,7 +10,7 @@
       </ul>
     </div>
     <!-- fancybox -->
-    <div class="fancybox thumbnail-listing">
+    <div class="columns medium-11 fancybox thumbnail-listing">
       <% @property.photos.each do |p|  %>
         <a class="photo-thumb" rel="photo-thumb" href=<%= p.picture_url%> >
           <img src=<%= p.picture.thumb %> />
@@ -116,13 +116,13 @@
               <div class="row">
                 <div class="medium-12 columns">
                   <label class="show-for-sr">Name:</label>
-                  <input type="text" placeholder="Your name" name="[contact_form]name">
+                  <input type="text" placeholder="Your name" name="[contact_form]name" required>
                 </div>
               </div>
               <div class="row">
                 <div class="medium-12 columns">
                   <label class="show-for-sr">Email:</label>
-                  <input type="text" placeholder="Your email" name="[contact_form]email">
+                  <input type="text" placeholder="Your email" name="[contact_form]email" required>
                 </div>
               </div>
               <div class="row">
@@ -139,7 +139,7 @@
               </div>
               <div class="row">
                 <div class="medium-12 columns">
-                  <input type="submit" class="btn btn-large btn-primary" value="Request info">
+                  <input type="submit" class="offer-link" style="width: 100%;" value="Request info">
                 </div>
               </div>
             </form>
@@ -203,11 +203,11 @@
   </div>
 </div>
 <br>
-<div class="show-for-small-only row" style="background-color: #f5f5f5; padding: 1.5rem 0;">
+<div class="show-for-small-only row">
 <%= render "inquiry_form"%>
 </div>
 
-<div class="show-for-medium-only row" style="background-color: #f5f5f5; padding: 1.5rem 0;">
+<div class="show-for-medium-only row" style="padding: 1.5rem 0;">
   <%= render "inquiry_form"%>
 </div>
 <!--- Homes -->
