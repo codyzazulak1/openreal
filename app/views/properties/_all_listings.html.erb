@@ -12,7 +12,9 @@
         <% @properties_p.limit(8).each do |p|%>
           <div class="small-12 medium-12 large-6 columns">
             <div class="listing-item">
-              <%= link_to "", property_path(p.id), class: "listing-link" %>
+              <%if p.list_price_cents != 0%>
+                <%= link_to "", property_path(p.id), class: "listing-link" %>
+              <% end %>
               <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
 
                 <div class="listing-badge">
