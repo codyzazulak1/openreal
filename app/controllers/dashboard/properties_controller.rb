@@ -113,6 +113,7 @@ class Dashboard::PropertiesController < ApplicationController
       :number_of_floors, :stories, :bedrooms,
       :bathrooms,:lot_length,:lot_width, :pid,
       :seller_info, :sellers_interest, :architecture_style,
+      :matterurl,
       photos_attributes: [
         :picture, :property_id
       ],
