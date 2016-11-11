@@ -44,6 +44,9 @@
         <h2 class="medium-6 medium-push-3 columns title-list">Homes for Sale</h2>
         <h4 class="medium-12 columns sub-title-list">Inspected and verified, now you can buy with a peace-of-mind</h4>
       </div>
+  <% if @properties_p.count <= 0 %>
+        <p>No listings available at this moment</p>
+  <% else %>
   <div class="medium-12 medium-centered columns" style="
     padding: 0;">
     <div class="row collapse">
@@ -63,6 +66,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 </section>
 <!-- end of listing banner -->
 

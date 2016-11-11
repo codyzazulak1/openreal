@@ -8,6 +8,9 @@
       </div>
 
       <div class="row property_p">
+      <% if @properties_p.count <= 0 %>
+        <p>No listings available at this moment</p>
+      <% else %>
       <%# @new_properties.each_with_index do |p, index| %>
         <% @properties_p.limit(8).each do |p|%>
           <div class="small-12 medium-12 large-6 columns">
@@ -51,7 +54,7 @@
           </div>
         <% end %> <!-- p ends 49999900 -->
       </div>
-      <%# end %>
+      <% end %>
     </div>
   </section>
 </div>
