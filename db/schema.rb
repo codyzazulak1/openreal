@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161111002454) do
+ActiveRecord::Schema.define(version: 20161111214440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20161111002454) do
     t.decimal  "lot_width",                    precision: 6, scale: 2
     t.text     "description"
     t.integer  "status_id",                                            default: 1
+    t.string   "matterurl"
   end
 
   add_index "properties", ["status_id"], name: "index_properties_on_status_id", using: :btree
