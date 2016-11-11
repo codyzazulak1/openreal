@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020222227) do
+ActiveRecord::Schema.define(version: 20161111002454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,28 @@ ActiveRecord::Schema.define(version: 20161020222227) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "agents", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "agent_id"
+  end
+
+  add_index "agents", ["email"], name: "index_agents_on_email", unique: true, using: :btree
+  add_index "agents", ["reset_password_token"], name: "index_agents_on_reset_password_token", unique: true, using: :btree
+
   create_table "appointments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -75,6 +97,39 @@ ActiveRecord::Schema.define(version: 20161020222227) do
 
   add_index "contact_forms", ["property_id"], name: "index_contact_forms_on_property_id", using: :btree
 
+  create_table "customers", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.text     "address"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
+  add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "property_id"
+    t.integer  "customer_id"
+    t.integer  "wishlist_id"
+  end
+
+  add_index "favorites", ["customer_id"], name: "index_favorites_on_customer_id", using: :btree
+  add_index "favorites", ["property_id"], name: "index_favorites_on_property_id", using: :btree
+
   create_table "features", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,8 +145,8 @@ ActiveRecord::Schema.define(version: 20161020222227) do
   add_index "photos", ["property_id"], name: "index_photos_on_property_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.text     "seller_info"
     t.string   "pid"
     t.string   "dwelling_class"
@@ -103,15 +158,15 @@ ActiveRecord::Schema.define(version: 20161020222227) do
     t.integer  "number_of_floors"
     t.integer  "floor_area"
     t.integer  "year_built"
-    t.integer  "list_price_cents"
+    t.integer  "list_price_cents",   limit: 8
     t.integer  "stories"
     t.integer  "bedrooms"
     t.integer  "bathrooms"
     t.integer  "fireplaces"
-    t.decimal  "lot_length",         precision: 6, scale: 2
-    t.decimal  "lot_width",          precision: 6, scale: 2
+    t.decimal  "lot_length",                   precision: 6, scale: 2
+    t.decimal  "lot_width",                    precision: 6, scale: 2
     t.text     "description"
-    t.integer  "status_id",                                  default: 1
+    t.integer  "status_id",                                            default: 1
   end
 
   add_index "properties", ["status_id"], name: "index_properties_on_status_id", using: :btree
@@ -140,9 +195,19 @@ ActiveRecord::Schema.define(version: 20161020222227) do
     t.string "name"
   end
 
+  create_table "wishlists", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
+  end
+
   add_foreign_key "addresses", "properties"
   add_foreign_key "contact_forms", "properties"
+  add_foreign_key "favorites", "customers"
+  add_foreign_key "favorites", "wishlists"
   add_foreign_key "properties", "statuses"
   add_foreign_key "property_upgrades", "properties"
   add_foreign_key "property_upgrades", "upgrades"
+  add_foreign_key "wishlists", "customers"
 end
