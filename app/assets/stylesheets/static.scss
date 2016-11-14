@@ -189,7 +189,8 @@ $deep-blue-color: #2ba8de;
   }
 
   p {
-    font-weight: 100;
+    font-weight: 300;
+    font-size: 15px;
   }
 
   .terms-section {
@@ -211,5 +212,9 @@ $deep-blue-color: #2ba8de;
 @media #{$small-only} {
   #faq-content {
     padding-right: 0;
+
+    p {
+      font-size: 14px;
+    }
   }
 }
