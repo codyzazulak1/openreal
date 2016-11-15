@@ -12,7 +12,7 @@
     <!-- fancybox -->
     <div class="columns medium-11 fancybox thumbnail-listing">
       <% @property.photos.each do |p|  %>
-        <a class="photo-thumb" rel="photo-thumb" href=<%= p.picture_url%> >
+        <a class="photo-thumb" rel="photo-thumb" data-fancybox-href=<%= p.picture_url%> >
           <img src=<%= p.picture.thumb %> />
         </a>
       <% end %>

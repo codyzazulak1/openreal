@@ -47,9 +47,9 @@ class Property < ActiveRecord::Base
   def self.similar_listings(property, num = 3)
     bed_range = (property.bedrooms - 2)..(property.bedrooms + 2)
     bath_range = (property.bathrooms - 2)..(property.bathrooms + 2)
-    price_range = (property.list_price_cents - 5000000)..(property.list_price_cents + 5000000)
+    #price_range = (property.list_price_cents - 5000000)..(property.list_price_cents + 5000000)
 
-    similar_listings = where(bedrooms: bed_range, bathrooms: bath_range, list_price_cents: price_range).order("CREATED_AT DESC").limit(num)
+    similar_listings = where(bedrooms: bed_range, bathrooms: bath_range).order("CREATED_AT DESC").limit(num)
     if similar_listings
       return similar_listings
     else
