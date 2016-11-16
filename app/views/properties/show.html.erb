@@ -120,7 +120,7 @@
         <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1" style="width: 350px;">
           <div class="property-price">
             <h2 style="display: inline-block;"><small>List price: </small>$<%= @property.price %></h2>
-              <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=((@property.list_price_cents)/(@property.floor_area))/100%>/ft<sup>2</sup><small></span>
+              <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=((@property.list_price_cents)/(@property.floor_area))/100%>/ft<sup>2</sup></small></span>
           </div>
           <div class="contact-form">
             <form action="/contact_forms" data-remote="true" method="post">
