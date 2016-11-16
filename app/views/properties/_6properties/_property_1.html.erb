@@ -1,4 +1,4 @@
-      <% p1 = @properties_p.first%>
+      <% p1 = @properties_p.find(12)%>
         <div class="small-12 medium-12 large-6 columns">
           <div class="listing-item">
           <%= link_to "", property_path(p1.id), class: "listing-link" %>

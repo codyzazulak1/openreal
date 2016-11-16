@@ -14,6 +14,15 @@ $(document).ready(function(){
     return "url(" + $(this).data('bg') + ")";
   });
 
+  // $('.photo-thumb').click(function (){
+  //   var imgbgk = $(this).data('fancybox-href')
+  //   var photoSlide = $('.is-active .photo-slide')
+  //   $(photoSlide).css('background-image', function(){
+  //      return "url(" + imgbgk + ")";
+  //   }); 
+  // })
+
+
   var fancyOptions = {
     prevEffect  : 'none',
     nextEffect  : 'none',
