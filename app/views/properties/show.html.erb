@@ -10,9 +10,9 @@
       </ul>
     </div>
     <!-- fancybox -->
-    <div class="columns medium-11 fancybox thumbnail-listing">
+    <div class="columns medium-11 fancybox thumbnail-listing orbit-bullets">
       <% @property.photos.each do |p|  %>
-        <a class="photo-thumb" rel="photo-thumb" data-fancybox-href=<%= p.picture_url%> >
+        <a class="photo-thumb is-active" data-slide="1" rel="photo-thumb" data-fancybox-href=<%= p.picture_url%> >
           <img src=<%= p.picture.thumb %> />
         </a>
       <% end %>
