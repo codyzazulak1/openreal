@@ -1,20 +1,57 @@
 <%- title "How It Works"%>
-<div id="howitworks x">
+<div class="row expanded">
   <%= render "howitworks_header" %>
+  <div class="medium-12 medium-centered columns howitworks"  id="howitworks">
 
-    <div class="large-3 columns" data-sticky-container>
-      <nav class="columns sticky" data-sticky data-top-anchor="x" data-btm-anchor="y" data-sticky-on="large">
-        <ul class="vertical menu" data-magellan>
-          <li><a href="#first">First Arrival</a></li>
-          <li><a href="#second">Second Arrival</a></li>
-          <li><a href="#third">Third Arrival</a></li>
-        </ul>
-      </nav>
-    </div>
+    <div class="row collapse">
+      <!-- how it works -->
+      <div class="medium-6 columns" id="howitworks-content">
+        <section id="howitworks-part" data-magellan-target="howitworks-part">
+          <h4>1. Tell us about your home</h4>
+          <p>Requesting an offer takes just a few minutes and is completely free.</p>
 
-    <div>
-      <p>nstantly break out into full speed gallop across the house for no reason throwup on your pillow hide head under blanket so no one can see for peer out window, chatter at birds, lure them to mouth but playing with balls of wool swat turds around the house shove bum in owner's face like camera lens. Knock dish off table head butt cant eat out of my own dish walk on car leaving trail of paw prints on hood and windshield purrrrrr so play riveting piece on synthesizer keyboard. Sleep in the bathroom sink nap all day stick butt in face stare at the wall, play with food and get confused by dust for pee in the shoe. Scamper walk on car leaving trail of paw prints on hood and windshield. Kitty scratches couch bad kitty this human feeds me, i should be a god. I like big cats and i can not lie instantly break out into full speed gallop across the house for no reason but sleep on dog bed, force dog to sleep on floor asdflkjaertvlkjasntvkjn (sits on keyboard) sit in box. Stare at ceiling light kitty loves pigs but destroy the blinds for run in circles gnaw the corn cob rub face on owner. Put butt in owner's face stand in front of the computer screen, for flop over attack feet. Eat prawns daintily with a claw then lick paws clean wash down prawns with a lap of carnation milk then retire to the warmest spot on the couch to claw at the fabric before taking a catnap sniff other cat's butt and hang jaw half open thereafter or lick butt paw at your fat belly. Put toy mouse in food bowl run out of litter box at full speed . Scratch at the door then walk away hola te quiero. Pee in human's bed until he cleans the litter box unwrap toilet paper for have my breakfast spaghetti yarn spit up on light gray carpet instead of adjacent linoleum or kitty power! claw drapes. Plan steps for world domination kitty power! , yet cat slap dog in face meow for food, then when human fills food dish, take a few bites of food and continue meowing or chase ball of string favor packaging over toy for put butt in owner's face. Lick plastic bags eat grass, throw it back up. Chase imaginary bugs meow yet meow meow, i tell my human, for meowwww.  </p>
-    </div>
+          <h4>2. Receive an offer on your home</h4>
+          <p>We base our offer on a comparative market analysis and your home’s unique story.</p>
+
+          <h4>3. Schedule your home inspection</h4>
+          <p>If you like the price, we’ll do a free, quick home inspection to confirm your home’s condition and guarantee your price in writing.</p>
+
+          <h4>4. Choose your move-out date</h4>
+          <p>Select the closing date you want, from 3 to 60 days from today.</p>
+
+          <h4>5. We’ll take care of the rest</h4>
+          <p>Watch the progress of your sale while we take care of all of the details, including arranging escrow.</p>
+
+          <h4>6. And you’re done!</h4>
+          <p>You will receive the proceeds from your home‘s sale on your chosen closing date.</p>
+
+        </section>
+
+        <section id="inspection" data-magellan-target="inspection">
+          <h3>Inspection Process</h3>
+          <p>Inspection proccess info here</p>
+        </section>
+        
+        <section id="closing" data-magellan-target="closing">
+          <h3>Closing The Deal</h3>
+          <p>Closing the deal info here</p>
+        </section>
+      </div>
+      <!-- how it works nav -->
+      <div class="medium-4 columns hide-for-small-only" id="howitworks-nav" data-sticky-container>
+
+        <div class="sticky" data-sticky data-anchor="howitworks" data-margin-bottom="3" data-margin-top="3">
+          <div class="this">
+            <%= image_tag("logo_med") %>
+            <h5>Sell Your Home Quickly &amp; Safely</h5>
+          </div>
+
+        </div>
+      </div>
+
+    </div> 
+
+
 
   <!-- <section class="row expanded small-uncollapse medium-collapse tab-holder">
     <div class="small-12 medium-6 small-centered columns on-tab">
@@ -198,11 +235,11 @@
 
   </div>
   <hr> -->
-  <div id= "y">
-    <p>Cat slap dog in face spit up on light gray carpet instead of adjacent linoleum, for purr. Mrow with tail in the air so give attitude, so spread kitty litter all over house. Lick butt pooping rainbow while flying in a toasted bread costume in space. Behind the couch with tail in the air leave dead animals as gifts, yet lick the plastic bag chase dog then run away. Roll on the floor purring your whiskers off eat grass, throw it back up. Cough furball i like big cats and i can not lie my left donut is missing, as is my right inspect anything brought into the house. </p>
-  </div>
-  <%= render 'get_offer' %>
-
+  </div> 
 </div>
+<div id="offer-section">
+  <%= render 'get_offer' %>
+</div>
+
 
 
