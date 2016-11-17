@@ -42,8 +42,23 @@
 
         <div class="sticky" data-sticky data-anchor="howitworks" data-margin-bottom="3" data-margin-top="3">
           <div class="this">
-            <%= image_tag("logo_med") %>
+            <p><%= image_tag("logo_med") %></p>
             <h5>Sell Your Home Quickly &amp; Safely</h5>
+          </div>
+          <div class="form-cx">
+            <%= form_tag (properties_sell_path) do %>
+
+            <div class="form-start">
+              <input type="text" id="addressInput" name="addressInput" placeholder="Enter your home address">
+              <input type="hidden" name="addressFirst" id="addressFirst">
+              <input type="hidden" name="addressSecond" id="addressSecond">
+              <input type="hidden" name="addressCity" id="addressCity">
+              <input type="hidden" name="addressPostal" id="addressPostal">
+              <input type="hidden" name="addressLat" id="addressLat">
+              <input type="hidden" name="addressLng" id="addressLng">
+              <input type="submit" class="hide">
+            </div>
+            <% end %>
           </div>
 
         </div>
