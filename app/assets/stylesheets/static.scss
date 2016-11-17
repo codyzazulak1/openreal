@@ -4,8 +4,9 @@ $deep-blue-color: #2ba8de;
 
 // how it works page
 #howitworks {
-  background: rgba(181,222,245,0.15);
-  margin-top: 90px;
+    margin-top: 90px;
+    border-top: 1px solid rgba(128,128,128,0.33);
+    padding-top: 84px;
 
   #howitworks-nav {
 
@@ -27,6 +28,15 @@ $deep-blue-color: #2ba8de;
           width: 13%;
         }
       }
+
+      .form-start {
+        input:last-child {
+          background: #68c0ea;
+          color: white;
+          border: none;
+          padding: 8px 30%;
+        }
+      }
     
       ul {
         list-style: none;
@@ -37,20 +47,49 @@ $deep-blue-color: #2ba8de;
 
         li {
           text-align: left;
+          display: inline;
           a {
             text-decoration: none;
-            color: black;
+            color: $primary-color;
             font-size: 1rem;
           }
+        }
+        li:after, li:before {
+          content: ' | ' ;
+          color: $primary-color;
         }
       }
     }
   } 
 
   #howitworks-part {
+    list-style: none;
+    
+    .is-accordion-submenu-parent > a::after{
+      right: -2rem;
+    }
+
+    .text-align {
+     // text-align: center;
+      font-weight: 200;
+    }
+
+    a > h3 {
+      display: inline-block;
+      //color: $primary-color;
+      color: #3c3c3c;
+      margin-left: 16px;
+    }
+
+    a{
+      text-decoration: none;
+      color: black;
+      font-size: 1rem;
+    }
+
     h4, p {
       text-align: left;
-      padding-left: 50px;
+     // padding-left: 90px;
     }
 
     h4 {
@@ -60,6 +99,8 @@ $deep-blue-color: #2ba8de;
     p {
       font-weight: 200;
     }
+
+
 
   }
 }

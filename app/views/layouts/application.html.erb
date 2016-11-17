@@ -49,8 +49,6 @@
    <% elsif (controller.controller_name == "properties" && controller.action_name == "show") %>
     <script src=<%="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Q7t2vZAStT0Rg1ZmgELJBR7DzCLpKIU&callback=initMap"%>
       async defer></script>
-      <script src=<%="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Q7t2vZAStT0Rg1ZmgELJBR7DzCLpKIU&libraries=places&callback=autoCompleteSeller" %>
-      async defer></script>
 
     <% elsif (controller.controller_name == "welcome" && controller.action_name == "index" || "howitworks" ) %>
       <script src=<%="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Q7t2vZAStT0Rg1ZmgELJBR7DzCLpKIU&libraries=places&callback=autoComplete"%>

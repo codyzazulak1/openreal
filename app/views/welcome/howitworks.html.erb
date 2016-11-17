@@ -5,27 +5,38 @@
 
     <div class="row collapse">
       <!-- how it works -->
-      <div class="medium-6 columns" id="howitworks-content">
-        <section id="howitworks-part" data-magellan-target="howitworks-part">
-          <h4>1. Tell us about your home</h4>
-          <p>Requesting an offer takes just a few minutes and is completely free.</p>
-
-          <h4>2. Receive an offer on your home</h4>
-          <p>We base our offer on a comparative market analysis and your home’s unique story.</p>
-
-          <h4>3. Schedule your home inspection</h4>
-          <p>If you like the price, we’ll do a free, quick home inspection to confirm your home’s condition and guarantee your price in writing.</p>
-
-          <h4>4. Choose your move-out date</h4>
-          <p>Select the closing date you want, from 3 to 60 days from today.</p>
-
-          <h4>5. We’ll take care of the rest</h4>
-          <p>Watch the progress of your sale while we take care of all of the details, including arranging escrow.</p>
-
-          <h4>6. And you’re done!</h4>
-          <p>You will receive the proceeds from your home‘s sale on your chosen closing date.</p>
-
-        </section>
+      <div class="medium-6 medium-offset-1 columns" id="howitworks-content">
+        <ul id="howitworks-part" data-magellan-target="howitworks-part" data-accordion-menu >
+          <li class="text-align">
+            <a href="#"><h3 class="header-1">How It Works</h3></a>
+            <ul class="menu vertical nested is-active">
+              <li>
+                <h4>1. Tell us about your home</h4>
+                <p>Requesting an offer takes just a few minutes and is completely free.</p>
+              </li>
+              <li>
+                <h4>2. Receive an offer on your home</h4>
+                <p>We base our offer on a comparative market analysis and your home’s unique story.</p>
+              </li>
+              <li>
+                <h4>3. Schedule your home inspection</h4>
+                <p>If you like the price, we’ll do a free, quick home inspection to confirm your home’s condition and guarantee your price in writing.</p>
+              </li>
+              <li>
+                <h4>4. Choose your move-out date</h4>
+                <p>Select the closing date you want, from 3 to 60 days from today.</p>
+              </li>
+              <li>
+                <h4>5. We’ll take care of the rest</h4>
+                <p>Watch the progress of your sale while we take care of all of the details, including arranging escrow.</p>
+              </li>
+              <li>
+                <h4>6. And you’re done!</h4>
+                <p>You will receive the proceeds from your home‘s sale on your chosen closing date.</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
 
         <section id="inspection" data-magellan-target="inspection">
           <h3>Inspection Process</h3>
@@ -40,26 +51,36 @@
       <!-- how it works nav -->
       <div class="medium-4 columns hide-for-small-only" id="howitworks-nav" data-sticky-container>
 
-        <div class="sticky" data-sticky data-anchor="howitworks" data-margin-bottom="3" data-margin-top="3">
+        <div class="sticky" data-sticky data-anchor="howitworks" data-margin-bottom="3" data-margin-top="0">
+
+          <div class="this" style="margin-bottom: 20px;">
+            
+            <ul data-magellan >
+              <li><a href="#howitworks-part"> How it Works</a></li>
+              <li><a href="#inspection">Inspection Process</a></li>
+              <li><a href="#closing">Closing the Deal</a></li>
+            </ul>
+          </div>
           <div class="this">
             <p><%= image_tag("logo_med") %></p>
             <h5>Sell Your Home Quickly &amp; Safely</h5>
-          </div>
-          <div class="form-cx">
-            <%= form_tag (properties_sell_path) do %>
+            <div class="form-cx">
+              <%= form_tag (properties_sell_path) do %>
 
-            <div class="form-start">
-              <input type="text" id="addressInput" name="addressInput" placeholder="Enter your home address">
-              <input type="hidden" name="addressFirst" id="addressFirst">
-              <input type="hidden" name="addressSecond" id="addressSecond">
-              <input type="hidden" name="addressCity" id="addressCity">
-              <input type="hidden" name="addressPostal" id="addressPostal">
-              <input type="hidden" name="addressLat" id="addressLat">
-              <input type="hidden" name="addressLng" id="addressLng">
-              <input type="submit" class="hide">
+              <div class="form-start">
+                <input type="text" id="addressInput" name="addressInput" placeholder="Enter your home address">
+                <input type="hidden" name="addressFirst" id="addressFirst">
+                <input type="hidden" name="addressSecond" id="addressSecond">
+                <input type="hidden" name="addressCity" id="addressCity">
+                <input type="hidden" name="addressPostal" id="addressPostal">
+                <input type="hidden" name="addressLat" id="addressLat">
+                <input type="hidden" name="addressLng" id="addressLng">
+               <p> <input type="submit" value="Get Your Offer"></p>
+              </div>
+              <% end %>
             </div>
-            <% end %>
           </div>
+
 
         </div>
       </div>
