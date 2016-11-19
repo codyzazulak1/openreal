@@ -23,7 +23,7 @@
 <!-- property-overview -->
 <div class="row expanded property-overview">
   <div class="medium-10 medium-centered columns">
-    <div class="property-status" style="font-size: 26px"><span>For Sale</span></div>
+    <div class="property-status" style="font-size: 24px"><span>For Sale</span></div>
     <div class="show-for-small-only price-below-forsale">
       <h2 style="display: inline-block;"><p style="display: inline;">List price: </p>$<%= @property.price %></h2>
       <p style=" display: inline;">
@@ -120,7 +120,7 @@
         <div class="floating-box" data-sticky data-sticky-on="large" data-top-anchor="sticky-top:top" data-btm-anchor="listing-map:bottom" data-margin-top="1" style="width: 350px;">
           <div class="property-price">
             <h2 style="display: inline-block;"><small>List price: </small>$<%= @property.price %></h2>
-              <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=((@property.list_price_cents)/(@property.floor_area))/100%>/ft<sup>2</sup><small></span>
+              <span style="vertical-align: -webkit-baseline-middle;"><small>$<%=((@property.list_price_cents)/(@property.floor_area))/100%>/ft<sup>2</sup></small></span>
           </div>
           <div class="contact-form">
             <form action="/contact_forms" data-remote="true" method="post">
@@ -182,7 +182,7 @@
   </div>
 </div>
 <!--- metaport -->
-<% if !(@property.address.address_first == " 3101 277 THURLOW ")%>
+<% if !(@property.matterurl ==( "" || " "))%>
   <div class="row expanded">
     <div class="small-12 medium-offset-1 small-centered columns">
       <h2 style="font-weight: 200; color: #68c0ea; padding-top: 1.85rem;">3D Virtual Tour</h2>
@@ -225,7 +225,7 @@
   <%= render "inquiry_form"%>
 </div>
 <!--- Homes -->
-<% if !(@property.address.address_first == " 3101 277 THURLOW ")%>
+<% if !(@property.matterurl == ( "" || " "))%>
 <hr>
 <% end %>
 <div class="row expanded collapse similar-listings">
@@ -239,6 +239,7 @@
     <div class="row">
 
       <% @similar_properties.each_with_index do |p, index| %>
+        <% if (p.list_price_cents > 0) && (p.id != @property.id) %>
         <div class="small-12 medium-6 large-4 columns <%= index == @similar_properties.size - 1 ? 'end' : '' %>">
           <div class="listing-item">
             <%= link_to "", property_path(p.id), class: "listing-link" %>
@@ -261,6 +262,7 @@
             </div>
           </div>
         </div>
+        <% end %>
       <% end %>
 
     </div>

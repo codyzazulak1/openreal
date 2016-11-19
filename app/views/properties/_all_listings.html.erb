@@ -12,7 +12,8 @@
         <p>No listings available at this moment</p>
       <% else %>
       <%# @new_properties.each_with_index do |p, index| %>
-        <% @properties_p.limit(8).each do |p|%>
+        <% @properties_p.order(created_at: :desc).limit(20).each do |p|%>
+          <% if (p.contact_form.nil?)%>
           <div class="small-12 medium-12 large-6 columns">
             <div class="listing-item">
               <%if p.list_price_cents != 0%>
@@ -52,6 +53,7 @@
               </div>
             </div>
           </div>
+          <% end %>
         <% end %> <!-- p ends 49999900 -->
       </div>
       <% end %>
