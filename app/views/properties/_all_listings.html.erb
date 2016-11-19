@@ -12,7 +12,7 @@
         <p>No listings available at this moment</p>
       <% else %>
       <%# @new_properties.each_with_index do |p, index| %>
-        <% @properties_p.order(created_at: :asc).each do |p|%>
+        <% @properties_p.order(created_at: :asc).limit(7).each do |p|%>
           <% if (@p.contact_form.nil?)%>
           <div class="small-12 medium-12 large-6 columns">
             <div class="listing-item">
