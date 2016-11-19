@@ -19,7 +19,12 @@ body {
 /* * * * *
 * Header  *
 * * * * * */
-
+.banner {
+  background-image: linear-gradient(rgb(104, 168, 234), rgba(104, 228, 234, 0.32)),url(<%= asset_path 'howitworks_banner.jpg'%>);
+  color: white;
+  padding-bottom: 200px;
+  background-size: cover;
+}
 .top-header-contain {
   text-align: center;
 }
@@ -29,6 +34,7 @@ body {
 
 h1.headers{
   font-size: 1.9rem;
+  margin-top: 160px;
 }
  
 h2.headers{
@@ -54,6 +60,15 @@ h2.headers{
       font-size: 1.8rem;
     }
 	}
+}
+
+@media screen and (max-width: 630px){
+  .banner {
+    padding-bottom: 50px;
+  }
+  h1.headers {
+    margin-top: 80px;
+  }
 }
 
 .pricing .focus-blue:before{
