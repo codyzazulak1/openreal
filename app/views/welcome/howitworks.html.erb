@@ -8,7 +8,7 @@
       <div class="medium-6 medium-offset-1 small-offset-0 columns" id="howitworks-content">
         <ul id="howitworks-part" data-magellan-target="howitworks-part" data-accordion-menu >
           <li class="text-align">
-            <a href="javascript:void(0)"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested is-active js-accordion-target submenu">
               <li>
                 <h4>1. Tell us about your home</h4>
@@ -40,7 +40,7 @@
         <!-- inspection -->
         <ul id="inspection" data-magellan-target="inspection" data-accordion-menu >
           <li class="text-align">
-            <a href="javascript:void(0)"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target1 submenu">
               <li>
                 <h4>How inspections work.</h4>
@@ -57,10 +57,10 @@
             </ul>
           </li>
         </ul>
-        <!-- Closing -->
+        <!-- Closing --> 
         <ul id="closing" data-magellan-target="closing" data-accordion-menu >
           <li class="text-align">
-            <a href="javascript:void(0)"><h3 class="header-1">How Closing Works</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up"><h3 class="header-1">How Closing Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target2 submenu">
               <li>
                 <h4>1. Escrow Account Opened</h4>
@@ -90,9 +90,9 @@
           <div class="this" style="margin-bottom: 20px;">
             
             <ul data-magellan >
-              <li><a href="javascript:void(0)" id="how" class="js-accordion-trigger"> How it Works</a></li>
-              <li><a href="javascript:void(0)" id="inspect" class="js-accordion-trigger1">Inspection Process</a></li>
-              <li><a href="javascript:void(0)" id="close" class="js-accordion-trigger2">Closing the Deal</a></li>
+              <li><a href="#" id="how" class="js-accordion-trigger"> How it Works</a></li>
+              <li><a href="#" id="inspect" class="js-accordion-trigger1">Inspection Process</a></li>
+              <li><a href="#" id="close" class="js-accordion-trigger2">Closing the Deal</a></li>
             </ul>
           </div>
           <div class="this">
@@ -129,16 +129,31 @@
 
 <script type="text/javascript">
 
-function getElements (trigger, target){
+function openAccordion (trigger, target){
   $(trigger).bind('click', function(e){
-    $('ul').find(target).slideToggle('fast');
+    $('ul').find(target).slideToggle('fast').toggleClass("up");
+    $('ul').find(target).removeClass("up")
     e.preventDefault();
   });
-}
+};
 
-getElements('.js-accordion-trigger', '.js-accordion-target');
-getElements('.js-accordion-trigger1', '.js-accordion-target1');
-getElements('.js-accordion-trigger2', '.js-accordion-target2');
+function scrollToElem(elem, target){
+  var element = document.getElementById(elem)
+  var accordionElem = 0
+  $(element).on('click', function(){
+    var accordionElem = document.getElementById(target)
+    var pixels = accordionElem.scrollHeight
+    window.scrollTo(0, pixels)
+    console.log("this is mememememe: " +  pixels)
+
+  })
+
+};
+
+
+openAccordion('.js-accordion-trigger', '.js-accordion-target');
+openAccordion('.js-accordion-trigger1', '.js-accordion-target1');
+openAccordion('.js-accordion-trigger2', '.js-accordion-target2');
 </script>
 
 

@@ -85,7 +85,14 @@ $deep-blue-color: #2ba8de;
     
     .is-accordion-submenu-parent > a::after{
       right: -2rem;
+
     }
+
+    .is-accordion-submenu-parent > a.up::after {
+      transform: scaleY(1);
+    }
+
+
 
     .text-align {
      // text-align: center;
