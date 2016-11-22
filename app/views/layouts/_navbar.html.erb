@@ -14,7 +14,7 @@
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
         </li>
         <li class="show-for-medium">
-          <a href=<%=listings_path%> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'listings' %>>Listings</a>
+          <a href=<%=listings_path%> class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'listings' || controller.action_name == 'show' %>>Listings</a>
         </li>
         <li class="show-for-medium">
           <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
