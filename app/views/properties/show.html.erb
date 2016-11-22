@@ -12,13 +12,13 @@
     <!-- fancybox -->
     <div class="columns medium-11 fancybox thumbnail-listing">
       <% @property.photos.each do |p|  %>
-        <a class="fancybox-thumb photo-thumb" rel="photo-thumb fancybox-thumb" data-fancybox-href=<%= p.picture_url%> data-thumbnail=<%= p.picture_url%> >
-          <img src=<%= p.picture.thumb %> />
+        <a class="fancybox-thumb photo-thumb" rel="photo-thumb fancybox-thumb" data-fancybox-href=<%= p.picture_url%> data-thumbnail=<%= p.picture_url%>  >
+          <img src=<%= p.picture.thumb %> style="padding: 1.5px 1.5px"/>
         </a>
       <% end %>
     </div>
+  </div>
 </div>
-<br>
 
 <!-- property-overview -->
 <div class="row expanded property-overview">
