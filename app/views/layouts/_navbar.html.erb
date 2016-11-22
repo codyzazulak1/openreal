@@ -8,7 +8,7 @@
     <div class="float-right">
       <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
         <li>
-          <a href=<%= new_property_path %> class=<%= "active" if controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name) %>>Sell</a>
+          <a href=<%= new_property_path %> class=<%= "active" if (controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name)) || (controller.controller_name == 'welcome' && ['index'].include?(controller.action_name)) %>>Sell</a>
         </li>
         <li class="show-for-medium">
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
