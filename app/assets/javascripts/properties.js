@@ -1,5 +1,19 @@
 //= require fancybox
-
+$(document).ready(function() {
+  $(".fancybox-thumb").fancybox({
+    prevEffect  : 'none',
+    nextEffect  : 'none',
+    helpers : {
+      title : {
+        type: 'outside'
+      },
+      thumbs  : {
+        width : 50,
+        height  : 50
+      }
+    }
+  });
+});
 // add controls to orbit slider
 Foundation.Orbit.prototype.pause = function() {
   this.timer.pause();
@@ -17,10 +31,16 @@ $(document).ready(function(){
   // $('.photo-thumb').click(function (){
   //   var imgbgk = $(this).data('fancybox-href')
   //   var photoSlide = $('.is-active .photo-slide')
-  //   $(photoSlide).css('background-image', function(){
-  //      return "url(" + imgbgk + ")";
-  //   }); 
+
+  //   $(this).find('img').each(function(img){
+  //     var thumbImage = this.src
+  //    $('.photo-carousel .photo-slide').each(function(){
+  //         console.log(($(this).data('bg')) === (thumbImage))
+  //    });
+  //   });
   // })
+
+  // $('.photo-thumb').find('img').each(function(index){ console.log('this is the index ' + index + 'and content' + this.src)});
 
 
   var fancyOptions = {
@@ -32,7 +52,7 @@ $(document).ready(function(){
     helpers : {
       thumbs  : {
         width : 50,
-        height  : 50
+        height  : 50,
       }
     },
     beforeShow : function(){ $('.orbit').foundation('pause'); },
