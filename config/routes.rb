@@ -37,9 +37,18 @@ Rails.application.routes.draw do
 
   # dashboard
   namespace :dashboard do
+    resources :photos do
+      collection do
+        delete 'batchdestroy'
+      end
+    end
     resources :properties do
       patch 'status', action: :status
+<<<<<<< 784b696d59ff0102af0c78a7b8a500041bb872c5
       resources :pictures, only: [:create, :destroy]
+=======
+      
+>>>>>>> partial changes for delete and create photo uploader
     end
     resources :contact_forms
     resources :agent_forms

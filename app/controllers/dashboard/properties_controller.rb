@@ -77,6 +77,7 @@ class Dashboard::PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     @address = Address.new(address_params)
+    @photos = @property.photos
 
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
@@ -97,8 +98,13 @@ class Dashboard::PropertiesController < ApplicationController
   def destroy
     @property = Property.find(params[:id])
     @property.destroy
+    # @photo_destroy = @property.photos.each_with_index do |picture, index|
+    #   (picture.index).destroy
+    # end
+
     redirect_to dashboard_properties_path
   end
+
 
   private
 
@@ -113,7 +119,7 @@ class Dashboard::PropertiesController < ApplicationController
       :matterurl,
       {pictures: []},
       photos_attributes: [
-        :picture, :property_id
+        :picture, :property_id, :picture_cache, :id
       ],
       address_attributes:
       [

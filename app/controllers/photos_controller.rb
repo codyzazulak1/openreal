@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
 	end
 	def create
     @photo = Photo.new(photo_params)
- 
+ 		# @photo.save
     if @photo.save
       redirect_to dashboard_properties_path, notice: 'Photo was successfully created.'
     end
@@ -36,12 +36,8 @@ class PhotosController < ApplicationController
 
 	private
 
-	# def set_upload
- #    @upload = Photo.find(params[:id])
- #  end
-
 	def photo_params
-		params.require(:photos).permit(:property_id, :picture)
+		params.require(:photos).permit(:property_id, :picture, :picture_cache)
 		
 	end
 end

@@ -5,6 +5,23 @@
     <h1><%= @property.address_name %></h1>
     <hr>
     <%= render 'dashboard/properties/form' %>
+
+  <div class="row">
+
+  	<h3>
+  		photos
+  	</h3>
+  	<%= form_tag batchdestroy_dashboard_photos_path, method: :delete %>
+  		<%= hidden_field_tag "property_id", @property.id %>
+	  	<% @property.photos.each do |ph|%>
+	  	<p><%= ph.id%></p>
+	  		<p> Delete <%= check_box_tag "ids[]", ph.id%></p>
+	  	<% end %>
+	  	<%= submit_tag %>
+ 
+
+  	
+  </div>
   </div>
 </div>
 
