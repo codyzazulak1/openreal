@@ -37,8 +37,14 @@ Rails.application.routes.draw do
 
   # dashboard
   namespace :dashboard do
+    resources :photos do
+      collection do
+        delete 'batchdestroy'
+      end
+    end
     resources :properties do
       patch 'status', action: :status
+      
     end
     resources :contact_forms
     resources :agent_forms

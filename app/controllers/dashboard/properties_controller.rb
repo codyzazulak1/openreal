@@ -50,9 +50,15 @@ class Dashboard::PropertiesController < ApplicationController
     
 
     if @property.update_attributes(property_params)
-      params[:photos]['picture'].each do |p|
-        @photos = @property.photos.create!(picture: p, property_id: @property.id)
+      # params[:photos]['picture'].each do |p|
+      #   @photos = @property.photos.create!(picture: p, property_id: @property.id)
+      # end
+      if params[:pictures]
+        params[:pictures].each { |image|
+          @property.photos.create(pictures: image)
+        }
       end
+      flash[:notice] = "Property has been updated."
       redirect_to dashboard_properties_path(@property)
     end
   end
@@ -80,6 +86,7 @@ class Dashboard::PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     @address = Address.new(address_params)
+    @photos = @property.photos
 
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
@@ -100,8 +107,13 @@ class Dashboard::PropertiesController < ApplicationController
   def destroy
     @property = Property.find(params[:id])
     @property.destroy
+    # @photo_destroy = @property.photos.each_with_index do |picture, index|
+    #   (picture.index).destroy
+    # end
+
     redirect_to dashboard_properties_path
   end
+
 
   private
 
@@ -115,7 +127,7 @@ class Dashboard::PropertiesController < ApplicationController
       :seller_info, :sellers_interest, :architecture_style,
       :matterurl,
       photos_attributes: [
-        :picture, :property_id
+        :picture, :property_id, :picture_cache, :id
       ],
       address_attributes:
       [

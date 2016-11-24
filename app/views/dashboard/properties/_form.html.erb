@@ -30,23 +30,31 @@
             <%#= f.select u, options_for_select(["first option", "second option", "third option"]), {:prompt => true} %>
           <%# end %>
         <% end %>
-        <% if new_dashboard_property_path %>
         <div>
-          <div>
-            <%=f.fields_for :photos do |photo|%>
-              <%= photo.label :picture, 'Upload picture' %><br>
-              <%= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
+          <div class="photo-contain">
+            <% @property.photos.each do |photo|%>
+              <%= image_tag(photo.picture_url, size: "250x250", style: "display: inline-block; padding: 2px;") if photo.picture?%>
+              <p>
+                  <%#= button_to "Delete", dashboard_photo_path(id: photo.id, property_id: @property.id), method: :delete %>
+                  
+              </p>
             <% end %>
+            
           </div>
+          <!-- This is field without the fields for -->
+            <%#= f.label :picture, "Upload photos."%>            
+            <%#= f.file_field :picture, multiple: true, name: "photos[picture][]"%>
+            <%#= f.hidden_field :picture_cache %>
+            
+            <!-- this shit is with fields for -->
+            <%=f.fields_for @property.photos do |fph|%>
+              <%= fph.label :picture, 'Upload picture' %><br>
+              <%= fph.file_field :picture, :multiple => true %>
+              <%#= photo.hidden_field :picture_cache%>
+            <% end %>
+
         </div>
-         <% end %>
-         <div>
-           <%# if !@property.%>
-            <%# @property.photos.each do |p|%>
-              <%#= image_tag(p.picture_url, :size => "150x150", class: 'img-upload')%>
-            <%# end %>
-         </div>
-          <%# end %>
+         <%# end %>
       </div>
     </li>
   </ul>

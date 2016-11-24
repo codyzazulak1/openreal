@@ -11,7 +11,7 @@ class Property < ActiveRecord::Base
   validates :list_price_cents, presence: true
 
   has_one :address, dependent: :destroy
-  has_one :contact_form, dependent: :destroy
+  has_many :contact_forms, dependent: :destroy
   has_many :photos, dependent: :destroy
   belongs_to :status
   has_many :property_upgrades, dependent: :destroy
@@ -20,8 +20,8 @@ class Property < ActiveRecord::Base
   accepts_nested_attributes_for :property_upgrades
   accepts_nested_attributes_for :address
   validates_associated :address
-  accepts_nested_attributes_for :contact_form
-  validates_associated :contact_form
+  accepts_nested_attributes_for :contact_forms
+  validates_associated :contact_forms
   accepts_nested_attributes_for :photos
 
 
@@ -82,7 +82,6 @@ class Property < ActiveRecord::Base
   end
 
   def address_name
-    puts self.id
     return "#{self.address.address_first}, #{self.address.city}"
   end
 
