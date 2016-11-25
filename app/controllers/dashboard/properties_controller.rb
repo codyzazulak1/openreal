@@ -32,28 +32,25 @@ class Dashboard::PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
-   
   end
 
   def edit
     @property = Property.find(params[:id])
     @address = @property.address
-    @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
+    @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "pictures"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
     @photos = @property.photos
-   
   end
 
   def update
     @property = Property.find(params[:id])
     @address = @property.address
-    
 
     if @property.update_attributes(property_params)
-      params[:photos]['picture'].each do |p|
-        @photos = @property.photos.create!(picture: p, property_id: @property.id)
-      end
-      redirect_to dashboard_properties_path(@property)
+      #params[:photos]['picture'].each do |p|
+      #  @photos = @property.photos.create!(picture: p, property_id: @property.id)
+      #end
+      redirect_to dashboard_properties_path
     end
   end
 
@@ -86,9 +83,9 @@ class Dashboard::PropertiesController < ApplicationController
 
 
     if @property.save
-      params[:photos]['picture'].each do |p|
-        @photos = @property.photos.create!(picture: p, property_id: @property.id)
-      end
+#      params[:photos]['picture'].each do |p|
+#        @photos = @property.photos.create!(picture: p, property_id: @property.id)
+#      end
       flash[:success] = "Property has been added!"
       redirect_to dashboard_properties_path
     else
@@ -114,6 +111,7 @@ class Dashboard::PropertiesController < ApplicationController
       :bathrooms,:lot_length,:lot_width, :pid,
       :seller_info, :sellers_interest, :architecture_style,
       :matterurl,
+      {pictures: []},
       photos_attributes: [
         :picture, :property_id
       ],

@@ -1,3 +1,19 @@
+<div class="row">
+</div>
+<%= form_for [:dashboard, @property], url: dashboard_property_pictures_path(@property), method: :post do |f| %>
+
+
+  <% @property.pictures.each_with_index do |u, index| %>
+    <img style="display: inline" src=<%= u.thumb %> />
+    <%= f.check_box "deletes[]", index %>
+    <br>
+  <%end%>
+  <%= f.file_field :pictures, multiple: true %>
+
+  <%= f.submit %>
+
+<% end %>
+
 <%= form_for [:dashboard, @property], html: {class: "dashboard-form clearfix", id: "property-form", multipart: true} do |f| %>
   <div class="float-left">
     <a href="<%= dashboard_properties_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
@@ -31,15 +47,9 @@
           <%# end %>
         <% end %>
         <% if new_dashboard_property_path %>
-        <div>
           <div>
-            <%=f.fields_for :photos do |photo|%>
-              <%= photo.label :picture, 'Upload picture' %><br>
-              <%= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
-            <% end %>
           </div>
-        </div>
-         <% end %>
+        <%end%>
          <div>
            <%# if !@property.%>
             <%# @property.photos.each do |p|%>
@@ -51,7 +61,6 @@
     </li>
   </ul>
 
-  
   <div class="float-left">
     <a href="<%= dashboard_properties_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
   </div>

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   resources :properties, only: [:new, :create, :show] do
     resources :address
     resources :photos, only: [:new, :create, :update]
-    member do 
+    member do
       get 'listing'
     end
   end
@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :properties do
       patch 'status', action: :status
+      resources :pictures, only: [:create, :destroy]
     end
     resources :contact_forms
     resources :agent_forms
