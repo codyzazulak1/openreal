@@ -25,6 +25,8 @@ class Property < ActiveRecord::Base
   accepts_nested_attributes_for :photos
 
 
+  mount_uploaders :pictures, PictureUploader
+
   monetize :list_price_cents, as: :list_price
 
   # def to_param

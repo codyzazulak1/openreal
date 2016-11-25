@@ -18,7 +18,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'json'
 
 # Image upload gems
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'fog'
 
