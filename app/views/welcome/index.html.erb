@@ -185,9 +185,8 @@
         <h5>Learn more about working with us</h5>
 
         <div class="select-company" id="select-company">
-          <form method="GET" action="/agents" value="company">
           <%= select_tag "company_name", options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]), include_blank: "Select One"%>
-          <button class="expanded button" value="SubmitCompany" >Submit</button>
+          <a href="/agents"><button class="expanded button" >Submit</button></a>
           </form>
           <h6>Getting your home offers are free and easy</h6>
         </div>
@@ -200,19 +199,6 @@
 
 <!-- end of agents -->
 
-<script type="text/javascript">
-
-
-  function grabCompanyChosen(){
-    var companies = document.getElementById('company_name');
-
-    companies.addEventListener('change', function(){
-       var selectedComp = companies.options[companies.selectedIndex].value;
-       // console.log(selectedComp);
-    });
-  };
-
-</script>
 <script type="text/javascript">
   scrollIt();
   grabCompanyChosen();

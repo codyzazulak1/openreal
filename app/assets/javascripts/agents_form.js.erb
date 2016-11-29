@@ -20,7 +20,7 @@ function text_field_forSelected_company(){
   if (value === 'other') {
     document.getElementById('div1').innerHTML='<input type="text" name="agent_form[company_name]" placeholder="Your company name" />';
     } else {
-          document.getElementById('div1').innerHTML='';
+        document.getElementById('div1').innerHTML='';
   }
 
 }
@@ -59,32 +59,42 @@ function scrollIt() {
   });
 }
 
-function getCompanyFromWelcomeIndex(){
-  var queryString = document.URL
-  if (queryString.includes('company_name')) {
-    return queryString.split('=').pop();
-  }
-}
+
+function grabCompanyChosen(){
+  var companies = document.getElementById('company_name');
+
+  companies.addEventListener('change', function(){
+     var selectedComp = companies.options[companies.selectedIndex].value;
+     
+     // in case browser is accidentally refreshed
+     if(sessionStorage.getItem("autosave")){
+      selectedComp = sessionStorage.getItem("autosave")
+     }
+     sessionStorage.setItem("autosave", selectedComp)
+  });
+};
 
 function selectCompany(){
   var form = document.getElementById('options-tag')
   var val = form.options[form.selectedIndex].value;
-  var company = getCompanyFromWelcomeIndex();
-
-  if( company.includes('+')){
-    var company = company.replace('+', ' ');
-  }
+  // var company = getCompanyFromWelcomeIndex();
+  var company = sessionStorage.getItem("autosave")
 
   if (company == val){
-    console.log('nothing here')
+    // console.log('nothing here')
   } else {
     companyOptions = form.options
     for(var i, j = 0; i = companyOptions[j]; j++) {
       if(i.value == company) {
         companyOptions.selectedIndex = j;
         text_field_forSelected_company();
+        $('html, body').animate({
+        scrollTop: $("#form-signup").offset().top
+        }, 1200); 
         break;
       }
     }
-  }   
+  }
+  sessionStorage.removeItem("autosave") 
+
 }
