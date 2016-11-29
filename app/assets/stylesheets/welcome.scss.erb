@@ -303,3 +303,135 @@
   }
   
 }
+#agents-sect {
+  .agents-intro {
+    //text-align: center;
+    background-color: #f5f5f5;
+    font-weight: 200;
+
+    .agent-contents {
+      margin-top: 1.8em;
+      margin-bottom: 1.8em;
+
+      h2 {
+        font-weight: 300;
+        color: #68c0ea;
+      }
+    }
+
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding-bottom: 5px;
+        //background: url(<%= asset_path 'wrench.svg'%>) no-repeat left top;
+        img.svg-img {
+          width: 20px;
+          height: 27px;
+          box-sizing: border-box;
+          
+        }
+      }
+    }
+  }
+
+  .agents-mid {
+    font-weight: 200;
+
+    .agent-contents {
+      margin-top: 1.8em;
+      margin-bottom: 1.8em;
+
+      h2 {
+        font-weight: 300;
+        color: #68c0ea;
+      }
+
+      p > color {
+        color: #68c0ea;
+        font-weight: 400;
+      }
+
+      a {
+        text-decoration: underline;
+        color: #68c0ea;
+        font-weight: 400;
+
+      }
+    }
+  }
+  .last-child {
+    margin-bottom: 2em;
+    margin-top: 2em;
+  }
+
+  #agent-redirect {
+    .agent-content-sticky {
+      background-color: white;
+      padding: 1.5em;
+      box-sizing: border-box;
+      box-shadow: 2px 2px 21px rgba(71,77,83,0.33);
+
+      p {
+        text-align: center;
+        img {
+          max-width: 10%;
+        }
+      }
+      h5 {
+        color: #68c0ea;
+        text-align: center;
+      }
+      .select-company {
+        padding: 1em;
+        text-align: center;
+
+        button {
+          margin-bottom: 1.5em;
+        }
+
+      }
+
+
+    }
+
+    
+  }
+}
+
+@media screen and (max-width: 550px){
+  #agents-sect {
+    .agents-intro  h2 {
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    .agents-intro {
+     li {
+      line-height: 30px;
+      font-size: initial;
+
+     }
+     .agent-contents > p {
+      font-size: initial;
+     }
+
+    }
+
+
+  }
+}
+
+@media screen and (max-width: 425px){
+  #agents-sect {
+   .agents-intro h2 {
+      font-size: 1.7em;
+   }
+   .agents-mid h2 {
+      font-size: 1.7em;
+   }
+  }
+}
