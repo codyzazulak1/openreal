@@ -303,7 +303,7 @@
   }
   
 }
-#agents-sect {
+#agents-section {
   .agents-intro {
     //text-align: center;
     background-color: #f5f5f5;
@@ -361,17 +361,26 @@
         font-weight: 400;
 
       }
+      .homepage-matterurl {
+        iframe {
+          max-width: 100%;
+        }
+      }
     }
   }
   .last-child {
     margin-bottom: 2em;
     margin-top: 2em;
   }
+}
+#agent-nav-start {
 
-  #agent-redirect {
+    .sticky {
+      margin-left: -7em;
+    }
     .agent-content-sticky {
       background-color: white;
-      padding: 1.5em;
+      padding-top: 0.5em;
       box-sizing: border-box;
       box-shadow: 2px 2px 21px rgba(71,77,83,0.33);
 
@@ -390,31 +399,27 @@
         text-align: center;
 
         button {
-          margin-bottom: 1.5em;
+          margin-bottom: 0.7em;
+          width: 100%;
+          font-size: larger;
         }
-
       }
-
-
-    }
-
-    
-  }
+    }    
 }
 
 @media screen and (max-width: 550px){
-  #agents-sect {
+  #agents-section {
     .agents-intro  h2 {
-      font-size: 1.5em;
+      font-size: 2.5em;
       text-align: center;
     }
 
     .agents-intro {
-     li {
-      line-height: 30px;
-      font-size: initial;
+      li {
+        line-height: 30px;
+        font-size: initial;
+      }
 
-     }
      .agent-contents > p {
       font-size: initial;
      }
@@ -426,7 +431,7 @@
 }
 
 @media screen and (max-width: 425px){
-  #agents-sect {
+  #agents-section {
    .agents-intro h2 {
       font-size: 1.7em;
    }
