@@ -106,10 +106,15 @@ $deep-blue-color: #2ba8de;
       margin-left: 16px;
     }
 
-    a{
+    a {
       text-decoration: none;
       color: black;
       font-size: 1rem;
+    }
+
+    
+    a:focus {
+      outline: transparent!important;
     }
 
     h4, p {
