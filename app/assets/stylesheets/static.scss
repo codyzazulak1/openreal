@@ -34,11 +34,12 @@ $deep-blue-color: #2ba8de;
 
       .form-start {
         input:last-child {
-          background: #68c0ea;
-          color: white;
-          border: none;
+          //background: #68c0ea;
+         // color: white;
+         // border: none;
           width: 100%;
-          height: 38px;
+          font-size: large;
+         // height: 38px;
         }
         ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
           text-align: center;
@@ -83,12 +84,12 @@ $deep-blue-color: #2ba8de;
    {
     list-style: none;
     
-    .is-accordion-submenu-parent > a::after{
+    .is-accordion-submenu-parent > a:after{
       right: -2rem;
 
     }
 
-    .is-accordion-submenu-parent > a.up::after {
+    .is-accordion-submenu-parent > a.up:after {
       transform: scaleY(1);
     }
 
