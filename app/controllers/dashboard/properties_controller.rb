@@ -47,23 +47,9 @@ class Dashboard::PropertiesController < ApplicationController
     @address = @property.address
 
     if @property.update_attributes(property_params)
-<<<<<<< HEAD
-      #params[:photos]['picture'].each do |p|
-      #  @photos = @property.photos.create!(picture: p, property_id: @property.id)
-      #end
-      redirect_to dashboard_properties_path
-=======
-      # params[:photos]['picture'].each do |p|
-      #   @photos = @property.photos.create!(picture: p, property_id: @property.id)
-      # end
-      if params[:pictures]
-        params[:pictures].each { |image|
-          @property.photos.create(pictures: image)
-        }
-      end
+
       flash[:notice] = "Property has been updated."
-      redirect_to dashboard_properties_path(@property)
->>>>>>> c7464c45597a7e76cccbe23bf362663594051e1c
+      redirect_to dashboard_properties_path
     end
   end
 
