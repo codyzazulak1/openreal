@@ -15,6 +15,7 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
+    <script type="text/javascript" src="https://embed.modernapp.co/chat?code=492550a5867a28215bc9b63eb6eee323"></script>
   </head>
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
@@ -50,7 +51,7 @@
     <script src=<%="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_SECRET']}&callback=initMap"%>
       async defer></script>
 
-    <% elsif (controller.controller_name == "welcome" && controller.action_name == "index") %>
+    <% elsif (controller.controller_name == "welcome" && controller.action_name == "index")|| (controller.controller_name == "welcome" && controller.action_name == "howitworks") %>
       <script src=<%="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_SECRET']}&libraries=places&callback=autoComplete"%>
       async defer></script>
 

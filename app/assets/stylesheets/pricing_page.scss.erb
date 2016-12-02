@@ -16,24 +16,36 @@ body {
   color: grey!important;
 }
 
+
+
 /* * * * *
 * Header  *
 * * * * * */
 .banner {
-  background-image: linear-gradient(rgb(104, 168, 234), rgba(104, 228, 234, 0.32)),url(<%= asset_path 'howitworks_banner.jpg'%>);
+  background-image: linear-gradient(to bottom, rgba(45, 167, 226, 0.62) 60%, rgb(255, 255, 255) 95%),url(<%= asset_path 'howitworks_banner.jpg'%>);
   color: white;
   padding-bottom: 200px;
   background-size: cover;
 }
+
+#pricing-banner {
+  background: linear-gradient(to bottom, rgba(104, 192, 234, 0.49) 40%, white 90%),url(<%= asset_path 'pricing_banner.jpg'%>);
+  padding: 225px 0;
+  background-repeat: no-repeat;
+  margin: -50px;
+}
+
 .top-header-contain {
   text-align: center;
 }
+
 .headers{
   margin-top: 7rem;
 }
 
 h1.headers{
   font-size: 1.9rem;
+  color: whitesmoke;
   margin-top: 160px;
 }
  
@@ -44,6 +56,15 @@ h2.headers{
   padding: 1rem 2rem;
   color: white; 
 }
+
+.pricing-headers {
+  margin-top: 0;
+}
+
+h1.pricing-headers {
+  margin-top: 0;
+}
+
 
 @media (max-width:320px){
 	.top-header-contain {
@@ -71,7 +92,7 @@ h2.headers{
   }
 }
 
-.pricing .focus-blue:before{
+ .focus-blue:before{
     content: ' ';
     position: absolute;
     /* background-color: lightblue; */
@@ -88,7 +109,7 @@ h2.headers{
 }
 
 @media (max-width: 1125px){
-  .pricing .focus-blue:before{
+   .focus-blue:before{
     display: none;
   }
 }
@@ -102,7 +123,7 @@ h2.headers{
 	font-weight: 700;
 }
 .title-row{
-  margin-top: 8rem;
+  margin-top: 6rem;
 }
 
 .make-space {
@@ -142,7 +163,7 @@ hr-pricing {
 	height: 1.25rem;
 }
 
-.pricing .focus-blue{
+ .focus-blue{
   position: relative;
   padding-bottom: 2em;
 }

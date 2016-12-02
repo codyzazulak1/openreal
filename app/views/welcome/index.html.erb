@@ -36,15 +36,16 @@
   </div>
   <a href="#listing-banner" class="arrow"><span>Scroll Down</span></a>
 </section>
+
 <!--end of hero-->
 
 <!-- listing banner -->
 <section class="listing-banner row expanded homepage-listings" id="listing-banner">
 <div class="columns text-center section-title">
-        <h2 class="medium-6 medium-push-3 columns title-list">Homes for Sale</h2>
-        <h4 class="medium-12 columns sub-title-list">Inspected and verified, now you can buy with a peace-of-mind</h4>
-      </div>
-  <% if @properties_p.count <= 0 %>
+      <h2 class="medium-6 medium-push-3 columns title-list">Homes for Sale</h2>
+      <h4 class="medium-12 columns sub-title-list">Inspected and verified, now you can buy with a peace-of-mind</h4>
+</div>
+  <% if @properties_p.count <= 2 %>
         <p>No listings available at this moment</p>
   <% else %>
   <div class="medium-12 medium-centered columns" style="
@@ -104,8 +105,9 @@
     </div>
   </div>
   <br>
-  <div class="row text-center section-title">
-    <a href="/howitworks" class="offer-link" style="font-size: inherit;">Learn more</a>
+
+  <div class="row text-center section-title" id="learn">
+    <a href="/howitworks" class="offer-link">Learn more</a>
   </div>
 </section>
 <!-- end of why -->
@@ -113,53 +115,100 @@
 <!-- new listings -->
 <!-- end new listings -->
 
-<!-- districts -->
-<section class="row expanded collapse new-listings"" id="new-listings" style="background-color:#f5f5f5;">
-  <div class="medium-10 medium-centered columns">
-    <div class="row text-center section-title">
-      <h2 class="medium-6 medium-push-3 columns">Two years of coverage so you can buy with confidence.</h2>
-    </div>
+<!-- agents -->
+<div class="row expanded" id="first-row">
+  <div class="small-2 small-offset-10 medium-2 medium-offset-10 large-3 large-offset-9 columns hide-for-small-only" id="agent-nav-start" data-sticky-container>
+    <nav class="sticky" data-sticky data-anchor="first-row" data-check-every="0" data-sticky-on="medium" data-margin-top="9.2">
+      <div class="agent-content-sticky" style="margin-top: 1.3em;">
+        <p><%= image_tag ("logo_med")%></p>
+        <h5>Learn more about working with us</h5>
 
-    <div class="row">
-      <div class="medium-8 columns ">
-        <div class="card">
-          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/metroVan.jpg' %>);"></div>
-          <container><span class="city-name">Metro Vancouver</span>
-          <span class="coming-soon">-Coming Soon-</span>
-          </container>
+        <div class="select-company" id="select-company">
+          <%= select_tag "company_name", options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]), include_blank: "Select One"%>
+          <a href="/agents"><button class="offer-link" style="border-radius: 0;" >Submit</button></a>
+          <h6>Getting your home offers are free and easy</h6>
         </div>
       </div>
-
-      <div class="medium-4 columns">
-        <div class="card">
-          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/tri-cities.jpg' %>);"></div>
-          <container><span class="city-name">Tri-Cities</span>
-          <span class="coming-soon">-Coming Soon-</span>
-          </container>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="medium-4 columns">
-        <div class="card">
-          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/okanagan.jpg' %>);"></div>
-          <container><span class="city-name">Okanagan</span>
-          <span class="coming-soon">-Coming Soon-</span>
-          </container>
-        </div>
-      </div>
-
-      <div class="medium-8 columns">
-        <div class="card">
-          <div class="card-bg" style="background-image:url(<%= asset_path 'cities/fraserValley.jpg' %>);"></div>
-          <container><span class="city-name">Fraser Valley</span>
-          <span class="coming-soon">-Coming Soon-</span>
-          </container>
-        </div>
-      </div>
-    </div>
+    </nav>  
   </div>
+  
+  <div class="row expanded collapse second-row" id="agents-section">
 
-</section>
-<!-- end of districts -->
+    <div class="medium-12 columns">
+      <div class="row align-center agents-intro">
+       <div class="small-11 small-centered medium-6 medium-offset-1 large-6 large-offset-1  columns agent-contents  ">
+         <h2>Agents, want a Guaranteed sale?</h2>
+         <p> Unlike usual listing boards, WE offer to buy your homes! Get the certainty you deserve. </p>
+         <ul class="row align-center">
+           <li>
+              <%= image_tag 'wrench.svg', class: 'svg-img'%>
+           <span>Submit a property for purchase and we'll work with you every step of the way.</span>
+           </li>
+           <li>
+              <%= image_tag 'head.svg', class: 'svg-img'%>
+            <span>We are available via chat, email, phone and in person.</span>
+           </li>
+           <li>
+              <%= image_tag 'homefill.svg', class: 'svg-img'%>
+            <span>No need to set up open houses. Selling to us is a breeze!</span>
+            </li>
+         </ul>
+       </div> 
+      </div>
+
+      <div class="row align-center agents-mid">
+        <div class="small-11 small-centered medium-6 medium-offset-1 large-6 large-offset-1 columns agent-contents">
+          <h2>Maximum Marketing</h2>
+          <p>Out of our range? We also offer <color>professional photos </color>, an immersive <color>virtual reality tours</color>, <color> aerial videos </color>, and more, to show your home at it's best. Our team has over a decade of professional real estate experience and can help get your home sold, hassle-free!
+          </p>
+          <div class="homepage-matterurl">
+            <iframe width="680" height="410" src="<%=@property.matterurl%>" frameborder="0" allow-fullscreen ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-center agents-intro">
+       <div class="small-11 small-centered medium-6 medium-offset-1 large-6 large-offset-1 columns agent-contents  ">
+         <h2>Guaranteed Price</h2>
+         <p> Unsure of what your listing is worth? Our propriatery algorithms are built by industry experts. </p>
+         <ul class="row align-center">
+           <li>
+              <%= image_tag 'dollar-symbol.svg', class: 'svg-img'%>
+           <span>Our in-house algorithms evaluate hundreds of characteristics about your home and location.</span>
+           </li>
+           <li>
+              <%= image_tag 'checklist.svg', class: 'svg-img'%>
+            <span>A comprehensive report gives you and your buyers total transparency and peace-of-mind.</span>
+           </li>
+           <li>
+              <%= image_tag 'success2.svg', class: 'svg-img'%>
+            <span>We back up our price with free home warranties and 30-day buy backs.</span>
+            </li>
+         </ul>
+       </div> 
+      </div>
+
+      <div class="row agents-mid last-child ">
+        <div class="small-11 small-centered medium-6 medium-offset-1 large-6 large-offset-1 columns agent-contents">
+          <h2>A Painless Process</h2>
+          <p>Sign in to your account, import your already live listings, and start selling in minutes. Get in touch and we can even do it all for you! OpenReal is the all-in-one real estate platform. <br><span class="show-for-small-only" style="font-weight: 400;"> Learn more about working with us </span> <a class="show-for-small-only" href="/agents" style="text-decoration: underline; color: #68c0ea; font-weight: 500;">here</a>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- sticky-nav start -->
+
+  </div>
+  
+</div>
+  
+  <!-- sticky-nav end -->
+
+
+
+  <!-- end of agents -->
+<script type="text/javascript">
+  scrollIt();
+  grabCompanyChosen();
+  
+</script>

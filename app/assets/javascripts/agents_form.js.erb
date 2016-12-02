@@ -13,6 +13,18 @@ function text_field(){
   });//close form event
 };
 
+function text_field_forSelected_company(){
+  var form = document.getElementById('options-tag');
+  var value = form.options[form.selectedIndex].value;
+
+  if (value === 'other') {
+    document.getElementById('div1').innerHTML='<input type="text" name="agent_form[company_name]" placeholder="Your company name" />';
+    } else {
+        document.getElementById('div1').innerHTML='';
+  }
+
+}
+
 function reset(){
   var form = document.getElementById("options-tag")
   var element = form.querySelectorAll("[type='submit']");
@@ -47,3 +59,45 @@ function scrollIt() {
   });
 }
 
+
+function grabCompanyChosen(){
+  var companies = document.getElementById('company_name');
+
+  companies.addEventListener('change', function(){
+     var selectedComp = companies.options[companies.selectedIndex].value;
+     
+     // in case browser is accidentally refreshed
+     if(sessionStorage.getItem("autosave")){
+      selectedComp = sessionStorage.getItem("autosave")
+     }
+     sessionStorage.setItem("autosave", selectedComp)
+  });
+};
+
+function selectCompany(){
+  var form = document.getElementById('options-tag')
+  var val = form.options[form.selectedIndex].value;
+  // var company = getCompanyFromWelcomeIndex();
+  var company = sessionStorage.getItem("autosave")
+
+  if (company == val){
+    // console.log('i double dog dare you')
+  } else {
+    companyOptions = form.options
+    for(var i, j = 0; i = companyOptions[j]; j++) {
+      if(i.value == company) {
+        companyOptions.selectedIndex = j;
+        text_field_forSelected_company();
+
+        $(window).load(function(){
+          $('html, body').animate({
+          scrollTop: $("#form-signup").offset().top
+          }, 800); 
+        });
+        break;
+      }
+    }
+  }
+  sessionStorage.removeItem("autosave") 
+
+}

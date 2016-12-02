@@ -99,17 +99,16 @@
             <p><%= image_tag("logo_med") %></p>
             <h5>Sell Your Home Quickly &amp; Safely</h5>
             <div class="form-cx">
-              <%= form_tag (properties_sell_path) do %>
+              <%= form_tag (properties_sell_path), id: "addressForm" do %>
 
               <div class="form-start">
-                <input type="text" id="addressInput" name="addressInput" placeholder="Enter your home address">
-                <input type="hidden" name="addressFirst" id="addressFirst">
+                <input type="text" id="addressInput" name="addressInput" placeholder="Enter your home address"                <input type="hidden" name="addressFirst" id="addressFirst">
                 <input type="hidden" name="addressSecond" id="addressSecond">
                 <input type="hidden" name="addressCity" id="addressCity">
                 <input type="hidden" name="addressPostal" id="addressPostal">
                 <input type="hidden" name="addressLat" id="addressLat">
                 <input type="hidden" name="addressLng" id="addressLng">
-               <p> <input type="submit" value="Get Your Offer"></p>
+               <p> <input type="submit" value="Get Your Offer" class="offer-link" style="border-radius: 0;"></p>
               </div>
               <% end %>
             </div>
@@ -129,31 +128,24 @@
 
 <script type="text/javascript">
 
-function openAccordion (trigger, target){
+function openAccordion (trigger, target, id){
   $(trigger).bind('click', function(e){
     $('ul').find(target).slideToggle('fast').toggleClass("up");
-    $('ul').find(target).removeClass("up")
+    $('ul').find(target).removeClass("up");
     e.preventDefault();
   });
 };
 
-function scrollToElem(elem, target){
-  var element = document.getElementById(elem)
-  var accordionElem = 0
-  $(element).on('click', function(){
-    var accordionElem = document.getElementById(target)
-    var pixels = accordionElem.scrollHeight
-    window.scrollTo(0, pixels)
-    console.log("this is mememememe: " +  pixels)
-
+function accordionScroll(id){
+  $('#howitworks, body').animate({
+    scrollTop: $(id).offset().top
   })
+}
 
-};
 
-
-openAccordion('.js-accordion-trigger', '.js-accordion-target');
-openAccordion('.js-accordion-trigger1', '.js-accordion-target1');
-openAccordion('.js-accordion-trigger2', '.js-accordion-target2');
+openAccordion('.js-accordion-trigger', '.js-accordion-target', '#howitworks-part');
+openAccordion('.js-accordion-trigger1', '.js-accordion-target1', '#inspection');
+openAccordion('.js-accordion-trigger2', '.js-accordion-target2', '#closing');
 </script>
 
 
