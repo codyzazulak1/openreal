@@ -81,16 +81,19 @@ function selectCompany(){
   var company = sessionStorage.getItem("autosave")
 
   if (company == val){
-    // console.log('nothing here')
+    // console.log('i double dog dare you')
   } else {
     companyOptions = form.options
     for(var i, j = 0; i = companyOptions[j]; j++) {
       if(i.value == company) {
         companyOptions.selectedIndex = j;
         text_field_forSelected_company();
-        $('html, body').animate({
-        scrollTop: $("#form-signup").offset().top
-        }, 1200); 
+
+        $(window).load(function(){
+          $('html, body').animate({
+          scrollTop: $("#form-signup").offset().top
+          }, 800); 
+        });
         break;
       }
     }
