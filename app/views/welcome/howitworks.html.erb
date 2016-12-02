@@ -99,7 +99,7 @@
             <p><%= image_tag("logo_med") %></p>
             <h5>Sell Your Home Quickly &amp; Safely</h5>
             <div class="form-cx">
-              <%= form_tag (properties_sell_path) do %>
+              <%= form_tag (properties_sell_path), id: "addressForm" do %>
 
               <div class="form-start">
                 <input type="text" id="addressInput" name="addressInput" placeholder="Enter your home address">
