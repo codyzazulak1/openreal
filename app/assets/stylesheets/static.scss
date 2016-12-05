@@ -88,6 +88,17 @@ $deep-blue-color: #2ba8de;
       right: -2rem;
 
     }
+    .is-accordion-submenu-parent:first-child > a.up:after{
+      transform: scaleY(1)
+    }
+    .is-accordion-submenu-parent > a.down:after {
+      transform: scaleY(-1);
+    }
+
+    .is-accordion-submenu-parent >a.inverse:after {
+      transform: scaleY(-1);
+    }
+
 
     .is-accordion-submenu-parent > a.up:after {
       transform: scaleY(1);

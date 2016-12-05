@@ -8,7 +8,7 @@
       <div class="medium-6 medium-offset-1 small-offset-0 columns" id="howitworks-content">
         <ul id="howitworks-part" data-magellan-target="howitworks-part" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="up"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="down up inverse"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested is-active js-accordion-target submenu">
               <li>
                 <h4>1. Tell us about your home</h4>
@@ -40,7 +40,7 @@
         <!-- inspection -->
         <ul id="inspection" data-magellan-target="inspection" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="up"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up down"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target1 submenu">
               <li>
                 <h4>How inspections work.</h4>
@@ -60,7 +60,7 @@
         <!-- Closing --> 
         <ul id="closing" data-magellan-target="closing" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="up"><h3 class="header-1">How Closing Works</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up down"><h3 class="header-1">How Closing Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target2 submenu">
               <li>
                 <h4>1. Escrow Account Opened</h4>
@@ -89,7 +89,7 @@
 
           <div class="this" style="margin-bottom: 20px;">
             
-            <ul data-magellan >
+            <ul>
               <li><a href="#" id="how" class="js-accordion-trigger"> How it Works</a></li>
               <li><a href="#" id="inspect" class="js-accordion-trigger1">Inspection Process</a></li>
               <li><a href="#" id="close" class="js-accordion-trigger2">Closing the Deal</a></li>
@@ -130,14 +130,18 @@
 
 function openAccordion (trigger, target, id){
   $(trigger).bind('click', function(e){
-    $('ul').find(target).slideToggle('fast').toggleClass("up");
-    $('ul').find(target).removeClass("up");
+    $('#howitworks-part').find($('a.inverse')).toggleClass('up inverse');
+    $(id).find($('a.down')).toggleClass('up');
+    
+    $('ul').find(target).slideToggle('fast');
+    
+    // accordionScroll(id);
     e.preventDefault();
   });
 };
 
 function accordionScroll(id){
-  $('#howitworks, body').animate({
+  $('body').animate({
     scrollTop: $(id).offset().top
   })
 }
