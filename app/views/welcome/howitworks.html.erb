@@ -1,5 +1,5 @@
 <%- title "How It Works"%>
-<div class="row expanded">
+<div class="row expanded ">
   <%= render "howitworks_header" %>
   <div class="medium-12 medium-centered columns howitworks"  id="howitworks">
 
@@ -132,18 +132,18 @@ function openAccordion (trigger, target, id){
   $(trigger).bind('click', function(e){
     $('#howitworks-part').find($('a.inverse')).toggleClass('up inverse');
     $(id).find($('a.down')).toggleClass('up');
-    
-    $('ul').find(target).slideToggle('fast');
-    
-    // accordionScroll(id);
+
+    $('ul').find(target).slideToggle('fast')
+
+    //accordionScroll(id);
     e.preventDefault();
   });
 };
 
 function accordionScroll(id){
-  $('body').animate({
-    scrollTop: $(id).offset().top
-  })
+  $('html,body').animate({
+    scrollTop: $(id).offset().top,
+  });
 }
 
 
