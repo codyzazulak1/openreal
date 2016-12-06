@@ -8,7 +8,7 @@
       <div class="medium-6 medium-offset-1 small-offset-0 columns" id="howitworks-content">
         <ul id="howitworks-part" data-magellan-target="howitworks-part" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="down up inverse"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="down up inverse trigger-1"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested is-active js-accordion-target submenu">
               <li>
                 <h4>1. Tell us about your home</h4>
@@ -40,7 +40,7 @@
         <!-- inspection -->
         <ul id="inspection" data-magellan-target="inspection" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="up down"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up down trigger-2"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target1 submenu">
               <li>
                 <h4>How inspections work.</h4>
@@ -60,7 +60,7 @@
         <!-- Closing --> 
         <ul id="closing" data-magellan-target="closing" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="up down"><h3 class="header-1">How Closing Works</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up down trigger-3"><h3 class="header-1">How Closing Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target2 submenu">
               <li>
                 <h4>1. Escrow Account Opened</h4>
@@ -148,8 +148,11 @@ function accordionScroll(id){
 
 
 openAccordion('.js-accordion-trigger', '.js-accordion-target', '#howitworks-part');
-openAccordion('.js-accordion-trigger1', '.js-accordion-target1', '#inspection');
-openAccordion('.js-accordion-trigger2', '.js-accordion-target2', '#closing');
+openAccordion('.js-accordion-trigger1','.js-accordion-target1', '#inspection');
+openAccordion('.js-accordion-trigger2','.js-accordion-target2', '#closing');
+openAccordion('.trigger-1', '.js-accordion-target', '#howitworks-part');
+openAccordion('.trigger-2','.js-accordion-target1', '#inspection');
+openAccordion('.trigger-3','.js-accordion-target2', '#closing');
 </script>
 
 
