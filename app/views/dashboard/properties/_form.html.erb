@@ -6,7 +6,7 @@
   <% @property.pictures.each_with_index do |u, index| %>
     <span><%= index %></span>
     <%= image_tag(u.thumb, {style: "display: inline"}) %>
-    <%= check_box_tag "property[deletes][]", index %>
+    <%= check_box_tag "property[deletes][]", u.file.filename %>
     <br>
   <%end%>
   <%= f.file_field :pictures, multiple: true %>
@@ -47,11 +47,12 @@
             <%#= f.select u, options_for_select(["first option", "second option", "third option"]), {:prompt => true} %>
           <%# end %>
         <% end %>
-        <% if new_dashboard_property_path %>
           <div>
           </div>
-        <%end%>
          <div>
+         <% @property.pictures.each do |kodak|%>
+          <%= image_tag(kodak.medium, {style: "display: inline"})%>
+         <% end %>
            <%# if !@property.%>
             <%# @property.photos.each do |p|%>
               <%#= image_tag(p.picture_url, :size => "150x150", class: 'img-upload')%>

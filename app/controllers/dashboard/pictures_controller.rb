@@ -5,7 +5,7 @@ class Dashboard::PicturesController < ApplicationController
   def create
 
       if pictures_params[:deletes]
-        remove_pictures_at_index(pictures_params[:deletes].map! {|u| u.to_i})
+        remove_pictures_at_index(pictures_params[:deletes].map! {|u| u})
       end
 
       if pictures_params[:pictures]
@@ -34,10 +34,28 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def remove_pictures_at_index(index_arr)
-    remain_pictures = @property.pictures
-    deleted_pictures = remain_pictures.dup - remain_pictures.delete_if.with_index { |r, i| index_arr.include? i } # delete the target image
-    deleted_pictures.each {|i| i.try(:remove!) }
-    @property.pictures = remain_pictures
+
+    delete_pictures = @property.pictures.select do |pic|
+      rar = index_arr.each do |param|
+        pic.file.filename == param
+      end
+    end
+
+    if delete_pictures && delete_pictures[0]
+    #   @property.pictures = @property.pictures - [delete_pictures[0]]
+    #   if @property.pictures.empty? && read_attribute(:pictures).size == 1
+    #     write_attribute(:pictures, [])
+    #   end
+    #   delete_pictures[0].remove!
+    #   save!
+    end
+
+    
+    # remain_pictures = @property.pictures
+
+    # deleted_pictures = remain_pictures.dup - remain_pictures.delete_if.with_index { |r, i| index_arr.include? i } # delete the target image
+    # deleted_pictures.each {|i| i.try(:remove!) }
+
   end
 
   def pictures_params
