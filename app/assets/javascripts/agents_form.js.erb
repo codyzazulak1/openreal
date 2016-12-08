@@ -101,3 +101,25 @@ function selectCompany(){
   sessionStorage.removeItem("autosave") 
 
 }
+
+function redirectFaqScroll(){
+
+  $(window).load(function(){
+    sStorage = sessionStorage.getItem('redirect')
+    
+    if (sStorage == 'faq'){
+      $('body').animate({
+        scrollTop: $('#faq-redirect-to').offset().top
+      })
+    }
+    sessionStorage.removeItem("redirect") 
+    console.log(sessionStorage.getItem('redirect'))
+
+  })
+}
+
+function redirectToFaq(){
+  $('#redirect-to-faq').click(function(){
+    sessionStorage.setItem('redirect', 'faq')
+  })
+}

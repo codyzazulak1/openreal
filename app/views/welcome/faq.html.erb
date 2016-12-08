@@ -35,7 +35,7 @@
           </div>
 
           <div>
-            <h4>What type of homes does OpenReal purchase?</h4>
+            <h4 id="faq-redirect-to">What type of homes does OpenReal purchase?</h4>
             <p>OpenReal aims to bring convenience to all homeowners; today we're starting with homes that fit the following criteria:</p>
 
             <ul>
@@ -54,7 +54,7 @@
                 <p>Homes that are not in age-restricted communities</p>
               </li>
               <li>
-                <p>Homes where our valuation is between $500,000 and $1,000,000</p>
+                <p>Homes where our valuation is between <strong>$500,000 - $1,000,000</strong></p>
               </li>
               <li>
                 <p>Homes that sit on at maximum of half an acre of land</p>
@@ -231,3 +231,7 @@
 <div id="offer-section">
   <%= render 'welcome/get_offer' %>
 </div>
+
+<script type="text/javascript">
+redirectFaqScroll();
+</script>
