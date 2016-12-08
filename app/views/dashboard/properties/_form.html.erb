@@ -6,7 +6,7 @@
   <% @property.pictures.each_with_index do |u, index| %>
     <span><%= index %></span>
     <%= image_tag(u.thumb, {style: "display: inline"}) %>
-    <%= check_box_tag "property[deletes][]", u.file.filename %>
+    <%= check_box_tag "property[deletes][]", index %>
     <br>
   <%end%>
   <%= f.file_field :pictures, multiple: true %>
