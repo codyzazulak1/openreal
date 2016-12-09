@@ -6,6 +6,81 @@
  * landing page *
  *              *
  ****************/
+.partners {
+  padding: 3em 0;
+  h6 {
+    margin-top: -26px;
+    margin-bottom: 22px;
+    color: #68c0ea;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .row-margin {margin-left: 10%;}
+
+  .partner-img,
+  .cibc,
+  .worldh
+    {
+      max-width: 67%;
+      opacity: 0.8;
+      filter: grayscale(100%);
+    }
+
+  .sutton {
+    max-width: 100%;
+  }
+
+  .worldh {
+    max-width: 60%;
+    padding-top: 6px;
+  }
+
+  .partner-img:hover {
+  filter: none;
+  -webkit-filter: grayscale(0);
+  opacity: 1;
+  cursor: pointer;
+  }
+
+
+}
+
+@media screen and (max-width: 768px){
+  .partners {
+    .worldh {
+      max-width: 70%;
+    }
+    .cibc {
+      max-width: 80%;
+    }
+  }
+}
+
+@media screen and (max-width: 680px){
+  .partners {
+    .row-margin {margin-left: 0%;}
+  }
+}
+
+@media screen and (max-width: 636px){
+  .partners {
+    padding: 1em 0;
+
+    h6 {
+      margin-top: 0;
+    }
+    .worldh, .cibc{
+      max-width: 30%;
+      padding-bottom: 15px;
+    }
+    .sutton {
+      max-width: 40%;
+      padding-bottom: 15px;
+    }
+
+  }
+}
 
 #listing-banner {
   background-color: $panel-bg;
