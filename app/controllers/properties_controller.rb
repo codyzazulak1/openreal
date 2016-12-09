@@ -26,6 +26,7 @@ class PropertiesController < ApplicationController
 
   def listings
     @properties_p = Property.all
+    @listings_paged = @properties_p.paginate(:page => params[:page], :per_page => 2)
   end
 
   def edit

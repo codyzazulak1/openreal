@@ -8,11 +8,14 @@
       </div>
 
       <div class="row property_p">
+
       <% if @properties_p.count <= 0 %>
         <p>No listings available at this moment</p>
       <% else %>
       <%# @new_properties.each_with_index do |p, index| %>
+
         <% @properties_p.order(created_at: :desc).limit(20).each do |p|%>
+          
           <% if (p.contact_form.nil?)%>
           <div class="small-12 medium-12 large-6 columns">
             <div class="listing-item">
@@ -20,7 +23,7 @@
                 <%= link_to "", property_path(p.id), class: "listing-link" %>
               <% end %>
               <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
-
+ 
                 <div class="listing-badge">
                 <%if p.list_price_cents != 0%>
                   <span>For Sale</span>
@@ -56,6 +59,7 @@
           <% end %>
         <% end %> <!-- p ends 49999900 -->
       </div>
+      <%= will_paginate @listings_paged%>
       <% end %>
     </div>
   </section>
