@@ -5,7 +5,8 @@
 
   <% @property.pictures.each_with_index do |u, index| %>
     <span><%= index %></span>
-    <%= image_tag(u.thumb, {style: "display: inline"}) %>
+    <%= image_tag(u.thumb, {style: "display: inline-block"}) %>
+    <%= u.file.filename%>
     <%= check_box_tag "property[deletes][]", index %>
     <br>
   <%end%>
@@ -51,7 +52,7 @@
           </div>
          <div>
          <% @property.pictures.each do |kodak|%>
-          <%= image_tag(kodak.medium, {style: "display: inline"})%>
+          <%= image_tag(kodak.large, {style: "display: inline"})%>
          <% end %>
            <%# if !@property.%>
             <%# @property.photos.each do |p|%>
