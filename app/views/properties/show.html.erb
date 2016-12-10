@@ -125,6 +125,26 @@
           <div class="contact-form">
             <form action="/contact_forms" data-remote="true" method="post">
             <input type="hidden" name="contact_form[property_id]" value=<%=@property.id%> >
+
+            <%l = ['3905 188 Keefer Place','3639 Oxford Street','7912 Rosewood Street']%>
+            <% if l.any? {|a| a == @property.address.address_first} %>
+
+              <div class="row" style="padding-bottom: 1em;">
+                <%= image_tag('AgentC.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <h2 style="margin-bottom: 0; font-weight: 400;">Contact Chris</h2>
+                <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
+              </div>
+            <% else %>
+              <div class="row">
+                <%= image_tag('logo_med.png', style: "display:inline-block; width:25%; padding-bottom: 1em;", class: "small-6 columns")%>
+                <h2 style="margin-bottom: 0; font-weight: 400;">Contact OpenReal</h2>
+                <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
+              </div>    
+         
+            <% end %>
+
+
+
               <div class="row">
                 <div class="medium-12 columns">
                   <label class="show-for-sr">Name:</label>
@@ -188,29 +208,6 @@
       <h2 style="font-weight: 200; color: #68c0ea; padding-top: 1.85rem;">3D Virtual Tour</h2>
       <div style="position: relative; padding-bottom: 56.25%; padding-top: 25px; height: 0; overflow: hidden;" class="metaport-container">
         <iframe width="853" height="480"
-            <% metas = {
-              Brooks: "https://my.matterport.com/show/?m=uTUifjUBiFy?medialink=104353",
-              Surrey2680: "https://my.matterport.com/show/?m=qzi9wZeRki6?medialink=101517",
-              Beach: "https://my.matterport.com/show/?m=S7w4oUiDd1j?medialink=92937",
-              Homer: "https://my.matterport.com/show/?m=iSnKvPeCqZF?medialink=101501",
-              Montgomery: "https://my.matterport.com/show/?m=WVbwMU7VKGA?medialink=106884"
-              }
-            %>
-            <% case @property.address.address_first
-              when "107 - 215 Brookes Street"
-                @metastuff = metas[:Brooks]
-              when "2680 143A Street"
-                @metastuff = metas[:Surrey2680]
-              when "102 - 426 Beach Crescent"
-                @metastuff = metas[:Beach]
-              when "303 - 1560 Homer Mews"
-                @metastuff = metas[:Homer]
-              when "484 Montgomery Street"
-                @metastuff = metas[:Montgomery]
-              else
-                @metastuff = " "
-              end
-            %>
           src="<%=@property.matterurl%>" frameborder="0" allow-fullscreen class="iframe-mport"></iframe>
       </div>
     </div>
