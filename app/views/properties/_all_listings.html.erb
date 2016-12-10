@@ -6,7 +6,7 @@
         <h2 class="medium-6 medium-push-3 columns title-list">Homes for Sale</h2>
         <h4 class="medium-12 columns sub-title-list">Inspected and verified, now you can buy with a peace-of-mind</h4>
       </div>
-      <%= will_paginate @listings_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
+      
       <div class="row property_p">
 
       <% if @properties_p.count <= 0 %>
@@ -61,7 +61,7 @@
       </div>
       
       <% end %>
-
+      <%= will_paginate @listings_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
     </div>
   </section>
 </div>
