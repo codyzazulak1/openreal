@@ -477,10 +477,21 @@ footer {
 }
 
 .pagination {
-  a, em, span {
+  a, em, span, .next_page {
     display: inline-block;
-    border-radius: 4px;
     font-style: normal;
+   // border: 1px solid #cacaca;
+   // border-radius: 50%;
+  
+  }
+
+  //a[rel~="prev start"], a[rel~="next"], em {
+  //  border: none;
+ // }
+
+  .current {
+    color: #68c0ea;
+    background-color: inherit;
   }
 }
 

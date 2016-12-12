@@ -6,7 +6,7 @@
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name, 'Name *'%>
-    <%= cf.text_field :name, data: {
+    <%= cf.text_field :name, data:
      validation: "required" 
     }, placeholder: "What can we call you?" %>
   </div>
