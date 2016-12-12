@@ -496,6 +496,7 @@
     color: #68c0ea;
   }
   img {
+    background-color: #68c0ea;
     border-radius: 100%;
     width: 13%;
     float: right;
@@ -508,11 +509,12 @@
     background: white;
     padding: 0.2em 2.5em;
     font-weight: 400;
-    border: 4px solid;
+    //border: 4px solid;
   }
   input[type=submit]:hover {
     background: #68c0ea;
     color: white;
+    border: #68c0ea;
   }
 
   .progress {
