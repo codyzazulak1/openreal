@@ -68,9 +68,9 @@
           <div class="medium-9 columns">
             <div class="row collapse">
               <div class="medium-6 columns">
-                <div><span>Property Type: </span><strong>Single Family</strong></div>
-                <div><span>Building Type: </span><strong>House</strong></div>
-                <div><span>Title: </span><strong>Freehold</strong></div>
+                <div><span>Property Type: </span><strong><%= @property.property_type%></strong></div>
+                <div><span>Building Type: </span><strong><%= @property.building_type%></strong></div>
+                <div><span>Title: </span><strong><%= @property.title_to_land%></strong></div>
               </div>
               <div class="medium-6 columns">
                 <div><span>Floor Space: </span><strong><%= @property.floor_area.nil? ? 'N/A' : @property.floor_area %> sqft</strong></div>
