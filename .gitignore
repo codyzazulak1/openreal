@@ -22,3 +22,8 @@ config/local_env.yml
 config/secrets.yml
 .env
 .byebug_history
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?

@@ -472,12 +472,49 @@
   }
 }
 
-// new property form
+/*******************
+ *                   *
+ * NEW Property FORM *
+ *                   *
+ *******************/
+
 #new-property-form {
-  padding-bottom: 1rem;
+  //padding-bottom: 1rem;
+
+  .sales-box-wrapper {
+
+    border: 4.5px solid #68c0ea;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 27px;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 1em 1em;
+  }
 
   h3 {
     font-size: 1.5rem;
+    color: #68c0ea;
+  }
+  img {
+    background-color: #68c0ea;
+    border-radius: 100%;
+    width: 13%;
+    float: right;
+    margin-bottom: 1em;
+    margin-right: 2.5em;
+  }
+
+  input[type=submit]{
+    color: #68c0ea;
+    background: white;
+    padding: 0.2em 2.5em;
+    font-weight: 400;
+    //border: 4px solid;
+  }
+  input[type=submit]:hover {
+    background: #68c0ea;
+    color: white;
+    border: #68c0ea;
   }
 
   .progress {
@@ -538,6 +575,15 @@
     }
   }
 }
+
+@media screen and (max-width: 768px){
+  #new-property-form img {
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-top: 1em;
+  }
+}
+
 @media screen and (max-width: 590px){
   .thumbnail-listing {
     display: none;
