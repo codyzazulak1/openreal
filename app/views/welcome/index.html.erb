@@ -4,35 +4,46 @@
   <div class="hero-bg"></div>
   <div class="intro">
     <div class="row expanded">
-      <div class="small-5 medium-4 columns">
+      <div class="small-12 medium-8 columns">
         <h1>
-          <em>OpenReal</em>
+          <span>OpenReal.</span>
         </h1>
         <h1>Your home for exclusive real estate.</h1>
       
         <!--Search Bar-->
-        <div class="search-bar">
-          <!-- Search field -->
-          <%= form_tag (properties_sell_path), id: "addressForm" do %>
-            <div>
-              <input type="text" id="addressInput" placeholder="Enter your home address" name="addressInput">
-               <!--  <div>
-                  <a href="#">Get your
-                </div> -->
-              <input type="hidden" name="addressFirst" id="addressFirst">
-              <input type="hidden" name="addressSecond" id="addressSecond">
-              <input type="hidden" name="addressCity" id="addressCity">
-              <input type="hidden" name="addressPostal" id="addressPostal">
-              <input type="hidden" name="addressLat" id="addressLat">
-              <input type="hidden" name="addressLng" id="addressLng">
-              <input type="submit" class="hide">
 
-              <!-- <div class="input-group-button">
-                <button class="button">Get&nbsp;Offer</button>
+      </div>
+    </div>
+    <div class="row expanded second-row-margin">
+      <div class="search-bar small-12 medium-8 columns">
+      
+        <!-- Search field -->
+        <%= form_tag (properties_sell_path), id: "addressForm" do %>
+          <div class="input-div">
+            <p>Sell your exclusive listings to OpenReal</p>
+            <p>and eliminate the hassle of showings, uncertainty and months of  negotiations.</p>
+            <input type="text" id="addressInput" placeholder="Enter your home address" name="addressInput">
+             <!--  <div>
+                <a href="#">Get your
               </div> -->
-            </div>
-          <% end %>
-        </div>
+            <input type="hidden" name="addressFirst" id="addressFirst">
+            <input type="hidden" name="addressSecond" id="addressSecond">
+            <input type="hidden" name="addressCity" id="addressCity">
+            <input type="hidden" name="addressPostal" id="addressPostal">
+            <input type="hidden" name="addressLat" id="addressLat">
+            <input type="hidden" name="addressLng" id="addressLng">
+            <input type="submit" class="hide">
+
+            <!-- <div class="input-group-button">
+              <button class="button">Get&nbsp;Offer</button>
+            </div> -->
+          </div>
+        <% end %>
+      </div>
+      <div class="medium-4 end columns intro-column2 hide-for-small-only">
+        <p>Find an OpenReal home</p>
+        <p>that you're guaranteed to love.</p>
+        <a href="/listings">See all OpenReal listings</a>
       </div>
     </div>
   </div>
