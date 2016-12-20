@@ -126,23 +126,46 @@
             <form action="/contact_forms" data-remote="true" method="post">
             <input type="hidden" name="contact_form[property_id]" value=<%=@property.id%> >
 
-            <%l = ['3905 188 Keefer Place','3639 Oxford Street','7912 Rosewood Street']%>
-            <%c = ['1206 188 Keefer Street', '5411 Frances Street', '4401 1128 W Georgia Street']%>
+            <%cRyan = ['3905 188 Keefer Place','3639 Oxford Street','7912 Rosewood Street']%>
+            <%cBoyd = ['1206 188 Keefer Street', '5411 Frances Street', '4401 1128 W Georgia Street']%>
+            <%lYuen = ['80 - 3010 Riverbend Dr', '101 - 258 Sixth St', '32 - 10489 Delsom Cr', '3 - 10415 Delsom Cr']%>
+            <% kLim = ['2817 Hialeah Court']%>
+            <% mKuan = ['10B - 1500 Alberni St']%>
 
-            <% if l.any? {|a| a == @property.address.address_first} %>
+            <% if cRyan.any? {|a| a == @property.address.address_first} %>
 
               <div class="row" style="padding-bottom: 1em;">
-                <%= image_tag('AgentC.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <%= image_tag('agentsPic/AgentCR.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
                 <h2 style="margin-bottom: 0; font-weight: 400;">Contact Chris</h2>
                 <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
               </div>
 
-            <% elsif c.any? {|b| b == @property.address.address_first}%>
+            <% elsif cBoyd.any? {|b| b == @property.address.address_first}%>
               <div class="row" style="padding-bottom: 1em;">
-                <%= image_tag('AgentCB.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <%= image_tag('agentsPic/AgentCB.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
                 <h2 style="margin-bottom: 0; font-weight: 400;">Contact Christopher</h2>
                 <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
               </div>
+
+            <% elsif lYuen.any? {|b| b == @property.address.address_first}%>
+              <div class="row" style="padding-bottom: 1em;">
+                <%= image_tag('agentsPic/AgentLY.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <h2 style="margin-bottom: 0; font-weight: 400;">Contact Lotus Yuen</h2>
+                <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
+              </div>
+            <% elsif kLim.any? {|b| b == @property.address.address_first}%>
+              <div class="row" style="padding-bottom: 1em;">
+                <%= image_tag('agentsPic/AgentKL.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <h2 style="margin-bottom: 0; font-weight: 400;">Contact Kenneth Lim</h2>
+                <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
+              </div>
+            <% elsif mKuan.any? {|b| b == @property.address.address_first}%>
+              <div class="row" style="padding-bottom: 1em;">
+                <%= image_tag('agentsPic/AgentMK.jpg', style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <h2 style="margin-bottom: 0; font-weight: 400;">Contact Min Kuan</h2>
+                <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
+              </div>
+
             <% else %>
               <div class="row">
                 <%= image_tag('logo_med.png', style: "display:inline-block; width:25%; padding-bottom: 1em;", class: "small-6 columns")%>
@@ -150,8 +173,6 @@
                 <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
               </div>    
             <% end %>
-
-
 
               <div class="row">
                 <div class="medium-12 columns">
