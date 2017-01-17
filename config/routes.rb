@@ -58,6 +58,6 @@ Rails.application.routes.draw do
   get 'contact', action: :contact, controller: 'welcome'
   get 'mortcalc', action: :mortcalc, controller: 'welcome'
   get 'agents', action: :agents, controller: 'welcome'
-  get 'listings', action: :listings, controller: 'properties'
+  get 'properties.json', action: :index, controller: 'properties'
   #get '/register', action: :register, controller: 'welcome'
 end
