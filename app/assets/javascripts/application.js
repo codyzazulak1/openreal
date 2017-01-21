@@ -146,9 +146,7 @@ function soldProps(){
     if (
       $(this).children().filter('div.listing-img').children().filter('.sold')
       ){
-        toggleOverview(null);
-        overviewToggled = false;
-        // initListingImg = false;
+      initListings();
        }
   })
 }
