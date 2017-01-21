@@ -163,11 +163,30 @@
               font-size: 1rem;
             }
           }
+          .listing-price {
+            position: absolute;
+            bottom: 2.25rem;
+            background-color: rgba(45,45,45,0.9);
+            color: $white;
+            padding: 0.5rem 0.75rem;
+
+            sup {
+              top: -0.5rem;
+              font-size: 85%;
+              font-weight: 600;
+            }
+
+            span {
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
+          }
         }
 
         .listing-meta,
         .listing-description {
           padding: 0.5rem 1rem;
+
         }
 
         .listing-description {
@@ -243,6 +262,14 @@
 
         .listing-meta {
           padding: 0.5rem 0.75rem;
+
+          .mapsect-icons {
+            width: 25px;
+            vertical-align: sub;
+          }
+          .mapsect-icons:first-child {
+            vertical-align: text-top;
+          }
         }
       }
     }

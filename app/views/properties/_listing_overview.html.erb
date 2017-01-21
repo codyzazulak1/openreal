@@ -1,12 +1,35 @@
 <div class="loader"><div class="spinner"></div></div>
 
 <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
-  <% if p.is_new? %>
+  <% if p.is_new?%>
   <div class="listing-badge">
     <span>Just Listed</span>
   </div>
   <% end %>
 </div>
+
+
+
+<div class="orbit" role="region" aria-label="listings pictures" data-orbit>
+    <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+    <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+    <ul class="orbit-container">
+     <% p.photos.map do |x|%>
+      <li class="listing-img orbit-slide is-active" data-bg=<%= x.picture if p.has_photos? %>>
+    
+        <% if p.is_new? %>
+        <div class="listing-badge">
+          <span>Just Listed</span>
+        </div>
+        <% end %>
+        <div class="listing-price">
+          <sup>$</sup>
+          <span style=""><%= p.price %></span>
+        </div>
+      <% end %>
+      </li>
+    </ul>
+  </div>
 
 <div class="listing-meta clearfix">
   <div class="float-left">

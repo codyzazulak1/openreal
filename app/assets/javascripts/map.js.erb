@@ -27,11 +27,17 @@ function initMap() {
       streetViewControl: false,
       rotateControl: false,
       fullscreenControl: false,
-      clickableIcons: false
+      clickableIcons: false,
+      mapTypeId: 'terrain',
+// Set color scheme for map
+      style:[ 
+      ]
+
     });
 
     data.properties.forEach(function(property){
       setMarkers(property);
+      // console.log("SETMARKERS: " + setMarkers(property));
     });
 
     map.addListener('click', function() {
@@ -81,11 +87,11 @@ function setMarkers(property) {
 }
 
 function newMarker(property, infowindow){
-  var iconImg = "<%= asset_path('marker.png') %>";
   var marker = new google.maps.Marker({
     position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
     map: map,
-    icon: iconImg,
+    animation: google.maps.Animation.DROP,
+    icon: pinSymbol("#68c0ea"),
     title: property.address.address_first,
     // zIndex: 5
     pid: property.id
@@ -98,7 +104,6 @@ function newMarker(property, infowindow){
   });
 
   mapMarkers.push(marker);
-
   return marker;
 }
 
@@ -128,11 +133,10 @@ function newInfo(property) {
 function updateMarkers(properties) {
   removeMakers();
   properties.forEach(function(property){
-    var iconImg = "<%= asset_path('marker.png') %>";
+   
     var marker = new google.maps.Marker({
       position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
       map: map,
-      icon: iconImg,
       title: property.address.address_first,
       // zIndex: 5
       pid: property.id
@@ -160,7 +164,7 @@ function updateMarkers(properties) {
       $('.listing-overview').hide();
       $.ajax({
         url: "/properties/" + infowindow.pid,
-        mehtod: 'get', 
+        method: 'get', 
         dataType: 'script'
       });
       toggleOverview(infowindow.pid);
@@ -228,4 +232,15 @@ function clearBounds() {
   filters.querySelectorAll('input[name="bound-west"]')[0].removeAttribute('value');
   filters.querySelectorAll('input[name="bound-north"]')[0].removeAttribute('value');
   filters.querySelectorAll('input[name="bound-south"]')[0].removeAttribute('value');
+}
+//  Style for marker pin
+function pinSymbol(color) {
+  return {
+      path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+      fillColor: color,
+      fillOpacity: 1,
+      strokeColor: '#000',
+      strokeWeight: 2,
+      scale: 1,
+ };
 }

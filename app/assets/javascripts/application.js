@@ -112,15 +112,17 @@ function populateFormFields() {
 // toggle listing overview
 function toggleOverview(pid) {
   var pid = typeof pid !== 'undefined' ?  pid : null;
+  var findPrice = $('li').children()  
 
   if (overviewToggled && pid !== null) { 
-    $('#detail-btn').attr('href', "/properties/" + pid) 
+    $('#detail-btn').attr('href', "/properties/" + pid);
+    
   } 
   else if (!overviewToggled && pid!== null) {
     $('#detail-btn').attr('href', "/properties/" + pid)
     $('#close-btn').toggleClass('hide');
     $('#filter-btn').toggle();
-    $('.listing-footer').toggle();
+    $('.listing-footer').toggle();  
   }
   else {
     $('#close-btn').toggleClass('hide');
@@ -134,6 +136,21 @@ function hideOverview() {
   $('#filter-btn').show();
   $('.listing-footer').hide();
   overviewToggled = false;
+}
+
+// find Sold properties and set to false always on toggle
+function soldProps(){
+  
+  $('.listing-body>ul>li').click(function(){
+    // var pid = $(this).data('pid');
+    if (
+      $(this).children().filter('div.listing-img').children().filter('.sold')
+      ){
+        toggleOverview(null);
+        overviewToggled = false;
+        // initListingImg = false;
+       }
+  })
 }
 
 // initialize listings
@@ -161,6 +178,7 @@ function initListings() {
 
 function initListingImg() {
   $('.listing-img').css('background-image', function(){
+
     return "url(" + $(this).data('bg') + ")";
   });
 }
