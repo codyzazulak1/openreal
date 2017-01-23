@@ -112,10 +112,10 @@ function populateFormFields() {
 // toggle listing overview
 function toggleOverview(pid) {
   var pid = typeof pid !== 'undefined' ?  pid : null;
-  var findPrice = $('li').children()  
 
   if (overviewToggled && pid !== null) { 
     $('#detail-btn').attr('href', "/properties/" + pid);
+ 
     
   } 
   else if (!overviewToggled && pid!== null) {
@@ -123,8 +123,10 @@ function toggleOverview(pid) {
     $('#close-btn').toggleClass('hide');
     $('#filter-btn').toggle();
     $('.listing-footer').toggle();  
+
   }
   else {
+
     $('#close-btn').toggleClass('hide');
     $('#filter-btn').toggle();
     $('.listing-footer').toggle();
@@ -132,6 +134,7 @@ function toggleOverview(pid) {
 }
 
 function hideOverview() {
+
   $('#close-btn').addClass('hide');
   $('#filter-btn').show();
   $('.listing-footer').hide();
@@ -139,25 +142,28 @@ function hideOverview() {
 }
 
 // find Sold properties and set to false always on toggle
-function soldProps(){
-  
-  $('.listing-body>ul>li').click(function(){
-    // var pid = $(this).data('pid');
-    if (
-      $(this).children().filter('div.listing-img').children().filter('.sold')
-      ){
-      initListings();
-       }
-  })
+function soldProps(){ 
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(element){$(element).prev().css({
+    filter: 'blur(3px)',
+    cursor: 'default'
+    });
+    $(element).prev().prev().css('cursor', 'default');
+   
+    });
 }
 
 // initialize listings
 function initListings() {
-
+  
+  soldProps();
   $('.listing-body>ul>li').click(function(){
-    var pid = $(this).data('pid');
-    toggleOverview(pid);
-    overviewToggled = true;
+    if(!($(this).find('span').hasClass('listing-badge sold'))){
+
+      var pid = $(this).data('pid');
+      toggleOverview(pid);
+      overviewToggled = true;
+
+    }
 
     mapMarkers.forEach(function(m){
       if (m.pid === pid) {
