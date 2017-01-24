@@ -1,14 +1,5 @@
+
 <div class="loader"><div class="spinner"></div></div>
-
-<div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
-  <% if p.is_new?%>
-  <div class="listing-badge">
-    <span>Just Listed</span>
-  </div>
-  <% end %>
-</div>
-
-
 
 <div class="orbit" role="region" aria-label="listings pictures" data-orbit>
     <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
@@ -29,19 +20,121 @@
       <% end %>
       </li>
     </ul>
-  </div>
+</div>
+
 
 <div class="listing-meta clearfix">
-  <div class="float-left">
+  <!-- floater for large -->
+  <div class="float-left  show-for-large">
     <span><%= p.address.address_first %></span>
-    <span style="font-size: 0.75rem; display: block;" class="dark-grey"><%= p.city_province %></span>
+    <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
   </div>
-  <div class="float-right text-right">
-    <span><%= p.lot_area %> sqft &middot; <%= p.bedrooms %> bed <%= p.bathrooms %> bath</span>
-    <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span>
+  <div class="float-right text-right show-for-large" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+
+    <!-- For medium and large only -->
+    <div class="row show-for-large">
+      <span class="column small-4 medium-4" style="padding-top: 4.5px;">
+        <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
+      </span>
+      <span class="column small-4 medium-4">
+        <%= image_tag('bath.svg', class: 'mapsect-icons')%>  
+      </span>
+      <span class="column small-4 medium-4">
+        <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
+      </span>
+    </div>
+
+    <div class="row show-for-large" style="text-align: center;">
+      <span class="column small-4 medium-4" >
+        <%= p.bedrooms %>  <br>  
+      </span>
+      <span class="column small-4 medium-4">
+        <%= p.bathrooms %> <br>  
+      </span>
+      <span class="column small-4 medium-4" style="padding: 0;">
+        <%= p.lot_area %> ft<sup>&#50;</sup> <br> 
+      </span>
+    </div>
+
+    <!-- <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span> -->
+  </div>
+  <!-- floater for medium -->
+  <div class="row expanded float-left-bigger-screen show-for-medium-only">
+    <span><%= p.address.address_first %></span>
+    <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
+  </div>
+  <div class="row expanded float-right-bigger-screen show-for-medium-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+
+    <!-- For medium and large only -->
+    <div class="row show-for-medium-only">
+      <span class="column small-4 medium-4" style="padding-top: 4.5px;">
+        <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
+      </span>
+      <span class="column small-4 medium-4">
+        <%= image_tag('bath.svg', class: 'mapsect-icons')%>  
+      </span>
+      <span class="column small-4 medium-4">
+        <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
+      </span>
+    </div>
+
+    <div class="row show-for-medium-only" style="text-align: center;">
+      <span class="column small-4 medium-4" >
+        <%= p.bedrooms %>  <br>  
+      </span>
+      <span class="column small-4 medium-4">
+        <%= p.bathrooms %> <br>  
+      </span>
+      <span class="column small-4 medium-4" style="padding: 0;">
+        <%= p.lot_area %> ft<sup>&#50;</sup> <br> 
+      </span>
+    </div>
+
+    <!-- <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span> -->
+  </div>
+
+  <!-- non floater for small screens  -->
+  <div class="row expanded float-left-small-screen show-for-small-only">
+    <span><%= p.address.address_first %></span>
+    <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
+  </div>
+
+  <div class="row expanded float-right-small-screen show-for-small-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+    <!-- For small only -->
+     <div class="row listing-mobile show-for-small-only">
+      <span class="column small-4 medium-4" style="padding-top: 4.5px;">
+        <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
+      </span>
+      <span class="column small-4 medium-4">
+        <%= image_tag('bath.svg', class: 'mapsect-icons')%>  
+      </span>
+      <span class="column small-4 medium-4">
+        <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
+      </span>
+    </div>
+
+    <div class="row listing-mobile show-for-small-only" style="text-align: center;">
+      <span class="column small-4 medium-4" >
+        <%= p.bedrooms %>  <br>  
+      </span>
+      <span class="column small-4 medium-4">
+        <%= p.bathrooms %> <br>  
+      </span>
+      <span class="column small-4 medium-4" style="padding: 0;">
+        <%= p.lot_area %> ft<sup>&#50;</sup> <br> 
+      </span>
+    </div>
+
+    <!-- <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span> -->
   </div>
 </div>
 
 <div class="listing-description">
-  <span><%= p.description %></span>
+  <span style="font-size: .91em;"><%= p.description %></span>
 </div>
+
+<script src="https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>
+

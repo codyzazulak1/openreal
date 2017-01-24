@@ -3,6 +3,7 @@ var infoWindows = [];
 var mapMarkers = [];
 var updateOnDrag = false;
 
+
 function initMap() {
   url = "/properties.json";
   if ($("#map").data("city") && $("#map").data("city") !== "") {
@@ -108,6 +109,7 @@ function newMarker(property, infowindow){
 }
 
 function newInfo(property) {
+
   var infowindow = new google.maps.InfoWindow({
     content: property.address.address_first,
     // maxWidth: 200
@@ -238,9 +240,9 @@ function pinSymbol(color) {
   return {
       path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
       fillColor: color,
-      fillOpacity: 1,
+      fillOpacity: 0.8,
       strokeColor: '#000',
       strokeWeight: 2,
-      scale: 1,
+      scale: 0.7,
  };
 }
