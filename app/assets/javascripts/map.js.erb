@@ -25,7 +25,7 @@ function initMap() {
       },
       mapTypeControl: false,
       scaleControl: false,
-      streetViewControl: false,
+      streetViewControl: true,
       rotateControl: false,
       fullscreenControl: false,
       clickableIcons: false,
@@ -99,16 +99,26 @@ function newMarker(property, infowindow){
   });
 
   marker.addListener('click', function() {
-    closeAllInfoWin();
-    infowindow.open(map, marker);
-    $(".gm-style-iw").prev("div").hide();
-  });
+    // hides sold badges
+    if(property.list_price_cents > 0){
 
+      Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+
+      closeAllInfoWin();
+      infowindow.open(map, marker);
+      $(".gm-style-iw").prev("div").hide();
+    };
+  });
+  
   mapMarkers.push(marker);
   return marker;
 }
 
+
+
 function newInfo(property) {
+
+  var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="http://www.houseconstructioncompanysrilanka.gwisolutions.com/images/Single%20stroy%20House/AHC%20-%2016%20-%205.2mill.jpg"></div>' + '<p>' + property.address.address_first + '</p>'
 
   var infowindow = new google.maps.InfoWindow({
     content: property.address.address_first,
@@ -120,7 +130,7 @@ function newInfo(property) {
     $('.listing-overview').hide();
     $.ajax({
       url: "/properties/" + infowindow.pid,
-      mehtod: 'get', 
+      method: 'get', 
       dataType: 'script'
     });
     toggleOverview(infowindow.pid);
