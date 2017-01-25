@@ -23,6 +23,19 @@ var autocomplete;
 var formFilled = false;
 var overviewToggled = false;
 
+function hideSoldBadges(){
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+};
+
+function showSoldBadges(){
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).show()});
+};
+
+// for filter option
+function toggleSoldBadge(){
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle('linear'), 3000});
+};
+
 // google places autocomplete
 function autoComplete() {
   var defaultBounds = new google.maps.LatLngBounds(
@@ -162,7 +175,7 @@ function initListings() {
       var pid = $(this).data('pid');
       toggleOverview(pid);
       overviewToggled = true;
-      Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+      hideSoldBadges();
     }
 
     mapMarkers.forEach(function(m){
@@ -199,6 +212,7 @@ $(document).ready(function(){
 
   // listing header
   $('#filter-btn').click(function(e){
+    toggleSoldBadge();
     e.preventDefault();
     $('.listing-filters').slideToggle();
   });
@@ -214,7 +228,7 @@ $(document).ready(function(){
     toggleOverview();
     $('.listing-overview').hide();
     overviewToggled = false;
-    Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).show()});
+    showSoldBadges();
   });
 
   $('.switch-btn').click(function(e){
