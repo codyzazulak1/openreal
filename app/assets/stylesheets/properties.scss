@@ -25,12 +25,12 @@
   .gm-style-iw {
     // width: 100% !important;
     // left: 0px !important;
-    top: 63px !important;
+    top: 39px !important;
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
     border: 1px solid rgba($primary-color, 0.6);
     border-radius: 4px;
-    padding: 2px 0;
+    padding: 8px 0;
     text-align: center;
 
     >div {
@@ -138,14 +138,19 @@
 
         // padding: 1.25rem;
 
+        .orbit-container {
+          height: auto!important;
+        }
         .listing-img {
-          height: 240px;
+          height: 240px!important;
           -webkit-transition: all ease-in-out 0.1s;
           transition: all ease-in-out 0.1s;
           background-color: #dedede;
           background-size: cover;
           background-position: center;
           position: relative;
+          max-height: initial!important;
+          
 
           .listing-badge {
             position: absolute;
