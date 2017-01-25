@@ -162,7 +162,7 @@ function initListings() {
       var pid = $(this).data('pid');
       toggleOverview(pid);
       overviewToggled = true;
-
+      Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
     }
 
     mapMarkers.forEach(function(m){
@@ -214,6 +214,7 @@ $(document).ready(function(){
     toggleOverview();
     $('.listing-overview').hide();
     overviewToggled = false;
+    Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).show()});
   });
 
   $('.switch-btn').click(function(e){
