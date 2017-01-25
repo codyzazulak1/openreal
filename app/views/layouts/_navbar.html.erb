@@ -15,7 +15,7 @@
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
         </li>
         <li class="show-for-large">
-          <a href="properties.json" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
+          <a href="/properties.json" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
         </li>
         <li class="show-for-large">
           <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
