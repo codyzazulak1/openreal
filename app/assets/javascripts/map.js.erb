@@ -150,6 +150,8 @@ function updateMarkers(properties) {
       position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
       map: map,
       title: property.address.address_first,
+      animation: google.maps.Animation.DROP,
+      icon: pinSymbol("#68c0ea"),
       // zIndex: 5
       pid: property.id
     });
@@ -164,11 +166,13 @@ function updateMarkers(properties) {
 
     infoWindows.push(infowindow);
 
-    marker.addListener('click', function() {
-      closeAllInfoWin();
-      infowindow.open(map, marker);
-      $(".gm-style-iw").prev("div").hide();
-    });
+    if(property.list_price_cents > 0){
+      marker.addListener('click', function() {
+        closeAllInfoWin();
+        infowindow.open(map, marker);
+        $(".gm-style-iw").prev("div").hide();
+      });
+    }
 
     mapMarkers.push(marker);
 
