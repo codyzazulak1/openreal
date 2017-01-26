@@ -15,7 +15,7 @@
           <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
         </li>
         <li class="show-for-large">
-          <a href="/properties.json" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
+          <a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
         </li>
         <li class="show-for-large">
           <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
@@ -35,7 +35,7 @@
       <li class="show-for-medium-only">
         <a href="">More</a>
         <ul id="nav-dropdown" style="left: -38px;">
-           <li><a href="properties.json"class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
+           <li><a href="/listings"class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
            <li>
               <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
             </li>
@@ -58,7 +58,7 @@
           --><a href="">More</a>
           <ul id="nav-dropdown">
             <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
-            <li><a href="properties.json" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
+            <li><a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
            <li>
               <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Agents</a>
             </li>
