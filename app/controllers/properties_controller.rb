@@ -220,7 +220,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
+    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
   end
 
   # def property_upgrade_params
@@ -232,7 +232,7 @@ class PropertiesController < ApplicationController
   # end
 
   def address_params
-    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code)
+    params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :latitude, :longitude)
   end
 
   def contact_params

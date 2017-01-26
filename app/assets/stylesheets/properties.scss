@@ -66,6 +66,9 @@
 
     #close-btn {
       display: inline-block;
+      color: #68c0ea;
+      font-weight: 500;
+      border: solid #68c0ea;
     }
 
     .listing-count {
@@ -141,6 +144,7 @@
         overflow-y: auto;
         z-index: 10;
         display: none;
+        padding-right: 60px;
 
         // padding: 1.25rem;
 
@@ -673,5 +677,15 @@
   .property-details {
     margin-top: 32px;
   }
+}
 
+@media screen and (max-width: 768px){
+  #listings .listing-body > ul {
+    overflow-y: auto;
+    height: 100%;
+    margin: 0;
+  }
+  #listings .listing-body > ul > .listing-overview {
+    padding: 0;
+  } 
 }

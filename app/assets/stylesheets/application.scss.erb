@@ -28,6 +28,17 @@
  *               *
  *****************/
 
+//loader for map
+#map {
+  background: transparent url(<%= asset_path('logo_med.png')%>) no-repeat center center;
+  
+}
+
+#map:before {
+  content: 'Loading...';
+  padding-left: 25px;
+}
+
 html, body {
   height: auto;
   // min-width: 480px;

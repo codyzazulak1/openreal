@@ -33,12 +33,12 @@
     <div class="listing-meta clearfix">
       <!-- floater for large -->
       <div class="float-left  show-for-large">
-        <span><%= p.address.address_first %></span>
+        <span style="font-size: 90%;"><%= p.address.address_first %></span>
         <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
       </div>
       <div class="float-right text-right show-for-large" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
 
-        <!-- For medium and large only -->
+        <!-- large only -->
         <div class="row show-for-large">
           <span class="column small-4 medium-4" style="padding-top: 4.5px;">
             <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
@@ -72,7 +72,7 @@
       </div>
       <div class="float-right text-right show-for-medium-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
 
-        <!-- For medium and large only -->
+        <!-- For medium only -->
         <div class="row show-for-medium-only">
           <span class="column small-4 medium-4" style="padding-top: 4.5px;">
             <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
