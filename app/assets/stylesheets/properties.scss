@@ -140,11 +140,12 @@
         top: 0;
         background-color: $panel-bg;
         width: 100%;
-        height: calc(100vh - 60px - 62px - 60px);
+        //height: calc(100vh - 60px - 62px - 60px);
         overflow-y: auto;
         z-index: 10;
         display: none;
         padding-right: 22px;
+        bottom: 0;
 
         // padding: 1.25rem;
 

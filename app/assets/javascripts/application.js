@@ -154,7 +154,6 @@ function hideOverview() {
   overviewToggled = false;
 }
 
-// find Sold properties and set to false always on toggle
 function soldProps(){ 
   Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(element){$(element).prev().css({
     filter: 'blur(3px)',
@@ -165,8 +164,13 @@ function soldProps(){
     });
 }
 
+function propertyDetail(){
+  var overviewPid = $('#details-btn').data('idd');
+  $('#details-btn').attr("href", "/properties/" + overviewPid);
+}
 // initialize listings
 function initListings() {
+
   
   soldProps();
   $('.listing-body>ul>li').click(function(){
