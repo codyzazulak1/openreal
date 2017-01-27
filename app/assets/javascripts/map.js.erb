@@ -5,7 +5,7 @@ var updateOnDrag = false;
 
 
 function initMap() {
-  url = "/properties.json";
+  url = "/listings";
   if ($("#map").data("city") && $("#map").data("city") !== "") {
     url += "?city=" + $("#map").data("city");
   }
@@ -114,11 +114,24 @@ function newMarker(property, infowindow){
   return marker;
 }
 
+function test(){
+  var picture;
+
+  var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="' + picture + '"></div>' + '<p>'   + property.address.address_first + '</p>'
+
+  $('.listing-body>ul>li').click(function(){
+    
+  });
+  
+  if (overviewToggled){
+    // find property id
+    
+    picture = $(('.listing-img')[0]).data('bg');
+  }
+}
 
 
 function newInfo(property) {
-
-  var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="http://www.houseconstructioncompanysrilanka.gwisolutions.com/images/Single%20stroy%20House/AHC%20-%2016%20-%205.2mill.jpg"></div>' + '<p>' + property.address.address_first + '</p>'
 
   var infowindow = new google.maps.InfoWindow({
     content: property.address.address_first,
