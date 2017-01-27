@@ -33,7 +33,7 @@ function showSoldBadges(){
 
 // for filter option
 function toggleSoldBadge(){
-  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle('linear'), 3000});
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle(), 400});
 };
 
 // google places autocomplete
@@ -224,6 +224,7 @@ $(document).ready(function(){
   $('#cancel-btn').click(function(e){
     e.preventDefault();
     $('.listing-filters').slideToggle();
+    toggleSoldBadge();
   });
 
   $('#close-btn').click(function(e){
@@ -232,7 +233,8 @@ $(document).ready(function(){
     toggleOverview();
     $('.listing-overview').hide();
     overviewToggled = false;
-    showSoldBadges();
+    toggleSoldBadge();
+    
   });
 
   $('.switch-btn').click(function(e){
