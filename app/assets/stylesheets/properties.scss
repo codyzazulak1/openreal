@@ -22,6 +22,10 @@
     height: calc(100vh - 62px - 60px);
   }
 
+  .gm-style img{
+    max-width: 100%;
+  }
+
   .gm-style-iw {
     // width: 100% !important;
     // left: 0px !important;
@@ -208,6 +212,7 @@
         .listing-description {
           clear: both;
           background-color: $white;
+          margin-top: 13.5px;
         }
       }
 
