@@ -88,15 +88,28 @@ function setMarkers(property) {
 }
 
 function newMarker(property, infowindow){
-  var marker = new google.maps.Marker({
-    position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
-    map: map,
-    animation: google.maps.Animation.DROP,
-    icon: pinSymbol("#68c0ea"),
-    title: property.address.address_first,
-    // zIndex: 5
-    pid: property.id
-  });
+
+  if (property.list_price_cents > 0){
+    var marker = new google.maps.Marker({
+      position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: pinSymbol("#68c0ea"),
+      title: property.address.address_first,
+      // zIndex: 5
+      pid: property.id
+    });
+  } else if (property.list_price_cents === 0){
+    var marker = new google.maps.Marker({
+        position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: pinSymbol("#fff"),
+        title: property.address.address_first,
+        // zIndex: 5
+        pid: property.id
+      });
+  }
 
   marker.addListener('click', function() {
     // hides sold badges
@@ -122,7 +135,7 @@ function test(){
   $('.listing-body>ul>li').click(function(){
     
   });
-  
+
   if (overviewToggled){
     // find property id
     
