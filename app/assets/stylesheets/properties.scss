@@ -66,6 +66,12 @@
       border: solid #68c0ea;
       // vertical-align: middle;
       // line-height: 60px;
+      border-radius: 0;
+    }
+
+    #filter-btn:hover {
+      color: white;
+      background-color: #68c0ea;
     }
 
     #close-btn {
@@ -73,6 +79,12 @@
       color: #68c0ea;
       font-weight: 500;
       border: solid #68c0ea;
+      border-radius: 0;
+    }
+
+    #close-btn:hover {
+      color: white;
+      background-color: #68c0ea;
     }
 
     .listing-count {
@@ -694,4 +706,10 @@
   #listings .listing-body > ul > .listing-overview {
     padding: 0;
   } 
+}
+
+@media screen and (max-width: 638px){
+  .float-left-small-screen {
+    text-align: center;
+  }
 }
