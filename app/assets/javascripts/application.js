@@ -199,7 +199,7 @@ function initListings() {
 
 function initListingImg() {
   $('.listing-img').css('background-image', function(){
-
+ 
     return "url(" + $(this).data('bg') + ")";
   });
 }
