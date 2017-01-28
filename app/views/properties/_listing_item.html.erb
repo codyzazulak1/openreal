@@ -4,6 +4,9 @@
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
 
       <% if p.list_price_cents > 0%>
+      <div class="listing-badge">
+        <span>For Sale</span>
+      </div>
       <div class="listing-price">
         <sup>$</sup>
         <span style=""><%= p.price %></span>
