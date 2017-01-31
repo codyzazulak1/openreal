@@ -256,6 +256,11 @@ $(document).ready(function(){
     filters.submit();
   });
 
+  $('#clear-filter').click(function(){
+    var form = document.getElementById("filter-form");
+    form.reset();
+  });
+
   initListings();
 
   $('.loader').hide();

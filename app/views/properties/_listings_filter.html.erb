@@ -1,5 +1,5 @@
 <div class="listing-filters">
-  <form class="" method="get" data-remote="true" action="/properties/filter">
+  <form class="" id="filter-form" method="get" data-remote="true" action="/properties/filter">
     <div class="row">
       <div class="medium-6 columns">
         <label>Min Price
@@ -72,7 +72,7 @@
           </select>
         </label>
       </div> -->
-      <div class="medium-6 columns">
+      <!-- <div class="medium-6 columns">
         <label>Storeys
           <select name="storeys">
             <option value="0">Any</option>
@@ -83,18 +83,18 @@
             <option value="5">5+</option>
           </select>
         </label>
-      </div>
+      </div> -->
     </div>
 
     <div class="row">
       <div class="medium-6 columns">
-        <label>Min Floor Size (sqft)
-          <input type="number" pattern="[0-9]" name="min-floor" value="">
-        </label>
+        <label>Min Floor Size (sqft) </label>
+          <input type="text" pattern="[0-9]" name="min-floor" value="">
+        <!-- </label> -->
       </div>
       <div class="medium-6 columns">
         <label>Min Lot Size (sqft)
-          <input type="number" pattern="[0-9]" name="min-floor" value="">
+          <input type="text" pattern="[0-9]" name="min-lot" value="">
         </label>
       </div>
     </div>
@@ -109,6 +109,18 @@
               <option value=<%= city %>><%= city %></option>
               <% end %>
             <% end %>
+          </select>
+        </label>
+      </div>
+      <div class="medium-6 columns">
+        <label>Storeys
+          <select name="storeys">
+            <option value="0">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
           </select>
         </label>
       </div>
@@ -136,6 +148,7 @@
     <div class="filter-buttons">
       <a href="#" class="btn btn-secondary" id="cancel-btn">Cancel</a>
       <input type="submit" class="btn btn-primary" value="Apply" id="submit-filter">
+      <input type="submit" class="btn btn-primary" value="Clear" id="clear-filter">
     </div>
 
   </form>
