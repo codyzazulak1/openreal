@@ -19,7 +19,7 @@
           <%= fa.text_field :longitude%>
           
           <% @address_attributes.each do |a| %>
-            <% puts @address_attributes %>
+            
             <%= fa.label a %>
             <%= fa.text_field a.to_sym %>
           <% end %>
@@ -31,8 +31,18 @@
       <a href="#" class="accordion-title">Basics</a>
       <div class="accordion-content" data-tab-content>
         <% @property_attributes.each do |u| %>
-          <%= f.label u %>
-          <%= f.text_field u.to_sym %>
+
+          <% if u.include? "building_type"%>
+             <%= f.label u%>
+             <!-- downcase -froze string issue -->
+             <%= f.text_field u.to_sym%>
+           <% else %>
+
+             <%= f.label u %>
+             <%= f.text_field u.to_sym %>
+
+          <% end %>
+
 
           
           <%# if u.include? "status_id" %>
