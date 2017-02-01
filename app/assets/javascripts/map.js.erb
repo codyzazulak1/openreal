@@ -37,7 +37,9 @@ function initMap() {
     });
 
     data.properties.forEach(function(property){
-      setMarkers(property);
+      if (property.list_price_cents > 0){
+        setMarkers(property);
+      }
       // console.log("SETMARKERS: " + setMarkers(property));
     });
 
