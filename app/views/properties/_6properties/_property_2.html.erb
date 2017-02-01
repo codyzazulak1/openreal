@@ -1,9 +1,9 @@
-      <% p2 = @properties_p.first%>
+      <% p2 = @properties_p.last%>
         <div class="small-12 medium-12 large-6 columns">
           <div class="listing-item">
           <%= link_to "", property_path(p2.id), class: "listing-link" %>
           <%# @properties_p.second.photos.each do |p|%>
-            <div class="listing-img" data-bg=<%= @properties_p.first.photos.first.picture_url %>>
+            <div class="listing-img" data-bg=<%= @properties_p.last.photos.first.picture_url %>>
           <%# end %>
               <div class="listing-badge">
               <%if p2.list_price_cents != 0%>
