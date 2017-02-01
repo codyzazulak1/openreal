@@ -74,6 +74,8 @@
       background-color: #68c0ea;
     }
 
+
+
     #close-btn {
       display: inline-block;
       color: #68c0ea;
@@ -135,6 +137,51 @@
           padding-top: 2.5rem;
           text-align: right;
         }
+      }
+
+      #submit-filter {
+        display: inline-block;
+        color: #68c0ea;
+        font-weight: 500;
+        border: solid #68c0ea;
+        border-radius: 0;
+        background-color: white;
+      }
+
+
+      #submit-filter:hover{
+        color: white;
+        background-color: #68c0ea;
+      }
+
+      #clear-filter {
+        display: inline-block;
+        color: #68c0ea;
+        font-weight: 500;
+        border: solid #68c0ea;
+        border-radius: 0;
+        background-color: white;
+      }
+      
+      #clear-filter:hover {
+        color: white;
+        background-color: #68c0ea;
+      }
+
+      #cancel-btn {
+        color: white;
+        background-color: #68c0ea;
+        border-radius: 0;
+        border: solid #68c0ea;
+      }
+
+      #cancel-btn:hover {
+        display: inline-block;
+        color: #68c0ea;
+        font-weight: 500;
+        border: solid #68c0ea;
+        border-radius: 0;
+        background-color: white;
       }
     }
 
