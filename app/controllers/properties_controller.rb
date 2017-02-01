@@ -48,7 +48,34 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def building_type
+    buildingType = ['corner unit', '2 Storey', '3 storey', '2 storey w/bsmt.', '3 storey w/bsmt.', 'Apartment', 'Condo', 'apartment/condo']
+
+    corner_unit = ['corner unit', 'Corner Unit', 'Corner unit', 'corner Unit', 'CORNER UNIT']
+    two_storey = /(two)?(2)? S?s?(torey)/
+    three_storey = /(three)?(3)? S?s?(torey)/
+    two_withbmt = /(two)?(2)? S?s?(torey) w?\/B?b?smt.?/
+
+    case type
+    when buildingType[0]
+      Property.where(building_type: buildingType[0])
+    when buildingType[1]
+      Property.where(building_type: buildingType[1])
+    when buildingType[2]
+      Property.where(building_type: buildingType[2])
+    when buildingType[3]
+      Property.where(building_type: buildingType[3])
+    when buildingType[4]
+      Property.where(building_type: buildingType[4])
+    when buildingType[5] || buildingType[6] || buildingType[7]
+      Property.where(building_type: buildingType[5]).where(building_type: buildingType[6].where(building_type: buildingType[7]))
+    when ""
+      Property.none  
+    end  
+  end
+
   def filter
+  
     @properties = Property.all
       .order('list_price_cents ASC')
 
@@ -64,13 +91,16 @@ class PropertiesController < ApplicationController
     if params["bath"]
       @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
     end
+    # if params["type"]
+    #   @properties = @properties.where("building_type == ?")
+    # end
     if params["storeys"]
       @properties = @properties.where("stories >= ?", params["storeys"].to_i)
     end
     if params["min-floor"] && params["min-floor"] != ''
       @properties = @properties.where("floor_area >= ?", params["min-floor"].to_i)
     end
-    if params["min-lot"] && params["min-floor"] != ''
+    if params["min-lot"] && params["min-lot"] != ''
       @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
     end
     if params["city"] && params["city"] != ''

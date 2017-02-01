@@ -1,21 +1,18 @@
 <div class="listing-filters">
-  <form class="" method="get" data-remote="true" action="/properties/filter">
+  <form class="" id="filter-form" method="get" data-remote="true" action="/properties/filter">
     <div class="row">
       <div class="medium-6 columns">
         <label>Min Price
           <select name="min-price">
-            <option value="0">0</option>
-            <option value="10000000">$100,000</option>
-            <option value="15000000">$150,000</option>
-            <option value="20000000">$200,000</option>
+            <!-- <option value="0">0</option> -->
             <option value="25000000">$250,000</option>
-            <option value="30000000">$300,000</option>
-            <option value="35000000">$350,000</option>
-            <option value="40000000">$400,000</option>
-            <option value="45000000">$450,000</option>
             <option value="50000000">$500,000</option>
-            <option value="55000000">$550,000</option>
-            <option value="60000000">$600,000</option>
+            <option value="75000000">$750,000</option>
+            <option value="100000000">$1,000,000</option>
+            <option value="125000000">$1,250,000</option>
+            <option value="150000000">$1,500,000</option>
+            <option value="175000000">$1,750,000</option>
+            <option value="200000000">$2,000,000</option>
           </select>
         </label>
       </div>
@@ -23,17 +20,14 @@
         <label>Max Price
           <select name="max-price">
             <option value="">Unlimited</option>
-              <option value="10000000">$100,000</option>
-              <option value="15000000">$150,000</option>
-              <option value="20000000">$200,000</option>
-              <option value="25000000">$250,000</option>
-              <option value="30000000">$300,000</option>
-              <option value="35000000">$350,000</option>
-              <option value="40000000">$400,000</option>
-              <option value="45000000">$450,000</option>
               <option value="50000000">$500,000</option>
-              <option value="55000000">$550,000</option>
-              <option value="60000000">$600,000</option>
+              <option value="100000000">$1,000,000</option>
+              <option value="150000000">$1,500,000</option>
+              <option value="200000000">$2,000,000</option>
+              <option value="250000000">$2,500,000</option>
+              <option value="300000000">$3,000,000</option>
+              <option value="450000000">$4,500,000</option>
+              <option value="500000000">$5,000,000</option>
           </select>
         </label>
       </div>
@@ -67,19 +61,18 @@
     </div>
 
     <div class="row">
-      <div class="medium-6 columns">
+<!--       <div class="medium-6 columns">
         <label>Building Type
           <select name="type">
             <option value="0">Any</option>
             <option value="1">House</option>
             <option value="2">Townhouse</option>
-            <option value="3">Apartment</option>
-            <option value="4">Duplex</option>
-            <option value="5">Fourplex</option>
+            <option value="3">Apartment/Condo</option>
+
           </select>
         </label>
-      </div>
-      <div class="medium-6 columns">
+      </div> -->
+      <!-- <div class="medium-6 columns">
         <label>Storeys
           <select name="storeys">
             <option value="0">Any</option>
@@ -90,18 +83,18 @@
             <option value="5">5+</option>
           </select>
         </label>
-      </div>
+      </div> -->
     </div>
 
     <div class="row">
       <div class="medium-6 columns">
-        <label>Min Square Feet
-          <input type="number" name="min-floor" value="">
-        </label>
+        <label>Min Floor Size (sqft) </label>
+          <input type="text" pattern="[0-9]" name="min-floor" value="">
+        <!-- </label> -->
       </div>
       <div class="medium-6 columns">
         <label>Min Lot Size (sqft)
-          <input type="number" name="min-lot" value="">
+          <input type="text" pattern="[0-9]" name="min-lot" value="">
         </label>
       </div>
     </div>
@@ -116,6 +109,18 @@
               <option value=<%= city %>><%= city %></option>
               <% end %>
             <% end %>
+          </select>
+        </label>
+      </div>
+      <div class="medium-6 columns">
+        <label>Storeys
+          <select name="storeys">
+            <option value="0">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
           </select>
         </label>
       </div>
@@ -140,9 +145,14 @@
       <input type="hidden" name="bound-south">
     </div>
 
-    <div class="filter-buttons">
-      <a href="#" class="btn btn-secondary" id="cancel-btn">Cancel</a>
-      <input type="submit" class="btn btn-primary" value="Apply" id="submit-filter">
+    <div class="row filter-buttons">
+      <div class="column small-3 medium-2 large-3" style="text-align: left!important;">
+        <input type="submit" class="btn btn-primary" value="Clear" id="clear-filter">
+      </div>
+      <div class="column small-9 medium-10 large-9 end">
+        <a href="#" class="btn btn-secondary" id="cancel-btn">Cancel</a>
+        <input type="submit" class="btn btn-primary" value="Apply" id="submit-filter">
+      </div>
     </div>
 
   </form>

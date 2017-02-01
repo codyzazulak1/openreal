@@ -19,7 +19,8 @@
 
                --><a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
                --><div class="float-right listing-count show-for-medium">
-               <span id="listing-count" style="font-weight: 300; color: #777"><%= @properties.count %> active listings</span>
+               <span id="listing-count" style="font-weight: 300; color: #777; display: block;line-height: 40px;"><%= @properties.where("list_price_cents > ?", 0).count %> active listings</span>
+               <span id="listing-count" style="font-weight: 300; color: #68c0ea; display:block;line-height: 1px;font-size: 14px;text-align: right; "> <%= @properties.where(list_price_cents: 0).count%> sold</span>
               </div>
             </div>
 
@@ -38,9 +39,10 @@
                 <%end%>
               </ul>
 
-              <div class="listing-footer">
+ <!--              <div class="listing-footer">
                 <a href="#" target="_blank" class="btn btn-primary" id="detail-btn">See Details</a>
-              </div>
+              </div> -->
+
             </div>
           </div>
         </div>

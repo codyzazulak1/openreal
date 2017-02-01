@@ -5,7 +5,7 @@ var updateOnDrag = false;
 
 
 function initMap() {
-  url = "/properties.json";
+  url = "/listings";
   if ($("#map").data("city") && $("#map").data("city") !== "") {
     url += "?city=" + $("#map").data("city");
   }
@@ -18,10 +18,10 @@ function initMap() {
     }
     map = new google.maps.Map(document.getElementById('map'), {
       center: mapCenter,
-      zoom: 12,
+      zoom: 10,
       zoomControl: true,
       zoomControlOptions: {
-          position: google.maps.ControlPosition.TOP_RIGHT
+          position: google.maps.ControlPosition.RIGHT_BOTTOM
       },
       mapTypeControl: false,
       scaleControl: false,
@@ -29,7 +29,7 @@ function initMap() {
       rotateControl: false,
       fullscreenControl: false,
       clickableIcons: false,
-      mapTypeId: 'terrain',
+      mapTypeId: 'roadmap',
 // Set color scheme for map
       style:[ 
       ]
@@ -88,15 +88,28 @@ function setMarkers(property) {
 }
 
 function newMarker(property, infowindow){
-  var marker = new google.maps.Marker({
-    position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
-    map: map,
-    animation: google.maps.Animation.DROP,
-    icon: pinSymbol("#68c0ea"),
-    title: property.address.address_first,
-    // zIndex: 5
-    pid: property.id
-  });
+
+  if (property.list_price_cents > 0){
+    var marker = new google.maps.Marker({
+      position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+      map: map,
+      animation: google.maps.Animation.DROP,
+      icon: pinSymbol("#68c0ea"),
+      title: property.address.address_first,
+      // zIndex: 5
+      pid: property.id
+    });
+  } else if (property.list_price_cents === 0){
+    var marker = new google.maps.Marker({
+        position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+        map: map,
+        animation: google.maps.Animation.DROP,
+        icon: pinSymbol("#fff"),
+        title: property.address.address_first,
+        // zIndex: 5
+        pid: property.id
+      });
+  }
 
   marker.addListener('click', function() {
     // hides sold badges
@@ -114,11 +127,24 @@ function newMarker(property, infowindow){
   return marker;
 }
 
+function test(){
+  var picture;
+
+  var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="' + picture + '"></div>' + '<p>'   + property.address.address_first + '</p>'
+
+  $('.listing-body>ul>li').click(function(){
+    
+  });
+
+  if (overviewToggled){
+    // find property id
+    
+    picture = $(('.listing-img')[0]).data('bg');
+  }
+}
 
 
 function newInfo(property) {
-
-  var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="http://www.houseconstructioncompanysrilanka.gwisolutions.com/images/Single%20stroy%20House/AHC%20-%2016%20-%205.2mill.jpg"></div>' + '<p>' + property.address.address_first + '</p>'
 
   var infowindow = new google.maps.InfoWindow({
     content: property.address.address_first,

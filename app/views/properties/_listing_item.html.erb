@@ -4,6 +4,9 @@
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
 
       <% if p.list_price_cents > 0%>
+      <div class="listing-badge">
+        <span>For Sale</span>
+      </div>
       <div class="listing-price">
         <sup>$</sup>
         <span style=""><%= p.price %></span>
@@ -27,6 +30,7 @@
       top: 0;
       right: 0;
       padding: 0.5rem 1.95rem;
+      cursor: default;
     ">Sold</span>
      <% end %>
 
@@ -59,18 +63,18 @@
             <%= p.bathrooms %> <br>  
           </span>
           <span class="column small-4 medium-4" style="padding: 0;">
-            <%= p.lot_area %> ft<sup>&#50;</sup> <br> 
+            <%= p.floor_area %> ft<sup>&#50;</sup> <br> 
           </span>
         </div>
 
         <!-- <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span> -->
       </div>
       <!-- floater for medium -->
-      <div class="row expanded show-for-medium-only">
+      <div class="row expanded show-for-medium-only center-text" style="padding: 0 7px;">
         <span><%= p.address.address_first %></span>
         <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
       </div>
-      <div class="float-right text-right show-for-medium-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+      <div class="float-right text-right show-for-medium-only float-none" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
 
         <!-- For medium only -->
         <div class="row show-for-medium-only">
@@ -139,9 +143,12 @@
 <%end%>
 
 <!-- pagination -->
-<%= paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
+<%= paginate @properties_paged, {class: "pagination text-center", previous_label: "« ", next_label: "» "} %>
 <!-- end pagination -->
 
 <!-- listing overview -->
 <div class="listing-overview"></div>
 <!-- end listing-overview -->
+<div>
+  <%= render 'layouts/footer_maps'%>
+</div>

@@ -22,6 +22,10 @@
     height: calc(100vh - 62px - 60px);
   }
 
+  .gm-style img{
+    max-width: 100%;
+  }
+
   .gm-style-iw {
     // width: 100% !important;
     // left: 0px !important;
@@ -62,6 +66,12 @@
       border: solid #68c0ea;
       // vertical-align: middle;
       // line-height: 60px;
+      border-radius: 0;
+    }
+
+    #filter-btn:hover {
+      color: white;
+      background-color: #68c0ea;
     }
 
     #close-btn {
@@ -69,6 +79,12 @@
       color: #68c0ea;
       font-weight: 500;
       border: solid #68c0ea;
+      border-radius: 0;
+    }
+
+    #close-btn:hover {
+      color: white;
+      background-color: #68c0ea;
     }
 
     .listing-count {
@@ -83,7 +99,7 @@
 
   .listing-footer {
     position: absolute;
-    bottom: 0;
+    bottom: 15px;
     height: 60px;
     width: 100%;
     padding: calc((60px - 34px) / 2) 1.25rem;
@@ -132,7 +148,7 @@
       overflow-y: auto;
       height: 100%;
       //margin: 0;
-      margin: 0 30px;
+      margin: 0 10.5px;
       // position: relative;
 
       >.listing-overview {
@@ -140,11 +156,12 @@
         top: 0;
         background-color: $panel-bg;
         width: 100%;
-        height: calc(100vh - 60px - 62px - 60px);
+        //height: calc(100vh - 60px - 62px - 60px);
         overflow-y: auto;
         z-index: 10;
         display: none;
-        padding-right: 60px;
+        padding-right: 22px;
+        bottom: 0;
 
         // padding: 1.25rem;
 
@@ -207,6 +224,7 @@
         .listing-description {
           clear: both;
           background-color: $white;
+          margin-top: 13.5px;
         }
       }
 
@@ -688,4 +706,43 @@
   #listings .listing-body > ul > .listing-overview {
     padding: 0;
   } 
+}
+
+@media screen and (max-width: 638px){
+  .float-left-small-screen {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 430px) and (max-width: 639px){
+  #listings .listing-body > ul > li .listing-meta{
+    padding: 0.5rem 8.75rem!important;
+  }
+}
+//medium maps listings
+@media screen and (min-width: 960px) and (max-width: 1020px) {
+  #listings .listing-body > ul > li .listing-meta{
+    .float-right {padding: 0px 7rem!important;}
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1020px){
+    #listings .listing-body > ul >li .listing-meta {
+      .center-text {
+       text-align: center;
+      }
+
+      .text-right {
+        //padding: 0 107px!important;
+      }
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 768px){
+  #listings .listing-body > ul > li .listing-meta {
+    .float-none {
+      float: none!important;
+      padding: 0 68px!important;
+    }
+  }
 }

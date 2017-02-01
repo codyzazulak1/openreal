@@ -33,7 +33,7 @@ function showSoldBadges(){
 
 // for filter option
 function toggleSoldBadge(){
-  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle('linear'), 3000});
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle(), 400});
 };
 
 // google places autocomplete
@@ -154,7 +154,6 @@ function hideOverview() {
   overviewToggled = false;
 }
 
-// find Sold properties and set to false always on toggle
 function soldProps(){ 
   Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(element){$(element).prev().css({
     filter: 'blur(3px)',
@@ -165,8 +164,13 @@ function soldProps(){
     });
 }
 
+function propertyDetail(){
+  var overviewPid = $('#details-btn').data('idd');
+  $('#details-btn').attr("href", "/properties/" + overviewPid);
+}
 // initialize listings
 function initListings() {
+
   
   soldProps();
   $('.listing-body>ul>li').click(function(){
@@ -195,7 +199,7 @@ function initListings() {
 
 function initListingImg() {
   $('.listing-img').css('background-image', function(){
-
+ 
     return "url(" + $(this).data('bg') + ")";
   });
 }
@@ -220,6 +224,7 @@ $(document).ready(function(){
   $('#cancel-btn').click(function(e){
     e.preventDefault();
     $('.listing-filters').slideToggle();
+    toggleSoldBadge();
   });
 
   $('#close-btn').click(function(e){
@@ -228,7 +233,8 @@ $(document).ready(function(){
     toggleOverview();
     $('.listing-overview').hide();
     overviewToggled = false;
-    showSoldBadges();
+    toggleSoldBadge();
+    
   });
 
   $('.switch-btn').click(function(e){
@@ -248,6 +254,11 @@ $(document).ready(function(){
     filters.find('input[name="bound-north"]').removeAttr("value");
     filters.find('input[name="bound-south"]').removeAttr("value");
     filters.submit();
+  });
+
+  $('#clear-filter').click(function(){
+    var form = document.getElementById("filter-form");
+    form.reset();
   });
 
   initListings();

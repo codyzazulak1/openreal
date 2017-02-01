@@ -1,0 +1,55 @@
+<footer class="row expanded collapse">
+  <div class="medium-10 medium-centered columns">
+    <div class="row top">
+      <div class="small-6 medium-6 large-6 columns">
+        <h5>services</h5>
+        <ul>
+          <li>
+            <a href=<%= new_property_path %>>Sell Your House</a>
+          </li>
+          <li>
+            <a href="/agents">Real Estate Agents</a>
+          </li>
+          <li>
+            <a href="/listings">Browse Our Listings</a>
+          </li>
+          <!-- <li>
+            <a href="#">Buy</a>
+          </li> -->
+          <li>
+            <a href=<%= howitworks_path %>>How It Works</a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="small-6 medium-6 large-6 columns float-left">
+        <h5>about</h5>
+        <ul>
+          <li>
+            <a href=<%= faq_path %>>FAQ</a>
+          </li>
+          <li>
+            <a href=<%= terms_path %>>Terms &amp; Conditions</a>
+          </li>
+          <li>
+            <a href="/contact">Contact us</a>
+          </li>
+          <!-- <li>
+            <a href="#">Career</a>
+          </li> -->
+        </ul>
+        <!-- social icons -->
+        <a href="https://www.facebook.com/openrealca/" class="fa fa-facebook-square" aria-hidden="true" style="color: white;"></a>
+        <a href="https://twitter.com/openrealca"class="fa fa-twitter-square" aria-hidden="true" style="color: white;"></a>
+        <a href="https://www.instagram.com/openreal.ca/" class="fa fa-instagram" aria-hidden="true" style="color: white;"></a>
+        <a href="https://www.linkedin.com/company/openreal.ca" class="fa fa-linkedin-square" aria-hidden="true" style="color: white;"></a>
+      </div>
+    </div>
+  </div>
+  <div class="row bottom">
+      <div class="small-12 columns text-center">
+        <h6>&copy; <%= Time.now.year %> OpenReal.ca | <span><small><%= link_to 'Admin Access', dashboard_path, style: "color:white;"%></small></span></h6>
+      </div>
+    </div>
+</footer>

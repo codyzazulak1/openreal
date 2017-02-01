@@ -12,6 +12,12 @@
         <div class="listing-badge">
           <span>Just Listed</span>
         </div>
+
+        <% elsif p.list_price_cents > 0%>
+        <div class="listing-badge">
+          <span>For Sale</span>
+        </div>
+
         <% end %>
         <div class="listing-price">
           <sup>$</sup>
@@ -29,7 +35,7 @@
     <span><%= p.address.address_first %></span>
     <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
   </div>
-  <div class="float-right text-right show-for-large" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+  <div class="float-right text-right show-for-large" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px; width: 10.5em;">
 
     <!-- For medium and large only -->
     <div class="row show-for-large">
@@ -52,7 +58,7 @@
         <%= p.bathrooms %> <br>  
       </span>
       <span class="column small-4 medium-4" style="padding: 0;">
-        <%= p.lot_area %> ft<sup>&#50;</sup> <br> 
+        <%= p.floor_area %> ft<sup>&#50;</sup> <br> 
       </span>
     </div>
 
@@ -63,10 +69,10 @@
     <span><%= p.address.address_first %></span>
     <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
   </div>
-  <div class="row expanded float-right-bigger-screen show-for-medium-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+  <div class="row expanded float-right-bigger-screen show-for-medium-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px; width: 178px;">
 
     <!-- For medium and large only -->
-    <div class="row show-for-medium-only">
+    <div class="row show-for-medium-only" style="margin-top: 12px;">
       <span class="column small-4 medium-4" style="padding-top: 4.5px;">
         <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
       </span>
@@ -101,7 +107,8 @@
 
   <div class="row expanded float-right-small-screen show-for-small-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
     <!-- For small only -->
-     <div class="row listing-mobile show-for-small-only">
+     <div class="row listing-mobile show-for-small-only" style="width: 12em;
+">
       <span class="column small-4 medium-4" style="padding-top: 4.5px;">
         <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
       </span>
@@ -113,7 +120,7 @@
       </span>
     </div>
 
-    <div class="row listing-mobile show-for-small-only" style="text-align: center;">
+    <div class="row listing-mobile show-for-small-only" style="text-align: center;width: 189px;">
       <span class="column small-4 medium-4" >
         <%= p.bedrooms %>  <br>  
       </span>
@@ -127,14 +134,37 @@
 
     <!-- <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span> -->
   </div>
+  <hr style="margin-bottom: 22px;">
+  
+  <a href="#" target="_blank" id="details-btn" data-idd=<%= p.id%> style="
+    background-color: white;
+    color: #68c0ea;
+    font-size: 17.5px;
+    padding: 5.5px 57.5px;
+    padding: 10.5px 38.5px;
+    border: 3px solid #68c0ea;
+    border-radius: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+
+">
+  See More Details
+  </a>
+  
 </div>
 
 <div class="listing-description">
   <span style="font-size: .91em;"><%= p.description %></span>
 </div>
 
-<script src="https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/foundation/6.2.1/foundation.min.js"></script> -->
+
 <script>
   $(document).foundation();
+  propertyDetail();
 </script>
 
