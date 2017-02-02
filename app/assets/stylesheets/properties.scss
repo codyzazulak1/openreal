@@ -97,6 +97,28 @@
         line-height: 60px;
       }
     }
+
+    .sort-btn {
+      display: inline-flex;
+      select {
+        margin: 0px 7px 1rem;
+        border: solid #68c0ea;
+        color: #68c0ea;
+        font-weight: 500;  
+      }
+
+      .sorting {
+        margin: 0px 7px 1rem;
+        border: solid #68c0ea;
+        color: #68c0ea;
+        font-weight: 500;
+
+      }
+      select::after{
+        color: blue;
+      }
+    }
+
   }
 
   .listing-footer {
@@ -268,6 +290,7 @@
 
         }
 
+
         .listing-description {
           clear: both;
           background-color: $white;
@@ -366,6 +389,11 @@
           }
           .mapsect-icons:first-child {
             vertical-align: text-top;
+          }
+          .threed {
+            margin-left: 17rem;
+            margin-top: -18px;
+            display: inline-block;
           }
         }
       }

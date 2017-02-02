@@ -15,9 +15,9 @@
                --><a href="#" class="btn btn-secondary show-for-small-only switch-btn" style="color: #68c0ea;
             font-weight: 500;
             border: solid #68c0ea;">Map</a>
-                  <a href="#" class="btn btn-secondary" id="filter-btn">Filters</a><!-- 
+                  <a href="#" class="btn btn-secondary" id="filter-btn">Filters</a>
 
-               --><a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
+                  <a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
                --><div class="float-right listing-count show-for-medium">
                <span id="listing-count" style="font-weight: 300; color: #777; display: block;line-height: 40px;"><%= @properties.where("list_price_cents > ?", 0).count %> active listings</span>
                <span id="listing-count" style="font-weight: 300; color: #68c0ea; display:block;line-height: 1px;font-size: 14px;text-align: right; "> <%= @properties.where(list_price_cents: 0).count%> sold</span>
