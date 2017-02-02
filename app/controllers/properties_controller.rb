@@ -7,7 +7,7 @@ class PropertiesController < ApplicationController
       @properties = Property.within(@city)
     else
       @properties = Property.all.order('created_at DESC')
-      @center = {lat: 49.2447, lng: -123.1359}
+      @center = {lat: 49.2400769, lng: -123.0282093}
     end
     @cities = Property.cities
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
