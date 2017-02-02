@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
+  
   resources :properties, only: [:new, :create, :show] do
     resources :address
     resources :photos, only: [:new, :create, :update]

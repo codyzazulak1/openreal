@@ -221,6 +221,8 @@ $(document).ready(function(){
     $('.listing-filters').slideToggle();
   });
 
+
+
   $('#cancel-btn').click(function(e){
     e.preventDefault();
     $('.listing-filters').slideToggle();
@@ -259,6 +261,7 @@ $(document).ready(function(){
   $('#clear-filter').click(function(){
     var form = document.getElementById("filter-form");
     form.reset();
+
   });
 
   initListings();

@@ -48,6 +48,7 @@ class PropertiesController < ApplicationController
     end
   end
 
+
   def building_type
     buildingType = ['corner unit', '2 Storey', '3 storey', '2 storey w/bsmt.', '3 storey w/bsmt.', 'Apartment', 'Condo', 'apartment/condo']
 
@@ -77,7 +78,8 @@ class PropertiesController < ApplicationController
   def filter
   
     @properties = Property.all
-      .order('list_price_cents ASC')
+      .order('created_at DESC')
+
 
     if params["min-price"]
       @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
@@ -108,6 +110,13 @@ class PropertiesController < ApplicationController
         .joins(:address)
         .where("LOWER(addresses.city) = LOWER(?)", params["city"])
     end
+    if params["sort"]
+      @properties = @properties.where("list_price_cents > ?", 0).all.order('list_price_cents DESC')
+    end
+    if params["properties" => "low price"]
+      @properties = @properties.where("list_price_cents > ?", 0).all.order('list_price_cents ASC')
+    end
+
     if params["bound-east"] && params["bound-west"] && params["bound-north"] && params["bound-south"] && !(params["bound-east"] == "" || params["bound-west"] == "" || params["bound-north"] == "" || params["bound-south"] == "")
       @properties = @properties
         .joins(:address)

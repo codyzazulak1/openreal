@@ -36,13 +36,31 @@
     <div class="listing-meta clearfix">
       <!-- floater for large -->
       <div class="float-left  show-for-large">
-        <span style="font-size: 90%;"><%= p.address.address_first %></span>
-        <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
+        <span style="font-size: 90%; display: block;"><%= p.address.address_first %></span>
+        <span style="font-size: 0.75rem; display: inline-block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
       </div>
-      <div class="float-right text-right show-for-large" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
+      
 
+      
+      <div class="float-right text-right show-for-large" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
         <!-- large only -->
         <div class="row show-for-large">
+          <% if p.matterurl != ""%>
+          <div class="column small-3 medium-3" style="margin-top: 8px;">
+            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDM2MC4wMDIgMzYwLjAwMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzYwLjAwMiAzNjAuMDAyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik0zNDkuNTgsMTU0Ljg1MkwyMDUuMTU3LDEwLjQxOGMtMTMuODk2LTEzLjg5MS0zNi40MTgtMTMuODkxLTUwLjMxMSwwTDEwLjQyMiwxNTQuODUyICAgICBjLTEzLjg5MiwxMy44OTMtMTMuODkyLDM2LjQwNywwLDUwLjNMMTU0Ljg1LDM0OS41ODVjNi45NDgsNi45NDQsMTYuMDUxLDEwLjQxNywyNS4xNTEsMTAuNDE3ICAgICBjOS4xMDMsMCwxOC4yMDMtMy40NzMsMjUuMTU2LTEwLjQxN0wzNDkuNTgsMjA1LjE1MUMzNjMuNDcyLDE5MS4yNTksMzYzLjQ3MiwxNjguNzQyLDM0OS41OCwxNTQuODUyeiBNMTY2LjE2NCwxMjcuNzg3ICAgICBsLTEuMDY0LDEwLjAxOWMtMC4wNywwLjY1OS0wLjM3MSwxLjI5OC0wLjg1MywxLjgwM2wtMjUuOTE4LDI3LjE5MmMxNy4wODQsMy41NDEsMjYuNDU3LDE1LjM0MSwyNC43MjIsMzEuNjg0ICAgICBjLTEuMTM4LDEwLjY5NS01LjkwMywxOS44NTQtMTMuNzg2LDI2LjQ3OWMtNy44MSw2LjU2NS0xNy45ODEsMTAuMDM5LTI5LjQxOCwxMC4wMzljLTEwLjU2OSwwLTIxLjc1Mi0zLjQ2Mi0yOS45MTEtOS4yNTYgICAgIGwtNC41OTQtMy4yNjNjLTAuNTk2LTAuNDI0LTAuOTYxLTEuMDk0LTEuMDEzLTEuODUxYy0wLjA1LTAuNzU2LDAuMjE4LTEuNTM0LDAuNzQ1LTIuMTQ3bDkuNTEyLTExLjEwNCAgICAgYzEuMDItMS4xODgsMi43MTItMS40NjksMy44NTQtMC42NGw0LjA3OSwyLjk1OGM1LjAyNSwzLjY0NywxMi40NTcsNS45MTQsMTkuMzkxLDUuOTE0YzEyLjQ3OSwwLDIwLjU4OS02LjIwMywyMS42OTQtMTYuNTk1ICAgICBjMC42MzYtNS45NzktMC42MTItMTMuOTI3LTE4LjcxNy0xMy45MjdoLTE0LjkxNWMtMS41MzksMC0yLjY1My0xLjI0OC0yLjQ5LTIuNzg2bDEuMDY0LTEwLjAyNSAgICAgYzAuMDcxLTAuNjU3LDAuMzczLTEuMywwLjg1Ni0xLjgwNWwyNC45NS0yNi4wODVoLTMyLjk5OGMtMS41MzksMC0yLjY1NC0xLjI0Ny0yLjQ5LTIuNzg2bDEuNDY4LTEzLjgxNCAgICAgYzAuMTY1LTEuNTM4LDEuNTQ1LTIuNzg2LDMuMDgzLTIuNzg2aDYwLjI1N0MxNjUuMjEzLDEyNS4wMDEsMTY2LjMyOCwxMjYuMjQ5LDE2Ni4xNjQsMTI3Ljc4N3ogTTI3NS4zNywxODAuMDY4ICAgICBjLTMuMjIxLDMwLjI4OS0zMS4wMjMsNTQuOTMzLTYxLjk3NCw1NC45MzNoLTQyLjI3M2MtMS41NCwwLTIuNjU0LTEuMjUtMi40OS0yLjc4NmwxMS4xMDQtMTA0LjQyOCAgICAgYzAuMTY0LTEuNTM4LDEuNTQ2LTIuNzg2LDMuMDgzLTIuNzg2aDQyLjI3M0MyNTYuMDQ0LDEyNS4wMDEsMjc4LjYwMSwxNDkuNzA1LDI3NS4zNywxODAuMDY4eiIgZmlsbD0iIzY4YzBlYSIvPgoJCQk8cGF0aCBkPSJNMjIzLjAzMSwxNDQuMzg5SDE5Ny4zNmwtNy41NzUsNzEuMjI0aDI1LjY3YzIwLjI2MiwwLDM4LjQzOS0xNS45NDUsNDAuNTIzLTM1LjU0MyAgICAgQzI1OC4wNzIsMTYwLjM5NSwyNDMuMjkxLDE0NC4zODksMjIzLjAzMSwxNDQuMzg5eiIgZmlsbD0iIzY4YzBlYSIvPgoJCTwvZz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+          </div>
+          <span class="column small-3 medium-3" style="padding-top: 4.5px;">
+            <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
+          </span>
+          <span class="column small-3 medium-3">
+            <%= image_tag('bath.svg', class: 'mapsect-icons')%>  
+          </span>
+          <span class="column small-3 medium-3">
+            <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
+          </span>
+
+          <% else %>
+
           <span class="column small-4 medium-4" style="padding-top: 4.5px;">
             <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
           </span>
@@ -52,9 +70,14 @@
           <span class="column small-4 medium-4">
             <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
           </span>
+          <% end %>
         </div>
 
-        <div class="row show-for-large" style="text-align: center;">
+          <% if p.matterurl != ""%>
+        <div class="row show-for-large" style="text-align: center;padding-left: 61px;">
+          <% else %>
+        <div class="row show-for-large" style="text-align: : center;">
+          <% end %>
           <span class="column small-4 medium-4" >
             <%= p.bedrooms %>  <br>  
           </span>
@@ -70,13 +93,20 @@
       </div>
       <!-- floater for medium -->
       <div class="row expanded show-for-medium-only center-text" style="padding: 0 7px;">
-        <span><%= p.address.address_first %></span>
-        <span style="font-size: 0.75rem; display: block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
+
+        <span style="display:block;"><%= p.address.address_first %></span>
+        <span style="font-size: 0.75rem; display: inline-block; font-weight: 300;" class="dark-grey"><%= p.city_province %></span>
+        <% if p.matterurl != ""%>
+        <div class="" style="display: inline-block;">
+          <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDM2MC4wMDIgMzYwLjAwMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzYwLjAwMiAzNjAuMDAyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik0zNDkuNTgsMTU0Ljg1MkwyMDUuMTU3LDEwLjQxOGMtMTMuODk2LTEzLjg5MS0zNi40MTgtMTMuODkxLTUwLjMxMSwwTDEwLjQyMiwxNTQuODUyICAgICBjLTEzLjg5MiwxMy44OTMtMTMuODkyLDM2LjQwNywwLDUwLjNMMTU0Ljg1LDM0OS41ODVjNi45NDgsNi45NDQsMTYuMDUxLDEwLjQxNywyNS4xNTEsMTAuNDE3ICAgICBjOS4xMDMsMCwxOC4yMDMtMy40NzMsMjUuMTU2LTEwLjQxN0wzNDkuNTgsMjA1LjE1MUMzNjMuNDcyLDE5MS4yNTksMzYzLjQ3MiwxNjguNzQyLDM0OS41OCwxNTQuODUyeiBNMTY2LjE2NCwxMjcuNzg3ICAgICBsLTEuMDY0LDEwLjAxOWMtMC4wNywwLjY1OS0wLjM3MSwxLjI5OC0wLjg1MywxLjgwM2wtMjUuOTE4LDI3LjE5MmMxNy4wODQsMy41NDEsMjYuNDU3LDE1LjM0MSwyNC43MjIsMzEuNjg0ICAgICBjLTEuMTM4LDEwLjY5NS01LjkwMywxOS44NTQtMTMuNzg2LDI2LjQ3OWMtNy44MSw2LjU2NS0xNy45ODEsMTAuMDM5LTI5LjQxOCwxMC4wMzljLTEwLjU2OSwwLTIxLjc1Mi0zLjQ2Mi0yOS45MTEtOS4yNTYgICAgIGwtNC41OTQtMy4yNjNjLTAuNTk2LTAuNDI0LTAuOTYxLTEuMDk0LTEuMDEzLTEuODUxYy0wLjA1LTAuNzU2LDAuMjE4LTEuNTM0LDAuNzQ1LTIuMTQ3bDkuNTEyLTExLjEwNCAgICAgYzEuMDItMS4xODgsMi43MTItMS40NjksMy44NTQtMC42NGw0LjA3OSwyLjk1OGM1LjAyNSwzLjY0NywxMi40NTcsNS45MTQsMTkuMzkxLDUuOTE0YzEyLjQ3OSwwLDIwLjU4OS02LjIwMywyMS42OTQtMTYuNTk1ICAgICBjMC42MzYtNS45NzktMC42MTItMTMuOTI3LTE4LjcxNy0xMy45MjdoLTE0LjkxNWMtMS41MzksMC0yLjY1My0xLjI0OC0yLjQ5LTIuNzg2bDEuMDY0LTEwLjAyNSAgICAgYzAuMDcxLTAuNjU3LDAuMzczLTEuMywwLjg1Ni0xLjgwNWwyNC45NS0yNi4wODVoLTMyLjk5OGMtMS41MzksMC0yLjY1NC0xLjI0Ny0yLjQ5LTIuNzg2bDEuNDY4LTEzLjgxNCAgICAgYzAuMTY1LTEuNTM4LDEuNTQ1LTIuNzg2LDMuMDgzLTIuNzg2aDYwLjI1N0MxNjUuMjEzLDEyNS4wMDEsMTY2LjMyOCwxMjYuMjQ5LDE2Ni4xNjQsMTI3Ljc4N3ogTTI3NS4zNywxODAuMDY4ICAgICBjLTMuMjIxLDMwLjI4OS0zMS4wMjMsNTQuOTMzLTYxLjk3NCw1NC45MzNoLTQyLjI3M2MtMS41NCwwLTIuNjU0LTEuMjUtMi40OS0yLjc4NmwxMS4xMDQtMTA0LjQyOCAgICAgYzAuMTY0LTEuNTM4LDEuNTQ2LTIuNzg2LDMuMDgzLTIuNzg2aDQyLjI3M0MyNTYuMDQ0LDEyNS4wMDEsMjc4LjYwMSwxNDkuNzA1LDI3NS4zNywxODAuMDY4eiIgZmlsbD0iIzY4YzBlYSIvPgoJCQk8cGF0aCBkPSJNMjIzLjAzMSwxNDQuMzg5SDE5Ny4zNmwtNy41NzUsNzEuMjI0aDI1LjY3YzIwLjI2MiwwLDM4LjQzOS0xNS45NDUsNDAuNTIzLTM1LjU0MyAgICAgQzI1OC4wNzIsMTYwLjM5NSwyNDMuMjkxLDE0NC4zODksMjIzLjAzMSwxNDQuMzg5eiIgZmlsbD0iIzY4YzBlYSIvPgoJCTwvZz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+        </div>
+        <% end %>
       </div>
       <div class="float-right text-right show-for-medium-only float-none" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
 
         <!-- For medium only -->
         <div class="row show-for-medium-only">
+  
           <span class="column small-4 medium-4" style="padding-top: 4.5px;">
             <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
           </span>
@@ -112,6 +142,22 @@
       <div class="row expanded float-right-small-screen show-for-small-only" style="font-weight: 200; font-size:15px; font-family: sans-serif; padding: 0 8px;">
         <!-- For small only -->
          <div class="row listing-mobile show-for-small-only">
+         <% if p.matterurl != ""%>
+          <div class="column small-3 medium-3" style="margin-top: 4px;">
+            <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDM2MC4wMDIgMzYwLjAwMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzYwLjAwMiAzNjAuMDAyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPGc+CgkJCTxwYXRoIGQ9Ik0zNDkuNTgsMTU0Ljg1MkwyMDUuMTU3LDEwLjQxOGMtMTMuODk2LTEzLjg5MS0zNi40MTgtMTMuODkxLTUwLjMxMSwwTDEwLjQyMiwxNTQuODUyICAgICBjLTEzLjg5MiwxMy44OTMtMTMuODkyLDM2LjQwNywwLDUwLjNMMTU0Ljg1LDM0OS41ODVjNi45NDgsNi45NDQsMTYuMDUxLDEwLjQxNywyNS4xNTEsMTAuNDE3ICAgICBjOS4xMDMsMCwxOC4yMDMtMy40NzMsMjUuMTU2LTEwLjQxN0wzNDkuNTgsMjA1LjE1MUMzNjMuNDcyLDE5MS4yNTksMzYzLjQ3MiwxNjguNzQyLDM0OS41OCwxNTQuODUyeiBNMTY2LjE2NCwxMjcuNzg3ICAgICBsLTEuMDY0LDEwLjAxOWMtMC4wNywwLjY1OS0wLjM3MSwxLjI5OC0wLjg1MywxLjgwM2wtMjUuOTE4LDI3LjE5MmMxNy4wODQsMy41NDEsMjYuNDU3LDE1LjM0MSwyNC43MjIsMzEuNjg0ICAgICBjLTEuMTM4LDEwLjY5NS01LjkwMywxOS44NTQtMTMuNzg2LDI2LjQ3OWMtNy44MSw2LjU2NS0xNy45ODEsMTAuMDM5LTI5LjQxOCwxMC4wMzljLTEwLjU2OSwwLTIxLjc1Mi0zLjQ2Mi0yOS45MTEtOS4yNTYgICAgIGwtNC41OTQtMy4yNjNjLTAuNTk2LTAuNDI0LTAuOTYxLTEuMDk0LTEuMDEzLTEuODUxYy0wLjA1LTAuNzU2LDAuMjE4LTEuNTM0LDAuNzQ1LTIuMTQ3bDkuNTEyLTExLjEwNCAgICAgYzEuMDItMS4xODgsMi43MTItMS40NjksMy44NTQtMC42NGw0LjA3OSwyLjk1OGM1LjAyNSwzLjY0NywxMi40NTcsNS45MTQsMTkuMzkxLDUuOTE0YzEyLjQ3OSwwLDIwLjU4OS02LjIwMywyMS42OTQtMTYuNTk1ICAgICBjMC42MzYtNS45NzktMC42MTItMTMuOTI3LTE4LjcxNy0xMy45MjdoLTE0LjkxNWMtMS41MzksMC0yLjY1My0xLjI0OC0yLjQ5LTIuNzg2bDEuMDY0LTEwLjAyNSAgICAgYzAuMDcxLTAuNjU3LDAuMzczLTEuMywwLjg1Ni0xLjgwNWwyNC45NS0yNi4wODVoLTMyLjk5OGMtMS41MzksMC0yLjY1NC0xLjI0Ny0yLjQ5LTIuNzg2bDEuNDY4LTEzLjgxNCAgICAgYzAuMTY1LTEuNTM4LDEuNTQ1LTIuNzg2LDMuMDgzLTIuNzg2aDYwLjI1N0MxNjUuMjEzLDEyNS4wMDEsMTY2LjMyOCwxMjYuMjQ5LDE2Ni4xNjQsMTI3Ljc4N3ogTTI3NS4zNywxODAuMDY4ICAgICBjLTMuMjIxLDMwLjI4OS0zMS4wMjMsNTQuOTMzLTYxLjk3NCw1NC45MzNoLTQyLjI3M2MtMS41NCwwLTIuNjU0LTEuMjUtMi40OS0yLjc4NmwxMS4xMDQtMTA0LjQyOCAgICAgYzAuMTY0LTEuNTM4LDEuNTQ2LTIuNzg2LDMuMDgzLTIuNzg2aDQyLjI3M0MyNTYuMDQ0LDEyNS4wMDEsMjc4LjYwMSwxNDkuNzA1LDI3NS4zNywxODAuMDY4eiIgZmlsbD0iIzY4YzBlYSIvPgoJCQk8cGF0aCBkPSJNMjIzLjAzMSwxNDQuMzg5SDE5Ny4zNmwtNy41NzUsNzEuMjI0aDI1LjY3YzIwLjI2MiwwLDM4LjQzOS0xNS45NDUsNDAuNTIzLTM1LjU0MyAgICAgQzI1OC4wNzIsMTYwLjM5NSwyNDMuMjkxLDE0NC4zODksMjIzLjAzMSwxNDQuMzg5eiIgZmlsbD0iIzY4YzBlYSIvPgoJCTwvZz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+          </div>
+          <span class="column small-3 medium-3" style="padding-top: 4.5px;">
+            <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
+          </span>
+          <span class="column small-3 medium-3">
+            <%= image_tag('bath.svg', class: 'mapsect-icons')%>  
+          </span>
+          <span class="column small-3 medium-3">
+            <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
+          </span>
+
+          <% else %>
+
           <span class="column small-4 medium-4" style="padding-top: 4.5px;">
             <%= image_tag('bed.svg', class: 'mapsect-icons')%>        
           </span>
@@ -121,9 +167,14 @@
           <span class="column small-4 medium-4">
             <%= image_tag('ruler.svg', class: 'mapsect-icons')%>
           </span>
-        </div>
 
+          <% end %>
+        </div>
+        <% if p.matterurl != ""%>
+        <div class="row listing-mobile show-for-small-only" style="text-align: center; padding-left: 54px;">
+        <% else %>
         <div class="row listing-mobile show-for-small-only" style="text-align: center;">
+        <% end %>
           <span class="column small-4 medium-4" >
             <%= p.bedrooms %>  <br>  
           </span>
