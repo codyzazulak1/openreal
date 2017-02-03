@@ -7,6 +7,18 @@ class WelcomeController < ApplicationController
     @just_listed = Property.where('created_at >= ?', 2.days.ago)
     @featured = Property.all.sample(3)
     @new_properties = Property.just_listed(3)
+
+    # Properties to be featured on front page
+    feature_prop = Property.where("list_price_cents > ?", 0).order("created_at DESC").to_a
+    feature_prop.each_with_index do |p, i|
+      if i == 0
+        @feature1_property = p
+      elsif i == 1
+        @feature2_property = p
+      end
+    end
+          
+
   end
 
   def login
