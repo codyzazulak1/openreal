@@ -50,36 +50,22 @@ class PropertiesController < ApplicationController
 
 
   def building_type
-    buildingType = ['corner unit', '2 Storey', '3 storey', '2 storey w/bsmt.', '3 storey w/bsmt.', 'Apartment', 'Condo', 'apartment/condo']
+    @dw = :dwelling_class
+    dwelling = @properties.where(@dw.downcase.include? "house")
 
-    corner_unit = ['corner unit', 'Corner Unit', 'Corner unit', 'corner Unit', 'CORNER UNIT']
-    two_storey = /(two)?(2)? S?s?(torey)/
-    three_storey = /(three)?(3)? S?s?(torey)/
-    two_withbmt = /(two)?(2)? S?s?(torey) w?\/B?b?smt.?/
-
-    case type
-    when buildingType[0]
-      Property.where(building_type: buildingType[0])
-    when buildingType[1]
-      Property.where(building_type: buildingType[1])
-    when buildingType[2]
-      Property.where(building_type: buildingType[2])
-    when buildingType[3]
-      Property.where(building_type: buildingType[3])
-    when buildingType[4]
-      Property.where(building_type: buildingType[4])
-    when buildingType[5] || buildingType[6] || buildingType[7]
-      Property.where(building_type: buildingType[5]).where(building_type: buildingType[6].where(building_type: buildingType[7]))
+    case 
+    when (dwelling.include? "house")
+      Property.where(dwelling_class: )
     when ""
       Property.none  
     end  
+
   end
 
   def filter
   
     @properties = Property.all
       .order('created_at DESC')
-
 
     if params["min-price"]
       @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
@@ -94,7 +80,7 @@ class PropertiesController < ApplicationController
       @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
     end
     # if params["type"]
-    #   @properties = @properties.where("building_type == ?")
+    #   @properties = @properties.where("dwelling_class == ?")
     # end
     if params["storeys"]
       @properties = @properties.where("stories >= ?", params["storeys"].to_i)
