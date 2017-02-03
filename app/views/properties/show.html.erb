@@ -42,7 +42,7 @@
      --><h4><span><%= @property.address.city %></span>,&nbsp;<span>BC</span></h4>
       </div>
       <div class="property-bullets">
-        <h3><span><%= @property.bedrooms %></span> beds &middot; <span><%= @property.bathrooms %></span> baths &middot; <span><%= @property.floor_area %></span> sqft</h3>
+        <h3><span><%= @property.bedrooms %></span> beds &middot; <span><%= @property.bathrooms %></span> baths &middot; <span><%= @property.floor_area %></span>sqft <% if @dwelling_type != ""%> &middot; <span><%= @dwelling_type%><span><% end %></h3>
       </div>
     </div>
   </div>

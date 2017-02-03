@@ -176,6 +176,16 @@ class PropertiesController < ApplicationController
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
       @inquiry = ContactForm.new
+      
+      if (@property.dwelling_class.downcase.include? "house") || (@property.dwelling_class.include? "single")
+        @dwelling_type = "House"
+      end
+      if (@property.dwelling_class.downcase.include? "apartment") || (@property.dwelling_class.include? "condo")
+        @dwelling_type = "Apartment"
+      end
+      if (@property.dwelling_class.downcase.include? "town") || (@property.dwelling_class.downcase.include? "townhouse")
+        @dwelling_type = "Townhouse"
+      end
 
       respond_to do |format|
         format.html
