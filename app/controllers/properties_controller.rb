@@ -50,15 +50,15 @@ class PropertiesController < ApplicationController
 
 
   def building_type
-    @dw = :dwelling_class
-    dwelling = @properties.where(@dw.downcase.include? "house")
+    # @dw = :dwelling_class
+    # dwelling = @properties.where(@dw.downcase.include? "house")
 
-    case 
-    when (dwelling.include? "house")
-      Property.where(dwelling_class: )
-    when ""
-      Property.none  
-    end  
+    # case 
+    # when (dwelling.include? "house")
+    #   Property.where(dwelling_class: )
+    # when ""
+    #   Property.none  
+    # end  
 
   end
 
