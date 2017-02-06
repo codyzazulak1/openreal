@@ -100,24 +100,14 @@
 
     .sort-btn {
       display: inline-flex;
-      select {
-        margin: 0px 7px 1rem;
-        border: solid #68c0ea;
-        color: #68c0ea;
-        font-weight: 500;  
-      }
+      color: #68c0ea;
 
-      .sorting {
-        margin: 0px 7px 1rem;
-        border: solid #68c0ea;
-        color: #68c0ea;
-        font-weight: 500;
-
-      }
-      select::after{
-        color: blue;
+      li > a:hover {
+        color: white;
+        background-color: #68c0ea;
       }
     }
+
 
   }
 

@@ -49,16 +49,8 @@ class PropertiesController < ApplicationController
   end
 
 
-  def building_type
-    # @dw = :dwelling_class
-    # dwelling = @properties.where(@dw.downcase.include? "house")
-
-    # case 
-    # when (dwelling.include? "house")
-    #   Property.where(dwelling_class: )
-    # when ""
-    #   Property.none  
-    # end  
+  def sort
+ 
 
   end
 
@@ -66,6 +58,16 @@ class PropertiesController < ApplicationController
   
     @properties = Property.all
       .order('created_at DESC')
+
+    @sort_properties = Property.all.where("list_price_cents > ?", 0)
+
+    if params["high"]
+      @properties = @sort_properties.order("list_price_cents DESC")
+    end
+
+    if params["low"]
+     @properties =  @sort_properties.order("list_price_cents ASC")
+    end
 
     if params["min-price"]
       @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
@@ -79,9 +81,14 @@ class PropertiesController < ApplicationController
     if params["bath"]
       @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
     end
-    # if params["type"]
-    #   @properties = @properties.where("dwelling_class == ?")
-    # end
+
+    if params["high"]
+      puts "I selected high"
+    end
+
+    if params["low"]
+      puts "I selected low"
+    end
     if params["storeys"]
       @properties = @properties.where("stories >= ?", params["storeys"].to_i)
     end
