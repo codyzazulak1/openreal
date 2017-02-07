@@ -81,14 +81,22 @@ class PropertiesController < ApplicationController
     if params["bath"]
       @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
     end
-
-    if params["high"]
-      puts "I selected high"
+    if params["building"]
+      case params["building"]
+      when "0"
+        @properties
+      when "1"
+        @properties = @properties.where("dwelling_class LIKE ?", 
+          ("%ouse%" || "%ingle%"))
+      when "2"
+        @properties = @properties.where("dwelling_class LIKE ?", 
+          ("%ownhouse%" || "%town%"))
+      when "3"
+        @properties = @properties.where("dwelling_class LIKE ?", 
+          ("%partment%" || "%ondo%"))
+      end
     end
 
-    if params["low"]
-      puts "I selected low"
-    end
     if params["storeys"]
       @properties = @properties.where("stories >= ?", params["storeys"].to_i)
     end
@@ -102,12 +110,6 @@ class PropertiesController < ApplicationController
       @properties = @properties
         .joins(:address)
         .where("LOWER(addresses.city) = LOWER(?)", params["city"])
-    end
-    if params["sort"]
-      @properties = @properties.where("list_price_cents > ?", 0).all.order('list_price_cents DESC')
-    end
-    if params["properties" => "low price"]
-      @properties = @properties.where("list_price_cents > ?", 0).all.order('list_price_cents ASC')
     end
 
     if params["bound-east"] && params["bound-west"] && params["bound-north"] && params["bound-south"] && !(params["bound-east"] == "" || params["bound-west"] == "" || params["bound-north"] == "" || params["bound-south"] == "")
