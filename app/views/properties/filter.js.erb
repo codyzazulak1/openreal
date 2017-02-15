@@ -13,7 +13,7 @@ $('#listing-count').html('Loading...')
 initListings();
 
 // update map markers
-updateMarkers(<%= @properties.to_json(include: [:address]).html_safe %>);
+updateMarkers(<%= @properties.to_json(include: [:address, :photos]).html_safe %>);
 
 setTimeout(function() 
   { 

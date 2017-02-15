@@ -15,7 +15,7 @@ class PropertiesController < ApplicationController
       format.html
       format.js
       format.json do
-        render json: {properties: @properties.as_json(:include => :address), center: @center}
+        render json: {properties: @properties.as_json(:include => [:address, :photos]), center: @center}
       end
     end
   end

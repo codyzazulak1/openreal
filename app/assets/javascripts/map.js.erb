@@ -87,6 +87,7 @@ function removeMakers() {
 }
 
 function setMarkers(property) {
+
   newMarker(property, newInfo(property));
 }
 
@@ -117,7 +118,6 @@ function newMarker(property, infowindow){
   marker.addListener('click', function() {
     // hides sold badges
     if(property.list_price_cents > 0){
-
       Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
 
       closeAllInfoWin();
@@ -130,31 +130,32 @@ function newMarker(property, infowindow){
   return marker;
 }
 
-function test(){
+function test(property){
   var picture;
 
   var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="' + picture + '"></div>' + '<p>'   + property.address.address_first + '</p>'
 
   $('.listing-body>ul>li').click(function(){
-    
+            console.log(property.photos.forEach(function(x){
+          console.log(x.picture.url)
+        }))
   });
-
-  if (overviewToggled){
-    // find property id
-    
-    picture = $(('.listing-img')[0]).data('bg');
-  }
 }
 
 
 function newInfo(property) {
+  var picture;
+  if(property.photos[1]){
+    var picture = property.photos[1].picture.url
+  }
+
+  var propPic = '<div style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<p style="margin: 0;">'   + property.address.address_first + '</p>'
 
   var infowindow = new google.maps.InfoWindow({
-    content: property.address.address_first,
+    content: propPic,
     // maxWidth: 200
     pid: property.id
   });
-
   infowindow.addListener('domready', function() {
     $('.listing-overview').hide();
     $.ajax({
@@ -174,7 +175,6 @@ function newInfo(property) {
 function updateMarkers(properties) {
   removeMakers();
   properties.forEach(function(property){
-   
     var marker = new google.maps.Marker({
       position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
       map: map,
