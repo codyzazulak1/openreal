@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
     @featured = Property.all.sample(3)
     @new_properties = Property.just_listed(3)
     @properties_sold = @properties_p.where('list_price_cents = ?', 0).count
+    
 
     # Properties to be featured on front page
     feature_prop = Property.where("list_price_cents > ?", 0).order("created_at DESC").to_a

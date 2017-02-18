@@ -50,6 +50,11 @@
     display: none;
   }
 
+  .gm-style-iw:first-child div{
+    max-width: 0!important;
+
+  }
+
   .infoWindowLink{
     width: 34em;
     text-align: left;
@@ -82,6 +87,13 @@
     }
   }
 
+}
+
+@media screen and (max-width: 320px){
+  .map-header {
+    margin-top: 3.7rem!important;
+    margin-left: 12.24rem!important;
+  }
 }
 #listings {
   // box-shadow: 0 0 0 -5px rgba(0,0,0,0.2);
