@@ -8,6 +8,8 @@
               <div class="listing-badge">
               <%if p1.list_price_cents != 0%>
                 <span>For Sale</span>
+              <% elsif p.is_new? && p.list_price_cents != 0%>
+                <span>Just Listed</span>
               <% else %>
                 <span class="sold">Sold</span>
               <% end %>

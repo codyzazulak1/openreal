@@ -8,18 +8,29 @@
  ****************/
 
 .map-header {
-  height: 60px;
-  padding: 0 1.25rem;
-  background-color: $panel-bg;
+  margin-top: 0.7rem;
+  margin-left: 1.24rem;
+  background-color: #68c0ea;
+  z-index: 10;
+  position: absolute;
+
+  .switch-btn {
+    color: white;
+    border: none;
+  }
+
 } 
 
 #map {
-  height: calc(100vh - 62px);
+  height: calc(120vh - 62px);
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 
   @include breakpoint(small only) {
     // minus the height of .map-header
-    height: calc(100vh - 62px - 60px);
+   // height: calc(100vh - 62px - 60px);
+   height: calc(109vh - 67px - 60px)
   }
 
   .gm-style img{
@@ -27,28 +38,51 @@
   }
 
   .gm-style-iw {
-    // width: 100% !important;
-    // left: 0px !important;
-    top: 39px !important;
-    background-color: #fff;
-    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-    border: 1px solid rgba($primary-color, 0.6);
-    border-radius: 4px;
-    padding: 8px 0;
-    text-align: center;
+    width: 370px;
+  }
 
-    >div {
-      vertical-align: middle;
+  .gm-style-parent {
+    background-color: white;
+    width: 372px!important;
+  }
+
+  .gm-style-iw + div{
+    display: none;
+  }
+
+  .infoWindowLink{
+    width: 34em;
+    text-align: left;
+    margin-bottom: -11px;
+  }
+
+  @media screen and (max-width: 390px){
+
+    .gm-style-parent{
+      //background-color: red;
+      //top: 40em!important;
+      //top: 73px;
+      //position: absolute!important;
+      //z-index: 10;
+      width: 335px !important;
+
+    }
+
+    .gm-style-iw {
+      width: 260px!important;
+    } 
+
+    .infoWindowLink{
+      width: 23.7em!important;
+
+      p {
+        font-size: 10px;
+        font-weight: bold;
+      }
     }
   }
 
-  // experiment
-  div:has(+ .gm-style-iw) {display: none;}
-
-  // hide info window close button
-  .gm-style-iw + div {display: none;}
 }
-
 #listings {
   // box-shadow: 0 0 0 -5px rgba(0,0,0,0.2);
   background-color: $panel-bg;
@@ -199,7 +233,8 @@
 
 
     width: 100%;
-    height: calc(100vh - 60px - 62px); //viewport height - listing header - navbar height
+   // height: calc(100vh - 60px - 62px); //viewport height - listing header - navbar height
+    height: calc(120vh - 60px - 62px);
     margin: 0;
     overflow: hidden;
 
@@ -285,6 +320,7 @@
           clear: both;
           background-color: $white;
           margin-top: 13.5px;
+          height: 42vh;
         }
       }
 
@@ -718,6 +754,31 @@
     }
   }
 }
+
+//Listing map sneak peak
+
+.listing-sneak-peak {
+    padding: 9px 15px;
+    background: white;
+    border: solid 0.5px grey;
+    margin-left: 1px!important;
+    margin-right: 1px!important;
+
+    p:first-child{
+      margin-bottom: 0;
+      color: #68c0ea
+    }
+    span {
+      font-weight: 300;
+      font-size: 14px;
+    }
+
+    p:nth-child(2){
+      font-weight: 100; font-size: 15px;
+    }
+
+}
+
 
 @media screen and (max-width: 768px){
   #new-property-form img {

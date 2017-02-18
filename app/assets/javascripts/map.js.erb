@@ -68,6 +68,7 @@ function initMap() {
     updateDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(updateDiv);
   });
+
 }
 
 function setMapOnAll(map) {
@@ -122,34 +123,24 @@ function newMarker(property, infowindow){
 
       closeAllInfoWin();
       infowindow.open(map, marker);
+      $(".gm-style-iw").parent().addClass('gm-style-parent');
       $(".gm-style-iw").prev("div").hide();
     };
   });
   
   mapMarkers.push(marker);
+
   return marker;
 }
 
-function test(property){
-  var picture;
-
-  var propPic = '<div style="width: 170px;height: 97px;margin: 0;padding: 0;"> <img src="' + picture + '"></div>' + '<p>'   + property.address.address_first + '</p>'
-
-  $('.listing-body>ul>li').click(function(){
-            console.log(property.photos.forEach(function(x){
-          console.log(x.picture.url)
-        }))
-  });
-}
-
-
 function newInfo(property) {
+
   var picture;
   if(property.photos[1]){
-    var picture = property.photos[1].picture.url
+    var picture = property.photos[1].picture.url;
   }
-
-  var propPic = '<div style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<p style="margin: 0;">'   + property.address.address_first + '</p>'
+  
+  var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + ' Bed</span> &middot;<span>'+ property.bathrooms + ' Bath</span>&middot;<span> Floor area ' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
 
   var infowindow = new google.maps.InfoWindow({
     content: propPic,
@@ -166,14 +157,16 @@ function newInfo(property) {
     toggleOverview(infowindow.pid);
     overviewToggled = true;
   });
-
   infoWindows.push(infowindow);
 
   return infowindow;
 }
 
+
 function updateMarkers(properties) {
   removeMakers();
+
+
   properties.forEach(function(property){
     var marker = new google.maps.Marker({
       position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
@@ -185,11 +178,17 @@ function updateMarkers(properties) {
       pid: property.id
     });
 
-    var info = property.address.address_first;
+    // var info = property.address.address_first;
+  var picture;
+  if(property.photos[1]){
+    var picture = property.photos[1].picture.url
+  }
+
+  var propPic = '<div class="row" style="width: 32.5em; text-align: left;"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + 'Bed</span> &middot;<span>'+ property.bathrooms + 'Bath</span>&middot;<span> Floor area' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
 
     var infowindow = new google.maps.InfoWindow({
-      content: info,
-      // maxWidth: 200
+      content: propPic,
+      // maxWidth: 200,
       pid: property.id
     });
 
@@ -216,6 +215,7 @@ function updateMarkers(properties) {
       overviewToggled = true;
     });
   });
+
 }
 
 function closeAllInfoWin() {

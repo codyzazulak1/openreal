@@ -190,6 +190,7 @@ function initListings() {
             closeAllInfoWin();
             info.open(map, marker);
             $(".gm-style-iw").prev("div").hide();
+            $(".gm-style-iw").parent().css("background", "white");
           }
         });
       }
@@ -204,8 +205,13 @@ function initListingImg() {
   });
 }
 
+$('#map').ready(function(){
+  $('listings-map-btn').show();
+})
+
 $(document).ready(function(){
 
+  $('listings-map-btn').hide();
   // carousel
   $('.photo-carousel .photo-slide').css('background-image', function(){
     return "url(" + $(this).data('bg') + ")";
@@ -221,6 +227,12 @@ $(document).ready(function(){
     $('.listing-filters').slideToggle();
   });
 
+ // info window on map toggling between overview and maps
+  $('body').on('click','.infoWindowLink', function(){ 
+    $('#map-view').toggleClass('show-for-medium');
+    $('#listing-view').toggleClass('show-for-medium');
+    google.maps.event.trigger(map, "resize");
+  });
 
 
   $('#cancel-btn').click(function(e){
@@ -245,6 +257,7 @@ $(document).ready(function(){
     $('#listing-view').toggleClass('show-for-medium');
     google.maps.event.trigger(map, "resize");
   });
+
 
   $('#submit-filter').click(function(e){
     e.preventDefault();
