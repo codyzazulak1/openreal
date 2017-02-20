@@ -47,7 +47,9 @@ class WelcomeController < ApplicationController
   def howitworks
   end
 
-  def faq
+  def faq 
+    flash[:notice] = "FAQ temporarily unavailable. Will be back soon!"
+    redirect_to action: "contact"
   end
 
   def pricing
