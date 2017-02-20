@@ -144,7 +144,7 @@ function newInfo(property) {
 
   var infowindow = new google.maps.InfoWindow({
     content: propPic,
-    // maxWidth: 200
+    maxWidth: 350,
     pid: property.id
   });
   infowindow.addListener('domready', function() {
@@ -180,15 +180,16 @@ function updateMarkers(properties) {
 
     // var info = property.address.address_first;
   var picture;
-  if(property.photos[1]){
-    var picture = property.photos[1].picture.url
+  if(property.photos[0]){
+    var picture = property.photos[0].picture.url
   }
+
 
   var propPic = '<div class="row" style="width: 32.5em; text-align: left;"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + 'Bed</span> &middot;<span>'+ property.bathrooms + 'Bath</span>&middot;<span> Floor area' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
 
     var infowindow = new google.maps.InfoWindow({
       content: propPic,
-      // maxWidth: 200,
+      maxWidth: 350,
       pid: property.id
     });
 

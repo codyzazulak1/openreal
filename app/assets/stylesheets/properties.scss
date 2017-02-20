@@ -50,11 +50,6 @@
     display: none;
   }
 
-  .gm-style-iw:first-child div{
-    max-width: 0!important;
-
-  }
-
   .infoWindowLink{
     width: 34em;
     text-align: left;
@@ -77,6 +72,10 @@
       width: 260px!important;
     } 
 
+    .gm-style-iw > div {
+      max-width: 300px!important;
+    }
+
     .infoWindowLink{
       width: 23.7em!important;
 
@@ -93,6 +92,10 @@
   .map-header {
     margin-top: 3.7rem!important;
     margin-left: 12.24rem!important;
+  }
+
+  .gm-style-parent {
+    width: 300px !important;
   }
 }
 #listings {
@@ -332,7 +335,7 @@
           clear: both;
           background-color: $white;
           margin-top: 13.5px;
-          height: 42vh;
+          //height: 42vh;
         }
       }
 
