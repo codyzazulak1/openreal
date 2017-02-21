@@ -118,13 +118,17 @@ function newMarker(property, infowindow){
 
   marker.addListener('click', function() {
     // hides sold badges
+    test = marker.icon
     if(property.list_price_cents > 0){
       Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
-
+      
       closeAllInfoWin();
       infowindow.open(map, marker);
       $(".gm-style-iw").parent().addClass('gm-style-parent');
       $(".gm-style-iw").prev("div").hide();
+      marker.setIcon(marker.icon = pinSymbol("lightgrey"));
+      marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE)
+      marker.setAnimation(4);
     };
   });
   
