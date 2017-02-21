@@ -258,6 +258,24 @@ $(document).ready(function(){
     google.maps.event.trigger(map, "resize");
   });
 
+  function selectValues(){
+    var arrayOptions = []
+    var filters = $('.listing-filters>form');
+
+    var minPrice = filters.find('select[name="min-price"]').val();
+    var maxPrice = filters.find('select[name="max-price"]').val();
+    var bathrooms = filters.find('select[name="bath"]').val();
+    var bedrooms = filters.find('select[name="bed"]').val();
+    var buildingType = filters.find('select[name="building"]').val();
+    var storeys = filters.find('select[name="storeys"]').val();
+    var minFloor = filters.find('input[name="min-floor"]').val();
+    var minLot = filters.find('input[name="min-lot"]').val();
+    var cityOpt = filters.find('select[name="city"]').val(); 
+
+    arrayOptions.push(minPrice, maxPrice, bathrooms, bedrooms, buildingType, storeys, minFloor, minLot, cityOpt);
+
+    return arrayOptions;
+  }
 
   $('#submit-filter').click(function(e){
     e.preventDefault();
@@ -268,6 +286,8 @@ $(document).ready(function(){
     filters.find('input[name="bound-west"]').removeAttr("value");
     filters.find('input[name="bound-north"]').removeAttr("value");
     filters.find('input[name="bound-south"]').removeAttr("value");
+    // Get all values for submit filter
+    console.log(selectValues());
     filters.submit();
   });
 
