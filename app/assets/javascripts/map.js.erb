@@ -237,7 +237,7 @@ function UpdateControl(div, map) {
   controlUI.style.boxShadow = 'rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px';
   controlUI.style.margin = '10px';
   controlUI.style.textAlign = 'center';
-  controlUI.title = 'Update result as I move the map';
+  controlUI.title = 'Search as I move the map';
   div.appendChild(controlUI);
   
   var controlText = document.createElement('div');
@@ -256,7 +256,7 @@ function UpdateControl(div, map) {
   controlText.style.paddingRight = '0.5rem';
   controlText.style.display = 'inline-block';
   controlText.style.cursor = 'pointer';
-  controlText.innerHTML = 'Update result as I move the map';
+  controlText.innerHTML = 'Search as I move the map';
   // controlText.insertBefore(cb, controlText.firstChild);
   controlUI.appendChild(cb);
   controlUI.appendChild(controlText);

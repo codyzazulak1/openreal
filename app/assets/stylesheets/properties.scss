@@ -52,8 +52,6 @@
 
   .infoWindowLink{
     width: 100%;
-    text-align: left;
-    margin-bottom: -11px;
   }
 
   @media screen and (max-width: 390px){
@@ -89,10 +87,10 @@
 }
 
 @media screen and (max-width: 320px){
-  .map-header {
-    margin-top: 3.7rem!important;
-    margin-left: 12.24rem!important;
-  }
+  //.map-header {
+   // margin-top: 3.7rem!important;
+    //margin-left: 12.24rem!important;
+  //}
 
   .gm-style-parent {
     width: 300px !important;
