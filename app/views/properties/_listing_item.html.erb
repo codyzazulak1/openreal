@@ -1,6 +1,6 @@
 <% @properties_paged.each do |p| %>
   <% if (p.contact_form.nil?)%>
-  <li id="listing-<%= p.id %>" data-pid=<%= p.id %>>
+  <li id="listing-<%= p.id %>" class="list-property" data-pid=<%= p.id %>>
     <%= link_to "", property_path(p.id), remote: true %>
     <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
 
@@ -186,7 +186,6 @@
             <%= p.lot_area %> ft<sup>&#50;</sup> <br> 
           </span>
         </div>
-
         <!-- <span style="font-size: 0.75rem; display: block;" class="dark-grey">Active</span> -->
       </div>
     </div>
