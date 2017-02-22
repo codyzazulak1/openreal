@@ -68,7 +68,6 @@ function initMap() {
     updateDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(updateDiv);
   });
-
 }
 
 function setMapOnAll(map) {
@@ -118,7 +117,6 @@ function newMarker(property, infowindow){
 
   marker.addListener('click', function() {
     // hides sold badges
-    test = marker.icon
     if(property.list_price_cents > 0){
       Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
       
@@ -126,9 +124,14 @@ function newMarker(property, infowindow){
       infowindow.open(map, marker);
       $(".gm-style-iw").parent().addClass('gm-style-parent');
       $(".gm-style-iw").prev("div").hide();
+
+      var latLng = {lat: marker.position.lat(), lng: marker.position.lng()};
+  
       marker.setIcon(marker.icon = pinSymbol("lightgrey"));
       marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE)
       marker.setAnimation(4);
+      map.panTo(latLng);
+      //See Test validity of latLng object in app.js if range error.
     };
   });
   
@@ -204,6 +207,14 @@ function updateMarkers(properties) {
         closeAllInfoWin();
         infowindow.open(map, marker);
         $(".gm-style-iw").prev("div").hide();
+        $(".gm-style-iw").parent().addClass('gm-style-parent');
+
+        marker.setIcon(marker.icon = pinSymbol("lightgrey"));
+        marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE)
+        marker.setAnimation(4);
+
+        var latLng = {lat: marker.position.lat(), lng: marker.position.lng()};
+        map.panTo(latLng);
       });
     }
 

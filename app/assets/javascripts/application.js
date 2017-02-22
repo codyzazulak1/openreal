@@ -191,12 +191,36 @@ function initListings() {
             info.open(map, marker);
             $(".gm-style-iw").prev("div").hide();
             $(".gm-style-iw").parent().css("background", "white");
+
+            marker.setIcon(marker.icon = pinSymbol("lightgrey"));
+            marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE);
+            marker.setAnimation(4);
+            var lati = marker.position.lat();
+            var longi = marker.position.lng();
+
+            //Test weather lat/lng object passed to map is valid else it breaks
+            var isValidLat = function(val){
+                return (isNumeric(val) && (val >= -90.0) && (val <= 90.0));
+            }
+            var isValidLng = function(val) {
+                return (isNumeric(val) && (val >= -180.0) && (val <= 180.0));
+            }
+            var isNumeric = function(n) {
+                return !isNaN(parseFloat(n)) && isFinite(n);
+            }
+
+            if (isValidLat(lati) && isValidLng(longi)){
+              var latLng = {lat: marker.position.lat(), lng: marker.position.lng()};
+              map.panTo(latLng);
+              // console.log('valid');
+            };
           }
         });
       }
     });
   });
 }
+
 
 function initListingImg() {
   $('.listing-img').css('background-image', function(){
@@ -233,7 +257,6 @@ $(document).ready(function(){
     $('#listing-view').toggleClass('show-for-medium');
     google.maps.event.trigger(map, "resize");
   });
-
 
   $('#cancel-btn').click(function(e){
     e.preventDefault();
