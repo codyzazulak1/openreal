@@ -8,13 +8,13 @@
  ****************/
 
 .map-header {
-  margin-top: 0.7rem;
-  margin-left: 1.24rem;
-  background-color: #68c0ea;
-  z-index: 10;
-  position: absolute;
+ margin-top: 0.7rem;
+ margin-left: 1.24rem;
+ background-color: #68c0ea;
+ z-index: 10;
+ position: absolute;
 
-  .switch-btn {
+   .switch-btn {
     color: white;
     border: none;
   }
@@ -22,14 +22,14 @@
 } 
 
 #map {
-  height: calc(120vh - 62px);
+  height: calc(100vh - 62px);
   overflow: hidden;
   position: relative;
   z-index: 1;
 
   @include breakpoint(small only) {
     // minus the height of .map-header
-    height: calc(100vh - 62px - 60px);
+    height: calc(110vh - 62px - 60px);
    //height: calc(109vh - 67px - 60px)
   }
 
@@ -247,7 +247,7 @@
 
     width: 100%;
    // height: calc(100vh - 60px - 62px); //viewport height - listing header - navbar height
-    height: calc(120vh - 60px - 62px);
+    height: calc(98vh - 60px - 62px);
     margin: 0;
     overflow: hidden;
 
