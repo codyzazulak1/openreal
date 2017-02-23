@@ -194,7 +194,7 @@
 <%end%>
 
 <!-- pagination -->
-<%= paginate @properties_paged, {class: "pagination text-center", previous_label: "« ", next_label: "» "} %>
+<%= paginate @properties_paged, {class: "pagination text-center", previous_label: "« ", next_label: "» ",:inner_window => 1, :outer_window => 0} %>
 <!-- end pagination -->
 
 <!-- listing overview -->
