@@ -177,6 +177,7 @@
 
   .listing-body {
     position: relative;
+    z-index: 5;
 
     .listing-filters {
       &.open {
@@ -188,7 +189,7 @@
       width: 100%;
       height: calc(100vh - 60px - 62px);
       overflow-y: auto;
-      z-index: 10;
+      //z-index: 10;
       padding: 1.25rem;
 
       form {
