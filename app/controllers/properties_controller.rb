@@ -62,9 +62,8 @@ class PropertiesController < ApplicationController
     @sort_properties = Property.all.where("list_price_cents > ?", 0)
 
     if params["all"]
-      # @sold = Property.all.where('list_price_cents = ?', 0)
       @properties = Property.where('list_price_cents >= ?', 0)
-      # params["min-price"] = 0
+      params["min-price"] = 0
     end
 
     if params["min-price"]
