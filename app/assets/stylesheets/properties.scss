@@ -206,7 +206,16 @@
         .filter-buttons {
           padding-top: 2.5rem;
           text-align: right;
+          margin-bottom: 3.5rem;
         }
+      }
+
+      @media screen and (max-width: 320px){
+       form{
+        .filter-buttons {
+          font-size: 14px;
+        }
+       }
       }
 
       #submit-filter {

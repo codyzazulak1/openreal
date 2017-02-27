@@ -1,7 +1,7 @@
 <div class="listing-filters">
   <form class="" id="filter-form" method="get" data-remote="true" action="/properties/filter">
     <div class="row">
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Min Price
           <select name="min-price">
             <option value="0"></option>
@@ -16,7 +16,7 @@
           </select>
         </label>
       </div>
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Max Price
           <select name="max-price">
             <option value="">Unlimited</option>
@@ -34,7 +34,7 @@
     </div>
 
     <div class="row">
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Bedrooms
           <select name="bed">
             <option value="0">Any</option>
@@ -46,7 +46,7 @@
           </select>
         </label>
       </div>
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Bathrooms
           <select name="bath">
             <option value="0">Any</option>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="row">
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Building Type
           <select name="building">
             <option value="0">Any</option>
@@ -72,7 +72,7 @@
           </select>
         </label>
       </div>
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Storeys
           <select name="storeys">
             <option value="0">Any</option>
@@ -87,12 +87,12 @@
     </div>
 
     <div class="row">
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Min Floor Size (sqft) </label>
           <input type="text" pattern="[0-9]" name="min-floor" value="">
         <!-- </label> -->
       </div>
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>Min Lot Size (sqft)
           <input type="text" pattern="[0-9]" name="min-lot" value="">
         </label>
@@ -100,7 +100,7 @@
     </div>
 
     <div class="row">
-      <div class="medium-6 columns">
+      <div class="small-6 medium-6 columns">
         <label>City
           <select name="city">
             <option value>Any</option>
@@ -112,14 +112,14 @@
           </select>
         </label>
       </div>
-      <div class="medium-6 columns">   
-        <label>Show sold properties?</label>
+      <div class="small-6 medium-6 columns">   
+        <label>Sold properties</label>
         <div class="switch">
           <input type="checkbox" id="yes-no" name="all" class="switch-input">
           <label class="switch-paddle" for="yes-no">
             <span class="show-for-sr">All Properties</span>
-            <span class="switch-inactive" aria-hidden="true">No</span>
-            <span class="switch-active" aria-hidden="true">Yes</span>
+            <span class="switch-inactive" aria-hidden="true">Hide</span>
+            <span class="switch-active" aria-hidden="true">Show</span>
           </label>
         </div>
        </div>
