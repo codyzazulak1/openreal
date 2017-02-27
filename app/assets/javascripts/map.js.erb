@@ -37,13 +37,14 @@ function initMap() {
 
     });
     data.properties.forEach(function(property){
-      if (property.list_price_cents > 0){
-        i = 0
-        window.setTimeout(function(){
-          setMarkers(property);
-          i = i + 1
-        }, i * 200)
-      }
+      setMarkers(property);
+      // if (property.list_price_cents > 0){
+      //   i = 0
+      //   window.setTimeout(function(){
+          
+      //     i = i + 1
+      //   }, i * 200)
+      // }
       // console.log("SETMARKERS: " + setMarkers(property));
     });
 
@@ -97,6 +98,7 @@ function setMarkers(property) {
 
 function newMarker(property, infowindow){
 
+  window.setTimeout(function(){
     var marker = new google.maps.Marker({
       position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
       map: map,
@@ -129,6 +131,7 @@ function newMarker(property, infowindow){
 
     mapMarkers.push(marker);
     return marker;
+  }, 2000)
 }
 
 function newInfo(property) {
