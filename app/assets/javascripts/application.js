@@ -191,6 +191,8 @@ function initListings() {
             info.open(map, marker);
             $(".gm-style-iw").prev("div").hide();
             $(".gm-style-iw").parent().css("background", "white");
+            $(".gm-style-iw").parent().addClass('gm-style-parent');
+            $('.gm-style-parent').children(':nth-child(1)').css('display', 'inline-block')
 
             marker.setIcon(marker.icon = pinSymbol("lightgrey"));
             marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE);
