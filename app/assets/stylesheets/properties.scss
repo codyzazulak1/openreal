@@ -10,13 +10,23 @@
 .map-header {
  margin-top: 0.7rem;
  margin-left: 1.24rem;
- background-color: #68c0ea;
+ //background-color: #68c0ea;
  z-index: 10;
  position: absolute;
 
    .switch-btn {
+    color: #68c0ea;;
+    background: white;
+    border: 0px solid #68c0ea;
+    margin-left: -12px;
+    margin-top: -2px;
+    border: 1px solid #68c0ea;
+  }
+
+  .switch-btn:hover {
     color: white;
-    border: none;
+    border: 0px solid #68c0ea;
+
   }
 
 } 
@@ -442,6 +452,15 @@
   }
 }
 
+/* Sort button on filter */
+.switch-paddle::after {
+  height: 1rem!important;
+  width: 1rem!important;
+  top: 0.45rem!important;
+}
+input:checked ~ .switch-paddle::after {
+    left: 2.8rem!important;
+}
 /*******************
  *                 *
  * listing details *
