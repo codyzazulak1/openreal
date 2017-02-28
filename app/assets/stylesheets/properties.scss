@@ -23,12 +23,6 @@
     border: 1px solid #68c0ea;
   }
 
-  .switch-btn:hover {
-    color: white;
-    border: 0px solid #68c0ea;
-
-  }
-
 } 
 
 #map {
@@ -61,7 +55,14 @@
   }
 
   .infoWindowLink{
-    width: 100%;
+    //width: 100%;
+    width: 130%;
+  }
+
+  @media screen and (max-width: 767px){
+    .infoWindowLink{
+      width: 100%;
+    }
   }
 
   @media screen and (max-width: 390px){
@@ -72,7 +73,7 @@
       //top: 73px;
       //position: absolute!important;
       //z-index: 10;
-      width: 335px !important;
+      width: 279px !important;
 
     }
 
@@ -104,6 +105,18 @@
 
   .gm-style-parent {
     width: 300px !important;
+  }
+
+  //Div with border content
+  .gm-style-border {
+    //width: 281px!important;
+    width: 300px!important;
+
+  }
+
+  .gm-style-bordercontainer {
+   // width: 279px!important;
+    width: 298px!important;
   }
 }
 #listings {
