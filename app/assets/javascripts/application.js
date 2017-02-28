@@ -192,14 +192,17 @@ function initListings() {
             $(".gm-style-iw").prev("div").hide();
             $(".gm-style-iw").parent().css("background", "white");
             $(".gm-style-iw").parent().addClass('gm-style-parent');
-            $('.gm-style-parent').children(':nth-child(1)').css('display', 'inline-block')
+            $('.gm-style-parent').children(':nth-child(1)').css('display', 'inline-block');
+            $('.gm-style-parent > div > div:nth-child(2):first').addClass('gm-style-border');
+            $('.gm-style-parent > div > div:nth-child(4)').addClass('gm-style-bordercontainer');
+
 
             marker.setIcon(marker.icon = pinSymbol("lightgrey"));
             marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE);
             marker.setAnimation(4);
             var lati = marker.position.lat();
             var longi = marker.position.lng();
-
+            
             //Test weather lat/lng object passed to map is valid else it breaks
             var isValidLat = function(val){
                 return (isNumeric(val) && (val >= -90.0) && (val <= 90.0));
@@ -312,7 +315,7 @@ $(document).ready(function(){
     filters.find('input[name="bound-north"]').removeAttr("value");
     filters.find('input[name="bound-south"]').removeAttr("value");
     // Get all values for submit filter
-    console.log(selectValues());
+    // console.log(selectValues());
     filters.submit();
   });
 
@@ -321,6 +324,11 @@ $(document).ready(function(){
     form.reset();
 
   });
+
+  //get fb messenger tag and adjust large container
+
+  $('#fb-messenger-widget-3128').removeAttr("class");
+  $('#fb-messenger-widget-3128').addClass("short top_right");
 
   initListings();
 
