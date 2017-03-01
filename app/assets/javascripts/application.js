@@ -325,11 +325,6 @@ $(document).ready(function(){
 
   });
 
-  //get fb messenger tag and adjust large container
-
-  $('#fb-messenger-widget-3128').removeAttr("class");
-  $('#fb-messenger-widget-3128').addClass("short top_right");
-
   initListings();
 
   $('.loader').hide();
@@ -438,7 +433,5 @@ function showForm(name) {
   $('#signinmodal form').hide();
   $('#' + name + '-signin').show();
 }
-
-
 
 
