@@ -162,29 +162,33 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    if Property.all.count != 0
+    if (Property.all.count != 0)
 
       @properties = Property.all
       @property = Property.find(params[:id])
       @similar_properties = Property.similar_listings(@property, 3)
       @inquiry = ContactForm.new
       
-      if (@property.dwelling_class.downcase.include? "house") || (@property.dwelling_class.include? "single")
-        @dwelling_type = "House"
-      end
-      if (@property.dwelling_class.downcase.include? "apartment") || (@property.dwelling_class.include? "condo")
-        @dwelling_type = "Apartment"
-      end
-      if (@property.dwelling_class.downcase.include? "town") || (@property.dwelling_class.downcase.include? "townhouse")
-        @dwelling_type = "Townhouse"
-      end
-
-      respond_to do |format|
-        format.html
-        format.js
-        format.json do
-          render json: @property.to_json(include: [:address])
+      if !(@property.list_price_cents == 0)
+        if (@property.dwelling_class.downcase.include? "house") || (@property.dwelling_class.include? "single")
+          @dwelling_type = "House"
         end
+        if (@property.dwelling_class.downcase.include? "apartment") || (@property.dwelling_class.include? "condo")
+          @dwelling_type = "Apartment"
+        end
+        if (@property.dwelling_class.downcase.include? "town") || (@property.dwelling_class.downcase.include? "townhouse")
+          @dwelling_type = "Townhouse"
+        end
+
+        respond_to do |format|
+          format.html
+          format.js
+          format.json do
+            render json: @property.to_json(include: [:address])
+          end
+        end
+      else
+        redirect_to '/listings'
       end
     end
 
