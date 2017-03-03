@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   #end
 
   # properties
-  post 'properties/new', action: :create, controller: 'properties'
-  post 'properties/sell', action: :sell, controller: 'properties'
+  post 'properties/new', action: :create, controller: 'properties', path: 'sellyourhome'
+  post 'properties/sell', action: :sell, controller: 'properties', path: 'sellyourhome'
   get 'properties/filter', action: :filter, controller: 'properties'
   
-  resources :properties, only: [:new, :create, :show] do
+  resources :properties, path: 'sellyourhome', only: [:new, :create, :show] do
     resources :address
     resources :photos, only: [:new, :create, :update]
     member do 
