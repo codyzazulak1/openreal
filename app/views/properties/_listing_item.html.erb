@@ -35,8 +35,11 @@
       padding: 0.5rem 1.95rem;
       cursor: default;">Sold</span>
      <% end %>
-
+    <% if !(p.list_price_cents == 0)%> 
     <div class="listing-meta clearfix">
+    <% elsif (p.list_price_cents == 0)%>
+    <div class="listing-meta clearfix" style="cursor: default">
+    <% end %>
       <!-- floater for large -->
       <div class="float-left  show-for-large">
         <span style="font-size: 90%; display: block;"><%= p.address.address_first %></span>
