@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     resources :subscribers, only: [:index, :delete]
   end
 
-  resources :subcribers, only: [:new, :create]
+  resources :subscribers, only: [:new, :create]
 
   resources :agent_forms, only: [:new, :create]
 

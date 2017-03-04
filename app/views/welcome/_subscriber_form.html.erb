@@ -1,12 +1,19 @@
-<div id="subscriber" class="subscriber-form">
-	<%= form_for @subscriber, url: {action:"contact"}, remote: true do |f| %>
-		<div class="field">
-			<%= f.text_field :full_name, placeholder: 'Full Name'%>
-			<%= f.text_field :email, placeholder: 'Email'%>
-		</div>
-
-		<div class="field subcriber-submit">
-			<%= f.submit "Submit", class: "offer-link"%>	
-		</div>
-	<% end %>
+<hr>
+<div class="subscriber-form">
+	<h1>Connect!</h1>
+	<h3>Stay up to date with OpenReal news and info!</h3>
 </div>
+<div id="subscriber" class="subscriber-form row">
+
+	<%= form_for @subscriber, :url => subscribers_path, method: :post do |f| %>
+		<div class="field columns small-12 medium-4 medium-offset-2 large-3 large-offset-3">
+			<%= f.text_field :full_name, placeholder: 'Full Name', required: true%>
+		</div>
+		<div class="field columns small-12 medium-4 large-3 end">
+			<%= f.text_field :email, placeholder: 'Email', required: true%>
+		</div>
+</div>		
+<div class="field subcriber-submit row">
+	<%= f.submit "Submit", class: "offer-link"%>	
+</div>
+	<% end %>
