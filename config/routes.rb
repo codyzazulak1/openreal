@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
   
-  resources :properties, path: 'sellyourhome', only: [:new, :create, :show] do
+  resources :properties, only: [:new, :create, :show] do
     resources :address
     resources :photos, only: [:new, :create, :update]
     member do 
