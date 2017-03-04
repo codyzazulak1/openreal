@@ -55,9 +55,17 @@
 			</div>
 		</div> 	
 	</section>
-	<section class="row">
+	<section class="row" id="subscriber-start">
 		<%= render 'subscriber'%>
+		<div id="success">
+				<%= image_tag 'success.svg'%>
+				<h2>Thank you!</h2>
+		</div>
+
 	</section>
+
+	
+
 </div>
 <!-- In case we want to use it -->
 <!-- 			<script type="text/javascript">
@@ -72,4 +80,14 @@
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzu93Bw-ih-f9ZAToKerHN81ivZNYmtIw&callback=initMap"
     async defer></script> -->
 
-
+<script type="text/javascript">
+	$(document).ready(function hide_form() {
+  $("#subscriber").submit(function(e) {
+  		$(".subcriber-submit").fadeOut(200);
+      $("#subscriber").fadeOut(200, function(){
+        $("#success").fadeIn();
+      });
+      
+  });
+});
+</script>

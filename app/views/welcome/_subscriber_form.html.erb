@@ -5,7 +5,7 @@
 </div>
 <div id="subscriber" class="subscriber-form row">
 
-	<%= form_for @subscriber, :url => subscribers_path, method: :post do |f| %>
+	<%= form_for @subscriber, :url => subscribers_path, method: :post, remote: true do |f| %>
 		<div class="field columns small-12 medium-4 medium-offset-2 large-3 large-offset-3">
 			<%= f.text_field :full_name, placeholder: 'Full Name', required: true%>
 		</div>
