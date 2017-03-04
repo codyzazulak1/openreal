@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   #end
 
   # properties
-  post 'properties/new', action: :create, controller: 'properties', path: 'sellyourhome'
-  post 'properties/sell', action: :sell, controller: 'properties', path: 'sellyourhome'
+  post 'properties/new', action: :create, controller: 'properties'
+  post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
   
   resources :properties, path: 'sellyourhome', only: [:new, :create, :show] do
