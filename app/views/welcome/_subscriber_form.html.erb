@@ -1,0 +1,12 @@
+<div id="subscriber" class="subscriber-form">
+	<%= form_for @subscriber, url: {action:"contact"}, remote: true do |f| %>
+		<div class="field">
+			<%= f.text_field :full_name, placeholder: 'Full Name'%>
+			<%= f.text_field :email, placeholder: 'Email'%>
+		</div>
+
+		<div class="field subcriber-submit">
+			<%= f.submit "Submit", class: "offer-link"%>	
+		</div>
+	<% end %>
+</div>

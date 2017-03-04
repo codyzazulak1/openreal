@@ -59,6 +59,7 @@ class WelcomeController < ApplicationController
   end
 
   def contact
+    @subscriber = Subscriber.new
   end
 
   def mortcalc

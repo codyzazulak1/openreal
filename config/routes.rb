@@ -43,7 +43,10 @@ Rails.application.routes.draw do
     end
     resources :contact_forms
     resources :agent_forms
+    resources :subscribers, only: [:index, :delete]
   end
+
+  resources :subcribers, only: [:new, :create]
 
   resources :agent_forms, only: [:new, :create]
 
