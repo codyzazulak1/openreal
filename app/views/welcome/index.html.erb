@@ -6,9 +6,9 @@
     <div class="row expanded">
       <div class="small-12 medium-8 columns">
         <h1>
-          <span>OpenReal.</span>
+          <span>We sell <a href="/listings">all homes</a>,</span>
         </h1>
-        <h1>Your home for exclusive real estate.</h1>
+        <h1>&amp; buy <a href="<%= new_property_path%>">some homes</a>.</h1>
       
         <!--Search Bar-->
 
@@ -20,8 +20,8 @@
         <!-- Search field -->
         <%= form_tag (properties_sell_path), id: "addressForm" do %>
           <div class="input-div">
-            <p>Sell your exclusive listings to OpenReal</p>
-            <p>and eliminate the hassle of showings, uncertainty and months of  negotiations.</p>
+            <p>Sell your home to OpenReal.</p>
+            <p>Eliminate the hassle of showings, uncertainty, and months of negotiations.</p>
             <input type="text" id="addressInput" placeholder="Enter your home address" name="addressInput">
              <!--  <div>
                 <a href="#">Get your
@@ -50,15 +50,15 @@
   <a href="#listing-banner" class="arrow"><span>Scroll Down</span></a>
 </section>
 
-<section class="row expanded" id="sold-banner">
-  <div class="column small-12 medium-3 medium-offset-1 large-5 large-offset-1 sold-bnr-digits">
+<section class="row" id="sold-banner">
+  <div class="column small-12 medium-4 medium-offset-0 large-3 large-offset-1 sold-bnr-digits">
     <h1><%= @properties_sold %></h1>
     <p>sold this year</p>
-    <p class="show-for-small-only line-two-mobile">Find your next home!</p>
+    <p class="show-for-small-only line-two-mobile"><a href="/howitworks">Learn more about selling!</a></p>
   </div>
-  <div class="column show-for-medium medium-8 large-6 bnr-line-two end">
+  <div class="column show-for-medium medium-8 large-6 large-offset-1 bnr-line-two end">
     <p>OpenReal provides market value for your home and all the flexibility and certainty you need.</p>
-    <p>Find your next home!</p>
+    <p><a href="/howitworks">Learn more about selling!</a></p>
   </div>
 
   
