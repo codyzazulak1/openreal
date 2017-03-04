@@ -5,7 +5,7 @@
 
     <div class="row collapse">
       <!-- how it works -->
-      <div class="small-6 medium-5 medium-offset-1 small-offset-0 columns" id="howitworks-content">
+      <div class="small-12 medium-5 medium-offset-1 small-offset-0 columns" id="howitworks-content">
         <ul id="howitworks-part" data-magellan-target="howitworks-part" data-accordion-menu >
           <li class="text-align">
             <a href="#" class="down up inverse trigger-1"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
@@ -36,7 +36,7 @@
         <!-- inspection -->
         <ul id="inspection" data-magellan-target="inspection" data-accordion-menu >
           <li class="text-align">
-            <a href="#" class="up down trigger-2"><h3 class="header-1">OpenReal Pricing</h3></a> <hr class="hide-for-small-only">
+            <a href="#" class="up down trigger-2"><h3 class="header-1">About Our Inspections</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested js-accordion-target1 submenu">
               <li>
                 <h4>How inspections work.</h4>
@@ -63,8 +63,8 @@
           <div class="this" style="margin-bottom: 20px;">
             
             <ul>
-              <li><a href="#" id="how" class="js-accordion-trigger"> How it Works</a></li>
-              <li><a href="#" id="inspect" class="js-accordion-trigger1">Inspection Process</a></li>
+              <li><a href="#howitworks-part" id="howitworks-part" > How it Works</a></li>
+              <li><a href="#" id="test" >Pricing Page</a></li>
               
             </ul>
           </div>
@@ -96,6 +96,10 @@
   </div> 
   <hr>
 </div>
+
+<h3 id="test2" style="text-align: center;">Peace of mind, at just 2%</h3>
+<%= render 'pricing_template'%>
+<hr>
 <div id="offer-section">
   <%= render 'get_offer' %>
 </div>
@@ -120,9 +124,15 @@ function accordionScroll(id){
   });
 }
 
+$('#test').click(function(){
+  $('html, body').animate({
+    scrollTop: $('#test2').offset().top
+  }, 600)
+});
+  
 
-openAccordion('.js-accordion-trigger', '.js-accordion-target', '#howitworks-part');
-openAccordion('.js-accordion-trigger1','.js-accordion-target1', '#inspection');
+// openAccordion('.js-accordion-trigger', '.js-accordion-target', '#howitworks-part');
+// openAccordion('.js-accordion-trigger1','.js-accordion-target1', '#inspection');
 openAccordion('.trigger-1', '.js-accordion-target', '#howitworks-part');
 openAccordion('.trigger-2','.js-accordion-target1', '#inspection');
 </script>
