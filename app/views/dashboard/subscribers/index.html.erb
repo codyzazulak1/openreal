@@ -1,0 +1,42 @@
+<div class="row expanded">
+<%= render "dashboard/side_panel" %>
+  <div class="medium-9 columns dashboard-content push-footer">
+
+  <h1>
+    Subscribers
+  </h1>
+    
+  <section class="row dashboard-aform" id="agent-columns">
+    <div class="small-4 medium-3 columns titles">
+      <p>Name</p>
+    </div>
+    <div class="small-4 medium-3 columns titles">
+      <p>Email</p>
+    </div>
+    <div class="small-4 medium-3 medium columns end titles">
+      <p></p>
+    </div>
+  </section>
+
+  <section class="row dashboard-aform" id="agent-contents" style="margin-top: -3em;">
+      <% @subscribers.each do |s|%>
+      <div class="small-4 medium-3 columns details">
+        <p><%= s.full_name%></p>
+      </div>
+      <div class="small-4 medium-3 columns details end">
+        <p><%= s.email%></p>
+      </div>
+      <div class="small-4 medium-3 columns details end">
+      <p><%= link_to "Delete", dashboard_subscribers_path(s), method: :destroy%></p>
+      </div>
+
+      <!-- <div class="row"> -->
+       
+      <!-- </div> -->
+      <hr>
+      <% end %>  
+  </section>
+  
+
+  </div>
+</div>

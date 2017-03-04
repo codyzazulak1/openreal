@@ -1,4 +1,4 @@
-<nav id="side-panel" class="medium-3 columns expanded">
+<nav id="side-panel" class="medium-3 columns expanded push-footer">
   <ul class="side-panel-menu">
     <li class=<%= 'active' if controller.controller_name == "dashboard" %>>
       <a href="<%= dashboard_path %>">Dashboard</a>
@@ -11,6 +11,10 @@
     </li>
     <li class=<%= 'active' if get_namespace == "dashboarD" && controller.controller_name == "agent_forms" %>>
       <a href="<%= dashboard_agent_forms_path %>">Agent Forms</a>
+    </li>
+
+    <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "subscribers"%>>
+      <a href="<%= dashboard_subscribers_path%>">Subscribers</a>
     </li>
    <!--  <li><a href="#">Users</a></li> -->
   </ul>
