@@ -36,14 +36,7 @@ function initMap() {
       ]
 
     });
-    data.properties.forEach(function(property){
-      if (property.list_price_cents > 0){
-        setMarkers(property);
-        //Hide sold properties
-        Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
-      }
-      // console.log("SETMARKERS: " + setMarkers(property));
-    });
+    
 
     map.addListener('click', function() {
       closeAllInfoWin();
@@ -70,6 +63,31 @@ function initMap() {
         filters.submit();
       }
     });
+
+    google.maps.event.addListenerOnce(map, 'idle', function(){
+      $('#map').css('animation', 'none');
+      // google.maps.event.addListenerOnce(map, 'tilesloaded', function(){ data.properties.forEach(function(property){
+      //   if (property.list_price_cents > 0){
+      //     setMarkers(property);
+      //     //Hide sold properties
+      //     Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+      //   }
+      //   // console.log("SETMARKERS: " + setMarkers(property));
+      // });})
+     
+    });
+
+    google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+      setTimeout(function(){data.properties.forEach(function(property){
+        if (property.list_price_cents > 0){
+          setMarkers(property);
+          //Hide sold properties
+          Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+        }
+        // console.log("SETMARKERS: " + setMarkers(property));
+      });}, 2000)
+      
+    })
 
     var updateDiv = document.createElement('div');
     var updateControl = new UpdateControl(updateDiv, map);
