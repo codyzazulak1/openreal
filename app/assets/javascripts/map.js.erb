@@ -66,15 +66,6 @@ function initMap() {
 
     google.maps.event.addListenerOnce(map, 'idle', function(){
       $('#map').css('animation', 'none');
-      // google.maps.event.addListenerOnce(map, 'tilesloaded', function(){ data.properties.forEach(function(property){
-      //   if (property.list_price_cents > 0){
-      //     setMarkers(property);
-      //     //Hide sold properties
-      //     Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
-      //   }
-      //   // console.log("SETMARKERS: " + setMarkers(property));
-      // });})
-     
     });
 
     google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
@@ -82,7 +73,7 @@ function initMap() {
         if (property.list_price_cents > 0){
           setMarkers(property);
           //Hide sold properties
-          Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+          // Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
         }
         // console.log("SETMARKERS: " + setMarkers(property));
       });}, 2000)
