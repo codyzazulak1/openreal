@@ -32,12 +32,26 @@
 #map {
   background: transparent url(<%= asset_path('logo_med.png')%>) no-repeat center center;
   
+  animation: logo 1s infinite;
+  animation-direction: alternate-reverse;
+
 }
 
-#map:before {
-  content: 'Loading...';
-  padding-left: 25px;
+@-webkit-keyframes logo {
+  0% { transform:scale(0.8,0.8) }
+  100% { transform:scale(1,1) }
 }
+
+@keyframes logo {
+   0% { transform:scale(0.8,0.8) }
+   100% { transform:scale(1,1) }
+}
+
+//#map:before {
+  //content: 'Loading...';
+  //padding-left: 25px;
+  //line-height: 60px; 
+//}
 
 html, body {
   height: auto;
