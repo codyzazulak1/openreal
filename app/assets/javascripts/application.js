@@ -179,7 +179,7 @@ function initListings() {
       var pid = $(this).data('pid');
       toggleOverview(pid);
       overviewToggled = true;
-      hideSoldBadges();
+      //hideSoldBadges();
     }
 
     mapMarkers.forEach(function(m){
@@ -234,13 +234,13 @@ function initListingImg() {
   });
 }
 
-$('#map').ready(function(){
-  $('listings-map-btn').show();
-})
+var x = $(document).find('div#fb-messenger-widget-3128');
+var newx = Object.keys(x);
+console.log('found fb: ' + newx);
+
 
 $(document).ready(function(){
 
-  $('listings-map-btn').hide();
   // carousel
   $('.photo-carousel .photo-slide').css('background-image', function(){
     return "url(" + $(this).data('bg') + ")";

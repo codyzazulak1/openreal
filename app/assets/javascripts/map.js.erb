@@ -37,6 +37,7 @@ function initMap() {
 
     });
     
+    
 
     map.addListener('click', function() {
       closeAllInfoWin();
@@ -66,10 +67,13 @@ function initMap() {
 
     google.maps.event.addListenerOnce(map, 'idle', function(){
       $('#map').css('animation', 'none');
+      
     });
 
     google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
+      $('.listings-map-btn').css('display', 'inline-block'); 
       setTimeout(function(){data.properties.forEach(function(property){
+
         if (property.list_price_cents > 0){
           setMarkers(property);
           //Hide sold properties
@@ -78,7 +82,7 @@ function initMap() {
         // console.log("SETMARKERS: " + setMarkers(property));
       });}, 2000)
       
-    })
+    });
 
     var updateDiv = document.createElement('div');
     var updateControl = new UpdateControl(updateDiv, map);
