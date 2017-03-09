@@ -234,10 +234,6 @@ function initListingImg() {
   });
 }
 
-var x = $(document).find('div#fb-messenger-widget-3128');
-var newx = Object.keys(x);
-console.log('found fb: ' + newx);
-
 
 $(document).ready(function(){
 
