@@ -35,9 +35,7 @@ function initMap() {
       style:[ 
       ]
 
-    });
-    
-    
+    });    
 
     map.addListener('click', function() {
       closeAllInfoWin();
@@ -67,11 +65,28 @@ function initMap() {
 
     google.maps.event.addListenerOnce(map, 'idle', function(){
       $('#map').css('animation', 'none');
-      
+
+      $('#filter-btn').click(function(){
+        // matchMedia experimental tech but works on most browsers 03.17
+        
+        var onMobile = window.matchMedia("(max-width: 639px)");
+        onMobile.addListener(hideFbWidget);
+        hideFbWidget(onMobile);
+      });
+
+      $('input#clear-filter, a#cancel-btn, input#submit-filter').click(function(){
+        var onMovil = window.matchMedia("(max-width: 639px )");
+        onMovil.addListener(hideFbWidget);
+        hideFbWidget(onMovil);
+
+      });
+
     });
+
 
     google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
       $('.listings-map-btn').css('display', 'inline-block'); 
+
       setTimeout(function(){data.properties.forEach(function(property){
 
         if (property.list_price_cents > 0){
@@ -80,8 +95,7 @@ function initMap() {
           // Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
         }
         // console.log("SETMARKERS: " + setMarkers(property));
-      });}, 2000)
-      
+      });}, 2000)  
     });
 
     var updateDiv = document.createElement('div');
@@ -89,6 +103,15 @@ function initMap() {
     updateDiv.index = 1;
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(updateDiv);
   });
+}
+
+function hideFbWidget(mq){
+  if (mq.matches){
+    $('#fb-messenger-widget-3128').toggle()
+  }
+  else {
+    $('#fb-messenger-widget-3128').css('visibility', 'initial');
+  }
 }
 
 function setMapOnAll(map) {
