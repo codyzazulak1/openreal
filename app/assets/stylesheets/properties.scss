@@ -7,6 +7,17 @@
  *              *
  ****************/
 
+body.properties {
+  height: 100vh;
+}
+
+@media screen and (max-width: 400px){
+  body.properties{
+    height: 100vh!important;
+    overflow-y: hidden;
+  }
+}
+
 .map-header {
  margin-top: 0.7rem;
  margin-left: 1.24rem;
@@ -126,6 +137,7 @@
 #listings {
   // box-shadow: 0 0 0 -5px rgba(0,0,0,0.2);
   background-color: $panel-bg;
+  -webkit-overflow-scrolling: touch;
 
   .listing-header {
     height: 60px;
@@ -997,3 +1009,4 @@ input:checked ~ .switch-paddle::after {
     padding-right: 3rem !important;
   }
 }
+
