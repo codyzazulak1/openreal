@@ -80,15 +80,27 @@
 
 @media screen and (min-width: 425px) and (max-width: 840px){
   p.loading-span {
-    left: 48%!important;
+    left: 46%!important;
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 768px){
+  p.loading-span{
+    left: 46%!important;
+  }
+}
+
 @media screen and (min-width: 845px) and (max-width: 1020px) {
   p.loading-span {
     left: 45%!important;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1024px) and (max-width: 1200px){
+  p.loading-span {
+    left: 45.5%!important;
+  }
+}
+@media screen and (min-width: 1440px) {
   p.loading-span {
     left: 47%!important;
   }
@@ -402,6 +414,13 @@ nav#navbar {
       }
     }
   }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+  nav#navbar #logo img {
+    margin-left: 1.2rem;
+  }  
+
 }
 
 
