@@ -1,6 +1,12 @@
+<% if current_page?("/listings")%>
 <nav id="navbar">
   <div class="top-bar">
     <div class="float-left">
+<% else %>
+<nav id="navbar" data-sticky-container>
+  <div class="top-bar sticky" data-sticky style="width: 100%; background-color: white;" data-margin-top="0" data-margin-bottom="0">
+    <div class="float-left" data-magellan>
+<% end %>
       <ul class="dropdown menu" data-dropdown-menu>
         <li class="menu-text"><a id="logo" href=<%= root_path %>><img src=<%= asset_path('logo.png') %>></a></li>
       </ul>

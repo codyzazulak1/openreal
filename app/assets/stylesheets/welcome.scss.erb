@@ -180,17 +180,47 @@
     font-weight: 500;
     text-align: left; 
 
-    a {
+    a.allhomes {
       color: white;
-      text-decoration: underline;
+      display: inline-block;
+      border-bottom: 3px solid white;
+      height: 50px;
+
+    }
+
+    a.somehomes {
+      color: white;
+      display: inline-block;
+      border-bottom: 3px solid white;
+      height: 58px;
     }
 
     a:hover {
-      color: #68c0ea;
       //text-decoration: none;
+      border-bottom: 3px solid $primary-color;
     }
-   
   }
+
+  @media screen and (max-width: 1024px){
+    a.allhomes{
+      height: 48px!important;
+    }
+    a.somehomes{
+      height: 48px!important;
+    }
+  }
+
+  @media screen and (max-width: 425px){
+    a.allhomes{
+      height: 45px!important;
+    }
+
+    a.somehomes{
+      height: 40px!important;
+    }
+
+  }
+
 
   h1:first-child {
     //line-height: 25px;
