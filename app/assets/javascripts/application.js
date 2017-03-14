@@ -282,6 +282,52 @@ $(document).ready(function(){
     google.maps.event.trigger(map, "resize");
   });
 
+  function retrievePropertiesSort(url, sortType){
+    $.getJSON(url, function(data){
+
+      var arry = [];
+      data.properties.map(function(property){
+         arry.push(property);
+      });
+
+      var arryCopy = arry.slice(0);     
+      
+      switch(sortType){
+        var mapped = arryCopy.map(function(elem, i){
+          return {index: i, value: elem}
+        }); 
+
+        case 'high':
+          mapped.sort(function(a,b){
+            return b.value.list_price_cents - a.value.list_price_cents;
+          });
+
+          var highResult = mapped.map(function(el){
+            return arry[el.index];
+          });
+          console.log(highResult);
+          break;
+
+        case 'low':
+
+          mapped.sort(function(a,b){
+            return a.value.list_price_cents - b.value.list_price_cents
+          });
+
+          var lowResult = mapped.map(function(ele){
+            return arry[ele.index]
+          });
+          console.log(lowResult);
+          break;
+      }
+
+    })
+  }
+
+  test = $('.form-sort').find("select[name='sort']").val();
+
+  retrievePropertiesSort('/listings', test);
+
   function selectValues(){
     var arrayOptions = []
     var filters = $('.listing-filters>form');
