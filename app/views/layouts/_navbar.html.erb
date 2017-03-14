@@ -1,77 +1,72 @@
-<% if current_page?("/listings")%>
+
 <nav id="navbar">
   <div class="top-bar">
     <div class="float-left">
-<% else %>
-<nav id="navbar" data-sticky-container>
-  <div class="top-bar sticky" data-sticky style="width: 100%; background-color: white;" data-margin-top="0" data-margin-bottom="0">
-    <div class="float-left" data-magellan>
-<% end %>
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li class="menu-text"><a id="logo" href=<%= root_path %>><img src=<%= asset_path('logo.png') %>></a></li>
-      </ul>
-    </div>
-    <div class="float-right">
-      <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
-      <!-- show for large -->
-        <li>
-          <a href=<%= new_property_path %> class=<%= "active" if (controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name)) || (controller.controller_name == 'welcome' && ['index'].include?(controller.action_name)) %>>Sell</a>
-        </li>
-        <li class="show-for-medium">
-          <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
-        </li>
-        <li class="show-for-large">
-          <a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
-        </li>
-        <li class="show-for-large">
-          <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
-        </li>
-
-      <!--   <li class="show-for-large">
-          <a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a>
-        </li> -->
-        <li class="show-for-large">
-          <a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>> Contact</a>
-        </li>
-      <!-- show for medium -->
-      <li class="show-for-medium-only">
-        <a href="">More</a>
-        <ul id="nav-dropdown" style="left: -38px;">
-           <li><a href="/listings"class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
-           <li>
-              <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
-            </li>
-            
-            <!-- <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
-
-            <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
-
+        <ul class="dropdown menu horizontal" data-dropdown-menu>
+          <li class="menu-text"><a id="logo" href=<%= root_path %>><img src=<%= asset_path('logo.png') %>></a></li>
         </ul>
-      </li>
+      </div>
+      <div class="float-right">
+        <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
+        <!-- show for large -->
+          <li>
+            <a href=<%= new_property_path %> class=<%= "active" if (controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name)) || (controller.controller_name == 'welcome' && ['index'].include?(controller.action_name)) %>>Sell</a>
+          </li>
+          <li class="show-for-medium">
+            <a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a>
+          </li>
+          <li class="show-for-large">
+            <a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
+          </li>
+          <li class="show-for-large">
+            <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
+          </li>
 
-        <% if admin_signed_in?%>
-        <li class="show-for-medium">
-          <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
-        </li>
-        <%end%>
-        
-        <li class="show-for-small-only"><!--
-          --><a href="">More</a>
-          <ul id="nav-dropdown">
-            <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
-            <li><a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
-           <li>
-              <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
-            </li>
-            
-      <!--       <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
+        <!--   <li class="show-for-large">
+            <a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a>
+          </li> -->
+          <li class="show-for-large">
+            <a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>> Contact</a>
+          </li>
+        <!-- show for medium -->
+        <li class="show-for-medium-only">
+          <a href="">More</a>
+          <ul id="nav-dropdown" style="left: -38px;">
+             <li><a href="/listings"class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
+             <li>
+                <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
+              </li>
+              
+              <!-- <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
 
-            <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
-
+              <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
 
           </ul>
         </li>
-      </ul>
+
+          <% if admin_signed_in?%>
+          <li class="show-for-medium">
+            <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
+          </li>
+          <%end%>
+          
+          <li class="show-for-small-only"><!--
+            --><a href="">More</a>
+            <ul id="nav-dropdown">
+              <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
+              <li><a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
+             <li>
+                <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
+              </li>
+              
+        <!--       <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
+
+              <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
+
+
+            </ul>
+          </li>
+        </ul>
     </div>
   </div>
 </nav>

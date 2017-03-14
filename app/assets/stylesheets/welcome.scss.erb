@@ -183,7 +183,7 @@
     a.allhomes {
       color: white;
       display: inline-block;
-      border-bottom: 3px solid white;
+      border-bottom: 4px solid white;
       height: 50px;
 
     }
@@ -191,7 +191,7 @@
     a.somehomes {
       color: white;
       display: inline-block;
-      border-bottom: 3px solid white;
+      border-bottom: 4px solid white;
       height: 58px;
     }
 
@@ -216,7 +216,7 @@
     }
 
     a.somehomes{
-      height: 40px!important;
+      height: 43px!important;
     }
 
   }
@@ -349,7 +349,8 @@
     }
   }
   #hero h1:nth-child(2) {
-    margin-bottom: 1.5em;
+   // margin-bottom: 1.5em;
+    margin-bottom: 5.5em;
     font-size: 37px;
   }
   #hero h1:nth-child(1) {
@@ -420,11 +421,11 @@
   }
   #hero h1:nth-child(n+1){
     text-align: center;
-    font-size: 31px;
+    font-size: 34px;
   }
   #hero h1:nth-child(n+2){
     text-align: center;
-    font-size: 31px;
+    font-size: 34px;
   }
   #hero .search-bar{
 
@@ -969,3 +970,31 @@
     }
   }
 }
+
+@media screen and (max-width: 425px){
+  div.intro {
+    .row {
+      .small-12 {
+        height: 226px!important;
+      }
+    }
+  }  
+}
+
+@media screen and (max-width: 320px){
+  div.intro {
+    .row {
+      .small-12 {
+        height: 220px!important;
+      }
+    }
+  }
+
+  #hero h1:nth-child(n+2) {
+    font-size: 32px!important; 
+  } 
+  #hero h1:nth-child(n+1) {
+    font-size: 32px!important; 
+  }
+}
+
