@@ -291,12 +291,11 @@ $(document).ready(function(){
       });
 
       var arryCopy = arry.slice(0);     
-      
+      var mapped = arryCopy.map(function(elem, i){
+        return {index: i, value: elem}
+      });       
       switch(sortType){
-        var mapped = arryCopy.map(function(elem, i){
-          return {index: i, value: elem}
-        }); 
-
+        
         case 'high':
           mapped.sort(function(a,b){
             return b.value.list_price_cents - a.value.list_price_cents;
