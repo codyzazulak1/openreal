@@ -179,7 +179,7 @@ function initListings() {
       var pid = $(this).data('pid');
       toggleOverview(pid);
       overviewToggled = true;
-      //hideSoldBadges();
+      hideSoldBadges();
     }
 
     mapMarkers.forEach(function(m){
