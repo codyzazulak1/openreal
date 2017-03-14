@@ -20,6 +20,13 @@
             border-radius: 0; ">Map</a>
                   <a href="#" class="btn btn-secondary" id="filter-btn">Filters</a>
 
+                  <div style="position:absolute;">
+                    <!-- <label name="sort">Sort by: </label> -->
+                    <select name="sort">
+                      <option value="high"> Price High to Low</option>
+                      <option value="low"> Price Low to High</option>
+                    </select>
+                  </div>
                   <a href="#" class="btn btn-secondary hide" id="close-btn">Close</a><!-- 
                --><div class="float-right listing-count show-for-medium">
                <span id="listing-count" style="font-weight: 300; color: #777; display: block;line-height: 40px;"><%= @properties.where("list_price_cents > ?", 0).count %> active listings</span>
