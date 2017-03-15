@@ -293,9 +293,9 @@ $(document).ready(function(){
       var arryCopy = arry.slice(0);     
       var mapped = arryCopy.map(function(elem, i){
         return {index: i, value: elem}
-      });       
+      });    
+
       switch(sortType){
-        
         case 'high':
           mapped.sort(function(a,b){
             return b.value.list_price_cents - a.value.list_price_cents;
@@ -323,9 +323,12 @@ $(document).ready(function(){
     })
   }
 
-  test = $('.form-sort').find("select[name='sort']").val();
+  // test = $('.sort-btn').find("select[name='sort']").val();
+  $('.sort-btn').change(function(){
+    var sortFor = $(this).find("select[name='sort']").val();
+    retrievePropertiesSort('/listings', sortFor);
+  })
 
-  retrievePropertiesSort('/listings', test);
 
   function selectValues(){
     var arrayOptions = []
