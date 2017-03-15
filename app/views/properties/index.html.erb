@@ -20,9 +20,15 @@
             border-radius: 0; ">Map</a>
                   <a href="#" class="btn btn-secondary" id="filter-btn">Filters</a>
 
-                  <div style="position:absolute;">
+                  <div class="sort-btn" id="sort-btn">
                     <!-- <label name="sort">Sort by: </label> -->
-                    <select name="sort">
+                    <select name="sort" style="
+                      border: solid #68c0ea;
+                      border-radius: 0;
+                      height: 40px;
+                      width: 12em;
+                      color: #68c0ea;">
+                      <option selected>Sort by: </option>
                       <option value="high"> Price High to Low</option>
                       <option value="low"> Price Low to High</option>
                     </select>
