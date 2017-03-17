@@ -490,7 +490,19 @@ body.properties {
   }
 }
 
-/* Sort button on filter */
+@media screen and (max-width: 809px){
+  #sort select{
+    width: 7em!important;
+  }
+}
+
+@media screen and (max-width: 320px){
+  #sort select{
+    width: 5.8em !important;
+  }
+}
+
+/* sold properties hide/show button on filter */
 .switch-paddle::after {
   height: 1rem!important;
   width: 1rem!important;
@@ -502,6 +514,7 @@ input:checked ~ .switch-paddle::after {
 .switch-inactive {
   right: 6%!important;
 }
+
 /*******************
  *                 *
  * listing details *
