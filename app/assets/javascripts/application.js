@@ -135,6 +135,7 @@ function toggleOverview(pid) {
     $('#detail-btn').attr('href', "/properties/" + pid)
     $('#close-btn').toggleClass('hide');
     $('#filter-btn').toggle();
+    $('#sort-btn').toggle();
     $('.listing-footer').toggle();  
 
   }
@@ -142,6 +143,7 @@ function toggleOverview(pid) {
 
     $('#close-btn').toggleClass('hide');
     $('#filter-btn').toggle();
+    $('#sort-btn').toggle();
     $('.listing-footer').toggle();
   }
 }
