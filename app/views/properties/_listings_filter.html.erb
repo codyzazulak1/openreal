@@ -1,5 +1,8 @@
 <div class="listing-filters">
   <form class="" id="filter-form" method="get" data-remote="true" action="/properties/filter">
+    <% if cookies[:sort_params].present? %>
+    <%= hidden_field_tag "sort", cookies[:sort_params]%>
+    <% end %>
     <div class="row">
       <div class="small-6 medium-6 columns">
         <label>Min Price
