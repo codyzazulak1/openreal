@@ -54,28 +54,11 @@ class PropertiesController < ApplicationController
 
     cookies[:sort_params] = {value: params["sort"]}   
 
-    if params["sort"]
-      
-      case params["sort"]
-      when "high"
-        @properties = @properties.where('list_price_cents > ?', 0).order('list_price_cents DESC')
-
-      when "low"
-        @properties = @properties.where('list_price_cents > ?', 0).order('list_price_cents ASC')
-
-      when "newer"
-        @properties = @properties.order('created_at DESC')
-      
-      end
-
+    if params["hide"]
+      @properties = Property.where('list_price_cents > ?', 0)
     end
 
-    if params["all"]
-      @properties = Property.where('list_price_cents >= ?', 0)
-      params["min-price"] = 0
-    end
-
-    if params["min-price"]
+    if params["min-price"] && params["max-price"] != ''
       @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
     end
     if params["max-price"] && params["max-price"] != ''
@@ -123,6 +106,22 @@ class PropertiesController < ApplicationController
         .joins(:address)
         .where("addresses.latitude BETWEEN ? AND ?", params["bound-south"].to_f, params["bound-north"].to_f)
         .where("addresses.longitude BETWEEN ? AND ?", params["bound-west"].to_f, params["bound-east"].to_f)
+    end
+
+    if params["sort"]
+      
+      case params["sort"]
+      when "high"
+        @properties = @properties.order('list_price_cents DESC')
+
+      when "low"
+        @properties = @properties.order('list_price_cents ASC')
+
+      when "newer"
+        @properties = @properties.order('created_at DESC')
+      
+      end
+
     end
 
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
