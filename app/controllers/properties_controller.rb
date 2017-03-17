@@ -64,9 +64,8 @@ class PropertiesController < ApplicationController
         @properties = @properties.where('list_price_cents > ?', 0).order('list_price_cents ASC')
 
       when "newer"
-        @properties = @properties.where('list_price_cents > ?', 0).order('created_at DESC');
-      when "older"
-        @properties = @properties.where('list_price_cents > ?', 0).order('created_at ASC');
+        @properties = @properties.order('created_at DESC')
+      
       end
 
     end
