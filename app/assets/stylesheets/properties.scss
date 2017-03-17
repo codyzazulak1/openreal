@@ -499,6 +499,9 @@ body.properties {
 input:checked ~ .switch-paddle::after {
     left: 2.8rem!important;
 }
+.switch-inactive {
+  right: 6%!important;
+}
 /*******************
  *                 *
  * listing details *
