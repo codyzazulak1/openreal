@@ -324,30 +324,10 @@ $(document).ready(function(){
   }
 
   // test = $('.sort-btn').find("select[name='sort']").val();
-  $('.sort-btn').change(function(){
-    var sortFor = $(this).find("select[name='sort']").val();
-    retrievePropertiesSort('/listings', sortFor);
-  })
-
-
-  function selectValues(){
-    var arrayOptions = []
-    var filters = $('.listing-filters>form');
-
-    var minPrice = filters.find('select[name="min-price"]').val();
-    var maxPrice = filters.find('select[name="max-price"]').val();
-    var bathrooms = filters.find('select[name="bath"]').val();
-    var bedrooms = filters.find('select[name="bed"]').val();
-    var buildingType = filters.find('select[name="building"]').val();
-    var storeys = filters.find('select[name="storeys"]').val();
-    var minFloor = filters.find('input[name="min-floor"]').val();
-    var minLot = filters.find('input[name="min-lot"]').val();
-    var cityOpt = filters.find('select[name="city"]').val(); 
-
-    arrayOptions.push(minPrice, maxPrice, bathrooms, bedrooms, buildingType, storeys, minFloor, minLot, cityOpt);
-
-    return arrayOptions;
-  }
+  // $('.sort-btn').change(function(){
+  //   var sortFor = $(this).find("select[name='sort']").val();
+  //   retrievePropertiesSort('/listings', sortFor);
+  // })
 
   $('#submit-filter').click(function(e){
     e.preventDefault();
@@ -358,10 +338,23 @@ $(document).ready(function(){
     filters.find('input[name="bound-west"]').removeAttr("value");
     filters.find('input[name="bound-north"]').removeAttr("value");
     filters.find('input[name="bound-south"]').removeAttr("value");
-    // Get all values for submit filter
-    // console.log(selectValues());
     filters.submit();
   });
+
+  // submit sort form through filter
+  $('#sort-btn>form').change(function(e){
+    e.preventDefault;
+    var sortBy = $(this).find("select[name='sort']").val();
+    // var sortForm = $('#sort');
+    var filters = $('.listing-filters>form');
+    var sortCookieVal = sortBy;
+    var sortVal = $("input[name='sort']").val(sortBy);
+
+    //sortForm.submit();
+    setTimeout(function(){filters.submit();}, 200);
+  })
+
+
 
   $('#clear-filter').click(function(){
     var form = document.getElementById("filter-form");
