@@ -48,18 +48,28 @@ class PropertiesController < ApplicationController
     end
   end
 
-
-  def sort
- 
-
-  end
-
   def filter
   
     @properties = Property.all
-      .order('created_at DESC')
 
-    @sort_properties = Property.all.where("list_price_cents > ?", 0)
+    cookies[:sort_params] = {value: params["sort"]}   
+
+    if params["sort"]
+      
+      case params["sort"]
+      when "high"
+        @properties = @properties.where('list_price_cents > ?', 0).order('list_price_cents DESC')
+
+      when "low"
+        @properties = @properties.where('list_price_cents > ?', 0).order('list_price_cents ASC')
+
+      when "newer"
+        @properties = @properties.where('list_price_cents > ?', 0).order('created_at DESC');
+      when "older"
+        @properties = @properties.where('list_price_cents > ?', 0).order('created_at ASC');
+      end
+
+    end
 
     if params["all"]
       @properties = Property.where('list_price_cents >= ?', 0)
