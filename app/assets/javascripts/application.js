@@ -356,7 +356,16 @@ $(document).ready(function(){
     setTimeout(function(){filters.submit();}, 200);
   })
 
+  // $("#sort-btn>form").on('blur change',function(e){ 
+  //   e.preventDefault;
+  //   var sortBy = $(this).find("select[name='sort']").val();
+  //   // var sortForm = $('#sort');
+  //   var filters = $('.listing-filters>form');
+  //   var sortVal = $("input[name='sort']").val(sortBy);
 
+  //   //sortForm.submit();
+  //   setTimeout(function(){filters.submit();}, 200); 
+  // });
 
   $('#clear-filter').click(function(){
     var form = document.getElementById("filter-form");
