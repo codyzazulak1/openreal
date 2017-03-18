@@ -493,6 +493,7 @@ body.properties {
 @media screen and (max-width: 809px){
   #sort select{
     width: 7em!important;
+    padding-top: 8px!important;
   }
 }
 
@@ -503,6 +504,9 @@ body.properties {
 }
 
 /* sold properties hide/show button on filter */
+.switch-paddle {
+  margin-top: 3px!important;
+}
 .switch-paddle::after {
   height: 1rem!important;
   width: 1rem!important;

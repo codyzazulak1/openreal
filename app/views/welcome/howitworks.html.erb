@@ -6,8 +6,8 @@
     <div class="row collapse">
       <!-- how it works -->
       <div class="small-12 medium-5 medium-offset-1 small-offset-0 columns" id="howitworks-content">
-        <ul id="howitworks-part" data-magellan-target="howitworks-part" data-accordion-menu >
-          <li class="text-align">
+        <ul id="howitworks-part" data-accordion-menu >
+          <li class="text-align" id="hit">
             <a href="#" class="down up inverse trigger-1"><h3 class="header-1">How It Works</h3></a> <hr class="hide-for-small-only">
             <ul class="menu vertical nested is-active js-accordion-target submenu">
               <li>
@@ -63,7 +63,7 @@
           <div class="this" style="margin-bottom: 25px;">
             
             <ul>
-              <li><a href="#howitworks-part" id="howitworks-part" > How it Works</a></li>
+              <li><a href="#" id="howitwork-part" > How it Works</a></li>
               <li><a href="#" id="pricing" >OpenReal Pricing</a></li>
               
             </ul>
@@ -97,7 +97,7 @@
   <hr>
 </div>
 
-<h3 id="pricing2" style="text-align: center;">Peace of mind, at just 2%</h3>
+<h2 id="pricing2" style="text-align: center;">Peace of mind, at just 2%</h2>
 <%= render 'pricing_template'%>
 
 <div id="offer-section">
@@ -123,6 +123,12 @@ function accordionScroll(id){
     scrollTop: $(id).offset().top,
   });
 }
+
+$('#howitwork-part').click(function(){
+  $('html, body').animate({
+    scrollTop: $('#hit').offset().top
+  }, 600)
+});
 
 $('#pricing').click(function(){
   $('html, body').animate({

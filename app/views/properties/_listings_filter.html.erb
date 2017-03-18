@@ -1,8 +1,8 @@
 <div class="listing-filters">
   <form class="" id="filter-form" method="get" data-remote="true" action="/properties/filter">
-    <% if cookies[:sort_params].present? %>
+    <%# if cookies[:sort_params].present? %>
     <%= hidden_field_tag "sort", cookies[:sort_params]%>
-    <% end %>
+    <%# end %>
     <div class="row">
       <div class="small-6 medium-6 columns">
         <label>Min Price
@@ -115,14 +115,14 @@
           </select>
         </label>
       </div>
-      <div class="medium-6 columns">   
+      <div class="small-6 medium-6 columns">   
         <label>Hide sold properties?</label>
         <div class="switch">
           <input type="checkbox" id="yes-no" name="hide" class="switch-input">
           <label class="switch-paddle" for="yes-no">
             <span class="show-for-sr">All Properties</span>
-            <span class="switch-inactive" aria-hidden="true">Show</span>
-            <span class="switch-active" aria-hidden="true">Hide</span>
+            <span class="switch-inactive" aria-hidden="true"></span>
+            <span class="switch-active" aria-hidden="true"></span>
           </label>
         </div>
       </div>
