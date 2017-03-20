@@ -93,7 +93,7 @@ function initMap() {
           setMarkers(property);
         }
         // console.log("SETMARKERS: " + setMarkers(property));
-      });}, 2000)  
+      });}, 1000)  
     });
 
     var updateDiv = document.createElement('div');
@@ -154,54 +154,58 @@ function newMarker(property, infowindow){
       pid: property.id
     });
 
-      marker.addListener('click', function() {
-          //Hide sold properties
-           Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
-          closeAllInfoWin();
-          infowindow.open(map, marker);
-          $(".gm-style-iw").parent().addClass('gm-style-parent');
-          $(".gm-style-iw").prev("div").hide();
-          $('.gm-style-parent').children(':nth-child(1)').css('display', 'inline-block')
-          $('.gm-style-parent > div > div:nth-child(2):first').addClass('gm-style-border');
-          $('.gm-style-parent > div > div:nth-child(4)').addClass('gm-style-bordercontainer')
+    marker.addListener('click', function() {
+        //Hide sold properties
+         Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+        closeAllInfoWin();
+        // Set infowindow content
+        var picture;
+        if(property.photos[0]){
+          var picture = property.photos[0].picture.url;
+        }
+    
+        var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + ' Bed</span> &middot;<span>'+ property.bathrooms + ' Bath</span>&middot;<span> Floor area ' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
 
-          var latLng = {lat: marker.position.lat(), lng: marker.position.lng()};
+        infowindow.setContent(propPic);
 
-          marker.setIcon(marker.icon = pinSymbol("lightgrey"));
-          marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE)
-          marker.setAnimation(4);
-          map.panTo(latLng);
-          // map.setCenter(latLng.lat, latLng.lng)
-          // console.log("poop: " + latLng.lat + "shi" + latLng.lng)
-          
-          // if (mapCenter != latLng) {
-          //   mapCenter = latLng
-          //   map.setCenter(mapCenter);
-          // }
-          //See Test validity of latLng object in app.js if range error.
+        infowindow.open(map, marker);
+        $(".gm-style-iw").parent().addClass('gm-style-parent');
+        $(".gm-style-iw").prev("div").hide();
+        $('.gm-style-parent').children(':nth-child(1)').css('display', 'inline-block')
+        $('.gm-style-parent > div > div:nth-child(2):first').addClass('gm-style-border');
+        $('.gm-style-parent > div > div:nth-child(4)').addClass('gm-style-bordercontainer')
+
+        var latLng = {lat: marker.position.lat(), lng: marker.position.lng()};
+
+        marker.setIcon(marker.icon = pinSymbol("lightgrey"));
+        marker.setAnimation(marker.animation = google.maps.Animation.BOUNCE)
+        marker.setAnimation(4);
+        map.panTo(latLng);
+        // map.setCenter(latLng.lat, latLng.lng)
+        // console.log("poop: " + latLng.lat + "shi" + latLng.lng)
         
-      });
+        // if (mapCenter != latLng) {
+        //   mapCenter = latLng
+        //   map.setCenter(mapCenter);
+        // }
+        //See Test validity of latLng object in app.js if range error.
+      
+    });
 
-    mapMarkers.push(marker);
+  mapMarkers.push(marker);
 
-    return marker;
+  return marker;
 }
 
 function newInfo(property) {
- 
-  var picture;
-  if(property.photos[0]){
-    var picture = property.photos[0].picture.url;
-  }
-  
-  var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + ' Bed</span> &middot;<span>'+ property.bathrooms + ' Bath</span>&middot;<span> Floor area ' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
 
   var infowindow = new google.maps.InfoWindow({
-    content: propPic,
+    // content: propPic,
     maxWidth: 350,
     pid: property.id
   });
   infowindow.addListener('domready', function() {
+    console.log('DOM READY?')
     $('.listing-overview').hide();
     $.ajax({
       url: "/properties/" + infowindow.pid,
@@ -232,17 +236,8 @@ function updateMarkers(properties) {
       pid: property.id
     });
 
-    // var info = property.address.address_first;
-  var picture;
-  if(property.photos[0]){
-    var picture = property.photos[0].picture.url
-  }
-
-
-  var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + 'Bed</span> &middot;<span>'+ property.bathrooms + 'Bath</span>&middot;<span> Floor area' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
-
     var infowindow = new google.maps.InfoWindow({
-      content: propPic,
+     // content: propPic,
       maxWidth: 350,
       pid: property.id
     });
@@ -251,7 +246,16 @@ function updateMarkers(properties) {
 
     if(property.list_price_cents > 0){
       marker.addListener('click', function() {
+         var picture;
+         if(property.photos[0]){
+          var picture = property.photos[0].picture.url
+         }
+
+
+         var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + 'Bed</span> &middot;<span>'+ property.bathrooms + 'Bath</span>&middot;<span> Floor area' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
+
         closeAllInfoWin();
+        infowindow.setContent(propPic);
         infowindow.open(map, marker);
         $(".gm-style-iw").prev("div").hide();
         $(".gm-style-iw").parent().addClass('gm-style-parent');
