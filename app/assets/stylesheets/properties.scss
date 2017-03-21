@@ -11,6 +11,10 @@ body.properties {
   height: 100vh;
 }
 
+body.properties.show {
+  height: auto!important;
+}
+
 @media screen and (max-width: 400px){
   body.properties{
     height: 100vh!important;
