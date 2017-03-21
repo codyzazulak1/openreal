@@ -20,4 +20,4 @@ setTimeout(function()
     $('.listing-filters').hide();
     $('#listing-count').html("<%= escape_javascript("#{@properties.where("list_price_cents > ?", 0).count}")%> active listings");
     $('.loader').fadeOut(); 
-  }, 1000);
+  }, 150);

@@ -83,17 +83,17 @@ function initMap() {
 
     });
 
-
+  
     google.maps.event.addListenerOnce(map, 'tilesloaded', function(){
       $('.listings-map-btn').css('display', 'inline-block'); 
 
-      setTimeout(function(){data.properties.forEach(function(property){
+      setTimeout(function(){data.properties.map(function(property){
 
         if (property.list_price_cents > 0){
           setMarkers(property);
         }
         // console.log("SETMARKERS: " + setMarkers(property));
-      });}, 1000)  
+      })}, 1000)  
     });
 
     var updateDiv = document.createElement('div');
@@ -103,16 +103,8 @@ function initMap() {
   });
 }
 
-function hideFbWidget(mq){
-  if (mq.matches){
-    $('#fb-messenger-widget-3128').toggle()
-  }
-  else {
-    $('#fb-messenger-widget-3128').css('visibility', 'initial');
-  }
-}
-
 function setMapOnAll(map) {
+
   for (var i = 0; i < mapMarkers.length; i++) {
     mapMarkers[i].setMap(map);
   }
@@ -133,13 +125,44 @@ function setMarkers(property) {
     newMarker(property, newInfo(property));
   } 
   else {
-    for(i = 0; i < mapMarkers.length; i++){
+    for(i = 0, length = mapMarkers.length; i < length; i++){
       setTimeout(function(){
         newMarker(property, newInfo(property));
-      }, i * 200);
+      }, i * 500);
     }
   }
 }
+
+function setContent(property,infowindow){
+   var picture;
+   if(property.photos[0]){
+    var picture = property.photos[0].picture.large.url
+   }
+
+   var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + 'Bed</span> &middot;<span>'+ property.bathrooms + 'Bath</span>&middot;<span> Floor area' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
+
+   infowindow.setContent(propPic);
+}
+
+function setContentInfoWind(property, infowindow){
+  // On list property click off map
+  $('.listing-body>ul>li').click(function(){
+    setContent(property, infowindow);
+  });
+}
+
+function hideFbWidget(mq){
+  if (mq.matches){
+    $('#fb-messenger-widget-3128').toggle()
+  }
+  else {
+    $('#fb-messenger-widget-3128').css('visibility', 'initial');
+  }
+}
+
+function hideSoldBadges(){
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+};
 
 
 function newMarker(property, infowindow){
@@ -154,19 +177,14 @@ function newMarker(property, infowindow){
       pid: property.id
     });
 
+    setContentInfoWind(property, infowindow);
+
     marker.addListener('click', function() {
-        //Hide sold properties
-         Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
+        
+        hideSoldBadges();
         closeAllInfoWin();
         // Set infowindow content
-        var picture;
-        if(property.photos[0]){
-          var picture = property.photos[0].picture.url;
-        }
-    
-        var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + ' Bed</span> &middot;<span>'+ property.bathrooms + ' Bath</span>&middot;<span> Floor area ' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
-
-        infowindow.setContent(propPic);
+        setContent(property,infowindow);
 
         infowindow.open(map, marker);
         $(".gm-style-iw").parent().addClass('gm-style-parent');
@@ -205,7 +223,6 @@ function newInfo(property) {
     pid: property.id
   });
   infowindow.addListener('domready', function() {
-    console.log('DOM READY?')
     $('.listing-overview').hide();
     $.ajax({
       url: "/properties/" + infowindow.pid,
@@ -223,39 +240,34 @@ function newInfo(property) {
 
 function updateMarkers(properties) {
   removeMakers();
-  
-
   properties.forEach(function(property){
-    var marker = new google.maps.Marker({
-      position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
-      map: map,
-      title: property.address.address_first,
-      animation: google.maps.Animation.DROP,
-      icon: pinSymbol("#68c0ea"),
-      // zIndex: 5
-      pid: property.id
-    });
 
-    var infowindow = new google.maps.InfoWindow({
-     // content: propPic,
-      maxWidth: 350,
-      pid: property.id
-    });
+    if (property.list_price_cents > 0){
+      var marker = new google.maps.Marker({
+        position: {lat: parseFloat(property.address.latitude), lng: parseFloat(property.address.longitude)},
+        map: map,
+        title: property.address.address_first,
+        animation: google.maps.Animation.DROP,
+        icon: pinSymbol("#68c0ea"),
+        // zIndex: 5
+        pid: property.id
+      });
 
-    infoWindows.push(infowindow);
+      var infowindow = new google.maps.InfoWindow({
+       // content: propPic,
+        maxWidth: 350,
+        pid: property.id
+      });
 
-    if(property.list_price_cents > 0){
+      infoWindows.push(infowindow);
+
+    // click on property off map to show infowindow
+      setContentInfoWind(property, infowindow);
+
       marker.addListener('click', function() {
-         var picture;
-         if(property.photos[0]){
-          var picture = property.photos[0].picture.url
-         }
-
-
-         var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + 'Bed</span> &middot;<span>'+ property.bathrooms + 'Bath</span>&middot;<span> Floor area' + property.floor_area +' ft<sup>&#50;</sup> </span></div></div>'
-
         closeAllInfoWin();
-        infowindow.setContent(propPic);
+        hideSoldBadges();
+        setContent(property,infowindow);
         infowindow.open(map, marker);
         $(".gm-style-iw").prev("div").hide();
         $(".gm-style-iw").parent().addClass('gm-style-parent');
@@ -273,20 +285,21 @@ function updateMarkers(properties) {
           mapCenter = latLng
         }
       });
-    }
+      
 
-    mapMarkers.push(marker);
+      mapMarkers.push(marker);
 
-    infowindow.addListener('domready', function() {
-      $('.listing-overview').hide();
-      $.ajax({
-        url: "/properties/" + infowindow.pid,
-        method: 'get', 
-        dataType: 'script'
+      infowindow.addListener('domready', function() {
+        $('.listing-overview').hide();
+        $.ajax({
+          url: "/properties/" + infowindow.pid,
+          method: 'get', 
+          dataType: 'script'
+        });
+        toggleOverview(infowindow.pid);
+        overviewToggled = true;
       });
-      toggleOverview(infowindow.pid);
-      overviewToggled = true;
-    });
+    };
   });
 
 }

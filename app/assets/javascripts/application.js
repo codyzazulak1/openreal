@@ -33,7 +33,7 @@ function showSoldBadges(){
 
 // for filter option
 function toggleSoldBadge(){
-  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle(), 400});
+  Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).toggle()});
 };
 
 // google places autocomplete
@@ -128,7 +128,7 @@ function toggleOverview(pid) {
 
   if (overviewToggled && pid !== null) { 
     $('#detail-btn').attr('href', "/properties/" + pid);
- 
+    
     
   } 
   else if (!overviewToggled && pid!== null) {
@@ -182,6 +182,7 @@ function initListings() {
       toggleOverview(pid);
       overviewToggled = true;
       hideSoldBadges();
+
     }
 
     mapMarkers.forEach(function(m){
@@ -355,17 +356,6 @@ $(document).ready(function(){
     //sortForm.submit();
     setTimeout(function(){filters.submit();}, 200);
   })
-
-  // $("#sort-btn>form").on('blur change',function(e){ 
-  //   e.preventDefault;
-  //   var sortBy = $(this).find("select[name='sort']").val();
-  //   // var sortForm = $('#sort');
-  //   var filters = $('.listing-filters>form');
-  //   var sortVal = $("input[name='sort']").val(sortBy);
-
-  //   //sortForm.submit();
-  //   setTimeout(function(){filters.submit();}, 200); 
-  // });
 
   $('#clear-filter').click(function(){
     var form = document.getElementById("filter-form");

@@ -7,7 +7,7 @@
     <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
     <ul class="orbit-container">
      <% p.photos.map do |x|%>
-      <li class="listing-img orbit-slide is-active" data-bg=<%= x.picture if p.has_photos? %>>
+      <li class="listing-img orbit-slide is-active" data-bg=<%= x.picture.large.url if p.has_photos? %>>
     
         <% if p.is_new? %>
         <div class="listing-badge">

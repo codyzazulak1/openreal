@@ -4,7 +4,7 @@
       <ul class="orbit-container">
         <% @property.photos.each do |p|  %>
         <li class="orbit-slide is-active">
-          <div class="photo-slide" data-orbit-slide data-bg=<%= p.picture_url %>></div>
+          <div class="photo-slide" data-orbit-slide data-bg=<%= p.picture.url %>></div>
         </li>
       <% end %>
       </ul>
@@ -12,7 +12,7 @@
     <!-- fancybox -->
     <div class="columns medium-11 fancybox thumbnail-listing">
       <% @property.photos.each do |p|  %>
-        <a class="fancybox-thumb photo-thumb" rel="photo-thumb fancybox-thumb" data-fancybox-href=<%= p.picture_url%> data-thumbnail=<%= p.picture_url%>  >
+        <a class="fancybox-thumb photo-thumb" rel="photo-thumb fancybox-thumb" data-fancybox-href=<%= p.picture.large.url%> data-thumbnail=<%= p.picture.large.url%>  >
           <img src=<%= p.picture.thumb %> style="padding: 1.5px 1.5px"/>
         </a>
       <% end %>
