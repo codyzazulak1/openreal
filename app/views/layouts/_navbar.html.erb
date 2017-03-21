@@ -1,5 +1,8 @@
-
+<% if current_page?('/listings')%>
 <nav id="navbar">
+<% else %>
+<nav id="navbar" style="position: fixed; width: 100%;">
+<% end %>
   <div class="top-bar">
     <div class="float-left">
         <ul class="dropdown menu horizontal" data-dropdown-menu>
