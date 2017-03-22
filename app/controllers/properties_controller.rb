@@ -6,7 +6,7 @@ class PropertiesController < ApplicationController
       @center = city_center(@city)
       @properties = Property.within(@city)
     else
-      @properties = Property.all.order('created_at DESC')
+      @properties = Property.all.where('list_price_cents > ?', 0).order('created_at DESC')
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
     @cities = Property.cities
@@ -50,12 +50,12 @@ class PropertiesController < ApplicationController
 
   def filter
   
-    @properties = Property.all
+    @properties = Property.all.where('list_price_cents > ?', 0)
 
     cookies[:sort_params] = {value: params["sort"]}   
 
     if params["hide"]
-      @properties = Property.where('list_price_cents > ?', 0)
+      @properties = Property.all
     end
 
     if params["min-price"] && params["max-price"] != ''
