@@ -341,6 +341,7 @@ $(document).ready(function(){
     filters.find('input[name="bound-west"]').removeAttr("value");
     filters.find('input[name="bound-north"]').removeAttr("value");
     filters.find('input[name="bound-south"]').removeAttr("value");
+    $('.loader').show();
     filters.submit();
   });
 
@@ -352,14 +353,13 @@ $(document).ready(function(){
     var filters = $('.listing-filters>form');
     var sortCookieVal = sortBy;
     var sortVal = $("input[name='sort']").val(sortBy);
-
-    //sortForm.submit();
+    $('.loader').show();
     filters.submit();
-    // setTimeout(function(){filters.submit();}, 200);
   })
 
   $('#clear-filter').click(function(){
     var form = document.getElementById("filter-form");
+    $('.loader').show();
     form.reset();
 
   });
