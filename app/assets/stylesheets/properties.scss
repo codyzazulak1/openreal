@@ -682,7 +682,7 @@ input:checked ~ .switch-paddle::after {
 
   .floating-container {
     position: relative;
-    margin-top: calc(-5rem - 1rem - 2px);
+    margin-top: calc(-6.15rem - 1rem - 2px);
 
     .floating-box {
       
@@ -1031,6 +1031,12 @@ input:checked ~ .switch-paddle::after {
     padding-left: 6rem !important;
     margin-left: 0rem!important;
     padding-right: 3rem !important;
+  }
+}
+
+@media screen and (max-width: 425px){
+  .listing-header {
+    margin-bottom: 0px!important;
   }
 }
 
