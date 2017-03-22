@@ -7,6 +7,7 @@ class PropertiesController < ApplicationController
       @properties = Property.within(@city)
     else
       @properties = Property.all.where('list_price_cents > ?', 0).order('created_at DESC')
+      @sold = Property.where('list_price_cents = ?', 0)
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
     @cities = Property.cities

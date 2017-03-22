@@ -18,6 +18,6 @@ updateMarkers(<%= @properties.to_json(include: [:address, :photos]).html_safe %>
 setTimeout(function() 
   { 
     $('.listing-filters').hide();
-    $('#listing-count').html("<%= escape_javascript("#{@properties.where("list_price_cents > ?", 0).count}")%> active listings");
+    $('#listing-count').html("<%= escape_javascript("#{@properties.count}")%> active listings");
     $('.loader').fadeOut(); 
   }, 150);
