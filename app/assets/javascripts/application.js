@@ -354,6 +354,7 @@ $(document).ready(function(){
     var sortCookieVal = sortBy;
     var sortVal = $("input[name='sort']").val(sortBy);
     $('.loader').show();
+    hideSoldBadges();
     filters.submit();
   })
 
