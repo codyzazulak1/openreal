@@ -354,7 +354,8 @@ $(document).ready(function(){
     var sortVal = $("input[name='sort']").val(sortBy);
 
     //sortForm.submit();
-    setTimeout(function(){filters.submit();}, 200);
+    filters.submit();
+    // setTimeout(function(){filters.submit();}, 200);
   })
 
   $('#clear-filter').click(function(){
