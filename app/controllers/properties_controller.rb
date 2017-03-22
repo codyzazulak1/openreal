@@ -51,7 +51,7 @@ class PropertiesController < ApplicationController
 
   def filter
   
-    @properties = Property.all.where('list_price_cents > ?', 0)
+    @properties = Property.where('list_price_cents > ?', 0)
 
     cookies[:sort_params] = {value: params["sort"]}   
 
@@ -59,7 +59,7 @@ class PropertiesController < ApplicationController
       @properties = Property.all
     end
 
-    if params["min-price"] && params["max-price"] != ''
+    if params["min-price"]
       @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
     end
     if params["max-price"] && params["max-price"] != ''
