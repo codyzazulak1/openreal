@@ -15,11 +15,21 @@ body.properties.show {
   height: auto!important;
 }
 
+
 @media screen and (max-width: 400px){
   body.properties{
     height: 100vh!important;
     overflow-y: hidden;
   }
+}
+
+body.properties.new {
+  height: auto!important;
+  overflow-y: auto!important;
+}
+body.properties.create {
+  height: auto!important;
+  overflow-y: auto!important;
 }
 
 .map-header {
@@ -754,6 +764,7 @@ input:checked ~ .switch-paddle::after {
 
 #new-property-form {
   //padding-bottom: 1rem;
+  margin-top: 60px;
 
   .sales-box-wrapper {
 
