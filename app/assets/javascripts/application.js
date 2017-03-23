@@ -247,6 +247,7 @@ $(document).ready(function(){
 
   // listing images
   initListingImg();
+  priceToggle();
 
   // listing header
   $('#filter-btn').click(function(e){
@@ -474,4 +475,13 @@ function showForm(name) {
   $('#' + name + '-signin').show();
 }
 
+// toggle filter option for min price and show properties when selected
+function priceToggle(){
+  var price =  $('#filter-form').find("select[name='min-price']");
 
+  price.change(function(){
+    if ($('#filter-form').find("input:checkbox").is(":checked")){
+      $('#filter-form').find("input:checkbox").attr('checked', false);
+    }
+  });
+}
