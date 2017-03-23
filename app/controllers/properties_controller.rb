@@ -4,14 +4,15 @@ class PropertiesController < ApplicationController
     if params[:city]
       @city = params[:city].capitalize
       @center = city_center(@city)
-      @properties = Property.within(@city)
+      @properties = Property.includes(:address, :photos).within(@city)
     else
-      @properties = Property.all.where('list_price_cents > ?', 0).order('created_at DESC')
-      @sold = Property.where('list_price_cents = ?', 0)
+      @properties = Property.includes(:address, :photos).for_sale.created_desc
+      @active = Property.includes(:address, :photos).for_sale.count
+      @sold = Property.where('list_price_cents = ?', 0).count
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
     @cities = Property.cities
-    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+    @properties_paged = @properties.includes(:address, :photos).paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -21,14 +22,14 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def listing
-    @property = Property.find(params[:id])
-  end
+  # def listing
+  #   @property = Property.find(params[:id])
+  # end
 
-  def listings
-    @properties_p = Property.all
-    @listings_paged = @properties_p.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
-  end
+  # def listings
+  #   @properties_p = Property.all
+  #   @listings_paged = @properties_p.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
+  # end
 
   def edit
     @property = Property.find(params[:id])
@@ -51,50 +52,52 @@ class PropertiesController < ApplicationController
 
   def filter
   
-    @properties = Property.where('list_price_cents > ?', 0)
+    @properties = Property.includes(:address, :photos).for_sale
 
     cookies[:sort_params] = {value: params["sort"]}   
 
-    if params["hide"]
-      @properties = Property.all
-    end
+   
 
     if params["min-price"]
-      @properties = @properties.where("list_price_cents >= ?", params["min-price"].to_i)
+      @properties = @properties.includes(:address, :photos).where("properties.list_price_cents >= #{params["min-price"].to_i}")
     end
+    if params["hide"]
+      @properties = Property.includes(:address, :photos).all
+    end
+
     if params["max-price"] && params["max-price"] != ''
-      @properties = @properties.where("list_price_cents <= ?", params["max-price"].to_i)
+      @properties = @properties.includes(:address, :photos).where("list_price_cents <= ?", params["max-price"].to_i)
     end
-    if params["bed"]
-      @properties = @properties.where("bedrooms >= ?", params["bed"].to_i)
+    if params["bed"] && params["bed"] != ''
+      @properties = @properties.includes(:address, :photos).where("bedrooms >= ?", params["bed"].to_i)
     end
-    if params["bath"]
-      @properties = @properties.where("bathrooms >= ?", params["bath"].to_i)
+    if params["bath"] && params["bath"] != ''
+      @properties = @properties.includes(:address, :photos).where("bathrooms >= ?", params["bath"].to_i)
     end
-    if params["building"]
+    if params["building"] && params["building"] != ''
       case params["building"]
       when "0"
-        @properties
+        @properties.includes(:address, :photos)
       when "1"
-        @properties = @properties.where("dwelling_class LIKE ?", 
+        @properties = @properties.includes(:address, :photos).where("dwelling_class LIKE ?", 
           ("%ouse%" || "%ingle%"))
       when "2"
-        @properties = @properties.where("dwelling_class LIKE ?", 
+        @properties = @properties.includes(:address, :photos).where("dwelling_class LIKE ?", 
           ("%ownhouse%" || "%town%"))
       when "3"
-        @properties = @properties.where("dwelling_class LIKE ?", 
+        @properties = @properties.includes(:address, :photos).where("dwelling_class LIKE ?", 
           ("%partment%" || "%ondo%"))
       end
     end
 
-    if params["storeys"]
-      @properties = @properties.where("stories >= ?", params["storeys"].to_i)
+    if params["storeys"] && params["storeys"] != ''
+      @properties = @properties.includes(:address, :photos).where("stories >= ?", params["storeys"].to_i)
     end
     if params["min-floor"] && params["min-floor"] != ''
-      @properties = @properties.where("floor_area >= ?", params["min-floor"].to_i)
+      @properties = @properties.includes(:address, :photos).where("floor_area >= ?", params["min-floor"].to_i)
     end
     if params["min-lot"] && params["min-lot"] != ''
-      @properties = @properties.where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
+      @properties = @properties.includes(:address, :photos).where("(lot_length * lot_width) >= ?", params["min-lot"].to_i)
     end
     if params["city"] && params["city"] != ''
       @properties = @properties
@@ -109,17 +112,17 @@ class PropertiesController < ApplicationController
         .where("addresses.longitude BETWEEN ? AND ?", params["bound-west"].to_f, params["bound-east"].to_f)
     end
 
-    if params["sort"]
+    if params["sort"] && params["sort"] != ''
       
       case params["sort"]
       when "high"
-        @properties = @properties.order('list_price_cents DESC')
+        @properties = @properties.includes(:address, :photos).price_desc
 
       when "low"
-        @properties = @properties.order('list_price_cents ASC')
+        @properties = @properties.includes(:address, :photos).price_asc
 
       when "newer"
-        @properties = @properties.order('created_at DESC')
+        @properties = @properties.includes(:address, :photos).created_desc
       
       end
 
