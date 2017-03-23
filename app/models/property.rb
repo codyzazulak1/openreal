@@ -132,4 +132,9 @@ class Property < ActiveRecord::Base
     end
   end
 
+  scope :created_desc, -> {order("created_at DESC")}
+  scope :price_desc, -> {order("list_price_cents DESC")}
+  scope :price_asc, -> {order("list_price_cents ASC")}
+  scope :for_sale, -> {where("properties.list_price_cents > 0")}
+  scope :for_sale_and_sold, -> {where("properties.list_price_cents >= 0")}
 end
