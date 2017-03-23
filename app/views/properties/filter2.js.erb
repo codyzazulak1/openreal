@@ -7,7 +7,7 @@ $("#listings .listing-body>ul").html("<%= escape_javascript(render partial: 'pro
 initListingImg();
 
 // update listing count
-$('#listing-count').html("<%= escape_javascript("#{@properties.where("list_price_cents > ?", 0).count}")%> active listings");
+$('#listing-count').html("<%= escape_javascript("#{@properties.count}")%> active listings");
 
 // attach listener to makers
 initListings();
