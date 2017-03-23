@@ -12,7 +12,7 @@ class PropertiesController < ApplicationController
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
     @cities = Property.cities
-    @properties_paged = @properties.includes(:address, :photos).paginate(:page => params[:page], :per_page => 10)
+    @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
