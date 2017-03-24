@@ -1,5 +1,4 @@
 <% @properties_paged.each do |p| %>
-  <% if (p.contact_form.nil?)%>
   <li id="listing-<%= p.id %>" class="list-property" data-pid=<%= p.id %>>
     <% if !(p.list_price_cents == 0)%>
     <%= link_to "", property_path(p.id), remote: true %>
@@ -195,7 +194,6 @@
       </div>
     </div>
   </li>
-  <% end %>
 <%end%>
 
 <!-- pagination -->
