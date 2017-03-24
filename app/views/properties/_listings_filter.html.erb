@@ -108,8 +108,8 @@
           <select name="city">
             <option value>Any</option>
             <% unless @cities.nil? %>
-              <% @cities.each do |city| %>
-              <option value=<%= city %>><%= city %></option>
+              <% @cities.map do |city| %>
+              <option value="<%= city%>"><%= city %></option>
               <% end %>
             <% end %>
           </select>
@@ -118,7 +118,7 @@
       <div class="small-6 medium-6 columns">   
         <label>Show sold properties?</label>
         <div class="switch">
-          <input type="checkbox" id="yes-no" name="hide" class="switch-input">
+          <input type="checkbox" id="yes-no" name="show" class="switch-input">
           <label class="switch-paddle" for="yes-no">
             <span class="show-for-sr">All Properties</span>
             <span class="switch-inactive" aria-hidden="true"></span>
