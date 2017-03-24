@@ -7,8 +7,7 @@ class PropertiesController < ApplicationController
       @properties = Property.includes(:address, :photos).within(@city)
     else
       @properties = Property.includes(:address, :photos).for_sale.created_desc
-      @active = Property.includes(:address, :photos).for_sale.count
-      @sold = Property.where('list_price_cents = ?', 0).count
+      @sold = Property.except_contact_form_submission.where('list_price_cents = ?', 0).count
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
     @cities = Property.cities
@@ -59,10 +58,10 @@ class PropertiesController < ApplicationController
    
 
     if params["min-price"]
-      @properties = @properties.includes(:address, :photos).where("properties.list_price_cents >= #{params["min-price"].to_i}")
+      @properties = @properties.includes(:address, :photos).where("properties.list_price_cents >= ?", params["min-price"].to_i)
     end
-    if params["hide"]
-      @properties = Property.includes(:address, :photos).all
+    if params["show"]
+      @properties = Property.includes(:address, :photos).all.except_contact_form_submission
     end
 
     if params["max-price"] && params["max-price"] != ''

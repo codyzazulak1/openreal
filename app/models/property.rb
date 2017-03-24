@@ -137,4 +137,6 @@ class Property < ActiveRecord::Base
   scope :price_asc, -> {order("list_price_cents ASC")}
   scope :for_sale, -> {where("properties.list_price_cents > 0")}
   scope :for_sale_and_sold, -> {where("properties.list_price_cents >= 0")}
+  scope :except_contact_form_submission, -> {where('id NOT IN (SELECT DISTINCT(property_id) FROM contact_forms)')}
+
 end

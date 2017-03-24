@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
     @just_listed = Property.where('created_at >= ?', 2.days.ago)
     @featured = Property.all.sample(3)
     @new_properties = Property.just_listed(3)
-    @properties_sold = @properties_p.where('list_price_cents = ?', 0).count
+    @properties_sold = @properties_p.where('id NOT IN (SELECT DISTINCT(property_id) FROM contact_forms)').where('list_price_cents = ?', 0).count
     
 
     # Properties to be featured on front page
