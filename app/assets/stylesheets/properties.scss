@@ -76,7 +76,8 @@ body.properties.create {
 
   .gm-style-parent {
     background-color: white;
-    width: 372px!important;
+    //width: 372px!important;
+    width: initial!important;
   }
 
   .gm-style-iw + div{
@@ -85,7 +86,7 @@ body.properties.create {
 
   .infoWindowLink{
     //width: 100%;
-    width: 130%;
+    width: 130%!important;
   }
 
   @media screen and (max-width: 767px){
@@ -140,6 +141,7 @@ body.properties.create {
   .gm-style-border {
     //width: 281px!important;
     width: 300px!important;
+
 
   }
 

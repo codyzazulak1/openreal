@@ -229,6 +229,8 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    meta-tags (2.4.0)
+      actionpack (>= 3.2.0, <= 5.1.0)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -349,6 +351,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   json
+  meta-tags
   mini_magick
   money (~> 6.7)
   money-rails (~> 1.6)

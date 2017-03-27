@@ -10,6 +10,9 @@ class PropertiesController < ApplicationController
       @sold = Property.except_contact_form_submission.where('list_price_cents = ?', 0).count
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
+     #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | Listings ",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with / without real estate agent. Sell your home for cash quick. Listings"
     @cities = Property.cities
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
@@ -19,6 +22,7 @@ class PropertiesController < ApplicationController
         render json: {properties: @properties.as_json(:include => [:address, :photos]), center: @center}
       end
     end
+   
   end
 
   # def listing
