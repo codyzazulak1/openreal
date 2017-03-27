@@ -127,7 +127,7 @@ function setMarkers(property) {
   newMarker(property, newInfo(property));
 }
 
-function setContent(property,infowindow){
+function setContentMain(property,infowindow){
    var picture;
    if(property.photos[0]){
     var picture = property.photos[0].picture.large.url
@@ -141,7 +141,7 @@ function setContent(property,infowindow){
 function setContentInfoWind(property, infowindow){
   // On list property click off map
   $('.listing-body>ul>li').click(function(){
-    setContent(property, infowindow);
+    setContentMain(property, infowindow);
   });
 }
 
@@ -177,7 +177,7 @@ function newMarker(property, infowindow){
         hideSoldBadges();
         closeAllInfoWin();
         // Set infowindow content
-        setContent(property,infowindow);
+        setContentMain(property,infowindow);
 
         infowindow.open(map, marker);
         $(".gm-style-iw").parent().addClass('gm-style-parent');
@@ -260,7 +260,7 @@ function updateMarkers(properties) {
       marker.addListener('click', function() {
         closeAllInfoWin();
         hideSoldBadges();
-        setContent(property,infowindow);
+        setContentMain(property,infowindow);
         infowindow.open(map, marker);
         $(".gm-style-iw").prev("div").hide();
         $(".gm-style-iw").parent().addClass('gm-style-parent');
