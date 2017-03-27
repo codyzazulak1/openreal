@@ -19,8 +19,9 @@ class WelcomeController < ApplicationController
         @feature2_property = p
       end
     end
-          
 
+    #meta tags
+    set_meta_tags title: "Openreal – Online Platform for Selling Properties by Home Owners", description: "Canada’s first online platform for home owners to sell their property fast, worry free, with or without real estate agent. Sell your home for cash quickly"
   end
 
   def login
@@ -45,21 +46,38 @@ class WelcomeController < ApplicationController
   end
 
   def howitworks
+    #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | How",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with or without real estate agent. Sell your home for cash quickly. How"
   end
 
   def faq 
+    #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | FAQ",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with or without real estate agent. Sell your home for cash quickly. FAQ"
+
     flash[:notice] = "FAQ temporarily unavailable. Will be back soon!"
     redirect_to action: "contact"
   end
 
   def pricing
+     #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | Pricing",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with / without real estate agent. Sell your home for cash quick. Pricing"
   end
 
   def terms
+    #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | Terms",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with / without real estate agent. Sell your home for cash quick. Terms"
   end
 
   def contact
     @subscriber = Subscriber.new
+
+    #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | Contact",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with / without real estate agent. Sell your home for cash quick. Contact"
   end
 
   def mortcalc
@@ -67,6 +85,10 @@ class WelcomeController < ApplicationController
 
   def agents
     @aform = AgentForm.new
+
+    #meta tags
+    set_meta_tags title: "Online Platform for Selling Properties by Home Owners | Agents",
+      description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with / without real estate agent. Sell your home for cash quick. Agents"
   end
 
   def listings
