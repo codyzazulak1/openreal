@@ -50,10 +50,7 @@ class Dashboard::PropertiesController < ApplicationController
     
 
     if @property.update_attributes(property_params)
-      params[:photos]['picture'].each do |p|
-        @photos = @property.photos.create!(picture: p, property_id: @property.id)
-      end
-      redirect_to dashboard_properties_path(@property)
+        redirect_to dashboard_properties_path(@property)
     end
   end
 
@@ -133,5 +130,15 @@ class Dashboard::PropertiesController < ApplicationController
     params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :street, :latitude, :longitude)
   end
 
+  def photo_params
+    params.require(:property).require(:photos_attributes).permit(:picture, :property_id)
+  end
+
+  def add_more_photos(new_photos)
+    pictures = @property.photos
+    pictures += new_photos
+    @property.photos = pictures 
+    
+  end
 
 end

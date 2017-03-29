@@ -5,6 +5,22 @@
     <h1><%= @property.address_name %></h1>
     <hr>
     <%= render 'dashboard/properties/form' %>
+
+  	<p>Add more photos: </p>
+  	<!-- <%#= form_for :photo, url: dashboard_property_photos_path(@property), method: :post, remote: true do |f|%> -->
+  	<%= form_for :photo, url: dashboard_property_photos_path(@property) do |f|%>
+  		<%= f.file_field :picture, multiple: true %>
+  		<%= f.submit 'Add Photos'%>
+  	<% end %>
+
+  	<hr>
+    <p>Edit photos: </p>
+    <% @photos.each do |photo|%>
+    <section id="photo_<%= photo.id%>">
+      <%= image_tag(photo.picture.medium, style: "display: inline-block; margin-bottom: 2em;")%>
+      <%= link_to('Delete', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true)%>
+   <% end %>
+   </section>
   </div>
 </div>
 

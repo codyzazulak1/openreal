@@ -28,19 +28,21 @@ Rails.application.routes.draw do
   
   resources :properties, only: [:new, :create, :show] do
     resources :address
-    resources :photos, only: [:new, :create, :update]
+    
     member do 
       get 'listing'
     end
   end
-  resources :photos, only: [:new, :create, :show]
+  
   resources :contact_forms, only: [:create]
 
   # dashboard
   namespace :dashboard do
     resources :properties do
       patch 'status', action: :status
+      resources :photos, only: [:new, :create]
     end
+    resources :photos, only: [:destroy, :create]
     resources :contact_forms
     resources :agent_forms
     resources :subscribers
