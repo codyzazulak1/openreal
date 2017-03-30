@@ -6,15 +6,16 @@ class Dashboard::PhotosController < ApplicationController
 			params[:photo]['picture'].each do |p|
 				@photos = @property.photos.new(picture: p, property_id: @property.id)
 			end
-			if @photos.save
-				respond_to do |format|
-					format.html { redirect_to edit_dashboard_property_path(@property)}
-					format.js 
+			respond_to do |format|
+				if @photos.save
+					format.html {redirect_to edit_dashboard_property_path(@property), notice: "Picture(s) successfully added"}
+					format.js {}
+					format.json { render json: @photos, status: :created, location: @photos}
+				else 
+					format.html {render edit_dashboard_property_path(@property), notice: "Failed uploading picture(s), try again"}
+					format.json {render json: @photos.errors, status: :unprocessable_entity}
 				end
 			end
-		else 
-			flash[:error] = "Failed uploading photos"
-			redirect_to edit_dashboard_property(@property)
 		end
 	end
 
@@ -38,5 +39,3 @@ class Dashboard::PhotosController < ApplicationController
 	end
 
 end
-
-

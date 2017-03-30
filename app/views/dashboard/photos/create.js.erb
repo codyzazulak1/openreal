@@ -1,3 +1,6 @@
 $("#add_photos_form").toggle();
 $("#add_photos_form").reset();
-$("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").appendTo("#dash_photo_list")
+// $("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").appendTo("#dash_photo_list")
+// $("<%= @photos%>").appendTo("#all_photos_show")
+
+$("<%= escape_javascript(render @photos)%>").appendTo("#all_photos_show")

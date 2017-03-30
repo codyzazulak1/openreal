@@ -225,5 +225,36 @@
   }
 }
 
+#dash_photo_list {
+  display: inline;
+  position: relative;
+
+  .dashboard-img-container {
+    display: inline;
+    position: relative;
+    margin-bottom: 1.2px;
+
+    
+    .dashboard-img-del {
+      display: none;
+      position: absolute;
+      z-index: 2;
+      left: 86%;
+      margin-top: 4px;
+      background: white;
+      border: 1px solid #68c0ea;
+    }
+  }
+
+  .dashboard-img-container:hover {
+    .dashboard-img-del {
+      display: inline;
+    }
+    .dashboard-img-del:nth-last-child{}
+
+  }
+
+}
+
 
 

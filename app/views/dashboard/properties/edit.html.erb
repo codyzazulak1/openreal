@@ -9,18 +9,22 @@
 
     <div>
 	  	<button class="button round" href="#" role="button" aria-label="add more photos" id="add_photos_edit">Add more photos</button>
-	  	<%= form_for :photo, url: dashboard_property_photos_path(@property), html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, remote: true do |f|%>
+	  	<%= form_for :photo, url: dashboard_property_photos_path(@property), html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, data: {remote: true, type: "script"} do |f|%>
 	  		<%= f.file_field :picture, multiple: true%>
 	  		<%= f.submit 'Submit', class: "button small secondary"%>
 	  	<% end %>
   	</div>
-  	    <p>Photos: </p>
+  	<hr>
+    <h3>Photos </h3>
     <section id="dash_photo_list">
+    <div class="loader" style="background: transparent"><div class="spinner" style="color: #68c0ea"></div></div>
     <% @photos.each do |photo|%>
-    
-      <%= image_tag(photo.picture.large, style: "display: inline-block; margin-bottom: 2em;", id: "photo_#{photo.id}", size: "150x150")%>
-      <%= link_to('Delete', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}")%>
+    	<div class="dashboard-img-container">
+      <%= image_tag(photo.picture.square, style: "display: inline-block; margin-bottom: 2em;", id: "photo_#{photo.id}", size: "200x200")%>
+      <%= link_to('', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}", class: "fa fa-trash-o dashboard-img-del")%>
+      </div>
    <% end %>
+
    </section>
   </div>
 </div>

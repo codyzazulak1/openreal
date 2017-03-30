@@ -1,1 +1,6 @@
-$("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").hide().fadeOut(250);
+$('.loader').show();
+setTimeout(function(){
+	$("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").hide().fadeOut(250);
+	$('.loader').fadeOut();
+}, 180)
+
