@@ -5,20 +5,21 @@
     <h1><%= @property.address_name %></h1>
     <hr>
     <%= render 'dashboard/properties/form' %>
+		<hr>
 
-  	<p>Add more photos: </p>
-  	<!-- <%#= form_for :photo, url: dashboard_property_photos_path(@property), method: :post, remote: true do |f|%> -->
-  	<%= form_for :photo, url: dashboard_property_photos_path(@property) do |f|%>
-  		<%= f.file_field :picture, multiple: true %>
-  		<%= f.submit 'Add Photos'%>
-  	<% end %>
-
-  	<hr>
-    <p>Edit photos: </p>
+    <div>
+	  	<button class="button round" href="#" role="button" aria-label="add more photos" id="add_photos_edit">Add more photos</button>
+	  	<%= form_for :photo, url: dashboard_property_photos_path(@property), html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, remote: true do |f|%>
+	  		<%= f.file_field :picture, multiple: true%>
+	  		<%= f.submit 'Submit', class: "button small secondary"%>
+	  	<% end %>
+  	</div>
+  	    <p>Photos: </p>
+    <section id="dash_photo_list">
     <% @photos.each do |photo|%>
-    <section id="photo_<%= photo.id%>">
-      <%= image_tag(photo.picture.medium, style: "display: inline-block; margin-bottom: 2em;")%>
-      <%= link_to('Delete', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true)%>
+    
+      <%= image_tag(photo.picture.square, style: "display: inline-block; margin-bottom: 2em;", id: "photo_#{photo.id}")%>
+      <%= link_to('Delete', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}")%>
    <% end %>
    </section>
   </div>

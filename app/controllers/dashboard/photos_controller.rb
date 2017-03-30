@@ -4,11 +4,14 @@ class Dashboard::PhotosController < ApplicationController
 	def create
 		if (@property != nil) || photos_params.empty?
 			params[:photo]['picture'].each do |p|
-				@photos = @property.photos.create(picture: p, property_id: @property.id)
+				@photos = @property.photos.new(picture: p, property_id: @property.id)
 			end
-
-			flash[:notice] = "Uploaded photo(s) successfully"
-			redirect_to :back
+			if @photos.save
+				respond_to do |format|
+					format.html { redirect_to edit_dashboard_property_path(@property)}
+					format.js 
+				end
+			end
 		else 
 			flash[:error] = "Failed uploading photos"
 			redirect_to edit_dashboard_property(@property)
