@@ -18,7 +18,7 @@
     <section id="dash_photo_list">
     <% @photos.each do |photo|%>
     
-      <%= image_tag(photo.picture.square, style: "display: inline-block; margin-bottom: 2em;", id: "photo_#{photo.id}")%>
+      <%= image_tag(photo.picture.large, style: "display: inline-block; margin-bottom: 2em;", id: "photo_#{photo.id}", size: "150x150")%>
       <%= link_to('Delete', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}")%>
    <% end %>
    </section>
