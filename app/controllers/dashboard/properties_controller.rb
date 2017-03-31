@@ -86,6 +86,7 @@ class Dashboard::PropertiesController < ApplicationController
       params[:photos]['picture'].each do |p|
         @photos = @property.photos.create!(picture: p, property_id: @property.id)
       end
+
       flash[:success] = "Property has been added!"
       redirect_to dashboard_properties_path
     else
@@ -110,7 +111,7 @@ class Dashboard::PropertiesController < ApplicationController
       :number_of_floors, :stories, :bedrooms,
       :bathrooms,:lot_length,:lot_width, :pid,
       :seller_info, :sellers_interest, :architecture_style,
-      :matterurl,
+      :matterurl, :featured_photo,
       photos_attributes: [
         :picture, :property_id
       ],
@@ -132,13 +133,6 @@ class Dashboard::PropertiesController < ApplicationController
 
   def photo_params
     params.require(:property).require(:photos_attributes).permit(:picture, :property_id)
-  end
-
-  def add_more_photos(new_photos)
-    pictures = @property.photos
-    pictures += new_photos
-    @property.photos = pictures 
-    
   end
 
 end
