@@ -2,9 +2,9 @@ class Dashboard::PhotosController < ApplicationController
 	 before_action :set_property, only: [:create]
 
 	def create
-		# if (@property != nil) || photos_params.empty?
+		if (@property != nil)
 			params[:photo]['picture'].each do |p|
-				@photos = @property.photos.new(picture: p, property_id: @property.id)
+				@photos = @property.photos.create!(picture: p, property_id: @property.id)
 			end
 			respond_to do |format|
 				if @photos.save
@@ -16,7 +16,7 @@ class Dashboard::PhotosController < ApplicationController
 					format.json {render json: @photos.errors, status: :unprocessable_entity}
 				end
 			end
-		# end
+		end
 	end
 
 	def destroy
