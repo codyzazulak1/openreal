@@ -15,19 +15,12 @@
 	  	<% end %>
   	</div>
   	<hr>
-    <h3>Photos </h3>
-    <section id="dash_photo_list">
-    <div class="loader" style="background: transparent"><div class="spinner" style="color: #68c0ea"></div></div>
-    <% @photos.each do |photo|%>
-    	<div class="dashboard-img-container">
-      <%= image_tag(photo.picture.square, style: "display: inline-block; margin-bottom: 2em;", id: "photo_#{photo.id}", size: "200x200")%>
-      <%= link_to('', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}", class: "fa fa-trash-o dashboard-img-del")%>
-
-      <%#= link_to('', dashboard_property_featured_photo_path(@property), class: "fa fa-star", remote: true)%>
-      </div>
-   <% end %>
-
-   </section>
+  	<div id="photo-edit-container">
+  		<div class="loader" style="background: transparent"><div class="spinner" style="color: #68c0ea"></div></div>
+	  	<div id="edit_photos_section" class="row">
+	  		<%= render 'dashboard/properties/edit_photos'%>
+	  	</div>
+	  </div>	
   </div>
 </div>
 

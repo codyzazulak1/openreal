@@ -229,6 +229,21 @@
   display: inline;
   position: relative;
 
+  h3 {
+   text-align: left;
+  }
+
+  .current-feat-photo {
+    position: absolute;
+    z-index: 20;
+    left: 175px;
+    top: -39px;
+    color: white;
+    background: #3adb76;
+    padding: 3PX;
+    cursor: default;
+  }
+
   .dashboard-img-container {
     display: inline;
     position: relative;
@@ -239,18 +254,33 @@
       display: none;
       position: absolute;
       z-index: 2;
-      left: 86%;
+      left: 3px;
       margin-top: 4px;
       background: white;
-      border: 1px solid #68c0ea;
+      color: red;
+      border: 1px solid red;
     }
-  }
 
+    .dashboard-feat-photo { 
+      position: absolute;
+      display: none;
+      z-index: 2;
+      left: 85%;
+      color: white;
+      padding: 4px;
+      background: #3adb76;
+      border: 1px solid #3adb76;
+    }
+
+  }
+  
   .dashboard-img-container:hover {
     .dashboard-img-del {
       display: inline;
     }
-    .dashboard-img-del:nth-last-child{}
+    .dashboard-feat-photo {
+      display: inline;
+    }
 
   }
 
