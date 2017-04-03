@@ -1,0 +1,28 @@
+
+  <section id="dash_photo_list">
+  <h3>Photos: </h3>
+  <% if !(@property.featured_photo.blank? || @property.featured_photo.nil?)%>
+  <!-- <div > -->
+    <!-- <h3>Current featured photo: </h3>  -->
+    <%= image_tag(@property.featured_photo, style: "display: inline-block; border: 5px solid #3adb76; width: 200px; height: 140px; margin-bottom: 2em;", class: "feat_photo_tag")%>
+    <a href="" class="fa fa-star current-feat-photo"></a>
+
+  <!-- </div> -->
+  <% end %>
+
+  <% @photos.each do |photo|%>
+    <% if photo.picture.large.url != @property.featured_photo%>
+      <div class="dashboard-img-container">
+      <%= image_tag(photo.picture.large, style: "display: inline-block; margin-bottom: 2em; width: 200px; height: 140px;", id: "photo_#{photo.id}")%>
+      <%= link_to('', dashboard_photo_path(id: photo.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}", class: "fa fa-trash-o dashboard-img-del")%>
+
+      <%= link_to('', dashboard_property_featured_photo_path(@property.id, featured_photo: photo.picture.large.url), method: :patch, class: "fa fa-star dashboard-feat-photo", remote: true)%>
+      </div>
+    <% else %>
+      <div class="dashboard-img-container">
+        <%= image_tag(photo.picture.large, style: "display: inline-block; margin-bottom: 2em; width: 200px; height: 140px;", id: "photo_#{photo.id}")%>
+       <%= link_to('', dashboard_photo_path(id: photo.id, property_id: @property.id), method: :delete, data: {confirm: "Are you sure?"}, remote: true, id: "del_#{photo.id}", class: "fa fa-trash-o dashboard-img-del")%>
+      </div>
+    <% end %>
+  <% end %>
+  </section>

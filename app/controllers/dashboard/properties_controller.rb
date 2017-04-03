@@ -65,13 +65,14 @@ class Dashboard::PropertiesController < ApplicationController
     end
   end
 
+
   def new
     @property = Property.new
     @address = Address.new(property: @property)
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
 
-    @photos = @property.photos.build
+    @photos = @property.photos.new
   end
 
   def create
@@ -99,6 +100,23 @@ class Dashboard::PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @property.destroy
     redirect_to dashboard_properties_path
+  end
+
+  def featured_photo
+    @property = Property.find(params[:property_id])
+    @photos = @property.photos
+    if @property && (@property.featured_photo.blank? || @property.featured_photo.nil?)
+      @property.update(featured_photo: params[:featured_photo])
+
+    else
+      @property.featured_photo = nil
+      @property.update(featured_photo: params[:featured_photo])
+    end
+
+    respond_to do |format|
+      format.html {redirect_to edit_dashboard_property_path(@property)}
+      format.js
+    end
   end
 
   private
