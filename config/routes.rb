@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :properties do
       patch 'status', action: :status
-      # patch 'featured_photo', action: :featured_photo
+      patch 'featured_photo', action: :featured_photo
       resources :photos, only: [:new, :create]
     end
     resources :photos, only: [:destroy, :create]
