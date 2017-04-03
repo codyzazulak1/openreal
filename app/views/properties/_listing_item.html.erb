@@ -3,8 +3,12 @@
     <% if !(p.list_price_cents == 0)%>
     <%= link_to "", property_path(p.id), remote: true %>
     <% end %>
-    <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
 
+    <% if p.featured_photo.blank? || p.featured_photo.nil? %>
+    <div class="listing-img" data-bg=<%= p.photos.first.picture if p.has_photos? %>>
+    <% else %>
+    <div class="listing-img" data-bg=<%= p.featured_photo if p.has_photos? %>>
+    <% end %>
       <% if p.list_price_cents > 0%>
       <div class="listing-badge">
         <span>For Sale</span>

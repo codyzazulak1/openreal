@@ -3,7 +3,11 @@
           <div class="listing-item">
           <%= link_to "", property_path(p2.id), class: "listing-link" %>
           <%# @properties_p.second.photos.each do |p|%>
+          <% if p2.featured_photo.blank? || p2.featured_photo.nil?%>
             <div class="listing-img" data-bg=<%= p2.photos.first.picture_url %>>
+          <% else %>
+            <div class="listing-img" data-bg=<%= p2.featured_photo %>>
+          <% end %>
           <%# end %>
               <div class="listing-badge">
               <%if p2.list_price_cents != 0%>

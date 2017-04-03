@@ -130,7 +130,12 @@ function setMarkers(property) {
 function setContentMain(property,infowindow){
    var picture;
    if(property.photos[0]){
-    var picture = property.photos[0].picture.large.url
+    if (property.featured_photo){
+      var picture = property.featured_photo
+    }
+    else{
+      var picture = property.photos[0].picture.large.url
+    }
    }
 
    var propPic = '<div class="row infoWindowLink"><div class="column small-4" style="width: 150px;margin: 0;padding: 0; margin-bottom: 3px;"> <img src="' + picture + '"></div>' + '<div class="column small-6 end"><h4>$'+ (property.list_price_cents/100).toLocaleString() +'</h4><hr style="margin: 0;margin-bottom: 9px;"/><p style="margin: 0;">'   + property.address.address_first + '</p><span>'+ property.bedrooms + ' Bed</span> &middot;<span>'+ property.bathrooms + ' Bath</span>&middot;<span>' + property.floor_area +'</sup> sqft</span></div></div>'
