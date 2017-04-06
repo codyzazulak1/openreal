@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def logged_in?
-    admin_signed_in? #|| customer_signed_in? || agent_signed_in?
+    admin_signed_in? || agent_signed_in? #|| customer_signed_in? 
   end
 
   def current_user
@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
       return current_admin
 #    elsif customer_signed_in?
 #      return current_customer
-#    elsif agent_signed_in?
-#      return current_agent
+   elsif agent_signed_in?
+     return current_agent
     end
     return nil
   end

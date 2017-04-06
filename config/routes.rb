@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  #devise_for :agents, :controllers => {
-  #                        registrations: 'registrations',
-  #                        sessions: 'users/sessions'
-  #                        }
+  devise_for :agents, :controllers => {
+                         registrations: 'registrations',
+                         sessions: 'users/sessions'
+                         }
   #devise_for :customers, :controllers => {
   #                        registrations: 'registrations',
   #                        sessions: 'users/sessions'
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   resources :subscribers, only: [:new, :create]
 
-  resources :agent_forms, only: [:new, :create]
+  # resources :agent_forms, only: [:new, :create]
 
   get 'dashboard', action: :index, controller: 'dashboard'
 

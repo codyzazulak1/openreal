@@ -157,8 +157,23 @@
 					<h6>We're on a mission to simplify real estate. </h6>
 				</div>
 				<div>
-					<%= render 'agent_form', aform: @aform %>
+					<%#= render 'agent_form', aform: @aform %>
 				</div>
+				<hr>
+				<p>Agent creation</p>
+				<%= form_for('agent', url: new_agent_registration_path) do |f|%>
+				<div class="field">
+			    <%= f.label :first_name %><br />
+			    <%= f.email_field :first_name, autofocus: true %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :last_name %><br />
+			    <%= f.email_field :last_name, autofocus: true %>
+			  </div>
+
+			  <%= f.submit 'Next'%>
+			  <% end %>
+				<hr>
 
 				<div id="success">
 					<%= image_tag 'success.svg'%>
