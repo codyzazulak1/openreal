@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       get 'listing'
     end
   end
-  
+
   resources :contact_forms, only: [:create]
 
   # dashboard
