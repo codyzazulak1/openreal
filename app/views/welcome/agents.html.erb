@@ -33,7 +33,7 @@
 						Depending on your client's choice, we can close on whatever timeline works best for them. From 3 to 60 days out.
 					</p>
 					<p>
-						Signing up as a partnered agent takes 20 seconds. We're accepting agents and properties for our listed locations below.
+						Signing up as a partnered agent takes 20 seconds.
 					</p>
 				</div>
 			</div>
@@ -151,36 +151,44 @@
 
 	<section class="form-start" id="form-signup">
 		<div class="row">
-			<div class="form-content small-12 small-centered medium-6 medium-centered columns">
+			<div class="form-content small-12 medium-5 columns">
 				<div>
-					<h3>Partner with OpenReal</h3>
+					<h3>List
+					<span>Instantly</span>
+					on OpenReal
+					</h3>
 					<h6>We're on a mission to simplify real estate. </h6>
 				</div>
-				<div>
-					<%#= render 'agent_form', aform: @aform %>
-				</div>
-				<hr>
-				<p>Agent creation</p>
-				<%= form_for('agent', url: new_agent_registration_path) do |f|%>
-				<div class="field">
-			    <%= f.label :first_name %><br />
-			    <%= f.email_field :first_name, autofocus: true %>
-			  </div>
-			  <div class="field">
-			    <%= f.label :last_name %><br />
-			    <%= f.email_field :last_name, autofocus: true %>
-			  </div>
 
-			  <%= f.submit 'Next'%>
+				<%= form_for('agent', url: agents_setup_path, method: :post) do |f|%>
+				<div class="columns small-12 medium-12 ">
+					<div class="name_fields">
+						<label> Name </label>
+						<div class="field first_name">
+					    <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name' %>
+					  </div>
+					  <div class="field last_name">
+					    <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name' %>
+					  </div>
+					 </div>
+
+				  <div class="field company_name">
+				  	<%= f.label :company_name, 'Current Company' %>
+	      		<%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag"}%>
+				  </div>
+				  <div class="actions"> 
+				  	<%= f.submit 'Sign-up Free', class: 'offer-link'%>
+				  </div>
+			 	</div>
 			  <% end %>
-				<hr>
-
-				<div id="success">
-					<%= image_tag 'success.svg'%>
+				<!-- <div id="success">
+					<%#= image_tag 'success.svg'%>
 					<h2>Success!</h2>
       		<p>Great! You'll hear from us soon.</p>
-				</div>
-
+				</div> -->
+			</div>
+			<div class="small-12 medium-6 columns end">
+				 <p><%= image_tag ("PreviewImagePage3")%></p>
 			</div>
 		</div>
 	</section>

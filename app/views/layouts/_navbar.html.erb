@@ -51,7 +51,12 @@
           <li class="show-for-medium">
             <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
           </li>
+          <% elsif agent_signed_in?%>
+          <li class="show-for-medium">
+            <%= link_to('Logout', destroy_agent_session_path, :method => :delete) %>   
+          </li>
           <%end%>
+
           
           <li class="show-for-small-only"><!--
             --><a href="">More</a>

@@ -284,8 +284,101 @@
     }
 
   }
+}
+/****************
+ *              *
+ * Agents  page *
+ *              *
+ ****************/
 
+#agent-sign-in-container {
+    border: 4.5px solid #68c0ea;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 27px;
+    margin-top: 7.5em;
+    margin-bottom: 1.5em;
+    padding: 1em 1em;
+    font-family: museo-sans, Times;
+
+    #agent-intro-header{
+      text-align: left;
+
+      .agent-welcome-text {
+        margin-top: 2em;
+        p {
+          margin-bottom: 0;
+          font-size: 20px;
+        }
+        p:nth-child(2) {
+          color: $primary-color;
+          font-size: 25px;
+          padding-right: 1em;
+          line-height: 1.2;
+        }
+      }
+
+      .agent-welcome-photo {
+        img {
+          border-radius: 100%;
+          margin-left: 20%;
+        }
+      }
+    }
+
+    #agent-sign-up-form {
+      text-align: left;
+      margin-top: -4em;
+
+      .agent-password-form {
+
+        label {
+          font-size: 0.975rem;
+          display: inline-block;
+        }
+      }
+    }
+
+    #agent-perks {
+      ul {
+        text-align: left;
+        list-style: none;
+        margin: -1px;
+        font-size: 14px; 
+        li:before {
+          content: "\2713\0020";
+          color: #3adb76;
+          font-weight: bolder;
+        }
+      }
+    }
 }
 
+@media screen and (max-width: 425px){
+  #agent-intro-header {
+    text-align: center!important;
+    margin-top: 0!important;
+    .agent-welcome-text {  
+      p {
+        margin-bottom: 0.5em!important;
+      }
+      p:nth-child(2){
+        padding-right: 0!important;
+      }
+    }
 
-
+    .agent-welcome-photo {
+      img {
+        margin-left: 0!important;
+      }
+    }
+  }
+  #agent-sign-up-form {
+    margin-top: 1.5em!important;
+    .agent-password-form{
+      text-align: center!important;
+      label {
+        display: block!important;
+      }
+    }
+  }
+}
