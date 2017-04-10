@@ -184,6 +184,9 @@ class PropertiesController < ApplicationController
       @similar_properties = Property.similar_listings(@property, 3)
       @inquiry = ContactForm.new
       
+      set_meta_tags title: "#{@property.address.address_first}, #{@property.address.city}, BC",
+      description: "#{@property.description}"
+
       if !(@property.list_price_cents == 0)
         if (@property.dwelling_class.downcase.include? "house") || (@property.dwelling_class.include? "single")
           @dwelling_type = "House"
