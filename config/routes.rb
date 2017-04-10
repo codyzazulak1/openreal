@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
+
+  devise_scope :agent do
+    post 'agents/setup', action: :agent_setup, controller: 'registrations'
+  end
+  
   
   resources :properties, only: [:new, :create, :show] do
     resources :address
