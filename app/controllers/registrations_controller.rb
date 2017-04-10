@@ -1,12 +1,33 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def agent_setup 
+    if resource_class == Agent
+      # @agent = Agent.new(sign_up_params)
+      session[:agent] = {
+        first_name: params[:first_name],
+        last_name: params[:last_name],
+        company_name: params[:company_name]
+      }
+      redirect_to new_agent_registration_path(sign_up_params)
+    end
+  end
+
+  def new
+    @agent = Agent.new(first_name: params[:first_name], last_name: params[:last_name], company_name: params[:company_name])
+    
+    # No access to create a new admin
+    if resource_class == Admin
+      redirect_to new_admin_session_path
+    end
+  end
+
   private
 
     def sign_up_params
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name)
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
@@ -16,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name)
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
