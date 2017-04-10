@@ -13,7 +13,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @agent = Agent.new(first_name: params[:first_name], last_name: params[:last_name], company_name: params[:company_name])
+    # @agent = Agent.new(first_name: params[:first_name], last_name: params[:last_name], company_name: params[:company_name])
     
     # No access to create a new admin
     if resource_class == Admin
