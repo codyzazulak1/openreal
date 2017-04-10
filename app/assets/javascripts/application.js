@@ -168,6 +168,8 @@ function soldProps(){
 
 function propertyDetail(){
   var overviewPid = $('#details-btn').data('idd');
+  // var overviewAddr = $('#details-btn').data('addr').replace(/\s/g,'-');
+  
   $('#details-btn').attr("href", "/properties/" + overviewPid);
 }
 // initialize listings

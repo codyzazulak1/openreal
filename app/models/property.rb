@@ -28,7 +28,7 @@ class Property < ActiveRecord::Base
   monetize :list_price_cents, as: :list_price
 
   # def to_param
-  #   "#{id}-#{title.parameterize}"  
+  #   "#{id}-#{address}"
   # end
 
   def self.just_listed(num = 3)

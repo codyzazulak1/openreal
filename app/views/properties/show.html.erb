@@ -269,7 +269,11 @@
         <div class="small-12 medium-6 large-4 columns <%= index == @similar_properties.size - 1 ? 'end' : '' %>">
           <div class="listing-item">
             <%= link_to "", property_path(p.id), class: "listing-link" %>
-            <div class="listing-img" data-bg=<%=p.photos.first.picture if p.has_photos? %>>
+            <% if p.featured_photo.blank? || p.featured_photo.nil?%>
+              <div class="listing-img" data-bg=<%= p.photos.first.picture_url if p.has_photos? %>>
+            <% else %>
+              <div class="listing-img" data-bg=<%= p.featured_photo if p.has_photos? %>>
+            <% end %>
               <% if p.is_new? %>
               <div class="listing-badge">
                 <span>Just Listed</span>
