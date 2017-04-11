@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   devise_scope :agent do
     post 'agents/setup', action: :agent_setup, controller: 'registrations'
+    get '/preupload' => "registrations#preupload"
   end
   
   

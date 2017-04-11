@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
         last_name: @agent.last_name,
         company_name: @agent.company_name
       }
+      #code to retrieve email and photo if Sutton agent
 
       redirect_to new_agent_registration_path
     end
@@ -16,11 +17,22 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     @agent = Agent.new(session[:agent_params])
     session.delete(:agent_params)
-    
+
     # No access to create a new admin
     if resource_class == Admin
       redirect_to new_admin_session_path
     end
+  end
+
+  def preupload
+    puts "current user #{current_user}"
+    #code for retrieving properties on path for agents
+  end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+    preupload_path
   end
 
   private
