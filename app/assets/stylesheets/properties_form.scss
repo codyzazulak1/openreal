@@ -4,8 +4,12 @@
 .sell-title {
 	text-align: center;
 
+	h2 {
+		font-weight: 400;
+	}
+
 	hr {
-		width: 25rem;
+		width: 17rem;
 	}
 }
 
@@ -95,6 +99,18 @@ div.confirmed-columns{
 	div.row-2 {
 		.button {
 			width: 11.5em;
+		}
+	}
+}
+
+@media screen and (max-width: 639px){
+	.sell-title {
+		p {
+			font-size: 16px;
+		}
+
+		h2 {
+			font-weight: 500px;
 		}
 	}
 }
