@@ -40,3 +40,17 @@
     font-weight: 700;
 	}
 }
+
+.agent_login {
+	min-height: calc(100vh - 325px)!important;
+
+	.extra-step {
+	  text-align: center;
+    padding-top: 2em;
+    font-size: 13px;
+
+    p {
+    	display: inline-block;
+    }
+	}
+}
