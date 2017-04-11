@@ -125,14 +125,15 @@ function accordionScroll(id){
 }
 
 $('#howitwork-part').click(function(){
+  // compensating on floating navbar height on the scrolltop
   $('html, body').animate({
-    scrollTop: $('#hit').offset().top
+    scrollTop: $('#hit').offset().top-70
   }, 600)
 });
 
 $('#pricing').click(function(){
   $('html, body').animate({
-    scrollTop: $('#pricing2').offset().top
+    scrollTop: $('#pricing2').offset().top-50
   }, 600)
 });
   
