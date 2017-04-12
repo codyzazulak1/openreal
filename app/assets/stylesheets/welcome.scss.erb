@@ -134,7 +134,8 @@
   .intro {
     width: 100%;
     position: absolute;
-    top: 58%;
+   // top: 58%;
+    top: 40%;
     transform: translateY(-50%); 
     padding-left: 5em;
 
@@ -178,27 +179,23 @@
     font-size: 3rem;
     line-height: 1.5em;
     font-weight: 500;
-    text-align: left; 
+    text-align: center; 
 
     a.allhomes {
       color: white;
       display: inline-block;
-      border-bottom: 4px solid white;
-      height: 50px;
+      border-bottom: 4px solid $primary-color;
+      height: 54px;
 
     }
 
     a.somehomes {
       color: white;
       display: inline-block;
-      border-bottom: 4px solid white;
-      height: 58px;
+      border-bottom: 4px solid $primary-color;
+      height: 63px;
     }
 
-    a:hover {
-      //text-decoration: none;
-      border-bottom: 3px solid $primary-color;
-    }
   }
 
   @media screen and (max-width: 1024px){
@@ -231,7 +228,7 @@
     }
   }
   h1:nth-child(2){
-    margin-bottom: 2.2em;
+   // margin-bottom: 2.2em;
 
   }
 
@@ -250,6 +247,14 @@
       padding: 0.5em 0.5em;
       padding-top: 1em;
       margin-right: 0em;
+
+      .title {
+        color: white;
+
+        h2 {
+          font-weight: 500;
+        }
+      }
 
       .offer-addressInput {
          height: 44px;
@@ -270,10 +275,11 @@
     }
 
     p{
-      text-align: left;
+      text-align: center;
       font-size: 21px;
     }
-    p:first-child {
+
+    #first-child-title-p {
       color: #68c0ea;
       line-height: 1px;
       font-weight: 700;
@@ -373,7 +379,7 @@
   #hero h1:nth-child(2) {
    // margin-bottom: 1.5em;
     //margin-bottom: 5.5em;
-    margin-bottom: 2.5em;
+    //margin-bottom: 2.5em;
     //font-size: 37px;
     font-size: 41px;
   }
@@ -611,6 +617,7 @@
     color: $primary-color;
     font-weight: 400;
     margin-bottom: -9px;
+
   }
   .sub-title-list{
     font-weight: 100;

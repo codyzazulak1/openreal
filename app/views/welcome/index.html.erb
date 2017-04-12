@@ -3,24 +3,29 @@
 <section class="" id="hero">
   <div class="hero-bg"></div>
   <div class="intro">
-    <div class="row expanded">
-      <div class="small-12 medium-8 columns">
-        <h1>
-          We sell <a class="allhomes" href="/listings">all homes</a>,
-        </h1>
-        <h1>&amp; buy <a class="somehomes" href="<%= new_property_path%>">some homes</a>.</h1>
-      
-        <!--Search Bar-->
-
-      </div>
-    </div>
     <div class="row expanded second-row-margin">
-      <div class="search-bar small-12 medium-12 large-8 columns">
+      <div class="search-bar small-12 medium-8 medium-centered large-8 columns">
       
         <!-- Search field -->
         <%= form_tag (properties_sell_path), id: "addressForm" do %>
           <div class="input-div">
-            <p>Sell your home to OpenReal.</p>
+            <div class="title">
+              <h1>
+                <a class="allhomes" href="/listings">Sell Your Home</a>
+                to us,
+              </h1>
+              <h1>
+                or browse
+                <a class="somehomes" href="/properties/new">Our Listings.</a>
+              </h1>
+              <br />
+            </div>
+            <!-- <h1>
+            We sell <a class="allhomes" href="/listings">all homes</a>,
+            </h1>
+            <h1>&amp; buy <a class="somehomes" href="<%= new_property_path%>">some homes</a>.</h1> -->
+
+            <p id="first-child-title-p">Sell your home to OpenReal.</p>
             <p>Eliminate the hassle of showings, uncertainty, and months of negotiations.</p>
             <button class="offer-addressInput"> Get Your Free Offer</button>
             <input type="text" id="addressInput" placeholder="Enter your home address" name="addressInput">
