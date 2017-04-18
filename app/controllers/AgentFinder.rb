@@ -1,10 +1,10 @@
 module AgentFinder
 
-  def self.searchByName(name, company)
+  def self.searchByName(firstname, lastname, company)
 
     mech = Mechanize.new
 
-    mech.get(self.urlbuilder(name, company)) { |page|
+    mech.get(self.urlbuilder(firstname, lastname, company)) { |page|
 
       res = page.search('article.agent').first
 
@@ -22,13 +22,13 @@ module AgentFinder
 
   end
 
-  def self.urlbuilder(name, company)
+  def self.urlbuilder(first_name, last_name, company)
 
     url = ''
 
     case company
       when "Sutton"
-        url = "https://www.sutton.com/agents/?search_agent=#{name}"
+        url = "https://www.sutton.com/agents/?search_agent=#{first_name}+#{last_name}"
     end
 
     return url

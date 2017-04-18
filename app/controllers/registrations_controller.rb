@@ -10,6 +10,9 @@ class RegistrationsController < Devise::RegistrationsController
         last_name: @agent.last_name,
         company_name: @agent.company_name
       }
+
+      session[:temp_agent_info] = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name])
+      puts "########################### #{session[:temp_agent_info]} "
       #code to retrieve email and photo if Sutton agent
 
       redirect_to new_agent_registration_path
@@ -27,16 +30,17 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def dashboard
-    agent = Agent.find(current_agent)
-    @info = AgentFinder.searchByName(agent.full_name, agent.company_name)
-
     render 'agents/dashboard'
   end
 
   protected
 
   def after_sign_up_path_for(resource)
-    agents_dashboard_path
+
+    session[:temp_agent_info] = nil
+    puts " FFFFFFFFFFFFFFFFFFFFFFFF #{session[:temp_agent_info]} "
+
+    return agents_dashboard_path
   end
 
   private

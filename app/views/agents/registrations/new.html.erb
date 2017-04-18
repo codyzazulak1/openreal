@@ -7,7 +7,11 @@
         <p>Confirm your photo &amp; create a password!</p>
       </div>
       <div class="columns medium-6 small-12 end agent-welcome-photo">
-        <img src="https://dummyimage.com/150x150/4a474a/ffffff.png">
+        <% if session[:temp_agent_info] %>
+          <img src=<%= session[:temp_agent_info]["portrait"] %> class="agent-thumb-change-later"/>
+        <% else %>
+          <img src="https://dummyimage.com/150x150/4a474a/ffffff.png">
+        <% end %>
       </div>
     </section>
 
@@ -19,7 +23,11 @@
 
           <div class="field">
             <%= f.label :email %><br />
-            <%= f.email_field :email %>
+            <% if session[:temp_agent_info] %>
+              <%= f.email_field :email, value: session[:temp_agent_info]["email"] %>
+            <% else %>
+              <%= f.email_field :email %>
+            <% end %>
           </div>
 
           <div class="field">
