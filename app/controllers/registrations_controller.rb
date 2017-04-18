@@ -1,6 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  def agent_setup 
+  require 'AgentFinder'
+
+  def agent_setup
     if resource_class == Agent
       @agent = Agent.new(sign_up_params)
       session[:agent_params] = {
@@ -16,7 +18,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @agent = Agent.new(session[:agent_params])
-    session.delete(:agent_params)
+    # session.delete(:agent_params)
 
     # No access to create a new admin
     if resource_class == Admin
@@ -24,15 +26,17 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def preupload
-    puts "current user #{current_user}"
-    #code for retrieving properties on path for agents
+  def dashboard
+    agent = Agent.find(current_agent)
+    @info = AgentFinder.searchByName(agent.full_name, agent.company_name)
+
+    render 'agents/dashboard'
   end
 
   protected
 
   def after_sign_up_path_for(resource)
-    preupload_path
+    agents_dashboard_path
   end
 
   private
