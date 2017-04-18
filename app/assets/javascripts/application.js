@@ -18,6 +18,7 @@
 //= require jquery.form-validator.min
 //= require dropzone
 
+
 $(function(){ $(document).foundation(); });
 var autocomplete;
 var formFilled = false;
