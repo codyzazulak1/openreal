@@ -9,19 +9,22 @@
         <!-- Search field -->
         <%= form_tag (properties_sell_path), id: "addressForm" do %>
           <div class="input-div">
-            <div class="title">
+            <div class="title show-for-small-only">
+              <h1>Sell your home instantly</h1>
+            </div>
+            <div class="title hide-for-small-only">
               <h1>
-                <a class="allhomes" href="/listings">Sell Your Home</a>
+                <a class="allhomes" href="/properties/new">Sell Your Home</a>
                 to us,
               </h1>
               <h1>
                 or browse
-                <a class="somehomes" href="/properties/new">Our Listings</a>.
+                <a class="somehomes" href="/listings">Our Listings</a>.
               </h1>
               <br />
             </div>
 
-            <p id="first-child-title-p">Sell your home to OpenReal.</p>
+            <p id="first-child-title-p" class="hide-for-small-only">Sell your home to OpenReal.</p>
             <p>Eliminate the hassle of showings, uncertainty, and months of negotiations.</p>
             <button class="offer-addressInput"> Get Your Free Offer</button>
             <input type="text" id="addressInput" class="addressInput" placeholder="Enter your home address" name="addressInput">
@@ -44,7 +47,8 @@
 <section class="row" id="sold-banner">
   <div class="column small-12 medium-4 medium-offset-0 large-3 large-offset-1 sold-bnr-digits">
     <h1><%= @properties_active %></h1>
-    <p><a href="/listings">active listings</a></p>
+    <p><a href="/listings" class="hide-for-small-only">active listings</a></p>
+    <p class="show-for-small-only">active listings</p>
     <p class="show-for-small-only line-two-mobile"><a href="/howitworks">Learn more about selling!</a></p>
   </div>
   <div class="column show-for-medium medium-8 large-6 large-offset-1 bnr-line-two end">

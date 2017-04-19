@@ -389,6 +389,30 @@
   }
 }
 
+@media (max-width: 425px){
+  .hero-bg {
+    background: linear-gradient(rgba(0, 0, 0, 0.135), rgba(0, 0, 0, 0.135)), url(<%= asset_path 'StockHouse_768' %>)!important;
+    background-position-x: -163px !important;
+  }
+  #hero {
+    height: 321px !important;
+  }
+  #hero h1:nth-child(n+1) {
+    font-size: 1.5em !important;
+  }
+  #hero .search-bar .input-div {
+    margin-top: 40px!important;
+
+    .title{
+      margin-bottom: -5px!important;
+    }
+  }
+  #hero .search-bar #first-child-title-p {
+    margin-top: 51px;
+  }
+
+}
+
 
 
 // homepage banner end
@@ -512,6 +536,7 @@
   #hero h1:nth-child(n+1){
     text-align: center;
     font-size: 34px;
+    color: #68c0ea;
   }
   #hero h1:nth-child(n+2){
     text-align: center;
@@ -591,6 +616,12 @@
       }
     }
   }
+
+  @media screen and (max-width: 425px){
+    #sold-banner .sold-bnr-digits h1 {
+      margin-bottom: -10px;
+    }
+  }  
 
   .bnr-line-two {
 
@@ -1087,7 +1118,7 @@
     font-size: 32px!important; 
   } 
   #hero h1:nth-child(n+1) {
-    font-size: 32px!important; 
+     font-size: 1.4em !important;
   }
 }
 
