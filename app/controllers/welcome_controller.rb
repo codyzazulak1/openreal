@@ -22,7 +22,7 @@ class WelcomeController < ApplicationController
     end
 
     #meta tags
-    set_meta_tags title: "Openreal – Online Platform for Selling Properties by Home Owners", description: "Canada’s first online platform for home owners to sell their property fast, worry free, with or without real estate agent. Sell your home for cash quickly"
+    set_meta_tags title: "OpenReal.ca – Online Platform for Selling Properties by Home Owners", description: "Canada’s first online platform for home owners to sell their property fast, worry free, with or without real estate agent. Sell your home for cash quickly"
   end
 
   def login

@@ -211,14 +211,24 @@
 
   }
 
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 933){
     a.allhomes{
       height: 48px!important;
     }
     a.somehomes{
-      height: 48px!important;
+      height: 43px!important;
     }
   }
+
+  @media screen and (max-width: 1024px) {
+     #hero a.somehomes {
+       height: 48px !important;
+    }
+    #hero a.allhomes {
+      height: 48px !important;
+    }
+  }
+
 
   @media screen and (max-width: 425px){
     a.allhomes{
@@ -371,6 +381,7 @@
   }
   #hero h1:nth-child(1) {
     font-size: 39px!important;
+    //color: $primary-color;
   }
 
   .hero-bg {
@@ -385,20 +396,40 @@
     margin-bottom: -29px!important;
   }
   #hero .arrow {
-    bottom: 31px!important;
+    //bottom: 31px!important;
+    bottom: 41px!important;
+  }
+  #hero h1 a.allhomes {
+    height: 50px;
+  }
+  #hero h1 a.somehomes{
+    height: 42px;
+  }
+}
+
+@media (max-width: 639px){
+  #hero .search-bar .input-div .title{
+    margin-bottom: 0px!important;
+  }
+  #hero h1:nth-child(1) {
+    color: $primary-color;
   }
 }
 
 @media (max-width: 425px){
   .hero-bg {
-    background: linear-gradient(rgba(0, 0, 0, 0.135), rgba(0, 0, 0, 0.135)), url(<%= asset_path 'StockHouse_768' %>)!important;
-    background-position-x: -163px !important;
+    //background-position-x: -163px !important;
+    background-position-x: -374px !important;
+    background-size: cover!important;
   }
   #hero {
-    height: 321px !important;
+    //height: 321px !important;
+    height: 480px !important;
   }
   #hero h1:nth-child(n+1) {
-    font-size: 1.5em !important;
+    //font-size: 1.5em !important;
+    font-size: 36px!important;
+    line-height: 1.2!important;
   }
   #hero .search-bar .input-div {
     margin-top: 40px!important;
@@ -411,6 +442,12 @@
     margin-top: 51px;
   }
 
+}
+
+@media (max-width: 639px){
+ nav#navbar .top-bar .menu-text {
+    border: none!important;
+  }
 }
 
 
@@ -426,6 +463,33 @@
 }
 @media screen and (max-width: 517px){
   .offer-addressInput {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 710px){
+  nav#navbar .top-bar .addressinputtwo input {
+    margin-right: -1.5rem !important;
+  }
+  #hero h1:nth-child(1) {
+    font-size: 32px !important;
+  }
+  #hero h1:nth-child(2) {
+    font-size: 32px !important;
+  }
+  #hero h1 a.allhomes {
+    height: 47px;
+  } 
+  #hero h1 a.somehomes {
+    height: 36px;
+  }
+  #hero .search-bar p {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 680px){
+  #hero .search-bar .input-div .offer-addressInput {
     display: none;
   }
 }
@@ -460,20 +524,84 @@
     //margin-bottom: 5.5em;
     //margin-bottom: 2.5em;
     //font-size: 37px;
-    font-size: 41px;
+   // font-size: 41px;
   }
   #hero h1:nth-child(1) {
     //font-size: 37px;
-    font-size: 41px;
+   // font-size: 41px;
   }
 
   #hero .search-bar p {
-    font-size: 19px;
+   // font-size: 19px;
   }
 
   #hero .search-bar .input-div {
     margin-right: -3em;
     margin-top: 4em;
+  }
+}
+                                                                    //FFFFFFFFFFFFFFFFFF
+@media screen and (max-width: 1120px) and (min-width: 935px){
+   #hero h1:nth-child(2) {
+    font-size: 3.2rem;
+  }
+  #hero h1:nth-child(1) {
+    font-size: 3.2rem;
+  }
+
+  #hero .search-bar p {
+    font-size: 20px;
+  }
+  #hero a.allhomes {
+    height: 56px !important;
+  }
+  #hero a.somehomes {
+    height: 53px !important;
+  }
+}
+
+@media screen and (max-width: 934px) and (min-width: 884px){
+  #hero h1:nth-child(2) {
+    font-size: 3rem;
+  }
+  #hero h1:nth-child(1) {
+    font-size: 3rem;
+  }
+  #hero h1 a.somehomes{
+    height: 46px!important;
+  }
+  #hero h1 a.allhomes{
+    height: 53px!important;
+  }
+}
+@media screen and (max-width: 883px) and (min-width: 769px){
+  #hero h1 a.allhomes {
+    height: 52px;
+  }
+}
+
+@media screen and (max-width: 884px) and (min-width: 807px){
+  #hero h1:nth-child(2) {
+    font-size: 2.7rem;
+  }
+  #hero h1:nth-child(1) {
+    font-size: 2.7rem;
+  }
+}
+@media screen and (max-width: 883px) and (min-width: 769px){
+  #hero h1 a.somehomes {
+    height: 46px!important;
+  }
+}
+@media screen and (max-width: 806px) and (min-width: 769px){
+  #hero h1:nth-child(2) {
+    font-size: 2.5rem;
+  }
+  #hero h1:nth-child(1) {
+    font-size: 2.5rem;
+  }
+  #hero h1 a.somehomes {
+      height: 43px!important;
   }
 }
 
@@ -540,7 +668,10 @@
   }
   #hero h1:nth-child(n+2){
     text-align: center;
-    font-size: 34px;
+    //font-size: 34px;
+    font-size: 15px;
+    margin-top: 15px;
+    color: #68c0ea;
   }
   #hero .search-bar{
 
@@ -621,6 +752,10 @@
     #sold-banner .sold-bnr-digits h1 {
       margin-bottom: -10px;
     }
+
+    #sold-banner .sold-bnr-digits p {
+      padding-top: 0;
+    }
   }  
 
   .bnr-line-two {
@@ -658,7 +793,7 @@
 
  @media screen and (max-width: 768px){
     .sold-bnr-digits h1{
-      margin-top: -14px;
+      margin-top: -10px;
     }
  }
 }
