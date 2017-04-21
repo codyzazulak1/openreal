@@ -67,4 +67,7 @@ Rails.application.routes.draw do
   get 'agents', action: :agents, controller: 'welcome'
   get 'properties.json', action: :index, controller: 'properties', path: 'listings'
   #get '/register', action: :register, controller: 'welcome'
+
+  #Sitemap
+  get "sitemap.xml" => "sitemap#index", :format => "xml", :as => :sitemap
 end
