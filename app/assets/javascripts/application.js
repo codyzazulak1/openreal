@@ -24,6 +24,15 @@ var autocomplete;
 var formFilled = false;
 var overviewToggled = false;
 
+function initMultiple(){
+  initMap();
+  autoComplete();
+}
+
+  $(document).ready(function(){
+    this.getElementById('addressInputTwo').focus()
+  });
+
 function hideSoldBadges(){
   Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
 };
@@ -44,14 +53,20 @@ function autoComplete() {
     new google.maps.LatLng(75.87533278202616, -180)
   );
   var addressInput = document.getElementById('addressInput');
-  var options = {
+  if (addressInput){
+    var options = {
     bounds: defaultBounds,
     types: ['address'],
     componentRestrictions: {country: 'ca'}
-  };
-
-  autocomplete = new google.maps.places.Autocomplete(addressInput, options);
-  autocomplete.addListener('place_changed', populateFormFields);
+    };
+    autocomplete = new google.maps.places.Autocomplete(addressInput, options);
+    autocomplete.addListener('place_changed', populateFormFields);
+    autoCompleteNav();
+  } else {
+    autoCompleteNav();
+  }
+  
+  
 }
 
 // autocomplete in seller form
@@ -101,8 +116,8 @@ function populateSellerForm() {
 }
 
 // populate the address form based on the google places api response
-function populateFormFields() {
-  var place = autocomplete.getPlace();
+function populateFormFields(test) {
+  var place = test == undefined ? autocomplete.getPlace() : test.getPlace();
 
   if (place.address_components) {
     var addressFirst = place.address_components[0].long_name + ' ' + place.address_components[1].long_name;
@@ -120,7 +135,23 @@ function populateFormFields() {
   }
   formFilled = true;
   // console.log('final submit');
-  $('#addressForm input:submit').click();
+    $('#addressForm input:submit').click();
+}
+
+function autoCompleteNav() {
+  var defaultBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(55.04841493732514, 180),
+    new google.maps.LatLng(75.87533278202616, -180)
+  );
+  var addressInput = document.getElementById('addressInputTwo');
+  var options = {
+    bounds: defaultBounds,
+    types: ['address'],
+    componentRestrictions: {country: 'ca'}
+  };
+
+  var autocomplete = new google.maps.places.Autocomplete(addressInput, options);
+  autocomplete.addListener('place_changed', populateFormFields.bind(this, autocomplete));
 }
 
 // toggle listing overview
@@ -488,3 +519,5 @@ function priceToggle(){
     }
   });
 }
+
+

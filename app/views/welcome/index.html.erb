@@ -10,7 +10,7 @@
         <%= form_tag (properties_sell_path), id: "addressForm" do %>
           <div class="input-div">
             <div class="title show-for-small-only">
-              <h1>Sell your home instantly</h1>
+              <h1>Sell Your Home <br /> To <span>OpenReal</span></h1>
             </div>
             <div class="title hide-for-small-only">
               <h1>
@@ -25,7 +25,7 @@
             </div>
 
             <p id="first-child-title-p" class="hide-for-small-only">Sell your home to OpenReal.</p>
-            <p>Eliminate the hassle of showings, uncertainty, and months of negotiations.</p>
+            <p>Skip the stress of showings, uncertainty, and months of negotiations.</p>
             <button class="offer-addressInput"> Get Your Free Offer</button>
             <input type="text" id="addressInput" class="addressInput" placeholder="Enter your home address" name="addressInput">
             <input type="hidden" name="addressFirst" id="addressFirst">
@@ -247,7 +247,7 @@
   scrollIt();
   grabCompanyChosen();
   redirectToFaq();
-  document.getElementsByClassName('addressinputtwo').focus();
+  
 </script>
 
 

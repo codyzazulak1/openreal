@@ -8,17 +8,33 @@
         <ul class="dropdown menu horizontal" data-dropdown-menu>
           <li class="menu-text"><a id="logo" href=<%= root_path %>><img src=<%= asset_path('logo.png') %>></a></li>
       </div>
-      <!-- <div class="addressinput2 hide-for-small-only" style="display: inline-block;">
-        <input type="text" id="addressInputTwo" class="addressinputtwo" placeholder="Enter your home address" name="addressInput" autofocus>
+      <div class="addressinputtwo hide-for-small-only">
+        <% if !(current_page?('/properties/new'))%>
+          <% if !(current_page?('/'))%>
+             <%= form_tag (properties_sell_path), id: "addressForm" do %>
+              <input type="text" id="addressInputTwo" placeholder="Enter your home address" name="addressInput" autofocus>
+              <input type="hidden" name="addressFirst" id="addressFirst">
+              <input type="hidden" name="addressSecond" id="addressSecond">
+              <input type="hidden" name="addressCity" id="addressCity">
+              <input type="hidden" name="addressPostal" id="addressPostal">
+              <input type="hidden" name="addressLat" id="addressLat">
+              <input type="hidden" name="addressLng" id="addressLng">
+              <input type="submit" class="hide" id="addressTwoSubmit">
+            <% end %>
+          <% else %>
+            <input type="text" id="addressInputTwo" placeholder="Enter your home address" name="addressInput" autofocus>
             <input type="hidden" name="addressFirst" id="addressFirst">
             <input type="hidden" name="addressSecond" id="addressSecond">
             <input type="hidden" name="addressCity" id="addressCity">
             <input type="hidden" name="addressPostal" id="addressPostal">
             <input type="hidden" name="addressLat" id="addressLat">
             <input type="hidden" name="addressLng" id="addressLng">
-            <input type="submit" class="hide">
+            <input type="submit" class="hide" id="addressTwoSubmit">
+          <% end %>
+        <% end %>
+            
         </ul>
-      </div> -->
+      </div>
       <div class="float-right">
         <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
         <!-- show for large -->
