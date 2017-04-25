@@ -1,24 +1,37 @@
-# https://www.sutton.com/agents/?search_agent='agent'&search_state=&sortorder=ASC-timestamp&letter=
-
 module AgentFinder
 
-  def theThing(name)
+  def self.searchByName(firstname, lastname, company)
 
     mech = Mechanize.new
 
-    mech.get(urlbuilder(name)) { |p|
+    mech.get(self.urlbuilder(firstname, lastname, company)) { |page|
+      
+      res = page.search('article.agent').first
 
-      puts p
+      resObj = {
+
+        full_name: res.search('div.agent-heading span').text,
+        email: res.search('.agent-contact a').attribute('href').to_s[7..-1],
+        portrait: "https://www.sutton.com#{res.search('div.photo img').attribute("data-src")}"
+
+      }
+
+      return resObj
 
     }
 
   end
 
-  private
+  def self.urlbuilder(first_name, last_name, company)
+    # byebug
+    url = ''
 
-  def urlbuilder(name)
+    case company
+      when "Sutton"
+        url = "https://www.sutton.com/agents/?search_agent=#{first_name}+#{last_name}"
+    end
 
-    return "https://www.sutton.com/agents/?search_agent=#{name}"
+    return url
 
   end
 

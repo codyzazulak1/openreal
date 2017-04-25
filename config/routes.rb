@@ -57,7 +57,7 @@ Rails.application.routes.draw do
 
   resources :subscribers, only: [:new, :create]
 
-  # resources :agent_forms, only: [:new, :create]
+  resources :agent_forms, only: [:new, :create]
 
   get 'dashboard', action: :index, controller: 'dashboard'
 

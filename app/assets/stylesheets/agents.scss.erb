@@ -183,18 +183,27 @@
 			}
 
 			.name_fields {
+
 				.first_name,
 				.last_name {
 					display: inline-block;
 				}
 				label {
 					text-align: left;
-					margin-left: 2em;
+					padding: 0 30px;
 				}
 			}
 
 			.company_name {
 				text-align: left;
+				padding: 0px 30px;
+			}
+
+			.actions {
+				input[type="submit"]{
+				  font-size: 1.2rem;
+				  margin-bottom: 1em;
+				}
 			}
 
 	}
@@ -278,5 +287,53 @@
 			}
 
 		}
+	}
+}
+
+// Create agent page
+
+form.new_agent {
+	.actions {
+		input[type= "submit"] {
+			  float: right;
+	      font-size: 1.2rem;
+    		border-radius: 0;
+    		margin-top: 0.5em;
+		}
+	}
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1156px) {
+	#agent-sign-in-container #agent-intro-header .agent-welcome-photo {
+		margin-left: 5em!important;
+	}
+}
+@media screen and (max-width: 1156px) and (min-width: 1071px) {
+	#agent-sign-in-container #agent-intro-header .agent-welcome-photo {
+		margin-left: 4em!important;
+	}
+}
+@media screen and (max-width: 1070px) and (min-width: 984px) {
+	#agent-sign-in-container #agent-intro-header .agent-welcome-photo {
+		margin-left: 3em!important;
+	}
+}
+
+@media screen and (max-width: 1024px){
+	#agent-sign-in-container #agent-intro-header .agent-welcome-photo {
+		margin-left: auto!important;
+		float: none!important;
+	}
+}
+@media screen and (max-width: 1023px){
+	#agent-sign-in-container #agent-intro-header {
+		text-align: center!important;
+	}
+}
+
+@media screen and (max-width: 768px){
+	form.new_agent .actions input[type="submit"] {
+		float: none!important;
+		margin-top: 1em;
 	}
 }

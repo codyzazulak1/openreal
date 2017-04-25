@@ -151,7 +151,7 @@
 
 	<section class="form-start" id="form-signup">
 		<div class="row">
-			<div class="form-content small-12 medium-5 columns">
+			<div class="form-content small-12 medium-6 large-5 columns">
 				<div>
 					<h3>List
 					<span>Instantly</span>
@@ -160,34 +160,41 @@
 					<h6>We're on a mission to simplify real estate. </h6>
 				</div>
 
+			<div id="agents">
 				<%= form_for('agent', url: agents_setup_path, method: :post) do |f|%>
 				<div class="columns small-12 medium-12 ">
+
 					<div class="name_fields">
 						<label> Name </label>
 						<div class="field first_name">
-					    <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name' %>
+					    <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name', required: true %>
 					  </div>
 					  <div class="field last_name">
-					    <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name' %>
+					    <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name', required: true %>
 					  </div>
-					 </div>
+					</div>
 
 				  <div class="field company_name">
 				  	<%= f.label :company_name, 'Current Company' %>
-	      		<%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag"}%>
+	      		<%= f.select :company_name, options_for_select(["Sutton", "Remax", "Century21","Royal Pacific", "Rennie Group", "MacDonald Westmar", "other"]),  {:prompt => true}, {:id => "options-tag", required: true}%>
+	      		<div id="div1"></div>
+	      		<div id="div2"></div>   
 				  </div>
-				  <div class="actions"> 
+				  <div class="actions agent-submit"> 
 				  	<%= f.submit 'Sign-up Free', class: 'offer-link'%>
 				  </div>
 			 	</div>
 			  <% end %>
-				<!-- <div id="success">
-					<%#= image_tag 'success.svg'%>
+			 </div>
+
+				<div id="success">
+					<%= image_tag 'success.svg'%>
 					<h2>Success!</h2>
-      		<p>Great! You'll hear from us soon.</p>
-				</div> -->
+	    		<p>Great! You'll hear from us soon.</p>
+				</div>
 			</div>
-			<div class="small-12 medium-6 columns end">
+
+			<div class="columns small-12 medium-6 end">
 				 <p><%= image_tag ("PreviewImagePage3")%></p>
 			</div>
 		</div>
@@ -198,5 +205,8 @@
 <script type="text/javascript">
 
 scrollIt();
+selectCompany();
+text_field();
+formActionChange();
 
 </script>

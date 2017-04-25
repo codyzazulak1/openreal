@@ -318,22 +318,28 @@
       }
 
       .agent-welcome-photo {
+        border-radius: 100%;
+     /* border: 1px solid #68c0ea; */
+        width: 129px;
+        overflow: hidden;
+        padding: 1px 23px;
+        margin-left: 120px;
         img {
-          border-radius: 100%;
-          margin-left: 20%;
+          
         }
       }
     }
 
     #agent-sign-up-form {
       text-align: left;
-      margin-top: -4em;
+      margin-top: -2em;
 
       .agent-password-form {
 
         label {
           font-size: 0.975rem;
           display: inline-block;
+          text-align: left;
         }
       }
     }
@@ -373,7 +379,7 @@
     }
   }
   #agent-sign-up-form {
-    margin-top: 1.5em!important;
+    //margin-top: 1.5em!important;
     .agent-password-form{
       text-align: center!important;
       label {
@@ -382,3 +388,10 @@
     }
   }
 }
+
+/****************
+ *              *
+ * Agents  Dash *
+ *              *
+ ****************/
+

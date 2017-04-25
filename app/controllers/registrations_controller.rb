@@ -1,8 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  require 'AgentFinder'
-
+  require_relative '../rubyscripts/AgentFinder.rb'
+  include AgentFinder
+  
   def agent_setup
+   
+
     if resource_class == Agent
       @agent = Agent.new(sign_up_params)
       session[:agent_params] = {
@@ -11,9 +14,8 @@ class RegistrationsController < Devise::RegistrationsController
         company_name: @agent.company_name
       }
 
-      session[:temp_agent_info] = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name])
-      puts "########################### #{session[:temp_agent_info]} "
-      #code to retrieve email and photo if Sutton agent
+      session.delete(:temp_agent_info)
+      session[:temp_agent_info] = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
 
       redirect_to new_agent_registration_path
     end
@@ -21,7 +23,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @agent = Agent.new(session[:agent_params])
-    # session.delete(:agent_params)
 
     # No access to create a new admin
     if resource_class == Admin
@@ -30,6 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def dashboard
+    @agent = current_user
     render 'agents/dashboard'
   end
 
@@ -37,9 +39,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
 
-    session[:temp_agent_info] = nil
-    puts " FFFFFFFFFFFFFFFFFFFFFFFF #{session[:temp_agent_info]} "
-
+    session.delete(:temp_agent_info)
+    # puts " FFFFFFFFFFFFFFFFFFFFFFFF #{session[:temp_agent_info]} "
     return agents_dashboard_path
   end
 
