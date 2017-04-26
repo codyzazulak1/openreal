@@ -1,5 +1,7 @@
 //Agents
 
+@import 'variables';
+
 .agent_landingpage {
 
 	min-height: calc(100vh - 266px);
@@ -142,7 +144,7 @@
 	}
 
 	.form-start {
-		margin-bottom: 2em;
+		margin-bottom: 6em;
 		.form-title {
 			color: #68c0ea;
 		}
@@ -150,7 +152,7 @@
 	    border: 4.5px solid #68c0ea;
     	box-sizing: border-box;
     	box-shadow: 1px 1px 27px;
-    	margin-left: 13px;
+    	margin-top: -2.5em;
 
     	#options-tag {
     	  // width: 81%;
@@ -162,14 +164,23 @@
 			}
 
 			h6 {
-				font-weight: 100;
+				//font-weight: 100;
 				margin-bottom: 2rem;
 			}
 
 			h3 {
 				//padding-top: 10px;
-				color: #68c0ea;
+				//color: #68c0ea;
 				margin-top: 2rem;
+				display: inline-block;
+
+				h3.form-instantly {
+					display: inline-block;
+			    border-bottom: 1px solid black;
+			    color: #68c0ea;
+			    font-weight: 500;
+			    height: 36px;
+				}
 			}
 
 			#success {
@@ -321,10 +332,12 @@ form.new_agent {
     height: 400px;
     margin-right: 16px;
 
+
 	img {
 		max-width: inherit;
-  	max-height: 536px;
+  	max-height: 578px;
   	margin-top: 1em;
+  	margin-left: -49px;
 	}
 
 }
@@ -364,19 +377,21 @@ form.new_agent {
 	}
 }
 
-@media screen and (max-width:1056px){
+@media screen and (max-width:1063px){
 	.agent_landingpage .form-start .form-content .name_fields .first_name, .agent_landingpage .form-start .form-content .name_fields{
 		.first_name, .last_name {
 			display: block!important;
 	    padding: 0px 30px!important;
 		}
-    
+	}
+	.agent_landingpage .form-start {
+		margin-bottom: 3em;
 	}
 }
 
 @media screen and (max-width: 1024px) and (min-width: 1024px){
 	.preview-image-agents {
-		margin-right: 157px!important;
+	//	margin-right: 157px!important;
 
 		img {
     max-height: 613px!important;
@@ -425,13 +440,31 @@ form.new_agent {
     margin-right: 49px !important;
     margin-top: -76px !important;
 	}
+	.agent_landingpage .form-start {
+		margin-bottom: 1em;
+	}
 }
 
-@media screen and (max-width: 1023px) and (min-width: 639px){
+@media screen and (max-width: 1023px) and (min-width: 640px){
 	.agent_landingpage {
 		.form-content{
 			margin-left: 25%!important;
 		}
+	}
+}
+
+@media screen and (max-width: 639px){
+	.agent_landingpage .form-start .form-content h3 {
+		 font-size: 27px;
+		 h3.form-instantly{
+		 		height: 31px!important;
+		 }
+	}
+}
+
+@media screen and (max-width: 320px){
+	.agent_landingpage .form-start .form-content h3 {
+		font-size: 24px;
 	}
 }
 
