@@ -32,7 +32,7 @@
             <p class="cf-contact bottom-text"><%= cf.phone %></p>
 
             <span class="cf-contact top-text"><strong>Created at:</strong></span>
-            <p class="cf-contact bottom-text"><%= cf.created_at %></p>
+            <p class="cf-contact bottom-text"><%= cf.created_at.strftime('%m/%d/%Y') %> <%= cf.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("at %I:%M%p")%></p>
           </div>
 
           <div class="medium-5 columns text-box">

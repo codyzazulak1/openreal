@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   require_relative '../rubyscripts/AgentFinder.rb'
   include AgentFinder
-  
+
   def agent_setup
    
 
@@ -31,7 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def dashboard
-    @agent = current_user
+    @agent = current_admin
     render 'agents/dashboard'
   end
 

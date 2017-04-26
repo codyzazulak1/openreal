@@ -7,7 +7,7 @@ class Users::SessionsController < Devise::SessionsController
   def new
    if logged_in?
      redirect_to dashboard_path
-     flash[:notice] = "You are already signed in as #{logged_in_type}."
+     flash[:notice] = "You are already signed in as #{who_logged_in}."
    end
   end
 
