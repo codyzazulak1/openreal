@@ -150,6 +150,7 @@
 	    border: 4.5px solid #68c0ea;
     	box-sizing: border-box;
     	box-shadow: 1px 1px 27px;
+    	margin-left: 13px;
 
     	#options-tag {
     	  // width: 81%;
@@ -292,6 +293,16 @@
 
 // Create agent page
 
+.login-agents-btn {
+	color: white;
+	padding: 1rem 5rem;
+	font-weight: 800;
+
+	a {
+		color: rgba(27,127,204,.8);
+	}
+}
+
 form.new_agent {
 	.actions {
 		input[type= "submit"] {
@@ -301,6 +312,21 @@ form.new_agent {
     		margin-top: 0.5em;
 		}
 	}
+}
+
+.preview-image-agents {
+    max-width: inherit;
+    max-height: 606px;
+    margin-top: -120px;
+    height: 400px;
+    margin-right: 16px;
+
+	img {
+		max-width: inherit;
+  	max-height: 536px;
+  	margin-top: 1em;
+	}
+
 }
 
 @media screen and (max-width: 1300px) and (min-width: 1156px) {
@@ -335,5 +361,84 @@ form.new_agent {
 	form.new_agent .actions input[type="submit"] {
 		float: none!important;
 		margin-top: 1em;
+	}
+}
+
+@media screen and (max-width:1056px){
+	.agent_landingpage .form-start .form-content .name_fields .first_name, .agent_landingpage .form-start .form-content .name_fields{
+		.first_name, .last_name {
+			display: block!important;
+	    padding: 0px 30px!important;
+		}
+    
+	}
+}
+
+@media screen and (max-width: 1024px) and (min-width: 1024px){
+	.preview-image-agents {
+		margin-right: 157px!important;
+
+		img {
+    max-height: 613px!important;
+    margin-top: 0!important;
+		}
+	}
+}
+
+//medium screens
+@media screen and (max-width: 1023px){
+	.preview-image-agents {
+		display: none;
+	}
+}
+@media screen and (max-width: 1023px) and (min-width: 948px){
+
+	.preview-image-agents {
+    max-height: 556px!important;
+    margin-top: -60px!important;
+    margin-right: 66px!important;
+
+		img {
+			max-height: inherit!important;
+			margin-top: initial!important;
+		}
+	}
+}
+@media screen and (max-width: 947px) and (min-width: 805px){
+	.preview-image-agents {
+		margin-top: -60px!important;
+	}
+}
+@media screen and (max-width: 804px) and (min-width: 755px){
+	.preview-image-agents {
+	  margin-right: 50px!important;
+		margin-top: -71px !important;
+
+		img {
+		  max-height: 586px!important;
+		}
+	}
+}
+
+@media screen and (max-width: 754px) {
+	.preview-image-agents {
+    margin-right: 49px !important;
+    margin-top: -76px !important;
+	}
+}
+
+@media screen and (max-width: 1023px) and (min-width: 639px){
+	.agent_landingpage {
+		.form-content{
+			margin-left: 25%!important;
+		}
+	}
+}
+
+@media screen and (max-width: 1023px){
+	.agent_landingpage {
+		.form-start {
+			margin-top: -6em!important;
+		}
 	}
 }
