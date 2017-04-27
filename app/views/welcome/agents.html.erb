@@ -152,7 +152,7 @@
 		</div>
 	</section> -->
 	<section>
-		<div class="sell-title row columns" style="text-align: center; margin-bottom: 2em;">
+		<div class="sell-title row columns" id="form-signup" style="text-align: center; margin-bottom: 2em;">
       <h2>Partner With Us</h2>
       <div>
 	      <p>Give your client a guaranteed sale and a peace of mind.</p>
@@ -160,7 +160,7 @@
       </div>
     </div>
   </section>
-	<section class="form-start" id="form-signup">
+	<section class="form-start" >
 		<div class="row">
 			<div class="columns small-12 show-for-small-only">
 				<%= image_tag("PreviewImagePageFull")%>
@@ -182,10 +182,10 @@
 						<div class="name_fields">
 							<label> Name </label>
 							<div class="field first_name">
-						    <%= f.text_field :first_name, autofocus: true, placeholder: 'First Name', required: true %>
+						    <%= f.text_field :first_name, autofocus: false, placeholder: 'First Name', required: true %>
 						  </div>
 						  <div class="field last_name">
-						    <%= f.text_field :last_name, autofocus: true, placeholder: 'Last Name', required: true %>
+						    <%= f.text_field :last_name, autofocus: false, placeholder: 'Last Name', required: true %>
 						  </div>
 						</div>
 
@@ -218,7 +218,6 @@
 </div>	
 
 <script type="text/javascript">
-
 scrollIt();
 selectCompany();
 text_field();

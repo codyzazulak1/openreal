@@ -4,11 +4,11 @@ function text_field(){
   form.addEventListener("change", function(){
       var value = form.options[form.selectedIndex].value;
       if (value === 'other'){
-        document.getElementById('div1').innerHTML='<input type="text" name="agent[company_name]" placeholder="Your company name" />';
-        document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email]" placeholder="Your email">'
+        document.getElementById('div1').innerHTML='<input type="text" name="agent[company_name]" placeholder="Your company name" required="required" />';
+        document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email]" placeholder="Your email" required="required">'
         //document.getElementsByClassName('reveal')[1].style.display = "inherit"; 
         } else if (value !== 'Sutton') {
-          document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email]" placeholder="Your email">'
+          document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email]" placeholder="Your email" required="required">'
           document.getElementById('div1').innerHTML='';
         //  document.getElementsByClassName('reveal')[1].style.display = "none";
         } else {
@@ -49,9 +49,9 @@ function text_field_forSelected_company(){
   if (value === 'other') {
     document.getElementById('div1').innerHTML='<input type="text" name="agent_form[company_name]" placeholder="Your company name" />';
     document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email] placeholder="Your email" />'
-    } else {
+    } else if (value !== 'Sutton'){
         document.getElementById('div1').innerHTML='';
-        document.getElementById('div2').innerHTML='';
+        document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email]" placeholder="Your email" required="required">'
   }
 
 }
