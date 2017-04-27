@@ -10,13 +10,14 @@ class ApplicationController < ActionController::Base
   def logged_in?
     admin_signed_in? || agent_signed_in? #|| customer_signed_in? 
   end
+
   def who_logged_in
     if admin_signed_in?
       return Admin
     # elsif customer_signed_in?
     #   return Customer
     elsif agent_signed_in?
-      return Agent
+      return Admin
     end
     return nil
   end

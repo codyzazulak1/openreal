@@ -4,7 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
   include AgentFinder
 
   def agent_setup
-   
 
     if resource_class == Agent
       @agent = Agent.new(sign_up_params)
@@ -31,8 +30,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def dashboard
-    @agent = current_admin
-    render 'agents/dashboard'
+    if resource_class == Agent 
+      # @agent = current_admin
+      render 'agents/dashboard'
+    end
+    
   end
 
   protected
@@ -40,9 +42,16 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
 
     session.delete(:temp_agent_info)
-    # puts " FFFFFFFFFFFFFFFFFFFFFFFF #{session[:temp_agent_info]} "
     return agents_dashboard_path
   end
+
+  # def after_sign_in_path_for(resource)
+  #   agents_dashboard_path
+  # end
+
+  # def after_update_path_for(resource)
+  #   signed_in_root_path(resource)
+  # end
 
   private
 

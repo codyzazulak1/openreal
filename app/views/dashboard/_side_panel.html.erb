@@ -20,7 +20,7 @@
    <!--  <li><a href="#">Users</a></li> -->
   </ul>
   <% elsif get_namespace == "registrations" %>
-  <p>Welcome <%= @agent.first_name%></p>
+  <p>Welcome <%#= current_admin.first_name%></p>
   <ul class="side-panel-menu">
     <li class=<%= 'active' if get_namespace == "registrations" && controller.controller_name == "profile" %>>
       <a href="#">Profile</a>
