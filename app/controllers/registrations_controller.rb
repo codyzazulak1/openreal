@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  require_relative '../rubyscripts/AgentFinder.rb'
+  require_relative '../../lib/agent_finder.rb'
   include AgentFinder
 
   def agent_setup

@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.3)
+    Indirizzo (0.1.7)
     actionmailer (4.2.6)
       actionpack (= 4.2.6)
       actionview (= 4.2.6)
@@ -358,6 +359,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  Indirizzo
   byebug
   carrierwave
   coffee-rails (~> 4.1.0)
@@ -391,4 +393,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.4
+   1.14.6
