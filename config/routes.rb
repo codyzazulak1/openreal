@@ -28,7 +28,8 @@ Rails.application.routes.draw do
 
   devise_scope :agent do
     post 'agents/setup', action: :agent_setup, controller: 'registrations'
-    get 'agents/dashboard' => "registrations#dashboard"
+    get 'agents/dashboard', action: :dashboard, controller: 'registrations'
+    get 'agents/dashboard/edit', to: 'registrations#edit'
   end
   
   

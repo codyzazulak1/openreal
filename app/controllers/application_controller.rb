@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 # .for deprecated
   def configure_permitted_params
+    update_attrs = [:password, :password_confirmation, :current_password]
     devise_parameter_sanitizer.permit(:sign_up){ |u|
       u.permit(:email, :password, :password_confirmation)
     }
