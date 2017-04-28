@@ -31,7 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def dashboard
     if resource_class == Agent 
-      # @agent = current_admin
+      @agent = current_agent
       render 'agents/dashboard'
     end
     

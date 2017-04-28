@@ -1,7 +1,15 @@
-<section class="agent-dashboard">
-	<div class="push-footer row expanded" >
-		<div class="medium-9 columns dashboard-content">
-			<%= render :partial => 'dashboard/side_panel' %>
-		</div>
+
+<div class="push-footer row expanded" style="margin-top: 70px;">
+	<%= render :partial => 'dashboard/side_panel' %>
+
+	<div class="medium-9 columns dashboard-content">
+	    <h1>Profile page</h1>
+	    <hr>
+	    <div class="update-agent-details">
+	    	<p>Name: <%= @agent.full_name%></p>
+	    	<p>Company: <%= @agent.company_name%></p>
+	    	<%= link_to "Change your password", agents_dashboard_edit_path %>    	   
+	    </div>
+	    
 	</div>
-</section>
+</div>

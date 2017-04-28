@@ -395,3 +395,51 @@
  *              *
  ****************/
 
+.agents-side-panel {
+  //margin-left: -20px;
+
+  ul {
+   // text-align: left;
+  }
+}
+
+#edit-agent {
+  margin-top: 100px;
+  margin-bottom: 40px;
+  h2{
+    text-align: center;
+  }
+  .offer-link {
+  font-size: 15px!important;
+  }
+  .edit-content {
+    padding-bottom: 2em;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    margin-right: 5em;
+  }
+  .back-btn {
+    
+  }
+  .update-btn {
+    float: right;
+    border-radius: 0;
+  }
+  .actions {
+    margin-top: 2em;
+  }
+}
+
+@media screen and (max-width: 639px){
+  #edit-agent{
+    font-size: 16px!important;
+    .edit-content {
+      
+      border: none!Important;
+      border-radious: 0!important;
+    }
+    .back-btn {
+      float: left!important;
+    }
+  }
+}
