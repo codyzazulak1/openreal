@@ -21,8 +21,6 @@ module AgentFinder
       link_to_profile = res.search('div.body div.photo a').attribute("href");
 
       resObj[:listings] = AgentFinder.pullListings(link_to_profile)
-      byebug
-      pp resObj
       return resObj
 
     }
@@ -56,6 +54,7 @@ module AgentFinder
           address = p.xpath('//span[@itemprop="streetAddress"]').text
           parsed_address = Indirizzo::Address.new(address)
           postal_code = p.search('div.keyvalset')[1].search('span').last.text
+          price_cents = p.xpath('//span[@itemprop="price"]').text.to_i * 100
    
           city = p.xpath('//span[@itemprop="addressLocality"]').text
 
@@ -67,7 +66,8 @@ module AgentFinder
               city: city,
               postal_code: postal_code
             },
-            description: p.search('p.remarks').first.text
+            description: p.search('p.remarks').first.text,
+            list_price_cents: price_cents
           }
 
           listings_array.push(obj)

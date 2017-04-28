@@ -21,9 +21,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @agent = Agent.new(session[:temp_agent_info])
-    @property = Property.new(session[:temp_agent_info][:listings])
-    @address = Address.new(session[:temp_agent_info][:listings][0][:address].merge({property: @property}))
+    @agent = Agent.new(session[:agent_params])
+    #@agent = Agent.new(session[:temp_agent_info])
+#    @property = Property.new(session[:temp_agent_info][:listings])
+#    @address = Address.new(session[:temp_agent_info][:listings][0][:address].merge({property: @property}))
 
     # No access to create a new admin
     if resource_class == Admin
@@ -49,7 +50,25 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
 
+    agent = current_agent
+
+    session[:temp_agent_info]["listings"].each do |listing|
+      property = Property.new(
+        list_price_cents: listing["list_price_cents"], 
+        description: listing["description"],
+        agent_id: agent.id
+      )
+
+      if property.save
+        puts "Saved Property"
+      else
+        puts "Could not save Property"
+      end
+
+    end
+
     session.delete(:temp_agent_info)
+
     return agents_dashboard_path
   end
 

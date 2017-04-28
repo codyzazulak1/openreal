@@ -14,6 +14,7 @@ class Property < ActiveRecord::Base
   has_one :contact_form, dependent: :destroy
   has_many :photos, dependent: :destroy
   belongs_to :status
+  belongs_to :agent
   has_many :property_upgrades, dependent: :destroy
   has_many :upgrades, through: :property_upgrades
 
@@ -82,7 +83,6 @@ class Property < ActiveRecord::Base
   end
 
   def address_name
-    puts self.id
     return "#{self.address.address_first}, #{self.address.city}"
   end
 
