@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424220857) do
+ActiveRecord::Schema.define(version: 20170428211103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,8 +140,10 @@ ActiveRecord::Schema.define(version: 20170424220857) do
     t.json     "pictures"
     t.boolean  "sold",                                                 default: false
     t.string   "featured_photo"
+    t.integer  "agent_id"
   end
 
+  add_index "properties", ["agent_id"], name: "index_properties_on_agent_id", using: :btree
   add_index "properties", ["status_id"], name: "index_properties_on_status_id", using: :btree
 
   create_table "property_upgrades", force: :cascade do |t|
@@ -177,6 +179,7 @@ ActiveRecord::Schema.define(version: 20170424220857) do
 
   add_foreign_key "addresses", "properties"
   add_foreign_key "contact_forms", "properties"
+  add_foreign_key "properties", "agents"
   add_foreign_key "properties", "statuses"
   add_foreign_key "property_upgrades", "properties"
   add_foreign_key "property_upgrades", "upgrades"

@@ -21,7 +21,7 @@ module AgentFinder
       link_to_profile = res.search('div.body div.photo a').attribute("href");
 
       resObj[:listings] = AgentFinder.pullListings(link_to_profile)
-
+      byebug
       pp resObj
       return resObj
 

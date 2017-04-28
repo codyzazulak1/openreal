@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     post 'agents/setup', action: :agent_setup, controller: 'registrations'
     get 'agents/dashboard', action: :dashboard, controller: 'registrations'
     get 'agents/dashboard/edit', to: 'registrations#edit'
+    get 'agents/dashboard/listings', action: :listings, controller: 'registrations'
   end
   
   

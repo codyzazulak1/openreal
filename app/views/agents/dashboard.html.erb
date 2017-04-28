@@ -6,9 +6,9 @@
 	    <h1>Profile page</h1>
 	    <hr>
 	    <div class="update-agent-details">
-	    	<p>Name: <%= @agent.full_name%></p>
+	    	<p>Name: <%= @agent.full_name.capitalize%></p>
 	    	<p>Company: <%= @agent.company_name%></p>
-	    	<%= link_to "Change your password", agents_dashboard_edit_path %>    	   
+	    	<%= link_to "Change your password", edit_agent_registration_path %>    	   
 	    </div>
 	    
 	</div>

@@ -21,7 +21,9 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @agent = Agent.new(session[:agent_params])
+    @agent = Agent.new(session[:temp_agent_info])
+    @property = Property.new(session[:temp_agent_info][:listings])
+    @address = Address.new(session[:temp_agent_info][:listings][0][:address].merge({property: @property}))
 
     # No access to create a new admin
     if resource_class == Admin
@@ -34,7 +36,13 @@ class RegistrationsController < Devise::RegistrationsController
       @agent = current_agent
       render 'agents/dashboard'
     end
-    
+  end
+
+  def listings
+    if resource_class == Agent
+      @agent = current_agent
+      render 'agents/listings'
+    end
   end
 
   protected

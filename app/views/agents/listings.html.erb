@@ -1,0 +1,31 @@
+<div  class="push-footer row expanded" style="margin-top: 70px;">
+	<%= render :partial => 'dashboard/side_panel' %>
+
+	<div class="medium-9 columns dashboard-content" id="agent-listings-dash">
+	    <h2>Your Listings </h2>
+	    <hr>
+	  	
+	  	<p class="atention">Some of your listings may not be live yet.</p>
+	  	<p>Please choose which properties you'd like to list on OpenReal: </p>
+	    
+	    <div class="dashboard-list">
+	    	<div class="dashboard-list-header row collapse">
+
+	    		<div class="small-8 columns">
+	    			<a href="#" class="button"> Refresh Properties</a>
+	    		</div>
+
+	    		<form class="small-4 columns">
+	    			<select style="margin:0" name="filter" onChange="submit();">
+	    				<option style="color:blue;" value="all">Show All</option>
+	    				<option style="color:blue;" value="all">Submited</option>
+	    				<option style="color:blue;" value="all">Unsubmitted</option>
+	    				<option style="color:blue;" value="all">Live</option>
+	    			</select>
+	    		</form>
+	    	</div> <!-- end of dashboard header -->
+
+	    </div>
+
+	</div>
+</div>
