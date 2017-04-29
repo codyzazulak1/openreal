@@ -21,10 +21,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def new
-    @agent = Agent.new(session[:temp_agent_info])
-    @property = Property.new(session[:temp_agent_info][:listings])
-    @address = Address.new(session[:temp_agent_info][:listings][0][:address].merge({property: @property}))
-
+    @agent = Agent.new(session[:agent_params])
+    byebug
     # No access to create a new admin
     if resource_class == Admin
       redirect_to new_admin_session_path
