@@ -53,20 +53,32 @@ class RegistrationsController < Devise::RegistrationsController
       property = Property.new(
         list_price_cents: listing["list_price_cents"], 
         description: listing["description"],
-        agent_id: agent.id
+        agent_id: agent.id,
+        bedrooms: listing["bedrooms"] || nil,
+        bathrooms: listing["bathrooms"] || nil,
+        floor_area: listing["floor_area"] || nil,
+        year_built: listing["year_built"] || nil,
+
       )
+
+      if property.save
+        # puts "Saved Property"
+      else
+        # puts "Could not save Property"
+      end
 
       address = Address.new(
-        address_first: listing["address_first"],
-        address_second: listing["address_second"],
-        city: listing["city"],
-        postal_code: listing["postal_code"],
+        address_first: listing["address"]["address_first"],
+        address_second: listing["address"]["address_second"],
+        city: listing["address"]["city"],
+        postal_code: listing["address"]["postal_code"],
+        property_id: property.id
       )
-
-      if property.save && address.save
-        puts "Saved Property"
+      
+      if address.save
+        # puts 'Saved address'
       else
-        puts "Could not save Property"
+        # puts 'Could not save Address'
       end
 
     end
