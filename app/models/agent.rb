@@ -7,6 +7,8 @@ class Agent < ActiveRecord::Base
    validates :last_name, presence: true
    validates :company_name, presence: true
 
+   has_many :properties
+
   def full_name
     self.first_name << " " << self.last_name
   end

@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @agent = Agent.new(session[:agent_params])
-    byebug
+
     # No access to create a new admin
     if resource_class == Admin
       redirect_to new_admin_session_path
@@ -47,7 +47,32 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
 
+    agent = current_agent
+
+    session[:temp_agent_info]["listings"].each do |listing|
+      property = Property.new(
+        list_price_cents: listing["list_price_cents"], 
+        description: listing["description"],
+        agent_id: agent.id
+      )
+
+      address = Address.new(
+        address_first: listing["address_first"],
+        address_second: listing["address_second"],
+        city: listing["city"],
+        postal_code: listing["postal_code"],
+      )
+
+      if property.save && address.save
+        puts "Saved Property"
+      else
+        puts "Could not save Property"
+      end
+
+    end
+
     session.delete(:temp_agent_info)
+
     return agents_dashboard_path
   end
 
