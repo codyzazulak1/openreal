@@ -4,9 +4,9 @@ class PropertiesController < ApplicationController
     if params[:city]
       @city = params[:city].capitalize
       @center = city_center(@city)
-      @properties = Property.includes(:address, :photos).within(@city)
+      @properties = Property.includes(:address, :photos).where.not(status_id: (4)..5).within(@city)
     else
-      @properties = Property.includes(:address, :photos).for_sale.created_desc
+      @properties = Property.includes(:address, :photos).for_sale.where.not(status_id: (4)..5).created_desc
       @sold = Property.except_contact_form_submission.where('list_price_cents = ?', 0).count
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
@@ -55,7 +55,7 @@ class PropertiesController < ApplicationController
 
   def filter
   
-    @properties = Property.includes(:address, :photos).for_sale
+    @properties = Property.includes(:address, :photos).for_sale.where.not(status_id: (4)..5)
 
     cookies[:sort_params] = {value: params["sort"]}   
 
@@ -65,7 +65,7 @@ class PropertiesController < ApplicationController
       @properties = @properties.includes(:address, :photos).where("properties.list_price_cents >= ?", params["min-price"].to_i)
     end
     if params["show"]
-      @properties = Property.includes(:address, :photos).all.except_contact_form_submission
+      @properties = Property.includes(:address, :photos).where.not(status_id: (4)..5).all.except_contact_form_submission
     end
 
     if params["max-price"] && params["max-price"] != ''
@@ -179,9 +179,9 @@ class PropertiesController < ApplicationController
   def show
     if (Property.all.count != 0)
 
-      @properties = Property.all
+      @properties = Property.where.not(status_id: (4)..5).all
       @property = Property.find(params[:id])
-      @similar_properties = Property.similar_listings(@property, 3)
+      @similar_properties = Property.where.not(status_id: (4)..5).similar_listings(@property, 3)
       @inquiry = ContactForm.new
       
       if !(@property.list_price_cents == 0)
@@ -280,7 +280,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id], :agent_id)
+    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, :agent_id, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
   end
 
   # def property_upgrade_params
