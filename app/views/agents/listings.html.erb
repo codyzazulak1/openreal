@@ -12,7 +12,8 @@
 	    	<div class="dashboard-list-header row collapse">
 
 	    		<div class="small-8 columns">
-	    			<a href="#" class="button"> Refresh Properties</a>
+	    			<button class="button hide-for-small-only" id="get-props-btn"> Refresh Properties</button>
+	    			<button class="button small show-for-small-only" id="get-props-btn">Refresh Properties</button>
 	    		</div>
 
 	    		<form class="small-4 columns">
@@ -25,7 +26,76 @@
 	    		</form>
 	    	</div> <!-- end of dashboard header -->
 
-	    </div>
 
+	    <% if @properties.count > 0%>
+	    	<ul class="dashboard-list-body" id="agent-properties">
+	    	<div class="loader"><div class="spinner"></div></div>
+				<% @properties.each do |p|%>
+				<li class="dashboard-list-item row collapse">
+
+					<div class="small-1 columns dashboard-listing-img">
+						<a href="<%= agent_listing_show_path(p.id)%>">
+							<img src="<%= p.photos.count == 0 ? 'http://placehold.it/350x150?text=%20' : p.featured_photo %>">
+						</a>
+					</div>
+
+					<div class="small-6 columns end">
+						<div class="dashboard-listing-overview float-left">
+							<h3>
+								<% if p.address%>
+									<%= link_to p.address_name, agent_listing_show_path(p.id)%>
+								<% else %>
+								No associated address. (<%= p.created_at%>)
+								<% end %>
+							</h3>
+							<div>
+								<% puts "id: #{p.id}"%>
+								<%= link_to 'Edit', agent_listing_show_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %>
+							</div>
+						</div>
+					</div>
+
+					<div class="small-4 columns" id="status-prop-agents">
+						<% if p.status_id === 4%>
+							<p>Status:  <span class="submitted">Submitted</span></p>
+						<% elsif p.status_id == 5%>
+							<p>Status:  <span class="live">Live</span></p>
+						<% end %>
+					</div>
+
+					<!-- <div class="float-right" style="width: 5rem;">
+						<select class="dashboard-listing-status" data-url="<%#= dashboard_property_status_path(p) %>">
+							<optgroup label="Agent Submitted">
+				        <%# p.each do |as| %>
+				        <option value=<%#=as.name%> <%#= "selected" if p.status.name == as.name %>><%#= as.name %></option>
+				        <%#end%>
+				      </optgroup>
+					</div> -->
+				</li>
+
+				<% end %>
+	    		
+	    	</ul>
+	    <% end %>
+	    </div>
+ 		<%= will_paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
 	</div>
 </div>
+
+<script type="text/javascript">
+function test(){
+
+$('#get-props-btn').click( function(){
+		console.log('im doing it');
+		$('.loader').show();
+
+		setTimeout(function(){
+			$('#agent-properties').html('<p>Hola papi</p>')
+			$('#agent-properties').html("<%= escape_javascript render(partial: 'agents/agent_listings') %>")
+		}, 200)
+		$('.loader').fadeOut(); 
+		
+	});
+}
+test();
+</script>

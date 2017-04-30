@@ -83,7 +83,7 @@ class Property < ActiveRecord::Base
   end
 
   def address_name
-    return "#{self.address.address_first}, #{self.address.city}"
+    return "#{self.address.address_second} #{self.address.address_first}, #{self.address.city}"
   end
 
   def self.cities

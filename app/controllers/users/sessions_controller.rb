@@ -27,7 +27,7 @@ class Users::SessionsController < Devise::SessionsController
   protected
   def after_sign_in_path_for(resource)
     if current_agent === resource
-      agents_dashboard_path
+      agent_dashboard_path
     elsif current_admin === resource
       dashboard_path
     end

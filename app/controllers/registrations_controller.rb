@@ -33,13 +33,57 @@ class RegistrationsController < Devise::RegistrationsController
     if resource_class == Agent 
       @agent = current_agent
       render 'agents/dashboard'
+
     end
   end
 
-  def listings
+  def listings_index
     if resource_class == Agent
       @agent = current_agent
+      @properties = @agent.properties
+      @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+
       render 'agents/listings'
+    else
+      redirect_to root_path
+      flash[:error] = "Not authorized. Please login"
+    end
+  end
+
+  def listings_show
+    if resource_class == Agent
+      @agent = current_agent
+      @property = Property.find(params[:id])
+
+      @address = @property.address
+      @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
+     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+
+      render 'agents/listing_show'
+    else
+      redirect_to root_path
+      flash[:error] = "Not authorized. Please login"
+    end
+  end
+
+  def listings_edit
+    if resource_class == Agent
+      @agent = current_agent
+      @property = Property.find(params[:id])
+
+    end
+  end
+
+  def delete_agprop
+    @agent = current_agent
+    if @agent 
+      @property = Property.find(params[:id])
+      @property.destroy
+      redirect_to agent_dashboard_path
+      flash[:success] = "Successfully deleted property #{@property.address_first @property.address_second}"
+    else
+      redirect_to :back
+      flash[:error] = "Not authorized. Please login as #{resource_class}"
     end
   end
 
@@ -58,7 +102,7 @@ class RegistrationsController < Devise::RegistrationsController
         bathrooms: listing["bathrooms"] || nil,
         floor_area: listing["floor_area"] || nil,
         year_built: listing["year_built"] || nil,
-
+        status_id: 4
       )
 
       if property.save
@@ -66,10 +110,11 @@ class RegistrationsController < Devise::RegistrationsController
       else
         # puts "Could not save Property"
       end
-
+      
       address = Address.new(
         address_first: listing["address"]["address_first"],
         address_second: listing["address"]["address_second"],
+        street: listing["address"]["street"],
         city: listing["address"]["city"],
         postal_code: listing["address"]["postal_code"],
         property_id: property.id
@@ -85,7 +130,7 @@ class RegistrationsController < Devise::RegistrationsController
 
     session.delete(:temp_agent_info)
 
-    return agents_dashboard_path
+    return agent_dashboard_path
   end
 
   # def after_sign_in_path_for(resource)
@@ -112,7 +157,7 @@ class RegistrationsController < Devise::RegistrationsController
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name)
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name, :current_password)
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end

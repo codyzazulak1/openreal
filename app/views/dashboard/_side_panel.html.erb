@@ -22,13 +22,13 @@
     </ul>
   </nav>
   <% elsif get_namespace == "registrations" %>
-  <nav id="side-panel"  class="medium-3 columns expanded push-footer agents-side-panel">
+  <nav id="side-panel"  class="medium-3 columns expanded agents-side-panel">
     <ul class="side-panel-menu">
       <li class=<%= 'active' if get_namespace == "registrations" && controller.controller_name == "dashboard" %>>
-        <a href="<%= agents_dashboard_path%>">Profile</a>
+        <a href="<%= agent_dashboard_path%>">Profile</a>
       </li>
       <li class=<%= 'active' if get_namespace == "registrations" && controller.controller_name == "listings" %>>
-        <a href="<%= agents_dashboard_listings_path%>">Your Listings</a>
+        <a href="<%= agent_listings_path%>">Your Listings</a>
       </li>
     </ul>
   </nav>

@@ -28,9 +28,13 @@ Rails.application.routes.draw do
 
   devise_scope :agent do
     post 'agents/setup', action: :agent_setup, controller: 'registrations'
-    get 'agents/dashboard', action: :dashboard, controller: 'registrations'
+
+    get 'agent/dashboard', to: 'registrations#dashboard'
+    get 'agent/listing', to: 'registrations#listings_index', as: 'agent/listings'
+    delete 'agent/listing/:id', to: 'registrations#delete_agprop', as: 'agent/listing'
     get 'agents/dashboard/edit', to: 'registrations#edit'
-    get 'agents/dashboard/listings', action: :listings, controller: 'registrations'
+    get 'agents/listing/:id', to: 'registrations#listings_show', as: 'agent/listing/show'
+    get 'agents/listing/:id', to: 'registrations#listings_edit', as: 'agent/listing/edit'
   end
   
   
