@@ -31,29 +31,29 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def dashboard
-    if resource_class == Agent 
+    if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @photo = @agent.profile_picture
       render 'agents/dashboard'
-
+    else
+      unauthorized_access
     end
   end
 
   def listings_index
-    if resource_class == Agent
+    if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @properties = @agent.properties
       @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
 
       render 'agents/listings'
     else
-      redirect_to root_path
-      flash[:error] = "Not authorized. Please login"
+      unauthorized_access
     end
   end
 
   def listings_show
-    if resource_class == Agent
+    if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @property = Property.find(params[:id])
 
@@ -63,16 +63,16 @@ class RegistrationsController < Devise::RegistrationsController
 
       render 'agents/listing_show'
     else
-      redirect_to root_path
-      flash[:error] = "Not authorized. Please login"
+      unauthorized_access
     end
   end
 
   def listings_edit
-    if resource_class == Agent
+    if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @property = Property.find(params[:id])
-
+    else
+      unauthorized_access
     end
   end
 
@@ -84,8 +84,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to agent_dashboard_path
       flash[:success] = "Successfully deleted property #{@property.address_first @property.address_second}"
     else
-      redirect_to :back
-      flash[:error] = "Not authorized. Please login as #{resource_class}"
+      unauthorized_access
     end
   end
 
@@ -159,6 +158,11 @@ class RegistrationsController < Devise::RegistrationsController
   # end
 
   private
+
+    def unauthorized_access
+      redirect_to root_path
+      flash[:error] = "Unauthorized access. Please Sign up or Login."
+    end
 
     def sign_up_params
       if resource_class == Admin
