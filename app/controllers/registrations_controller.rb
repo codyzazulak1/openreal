@@ -10,7 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
       session[:agent_params] = {
         first_name: @agent.first_name,
         last_name: @agent.last_name,
-        company_name: @agent.company_name
+        company_name: @agent.company_name,
       }
 
       session.delete(:temp_agent_info)
@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @agent = Agent.new(session[:agent_params])
-
+   
 
     # No access to create a new admin
     if resource_class == Admin
@@ -105,6 +105,9 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
 
     agent = current_agent
+
+    # agent.profile_picture = "#{session[:temp_agent_info]["portrait"]}"
+    # agent.save!
 
     session[:temp_agent_info]["listings"].each do |listing|
       property = Property.new(

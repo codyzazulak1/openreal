@@ -9,9 +9,7 @@ class Agent < ActiveRecord::Base
    validates :first_name, presence: true
    validates :last_name, presence: true
    validates :company_name, presence: true
-    validates_presence_of   :profile_picture
-    validates_integrity_of  :profile_picture
-    validates_processing_of :profile_picture
+   
 
    has_many :properties
    has_one :picture, dependent: :destroy
