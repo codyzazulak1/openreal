@@ -7,16 +7,11 @@
 	    <hr class="small-12 column">
 	    <div class="columns small-12 medium-6">
 		    <% if @agent.profile_picture.square.url%>
-		    <img src="<%= @photo.url%>">
+		    <img src="<%= @photo.square.url%>">
 		    <% elsif @agent.profile_picture.nil || @agent.profile_picture.blank? %>
-		     <img src="https://dummyimage.com/150x150/4a474a/ffffff.png">
+		     <img src="https://dummyimage.com/250x250/4a474a/ffffff.png">
 		    <% end %>
 		    <div class="profile-picture">
-		    	<%#= form_tag agent_profile_picture_path(@agent) do %>
-		    	<%#= label_tag(:profile_picture, 'Edit profile picture') %>
-		    	<%#= file_field_tag(:profile_picture) %>
-		    	<%#= submit_tag 'Save', class: 'button small'%>
-		    	<%# end %>
 		    	<%= form_for @agent, url: agent_profile_picture_path do |f|%>
 		    	<%= f.file_field :profile_picture%>
 		    	<%= f.submit 'Save', class: 'button small'%>
