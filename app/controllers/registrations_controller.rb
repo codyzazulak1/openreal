@@ -89,11 +89,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def profile_picture
-    if resource_class == Agent
+    if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       if (@agent != nil)
-        @agent.profile_picture = params[:profile_picture]
-        # byebug
+        @agent.profile_picture = params['agent']['profile_picture']
         @agent.save!
         redirect_to agent_dashboard_path
       end
