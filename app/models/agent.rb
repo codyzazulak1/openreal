@@ -12,7 +12,7 @@ class Agent < ActiveRecord::Base
    
 
    has_many :properties
-   has_one :picture, dependent: :destroy
+   has_one :profile_picture, dependent: :destroy
 
   def full_name
     self.first_name << " " << self.last_name

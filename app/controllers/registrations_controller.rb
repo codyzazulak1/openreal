@@ -94,6 +94,7 @@ class RegistrationsController < Devise::RegistrationsController
       @agent = current_agent
       if (@agent != nil)
         @agent.profile_picture = params[:profile_picture]
+        # byebug
         @agent.save!
         redirect_to agent_dashboard_path
       end
