@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     get 'agents/dashboard/edit', to: 'registrations#edit'
     get 'agents/listing/:id', to: 'registrations#listings_show', as: 'agent/listing/show'
     get 'agents/listing/:id', to: 'registrations#listings_edit', as: 'agent/listing/edit'
+
+    post 'agents/profile_picture', to: 'registrations#profile_picture', as: 'agent/profile_picture'
   end
   
   

@@ -32,6 +32,7 @@ class RegistrationsController < Devise::RegistrationsController
   def dashboard
     if resource_class == Agent 
       @agent = current_agent
+      @photo = @agent.profile_picture
       render 'agents/dashboard'
 
     end
@@ -84,6 +85,17 @@ class RegistrationsController < Devise::RegistrationsController
     else
       redirect_to :back
       flash[:error] = "Not authorized. Please login as #{resource_class}"
+    end
+  end
+
+  def profile_picture
+    if resource_class == Agent
+      @agent = current_agent
+      if (@agent != nil)
+        @agent.profile_picture = params[:profile_picture]
+        @agent.save!
+        redirect_to agent_dashboard_path
+      end
     end
   end
 
@@ -147,7 +159,7 @@ class RegistrationsController < Devise::RegistrationsController
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name).except!(:agent_id)
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name, :profile_picture).except!(:agent_id)
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
@@ -157,7 +169,7 @@ class RegistrationsController < Devise::RegistrationsController
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name, :current_password)
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name, :current_password, :profile_picture)
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
