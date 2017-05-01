@@ -1,25 +1,158 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  def agent_setup 
+  require_relative '../../lib/agent_finder.rb'
+  include AgentFinder
+
+  def agent_setup
+
     if resource_class == Agent
-      # @agent = Agent.new(sign_up_params)
-      session[:agent] = {
-        first_name: params[:first_name],
-        last_name: params[:last_name],
-        company_name: params[:company_name]
+      @agent = Agent.new(sign_up_params)
+      session[:agent_params] = {
+        first_name: @agent.first_name,
+        last_name: @agent.last_name,
+        company_name: @agent.company_name
       }
-      redirect_to new_agent_registration_path(sign_up_params)
+
+      session.delete(:temp_agent_info)
+      session[:temp_agent_info] = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
+
+      redirect_to new_agent_registration_path
     end
   end
 
   def new
-    # @agent = Agent.new(first_name: params[:first_name], last_name: params[:last_name], company_name: params[:company_name])
-    
+    @agent = Agent.new(session[:agent_params])
+
+
     # No access to create a new admin
     if resource_class == Admin
       redirect_to new_admin_session_path
     end
   end
+
+  def dashboard
+    if resource_class == Agent 
+      @agent = current_agent
+      @photo = @agent.profile_picture
+      render 'agents/dashboard'
+
+    end
+  end
+
+  def listings_index
+    if resource_class == Agent
+      @agent = current_agent
+      @properties = @agent.properties
+      @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+
+      render 'agents/listings'
+    else
+      redirect_to root_path
+      flash[:error] = "Not authorized. Please login"
+    end
+  end
+
+  def listings_show
+    if resource_class == Agent
+      @agent = current_agent
+      @property = Property.find(params[:id])
+
+      @address = @property.address
+      @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
+     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+
+      render 'agents/listing_show'
+    else
+      redirect_to root_path
+      flash[:error] = "Not authorized. Please login"
+    end
+  end
+
+  def listings_edit
+    if resource_class == Agent
+      @agent = current_agent
+      @property = Property.find(params[:id])
+
+    end
+  end
+
+  def delete_agprop
+    @agent = current_agent
+    if @agent 
+      @property = Property.find(params[:id])
+      @property.destroy
+      redirect_to agent_dashboard_path
+      flash[:success] = "Successfully deleted property #{@property.address_first @property.address_second}"
+    else
+      redirect_to :back
+      flash[:error] = "Not authorized. Please login as #{resource_class}"
+    end
+  end
+
+  def profile_picture
+    if resource_class == Agent
+      @agent = current_agent
+      if (@agent != nil)
+        @agent.profile_picture = params[:profile_picture]
+        @agent.save!
+        redirect_to agent_dashboard_path
+      end
+    end
+  end
+
+  protected
+
+  def after_sign_up_path_for(resource)
+
+    agent = current_agent
+
+    session[:temp_agent_info]["listings"].each do |listing|
+      property = Property.new(
+        list_price_cents: listing["list_price_cents"],
+        description: listing["description"],
+        agent_id: agent.id,
+        bedrooms: listing["bedrooms"] || nil,
+        bathrooms: listing["bathrooms"] || nil,
+        floor_area: listing["floor_area"] || nil,
+        year_built: listing["year_built"] || nil,
+        status_id: 4
+      )
+
+      if property.save
+        # puts "Saved Property"
+      else
+        # puts "Could not save Property"
+      end
+      
+      address = Address.new(
+        address_first: listing["address"]["address_first"],
+        address_second: listing["address"]["address_second"],
+        street: listing["address"]["street"],
+        city: listing["address"]["city"],
+        postal_code: listing["address"]["postal_code"],
+        property_id: property.id
+      )
+      
+      if address.save
+        # puts 'Saved address'
+      else
+        # puts 'Could not save Address'
+      end
+
+    end
+
+    session.delete(:temp_agent_info)
+
+    return agent_dashboard_path
+  end
+
+  # def after_sign_in_path_for(resource)
+  #   agents_dashboard_path
+  # end
+
+  # def after_update_path_for(resource)
+  #   signed_in_root_path(resource)
+  # end
 
   private
 
@@ -27,7 +160,7 @@ class RegistrationsController < Devise::RegistrationsController
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name)
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name, :profile_picture).except!(:agent_id)
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
@@ -37,7 +170,9 @@ class RegistrationsController < Devise::RegistrationsController
       if resource_class == Admin
         params.require(:admin).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       elsif resource_class == Agent
-        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name)
+
+        params.require(:agent).permit(:first_name, :last_name, :email, :password, :password_confirmation, :company_name, :current_password, :profile_picture)
+
       elsif resource_class == Customer
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end

@@ -181,9 +181,11 @@
           <p>
             Out of our <!-- <a href="/faq" id="redirect-to-faq"> -->price range?<!-- </a> --> We also offer <color>professional photos</color>, <color>aerial videos</color>, immersive <color>virtual reality tours</color>, and more, to show your home at it's best. Our team has over a decade of professional real estate experience and can help get your home sold, hassle-free!
           </p>
+        <% if @property && @property.matterurl %>
           <div class="homepage-matterurl">
             <iframe width="810" height="500" src="<%=@property.matterurl%>" frameborder="0" allow-fullscreen ></iframe>
           </div>
+        <%end%>
         </div>
       </div>
 

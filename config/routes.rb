@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  #devise_for :agents, :controllers => {
-  #                        registrations: 'registrations',
-  #                        sessions: 'users/sessions'
-  #                        }
+  devise_for :agents, :controllers => {
+                         registrations: 'registrations',
+                         sessions: 'users/sessions'
+                         }
   #devise_for :customers, :controllers => {
   #                        registrations: 'registrations',
   #                        sessions: 'users/sessions'
@@ -25,6 +25,20 @@ Rails.application.routes.draw do
   post 'properties/new', action: :create, controller: 'properties'
   post 'properties/sell', action: :sell, controller: 'properties'
   get 'properties/filter', action: :filter, controller: 'properties'
+
+  devise_scope :agent do
+    post 'agents/setup', action: :agent_setup, controller: 'registrations'
+
+    get 'agent/dashboard', to: 'registrations#dashboard'
+    get 'agent/listing', to: 'registrations#listings_index', as: 'agent/listings'
+    delete 'agent/listing/:id', to: 'registrations#delete_agprop', as: 'agent/listing'
+    get 'agents/dashboard/edit', to: 'registrations#edit'
+    get 'agents/listing/:id', to: 'registrations#listings_show', as: 'agent/listing/show'
+    get 'agents/listing/:id', to: 'registrations#listings_edit', as: 'agent/listing/edit'
+
+    post 'agents/profile_picture', to: 'registrations#profile_picture', as: 'agent/profile_picture'
+  end
+  
   
   resources :properties, only: [:new, :create, :show] do
     resources :address

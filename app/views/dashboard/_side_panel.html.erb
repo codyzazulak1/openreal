@@ -1,21 +1,37 @@
-<nav id="side-panel" class="medium-3 columns expanded push-footer">
-  <ul class="side-panel-menu">
-    <li class=<%= 'active' if controller.controller_name == "dashboard" %>>
-      <a href="<%= dashboard_path %>">Dashboard</a>
-    </li>
-    <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "properties" %>>
-      <a href="<%= dashboard_properties_path %>">Listings</a>
-    </li>
-    <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "contact_forms" %>>
-      <a href="<%= dashboard_contact_forms_path %>">Contacts</a>
-    </li>
-    <li class=<%= 'active' if get_namespace == "dashboarD" && controller.controller_name == "agent_forms" %>>
-      <a href="<%= dashboard_agent_forms_path %>">Agent Forms</a>
-    </li>
 
-    <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "subscribers"%>>
-      <a href="<%= dashboard_subscribers_path%>">Subscribers</a>
-    </li>
-   <!--  <li><a href="#">Users</a></li> -->
-  </ul>
-</nav>
+  <% if get_namespace == "dashboard" %>
+  <nav id="side-panel" class="medium-3 columns expanded push-footer">
+    <ul class="side-panel-menu">
+      <li class=<%= 'active' if controller.controller_name == "dashboard" %>>
+        <a href="<%= dashboard_path %>">Dashboard</a>
+      </li>
+      <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "properties" %>>
+        <a href="<%= dashboard_properties_path %>">Listings</a>
+      </li>
+      <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "contact_forms" %>>
+        <a href="<%= dashboard_contact_forms_path %>">Contacts</a>
+      </li>
+      <li class=<%= 'active' if get_namespace == "dashboarD" && controller.controller_name == "agent_forms" %>>
+        <a href="<%= dashboard_agent_forms_path %>">Agent Forms</a>
+      </li>
+
+      <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "subscribers"%>>
+        <a href="<%= dashboard_subscribers_path%>">Subscribers</a>
+      </li>
+     <!--  <li><a href="#">Users</a></li> -->
+    </ul>
+  </nav>
+  <% elsif get_namespace == "registrations" %>
+  <nav id="side-panel"  class="medium-3 columns expanded agents-side-panel">
+    <ul class="side-panel-menu">
+      <li class=<%= 'active' if get_namespace == "registrations" && controller.controller_name == "dashboard" %>>
+        <a href="<%= agent_dashboard_path%>">Profile</a>
+      </li>
+      <li class=<%= 'active' if get_namespace == "registrations" && controller.controller_name == "listings" %>>
+        <a href="<%= agent_listings_path%>">Your Listings</a>
+      </li>
+    </ul>
+  </nav>
+  <% end %>
+
+

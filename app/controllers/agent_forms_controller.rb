@@ -5,8 +5,9 @@ class AgentFormsController < ApplicationController
   end
 
   def create
-    @aform = AgentForm.new(agent_form_params)
 
+    @aform = AgentForm.new(agent_form_params)
+    @aform.save
     if @aform.save
       redirect_to agents_path
     end
@@ -15,7 +16,7 @@ class AgentFormsController < ApplicationController
   private
 
   def agent_form_params
-    params.require(:agent_form).permit(:full_name, :email, :company_name)
+    params.require(:agent_form).permit(:first_name, :last_name, :email, :company_name)
   end
 
 end

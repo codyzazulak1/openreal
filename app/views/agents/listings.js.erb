@@ -1,0 +1,13 @@
+function test(){
+
+$('#get-props-btn').click( function(){
+		console.log('im doing it');
+		$('.loader').show();
+
+		setTimeout(function(){
+			$('#agent-properties').html("<%= escape_javascript render(partial: 'agents/agent_listings') %>")
+		}, 200)
+		$('.loader').fadeOut(); 
+		
+	});
+}

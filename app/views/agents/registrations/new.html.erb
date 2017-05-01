@@ -1,0 +1,68 @@
+<div class="row expanded push-footer">
+  <div id="agent-sign-in-container" class="column small-12 medium-5 medium-centered">
+
+    <section id="agent-intro-header" class="row">
+      <div class="columns medium-12 small-12 large-6 agent-welcome-text">
+        <p>Welcome, <%= @agent.first_name.capitalize%>!</p>
+        <% if session[:temp_agent_info] %>
+          <p>Confirm your photo &amp; create a password!</p>
+        <% else %>
+          <p>Lets get you started!</p>
+        <% end %>
+      </div>
+      <div class="columns medium-12 small-12 small-centered large-6 end agent-welcome-photo">
+        <% if session[:temp_agent_info] %>
+          <img src=<%= session[:temp_agent_info]["portrait"] %> class="agent-thumb-change-later"/>
+        <% else %>
+          <img src="https://dummyimage.com/150x150/4a474a/ffffff.png">
+        <% end %>
+      </div>
+    </section>
+
+    <section id="agent-sign-up-form" class="row">
+      <div class="column medium-12 agent-password-form">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+
+          <div class="field">
+            <%= f.label :email %><br class="hide-for-small-only"/>
+            <% if session[:temp_agent_info] %>
+              <%= f.email_field :email, value: session[:temp_agent_info]["email"] %>
+            <% else %>
+              <%= f.email_field :email %>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password, 'New Password' %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><!-- <br /> -->
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation, 'Confirm Password' %><br class="hide-for-small-only"/>
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+          <div id="agent-perks">
+            <ul>
+              <li>Access to HD photography, drone footage, VR, and more!</li>
+              <li>Option to instantly sell or list with OpenReal!</li>
+              <li>Free home inspection with 100% warranty!</li>
+            </ul>
+          </div>
+
+          <div class="actions">
+            <%= f.hidden_field :first_name, value: @agent.first_name%>
+            <%= f.hidden_field :last_name, value: @agent.last_name%>
+            <%= f.hidden_field :company_name, value: @agent.company_name%>
+            <%= f.submit "Start Listing", class: 'offer-link' %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>
+<%#= render "agents/shared/links" %>

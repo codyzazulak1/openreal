@@ -1,0 +1,27 @@
+
+<div class="push-footer row expanded" style="margin-top: 70px;">
+	<%= render :partial => 'dashboard/side_panel' %>
+
+	<div class="small-9 small-centered medium-9 columns dashboard-content">
+	    <h1 class="small-12 column">Profile page</h1>
+	    <hr class="small-12 column">
+	    <div class="columns small-12 medium-6">
+		    <% if @agent.profile_picture%>
+		    <img src="<%= @photo.url%>">
+		      	<% end %>
+		    <div class="profile-picture">
+		    	<%= form_tag agent_profile_picture_path(@agent.id) do %>
+		    	<%= label_tag(:profile_picture, 'Edit profile picture') %>
+		    	<%= file_field_tag(:profile_picture) %>
+		    	<%= submit_tag 'Save', class: 'button small'%>
+		    	<% end %>
+		    </div>
+			</div>
+	    <div class="update-agent-details small-12 medium-6 columns end">
+	    	<p><strong>Name:</strong> <%= @agent.full_name.capitalize%></p>
+	    	<p><strong>Company: </strong> <%= @agent.company_name%></p>
+	    	<%= link_to "Change your password", edit_agent_registration_path, class: 'button small' %>    	   
+	    </div>
+	    
+	</div>
+</div>

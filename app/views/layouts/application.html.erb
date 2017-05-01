@@ -20,9 +20,8 @@
   </head>
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
-    <%= render 'layouts/navbar' %>
-    <% flash.each do |name, msg| %>
-      <div class="primary callout flash-<%=name%> text-center" data-closable>
+    <%= render 'layouts/navbar' %>    <% flash.each do |name, msg| %>
+      <div class="primary callout flash-<%=name%> text-center" data-closable style="z-index: 10; margin-bottom: -60px;">
         <h6><%=msg%></h6>
         <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
           <span aria-hidden="true">&times;</span>

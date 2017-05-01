@@ -1,8 +1,12 @@
 <div class="agent-form" id="agents">
   <%= form_for aform,  html: {id: :agentf }, remote: true do |f| %>
     <div class="field">
-      <%= f.label :full_name %>
-      <%= f.text_field :full_name %>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
     </div>
     <div class="field">
       <%= f.label :email %>
