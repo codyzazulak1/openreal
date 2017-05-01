@@ -43,10 +43,22 @@ class RegistrationsController < Devise::RegistrationsController
   def listings_index
     if resource_class == Agent && agent_signed_in?
       @agent = current_agent
-      @properties = @agent.properties
-      @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
+      @properties = Property.where(agent_id: @agent.id).order(created_at: :desc)
+     
 
+      agent_submitted = Status.where(category: 'Agent Submitted')
+
+      statuses_name = [].push(agent_submitted.map{|sn| sn.name}).flatten
+
+      if statuses_name.include?(params[:filter])
+        @properties = Property.where(agent_id: @agent.id).joins(:status).where(statuses: {name: params[:filter], category: 'Agent Submitted'})
+      else
+        @properties = Property.where(agent_id: @agent.id).joins(:status).where(statuses: {category: 'Agent Submitted'}).order(created_at: :desc)
+      end
+
+     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
       render 'agents/listings'
+
     else
       unauthorized_access
     end

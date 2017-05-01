@@ -9,6 +9,7 @@
 	  	<p>Please choose which properties you'd like to list on OpenReal: </p>
 	    
 	    <div class="dashboard-list">
+
 	    	<div class="dashboard-list-header row collapse">
 
 	    		<div class="small-8 columns">
@@ -16,18 +17,18 @@
 	    			<button class="button small show-for-small-only" id="get-props-btn">Refresh Properties</button>
 	    		</div>
 
-	    		<form class="small-4 columns">
+	    		<form class="small-4 columns" method="get">
 	    			<select style="margin:0" name="filter" onChange="submit();">
 	    				<option style="color:blue;" value="all">Show All</option>
-	    				<option style="color:blue;" value="all">Submited</option>
-	    				<option style="color:blue;" value="all">Unsubmitted</option>
-	    				<option style="color:blue;" value="all">Live</option>
+	    				<option style="color:blue;" value="Unapproved">Submitted</option>
+	    				<!-- <option style="color:blue;" value="all">Unsubmitted</option> -->
+	    				<option style="color:blue;" value="Approved">Live</option>
 	    			</select>
 	    		</form>
 	    	</div> <!-- end of dashboard header -->
 
 
-	    <% if @properties.count > 0%>
+	    	<% if @properties.count > 0%>
 	    	<ul class="dashboard-list-body" id="agent-properties">
 	    	<div class="loader"><div class="spinner"></div></div>
 				<% @properties.each do |p|%>
@@ -62,22 +63,18 @@
 							<p>Status:  <span class="live">Live</span></p>
 						<% end %>
 					</div>
-
-					<!-- <div class="float-right" style="width: 5rem;">
-						<select class="dashboard-listing-status" data-url="<%#= dashboard_property_status_path(p) %>">
-							<optgroup label="Agent Submitted">
-				        <%# p.each do |as| %>
-				        <option value=<%#=as.name%> <%#= "selected" if p.status.name == as.name %>><%#= as.name %></option>
-				        <%#end%>
-				      </optgroup>
-					</div> -->
 				</li>
-
 				<% end %>
-	    		
+
+				<% else %>
+				<div style="margin: 20px; text-align: center;">
+					<p>No listings available.</p>
+	    	</div>
+
 	    	</ul>
 	    <% end %>
 	    </div>
+
  		<%= will_paginate @properties_paged, {class: "pagination text-center", previous_label: "◀", next_label: "▶"} %>
 	</div>
 </div>
@@ -86,11 +83,9 @@
 function test(){
 
 $('#get-props-btn').click( function(){
-		console.log('im doing it');
 		$('.loader').show();
 
 		setTimeout(function(){
-			$('#agent-properties').html('<p>Hola papi</p>')
 			$('#agent-properties').html("<%= escape_javascript render(partial: 'agents/agent_listings') %>")
 		}, 200)
 		$('.loader').fadeOut(); 
