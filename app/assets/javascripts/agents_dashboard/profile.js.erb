@@ -1,3 +1,8 @@
+
+var origimg = $('#imageUploader').attr('src');
+
+
+
 function imageUpload(picture, input){
 	$(picture).click(function(){
 		$(input).trigger('click');
@@ -15,6 +20,15 @@ function previewImageUpload(input, imgtag){
 		};
 
 		reader.readAsDataURL(input.files[0]);
+
+		$('#preview').html('<p style="color: red;"><small>Press save to set preview image</small></p>')
+		$('.cancel').html('<a href="dashboard" class="button small alert">Cancel</a>')
+		// $('.cancel').append('<i class="fa fa-times-circle fa-lg" id="cancel-imgupload" aria-hidden="true" style="color: red; cursor: pointer" onClick="resetForm()"></i>')
+
 	} else
 	console.log('Preview not available');
+}
+
+function resetForm(){
+	$('.edit_agent form').trigger('reset');
 }

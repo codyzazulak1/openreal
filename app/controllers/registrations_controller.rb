@@ -72,7 +72,7 @@ class RegistrationsController < Devise::RegistrationsController
       @address = @property.address
       @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
      @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
-
+      flash[:notice] = 'More features coming soon.'
       render 'agents/listing_show'
     else
       unauthorized_access
@@ -83,6 +83,7 @@ class RegistrationsController < Devise::RegistrationsController
     if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @property = Property.find(params[:id])
+
     else
       unauthorized_access
     end
