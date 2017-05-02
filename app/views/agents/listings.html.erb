@@ -1,7 +1,7 @@
 <div  class="push-footer row expanded" style="margin-top: 70px;">
 	<%= render :partial => 'dashboard/side_panel' %>
 
-	<div class="medium-9 columns dashboard-content" id="agent-listings-dash">
+	<div class="medium-9 columns dashboard-content" id="agent-listings-dash" style="margin-top: 0.5em">
 	    <h2>Your Listings </h2>
 	    <hr>
 	  	
@@ -19,10 +19,10 @@
 
 	    		<form class="small-4 columns" method="get">
 	    			<select style="margin:0" name="filter" onChange="submit();">
-	    				<option style="color:blue;" value="all">Show All</option>
-	    				<option style="color:blue;" value="Unapproved">Submitted</option>
+	    				<option style="color:blue;" value="all" <%= "selected" if request.parameters[:filter] == "all" %>>Show All</option>
+	    				<option style="color:blue;" value="Unapproved" <%= "selected" if request.parameters[:filter] == "Unapproved" %>>Submitted</option>
 	    				<!-- <option style="color:blue;" value="all">Unsubmitted</option> -->
-	    				<option style="color:blue;" value="Approved">Live</option>
+	    				<option style="color:blue;" value="Approved" <%= "selected" if request.parameters[:filter] == "Approved" %>>Live</option>
 	    			</select>
 	    		</form>
 	    	</div> <!-- end of dashboard header -->

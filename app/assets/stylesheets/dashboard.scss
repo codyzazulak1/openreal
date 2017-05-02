@@ -402,7 +402,14 @@
    // text-align: left;
   }
 }
+.profile-picture,
+.profile-account {
+  h4 {
+    text-decoration: underline;
+    color: $primary-color;
+  }
 
+}
 #edit-agent {
   margin-top: 100px;
   margin-bottom: 40px;
@@ -468,6 +475,9 @@
       padding-bottom: 1px;
     }
   }
- 
-
+}
+@media screen and (max-width: 638px){
+  .profile-title {
+    text-align: center; 
+  }
 }

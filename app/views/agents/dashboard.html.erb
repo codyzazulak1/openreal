@@ -2,28 +2,53 @@
 <div class="push-footer row expanded" style="margin-top: 70px;">
 	<%= render :partial => 'dashboard/side_panel' %>
 
-	<div class="small-9 small-centered medium-9 columns dashboard-content">
-	    <h1 class="small-12 column">Profile page</h1>
+	<div class="small-12 small-centered medium-9 columns dashboard-content">
+	    <h1 class="small-12 column profile-title">Profile page</h1>
 	    <hr class="small-12 column">
-	    <div class="columns small-12 medium-6">
+	    <div class="columns small-12 medium-4 large-5 profile-picture">
+	    	<h4>Profile Picture</h4>
+
 		    <% if @agent.profile_picture.square.url%>
-		    <img src="<%= @photo.square.url%>">
+		    <img src="<%= @photo.square.url%>" style="cursor: pointer" id="imageUploader">
 		    <% elsif @agent.profile_picture.nil || @agent.profile_picture.blank? %>
-		     <img src="https://dummyimage.com/250x250/4a474a/ffffff.png">
+		     	<img src="https://dummyimage.com/250x250/4a474a/ffffff.png" style="cursor: pointer" id="imageUploader"/>
 		    <% end %>
+
 		    <div class="profile-picture">
 		    	<%= form_for @agent, url: agent_profile_picture_path do |f|%>
-		    	<%= f.file_field :profile_picture%>
+		    	<!-- Errors -->
+		    	<% if @agent.errors.any? %>
+		    	<ul style="list-style: circle"><%@agent.errors.full_messages.each do |msg|%>
+		    		<li><%= msg%></li>
+		    		<% end %>
+		    	</ul>
+		    	<% end %>
+		    	
+		    	<%= f.file_field :profile_picture, style: 'display: none;'%>
+		    	<p><small>Click on image to update photo.</small></p>
 		    	<%= f.submit 'Save', class: 'button small'%>
 		    	<% end %>
 
 		    </div>
 			</div>
-	    <div class="update-agent-details small-12 medium-6 columns end">
-	    	<p><strong>Name:</strong> <%= @agent.full_name.capitalize%></p>
+	    <div class="update-agent-details small-12 medium-6 columns end profile-account">
+	    	<h4>Your Account</h4>
+	    	<p><strong>Name:</strong> <%= "#{@agent.first_name.capitalize} #{@agent.last_name.capitalize}"%></p>
 	    	<p><strong>Company: </strong> <%= @agent.company_name%></p>
+	    	<p><strong> Email: </strong> <%= @agent.email%></p> 
 	    	<%= link_to "Change your password", edit_agent_registration_path, class: 'button small' %>    	   
 	    </div>
 	    
 	</div>
 </div>
+
+<script type="text/javascript">
+	imageUpload('#imageUploader', '#agent_profile_picture');
+
+	$('#agent_profile_picture').change(function(){
+		var input = document.getElementById('agent_profile_picture');
+		var img = document.getElementById('imageUploader');
+		previewImageUpload(input, img)
+	})
+	
+</script>
