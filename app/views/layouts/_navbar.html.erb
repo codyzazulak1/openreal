@@ -1,4 +1,4 @@
-<% if current_page?('/listings') || current_page?('agents/dashboard')%>
+<% if current_page?('/listings') || current_page?('agent/dashboard')%>
 <nav id="navbar">
 <% else %>
 <nav id="navbar" style="position: fixed; width: 100%;">
@@ -35,9 +35,12 @@
             
         </ul>
       </div>
+
       <div class="float-right">
         <ul class="dropdown menu nav-menu" data-dropdown-menu data-disable-hover="true" data-click-open="true">
-        <!-- show for large -->
+
+
+<!-- show for large -->
           <li>
             <a href=<%= new_property_path %> class=<%= "active" if (controller.controller_name == 'properties' && ['new', 'create'].include?(controller.action_name)) || (controller.controller_name == 'welcome' && ['index'].include?(controller.action_name)) %>>Sell</a>
           </li>
@@ -47,9 +50,32 @@
           <li class="show-for-large">
             <a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' || controller.action_name == 'show' %>>Listings</a>
           </li>
-          <li class="show-for-large">
-            <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
-          </li>
+
+          <div class="dropdown menu show-for-large" data-dropdown-menu id="agent-dropdown">
+            <li>
+              <a href="#">For Agents</a>
+              <ul class="menu">
+                <li>
+                  <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Information</a>
+                </li>
+
+                <% if agent_signed_in?%>
+                <li>
+                  <a href="<%= agent_dashboard_path%>" class=<%= "active" if controller.controller_name == 'registrations' && controller.action_name == 'dashboard'%>>My Account</a>
+                </li>
+                <li>
+                  <%= link_to 'Logout', destroy_agent_session_path, :method => :delete %>
+                </li>
+                <% else %>
+                <li>
+                  <%= link_to 'Agent Sign in', new_agent_session_path%>  
+                </li>
+                <% end%>
+              </ul>
+            </li>
+
+            
+          </div>
 
         <!--   <li class="show-for-large">
             <a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a>
@@ -57,19 +83,42 @@
           <li class="show-for-large">
             <a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>> Contact</a>
           </li>
-        <!-- show for medium -->
+
+
+<!-- show for medium -->
         <li class="show-for-medium-only">
-          <a href="">More</a>
-          <ul id="nav-dropdown" style="left: -38px;">
+          <a href="#">More</a>
+          <ul id="nav-dropdown" style="left: -128px;">
              <li><a href="/listings"class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
-             <li>
+
+             <% if agent_signed_in? && (current_page?('/agent/dashboard') || current_page?('/agent/listing') || current_page?('/agents/dashboard/edit') || current_page?('/agents/listing/:id') || current_page?('/agents/listing/:id/edit'))%>
+              <li>
                 <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
               </li>
+              <li>
+                <%= link_to 'Logout', destroy_agent_session_path, :method => :delete %>
+              </li>
+
+            <% elsif agent_signed_in? && (!current_page?('/agent/dashboard') || !current_page?('/agent/listing') || !current_page?('/agents/dashboard/edit') || !current_page?('/agents/listing/:id') || !current_page?('/agents/listing/:id/edit'))  %>
+              <li>
+                <a href="<%= agent_dashboard_path%>" class=<%= "active" if controller.controller_name == 'registrations' && controller.action_name == 'dashboard'%>>My Account</a>
+              </li>
+              <li>
+                <%= link_to 'Logout', destroy_agent_session_path, :method => :delete %>
+              </li>
+
+            <% else%>
+              <li>
+                <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
+              </li>
+              <li>
+                <%= link_to 'Agent Sign in', new_agent_session_path%>  
+              </li>
+            <% end %>
               
               <!-- <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
 
               <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
-
           </ul>
         </li>
 
@@ -77,21 +126,38 @@
           <li class="show-for-medium">
             <%= link_to('Logout', destroy_admin_session_path, :method => :delete) %>   
           </li>
-          <% elsif agent_signed_in?%>
-          <li class="show-for-medium">
-            <%= link_to('Logout', destroy_agent_session_path, :method => :delete) %>   
-          </li>
           <%end%>
 
-          
-          <li class="show-for-small-only"><!--
-            --><a href="">More</a>
+<!-- Show for small only -->
+        <li class="show-for-small-only">
+          <a href="#">More</a>
             <ul id="nav-dropdown">
               <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
               <li><a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
-             <li>
+            <% if agent_signed_in? && (current_page?('/agent/dashboard') || current_page?('/agent/listing') || current_page?('/agents/dashboard/edit') || current_page?('/agents/listing/:id') || current_page?('/agents/listing/:id/edit'))%>
+              <li>
                 <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
               </li>
+              <li>
+                <%= link_to 'Logout', destroy_agent_session_path, :method => :delete %>
+              </li>
+
+            <% elsif agent_signed_in? && (!current_page?('/agent/dashboard') || !current_page?('/agent/listing') || !current_page?('/agents/dashboard/edit') || !current_page?('/agents/listing/:id') || !current_page?('/agents/listing/:id/edit'))  %>
+              <li>
+                <a href="<%= agent_dashboard_path%>" class=<%= "active" if controller.controller_name == 'registrations' && controller.action_name == 'dashboard'%>>My Account</a>
+              </li>
+              <li>
+                <%= link_to 'Logout', destroy_agent_session_path, :method => :delete %>
+              </li>
+
+            <% else%>
+              <li>
+                <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
+              </li>
+              <li>
+                <%= link_to 'Agent Sign in', new_agent_session_path%>  
+              </li>
+            <% end %>
               
         <!--       <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
 
