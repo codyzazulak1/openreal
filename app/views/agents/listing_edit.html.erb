@@ -1,0 +1,9 @@
+<div class="row expanded push-footer" style="margin-top: 70px">
+	<%= render :partial => 'dashboard/side_panel' %>
+	
+ <div class="medium-9 columns dashboard-content">
+    <h1><%= @property.address_name %></h1>
+    <hr>
+		<%= render partial: 'agents/form_property'%>
+	</div>
+</div>

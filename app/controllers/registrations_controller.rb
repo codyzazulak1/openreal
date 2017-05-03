@@ -22,8 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @agent = Agent.new(session[:agent_params])
-   
-
+  
     # No access to create a new admin
     if resource_class == Admin
       redirect_to new_admin_session_path
@@ -71,8 +70,8 @@ class RegistrationsController < Devise::RegistrationsController
 
       @address = @property.address
       @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
-     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
-      flash[:notice] = 'More features coming soon.'
+      @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    
       render 'agents/listing_show'
     else
       unauthorized_access
@@ -83,10 +82,25 @@ class RegistrationsController < Devise::RegistrationsController
     if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @property = Property.find(params[:id])
-
+      @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
+      @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+      render 'agents/listing_edit'
     else
       unauthorized_access
     end
+  end
+
+  def listings_update
+     if resource_class == Agent && agent_signed_in?
+      @agent = current_agent
+      @property = Property.find(params[:id])
+      @address = @property.address
+      if @property.update(property_params)
+        redirect_to agent_listings_path
+        flash[:notice] = "Successfully updated #{@address.address_first} #{@address.address_second} #{@address.city}"
+      end
+
+     end
   end
 
   def delete_agprop
@@ -197,5 +211,30 @@ class RegistrationsController < Devise::RegistrationsController
         params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
       end
     end
+
+
+    def property_params
+      if resource_class == Agent
+        params.require(:property).permit(:id,
+        :description, :floor_area, :list_price_cents,
+        :dwelling_class,:building_type,:property_type,
+        :title_to_land,:year_built,:fireplaces,
+        :number_of_floors, :stories, :bedrooms,
+        :bathrooms,:lot_length,:lot_width, :pid,
+        :seller_info, :sellers_interest, :architecture_style,
+        :matterurl, :featured_photo,
+        photos_attributes: [
+          :picture, :property_id
+        ],
+        address_attributes:
+        [
+          :address_first, :address_second, :street,
+          :city, :postal_code, :property_id, :latitude, :longitude
+        ]
+        )
+      end
+    end
+
+
 
 end

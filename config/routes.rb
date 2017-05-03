@@ -34,7 +34,8 @@ Rails.application.routes.draw do
     delete 'agent/listing/:id', to: 'registrations#delete_agprop', as: 'agent/listing'
     get 'agents/dashboard/edit', to: 'registrations#edit'
     get 'agents/listing/:id', to: 'registrations#listings_show', as: 'agent/listing/show'
-    get 'agents/listing/:id', to: 'registrations#listings_edit', as: 'agent/listing/edit'
+    get 'agents/listing/:id/edit', to: 'registrations#listings_edit', as: 'agent/listing/edit'
+    patch 'agent/property/:id', to: 'registrations#listings_update', as: 'agent/property'
 
     patch 'agents/profile_picture', to: 'registrations#profile_picture', as: 'agent/profile_picture'
 

@@ -51,7 +51,7 @@
 							</h3>
 							<div>
 								<% puts "id: #{p.id}"%>
-								<%= link_to 'Edit', agent_listing_show_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %>
+								<%= link_to 'Edit', agent_listing_edit_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %>
 							</div>
 						</div>
 					</div>

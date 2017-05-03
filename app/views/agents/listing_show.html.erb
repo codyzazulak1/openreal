@@ -14,7 +14,7 @@
 					</div>
 
 					 <div class="float-right">
-					 <%= link_to 'Edit', agent_listing_show_path(@property), class: "btn btn-secondary"%>
+					 <%= link_to 'Edit', agent_listing_edit_path(@property), class: "btn btn-secondary"%>
 					 <%= link_to 'Delete', agent_listing_path(@property.id), data: {confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-secondary'%>
 					 </div>
 
