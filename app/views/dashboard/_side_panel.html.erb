@@ -30,6 +30,9 @@
       <li class=<%= 'active' if get_namespace == "registrations" && controller.controller_name == "listings" %>>
         <a href="<%= agent_listings_path%>">Your Listings</a>
       </li>
+      <li class=<%= 'active' if get_namespace == 'registrations' && controller.controller_name == 'service'%>>
+        <a href="<%= agent_services_path%>">Services</a>
+      </li>
     </ul>
   </nav>
   <% end %>

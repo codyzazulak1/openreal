@@ -63,6 +63,10 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def services
+    render 'agents/services'
+  end
+
   def listings_show
     if resource_class == Agent && agent_signed_in?
       @agent = current_agent

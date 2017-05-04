@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     get 'agent/dashboard', to: 'registrations#dashboard'
     get 'agent/listing', to: 'registrations#listings_index', as: 'agent/listings'
+    get 'agent/services', to: 'registrations#services', as: 'agent/services'
     delete 'agent/listing/:id', to: 'registrations#delete_agprop', as: 'agent/listing'
     get 'agents/dashboard/edit', to: 'registrations#edit'
     get 'agents/listing/:id', to: 'registrations#listings_show', as: 'agent/listing/show'
