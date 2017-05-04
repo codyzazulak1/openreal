@@ -408,8 +408,29 @@
     text-decoration: underline;
     color: $primary-color;
   }
-
 }
+
+.profile-picture {
+  form {
+
+    input[type='submit']{
+      width: 7em;
+      margin-right: 10px;
+    }
+
+    input[type='submit'][disabled]{
+      background: #68c0ea;
+      color: black;
+      width: 7em;
+      margin-right: 10px;
+    }
+
+    .profile-picture-cancel {
+      width: 7em;
+    }
+  }  
+}
+
 #edit-agent {
   margin-top: 100px;
   margin-bottom: 40px;
