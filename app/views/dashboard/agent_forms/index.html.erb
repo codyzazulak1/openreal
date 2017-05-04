@@ -22,7 +22,7 @@
     </div>
 
     <div class="row dashboard-aform" id="agent-contents">
-      <% @aforms.each do |u| %>
+      <% @all_agents.each do |u| %>
       <div class="small-4 medium-3 columns details">
         <p><%= u.full_name%></p>
       </div>
@@ -34,9 +34,14 @@
       </div>
       <div class="row">
         <span class="small-12 medium-3 medium-offset-9 columns c">
+          <% if u.is_a? AgentForm%>
           <%= link_to "Edit", edit_dashboard_agent_form_path(u) %>
            |
           <%= link_to "Delete", dashboard_agent_form_path(u), method: :delete %>
+
+          <% elsif u.is_a? Agent%>
+          <p><small><%= u.created_at.strftime('%m/%d/%Y') %> <%= u.created_at.in_time_zone('Pacific Time (US & Canada)').strftime("at %I:%M%p")%></small></p>
+          <% end %>
         </span>
       </div>
       <hr>

@@ -4,10 +4,14 @@ class Dashboard::AgentFormsController < ApplicationController
 
   def index
     @aforms = AgentForm.all
+    @agent = Agent.all
+    @all_agents = []
+    @all_agents.push(@aforms, @agent).flatten!
   end
 
   def edit
     @aform = AgentForm.find(params[:id])
+    @agent = Agent.find(params[:id])
   end
 
   def update
