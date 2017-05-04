@@ -30,7 +30,11 @@ function initMultiple(){
 }
 
   $(document).ready(function(){
-    this.getElementById('addressInputTwo').focus()
+    var present = this.getElementById('addressInputTwo');
+
+    if (present !== null) {
+       present.focus()
+    }
   });
 
 function hideSoldBadges(){
