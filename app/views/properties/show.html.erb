@@ -166,6 +166,13 @@
                 <a href="mailto:info@openreal.ca" style="color: #68c0ea;">info@openreal.ca</a>
               </div>
 
+            <% elsif @agent%>
+              <div class="row" style="padding-bottom: 1em;">
+                <%= image_tag(@agent.profile_picture.square.url, style: "display:inline-block; width:30%; border-radius: 100%;", class: "small-6 columns")%>
+                <h2 style="margin-bottom: 0; font-weight: 400;">Contact <%=@agent.first_name.capitalize%></h2>
+                <a href="mailto:info@openreal.ca" style="color: #68c0ea">info@openreal.ca</a>
+              </div>
+
             <% else %>
               <div class="row">
                 <%= image_tag('logo_med.png', style: "display:inline-block; width:25%; padding-bottom: 1em;", class: "small-6 columns")%>

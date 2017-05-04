@@ -183,6 +183,8 @@ class PropertiesController < ApplicationController
       @property = Property.find(params[:id])
       @similar_properties = Property.where.not(status_id: (4)..5).similar_listings(@property, 3)
       @inquiry = ContactForm.new
+
+      @agent = Agent.find(@property.agent_id);
       
       set_meta_tags title: "#{@property.address.address_first}, #{@property.address.city}, BC",
       description: "#{@property.description}"
