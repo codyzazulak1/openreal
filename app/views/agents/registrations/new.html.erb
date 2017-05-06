@@ -28,7 +28,7 @@
           <div class="field">
             <%= f.label :email %><br class="hide-for-small-only"/>
             <% if session[:temp_agent_info] %>
-              <%= f.email_field :email, value: session[:temp_agent_info]["email"] %>
+              <%= f.email_field :email, value: session[:temp_agent_info]["email"], disabled: true %>
             <% else %>
               <%= f.email_field :email %>
             <% end %>

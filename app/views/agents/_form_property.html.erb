@@ -68,10 +68,15 @@
               <%= f.submit 'Submit', class: "button small secondary"%>
             <% end %>
             <hr />
+            <% if @photos.count > 0 && @photos%>
             <p>Below you have the option to set the primary photo to showcase the listing as well as to delete a specific photo by clicking on either the star or the trash can respectively.</p>
             <div id="edit_photos_section">
               <%= render 'agents/edit_photos_propagent'%>
             </div>
+            <% else %>
+            <h3>Photos: </h3>
+            <p style="text-align: center">No photos uploaded yet.</p>
+            <% end %>
         </div>
       </div>
     </li>
