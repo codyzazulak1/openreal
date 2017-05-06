@@ -60,12 +60,18 @@
         <% end %>
         
         <div>
-          <div>
-            <%#=f.fields_for :photos do |photo|%>
-              <%#= photo.label :picture, 'Upload picture' %><br>
-              <%#= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
-            <%# end %>
-          </div>
+        <hr>
+            <h3>Upload more photos: <h3>
+            <br>
+            <%= form_for :photo, url: agent_property_path, html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, data: {remote: true, type: "script"} do |f|%>
+              <%= f.file_field :picture, multiple: true, name: "photos[picture][]"%>
+              <%= f.submit 'Submit', class: "button small secondary"%>
+            <% end %>
+            <hr />
+            <p>Below you have the option to set the primary photo to showcase the listing as well as to delete a specific photo by clicking on either the star or the trash can respectively.</p>
+            <div id="edit_photos_section">
+              <%= render 'agents/edit_photos_propagent'%>
+            </div>
         </div>
       </div>
     </li>

@@ -10,7 +10,7 @@
 
 		    <% if @agent.profile_picture.square.url%>
 		    <img src="<%= @photo.square.url%>" style="cursor: pointer" id="imageUploader">
-		    <% elsif @agent.profile_picture.nil || @agent.profile_picture.blank? %>
+		    <% elsif @agent.profile_picture.nil? || @agent.profile_picture.blank? %>
 		     	<img src="https://dummyimage.com/250x250/4a474a/ffffff.png" style="cursor: pointer" id="imageUploader"/>
 		    <% end %>
 

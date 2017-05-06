@@ -84,10 +84,15 @@ class RegistrationsController < Devise::RegistrationsController
 
   def listings_edit
     if resource_class == Agent && agent_signed_in?
+      
       @agent = current_agent
       @property = Property.find(params[:id])
       @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
       @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+
+      @photos_build = @property.photos.build
+
+      @photos = @property.photos
       render 'agents/listing_edit'
     else
       unauthorized_access
@@ -99,7 +104,13 @@ class RegistrationsController < Devise::RegistrationsController
       @agent = current_agent
       @property = Property.find(params[:id])
       @address = @property.address
-      if @property.update(property_params)
+
+      if @property.update!(property_params)
+
+       params[:photos]['picture'].each { |p|
+        @photos = @property.photos.create!(picture: p, property_id: @property.id) 
+       }
+
         redirect_to agent_listings_path
         flash[:notice] = "Successfully updated #{@address.address_first} #{@address.address_second} #{@address.city}"
       end
@@ -116,6 +127,41 @@ class RegistrationsController < Devise::RegistrationsController
       flash[:success] = "Successfully deleted property #{@property.address_first @property.address_second}"
     else
       unauthorized_access
+    end
+  end
+
+  def photo_delete
+    @photo = Photo.find(params[:id])
+    @property = Property.find(params[:property_id])
+
+    if @property.featured_photo && @photo.picture.large.url == @property.featured_photo
+      @property.featured_photo = ""
+      @photo.destroy
+      @property.save   
+    else
+      @photo.destroy
+    end
+   
+    respond_to do |format|
+      format.js { render template: 'dashboard/properties/destroy.js.erb', layout: false}
+    end
+
+  end
+
+  def featured_photo
+    @property = Property.find(params[:id])
+    @photos = @property.photos
+    if @property && (@property.featured_photo.blank? || @property.featured_photo.nil?)
+      @property.update(featured_photo: params[:featured_photo])
+
+    else
+      @property.featured_photo = nil
+      @property.update(featured_photo: params[:featured_photo])
+    end
+
+    respond_to do |format|
+      format.html {redirect_to agent_listing_edit(@property)}
+      format.js {render template: 'agents/featured_photo_propagents.js.erb'}
     end
   end
 
@@ -136,8 +182,9 @@ class RegistrationsController < Devise::RegistrationsController
 
     agent = current_agent
 
-    # agent.profile_picture = "#{session[:temp_agent_info]["portrait"]}"
-    # agent.save!
+     # byebug
+  
+     # Agent.where(profile_picture: session[:temp_agent_info]['portrait']).first_or_create
 
     session[:temp_agent_info]["listings"].each do |listing|
       property = Property.new(

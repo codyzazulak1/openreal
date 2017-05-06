@@ -1,0 +1,11 @@
+
+$('.loader').show();
+$('.feat_photo_tag').fadeOut();
+$('#dash_photo_list').fadeOut();
+
+setTimeout(function(){
+
+	$('#edit_photos_section').html("<%= escape_javascript(render partial: '/agents/edit_photos_propagent', locals: {property: @property, photos: @property.photos})%>");
+	$('.loader').hide();
+}, 1000)
+
