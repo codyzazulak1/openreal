@@ -624,9 +624,33 @@ footer {
       }
     }
   }
+
+  .bbb-logo {
+    img {
+      width: 31%;
+      float: right;
+      opacity: 0.8;
+      filter: grayscale(100%);
+    }
+  }
+
+  .bbb-logo:hover {
+    img {
+     filter: none;
+    }
+   
+  }
 }
 
-
+@media screen and (max-width: 639px){
+  .bbb-logo {
+    img {
+      float: none!important;
+    }
+    
+  }
+  
+}
 
 
 .similar-listings {
