@@ -1,3 +1,5 @@
+<% arypages = [howitworks_path, contact_us_path, faq_path, terms_path, contact_path, agents_path, root_path]%>
+
 <% if current_page?('/listings')%>
 <nav id="navbar">
 <% else %>
@@ -9,7 +11,7 @@
           <li class="menu-text"><a id="logo" href=<%= root_path %>><img src=<%= asset_path('logo.png') %>></a></li>
       </div>
       <div class="addressinputtwo hide-for-small-only">
-        <% if !current_page?('/properties/new') && !controller.controller_name == 'registrations'%>
+        <% if arypages.map {|p| current_page?(p)}.any? %>
           <% if !(current_page?('/'))%>
              <%= form_tag (properties_sell_path), id: "addressForm" do %>
               <input type="text" id="addressInputTwo" placeholder="Enter your home address" name="addressInput" autofocus>

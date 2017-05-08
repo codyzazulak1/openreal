@@ -36,7 +36,13 @@
 
 					<div class="small-1 columns dashboard-listing-img">
 						<a href="<%= agent_listing_show_path(p.id)%>">
-							<img src="<%= p.photos.count == 0 ? 'http://placehold.it/350x150?text=%20' : p.featured_photo %>">
+							<% if p.photos.count == 0 && p.featured_photo.blank?%>
+							<img src="http://placehold.it/350x150?text=SET+PHOTO">
+							<% elsif p.photos.count > 0 && p.featured_photo.blank? %>
+							<img src="http://placehold.it/250x100?text=SET+PHOTO">
+							<% else %>
+							<img src="<%= p.featured_photo %>">
+							<% end %>
 						</a>
 					</div>
 
