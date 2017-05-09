@@ -5,82 +5,106 @@
   <div class="float-right">
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
+  <br>
+  <br>
+  <div class="row expanded">
+    <h3>Edit address information: </h3>
+    <%= f.fields_for :address do |fa| %>
 
-  <ul class="accordion clear-both" data-accordion data-multi-expand="true" data-allow-all-closed="true">
-    <li class="accordion-item is-active" data-accordion-item>
-      <a href="#" class="accordion-title">Address</a>
-      <div class="accordion-content" data-tab-content>
-        <%= f.fields_for :address do |fa| %>
+      <%#= fa.label :latitude, 'Latitude'%>
+      <%#= fa.text_field :latitude%>
 
-          <%#= fa.label :latitude, 'Latitude'%>
-          <%#= fa.text_field :latitude%>
+      <%#= fa.label :longitude, 'longitude'%>
+      <%#= fa.text_field :longitude%>
+    <div class="columns small-12 medium-6 large-6">
+      <% @address_attributes.each do |a| %>
+        <% if a == 'address_first'%>
+          <%= fa.label a, 'Street Address 1' %>
+          <%= fa.text_field a.to_sym %>
 
-          <%#= fa.label :longitude, 'longitude'%>
-          <%#= fa.text_field :longitude%>
-          
-          <% @address_attributes.each do |a| %>
-            
-            <%= fa.label a %>
-            <%= fa.text_field a.to_sym %>
-          <% end %>
+        <% elsif a == 'address_second'%>
+          <%= fa.label a, "Street Address 2 (Suite/Apt #)" %>
+          <%= fa.text_field a.to_sym %>
+
+        <% else %>
+          <%= fa.label a %>
+          <%= fa.text_field a.to_sym %>
         <% end %>
-      </div>
-    </li>
 
-    <li class="accordion-item" data-accordion-item>
-      <a href="#" class="accordion-title">Basics</a>
-      <div class="accordion-content" data-tab-content>
-        <% @property_attributes.each do |u| %>
-          <% if (u != 'agent_id')%>
-          <% if (u != 'status_id')%>
-          <% if (u != 'sold')%>
-          <% if (u != 'pictures')%>
-          <% if (u != 'featured_photo')%>
-          <% if (u != 'matterurl')%>
+      <% end %>
+    <% end %>
+    </div>
+    <hr>
+   <h3>Edit property information: </h3>
+   <div class="columns small-12 medium-9 large-9">
+      <% aryprops = ['agent_id', 'status_id', 'sold', 'pictures', 'featured_photo', 'seller_info', 'pid', 'sellers_interest', 'architecture_style' ]%>
+     
+      <% @property_attributes.each_with_index do |u, i| %>
+        <% if !(aryprops.map {|prop_attr| u == prop_attr}.any?) %>
+          <% if (i.between?(0, (@property_attributes.length/2))) %>
 
-            <% if u.include? "building_type"%>
+            <div class="columns small-12 medium-6">
+             <% if u.include? "building_type"%>
                <%= f.label u%>
                <!-- downcase -froze string issue -->
                <%= f.text_field u.to_sym%>
+
              <% else %>
-
-
                <%= f.label u %>
                <%= f.text_field u.to_sym %>
+             <% end %>
+            </div>  
 
+
+          <% else %>
+
+             <% if u.include? "description"%>
+             <div class="columns small-12 medium-12">
+               <%= f.label u%>
+               <!-- downcase -froze string issue -->
+               <%= f.text_area u.to_sym, rows: 6%>
+             </div> 
+             <% elsif u.include? "matterurl"%>
+             <div class="columns small-12 medium-12">
+              <%= f.label u %>
+              <%= f.text_field u.to_sym %>
+             </div>
+             <% elsif u.include? "building_type"%>
+             <div class="columns small-12 medium-6">
+              <%= f.label u %>
+              <%= f.text_field u.to_sym %>
+             </div>
+             <% else %>
+             <div class="columns small-12 medium-6">
+               <%= f.label u %>
+               <%= f.text_field u.to_sym %>
+             </div>   
             <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
-          <% end %>
+          
 
-  
+
+          <% end %>
         <% end %>
-        
-        <div>
-        <hr>
-            <h3>Upload more photos: <h3>
-            <br>
-            <%= form_for :photo, url: agent_property_path, html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, data: {remote: true, type: "script"} do |f|%>
-              <%= f.file_field :picture, multiple: true, name: "photos[picture][]"%>
-              <%= f.submit 'Submit', class: "button small secondary"%>
-            <% end %>
-            <hr />
-            <% if @photos.count > 0 && @photos%>
-            <p>Below you have the option to set the primary photo to showcase the listing as well as to delete a specific photo by clicking on either the star or the trash can respectively.</p>
-            <div id="edit_photos_section">
-              <%= render 'agents/edit_photos_propagent'%>
-            </div>
-            <% else %>
-            <h3>Photos: </h3>
-            <p style="text-align: center">No photos uploaded yet.</p>
-            <% end %>
-        </div>
+      <% end %>
+    </div>   
+      <hr>
+      <h3>Upload more photos: <h3>
+      <br>
+      <%= form_for :photo, url: agent_property_path, html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, data: {remote: true, type: "script"} do |f|%>
+        <%= f.file_field :picture, multiple: true, name: "photos[picture][]"%>
+        <%= f.submit 'Submit', class: "button small secondary"%>
+      <% end %>
+      <hr />
+      <% if @photos.count > 0 && @photos%>
+      <p>Below you have the option to set the primary photo to showcase the listing as well as to delete a specific photo by clicking on either the star or the trash can respectively.</p>
+      <div id="edit_photos_section">
+        <%= render 'agents/edit_photos_propagent'%>
       </div>
-    </li>
-  </ul>
+      <% else %>
+      <h3>Photos: </h3>
+      <p style="text-align: center">No photos uploaded yet.</p>
+      <% end %>
+  </div>
 
   
   <div class="float-left">
@@ -90,3 +114,5 @@
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
 <%end%>
+<br>
+<br>
