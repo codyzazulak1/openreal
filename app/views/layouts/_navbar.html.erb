@@ -57,9 +57,11 @@
             <li>
               <a href="#">For Agents</a>
               <ul class="menu">
+              <% if !(agent_signed_in?)%>
                 <li>
                   <a href=<%=agents_path%> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>Information</a>
                 </li>
+              <% end %>
 
                 <% if agent_signed_in?%>
                 <li>
@@ -92,6 +94,9 @@
           <a href="#">More</a>
           <ul id="nav-dropdown" style="left: -128px;">
              <li><a href="/listings"class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
+            <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
+
+            <hr>
 
              <% if agent_signed_in? && (current_page?('/agent/dashboard') || current_page?('/agent/listing') || current_page?('/agents/dashboard/edit') || current_page?('/agents/listing/:id') || current_page?('/agents/listing/:id/edit'))%>
               <li>
@@ -119,8 +124,6 @@
             <% end %>
               
               <!-- <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
-
-              <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
           </ul>
         </li>
 
@@ -136,6 +139,8 @@
             <ul id="nav-dropdown">
               <li><a href=<%= howitworks_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'howitworks' %>>How it works</a></li>
               <li><a href="/listings" class=<%= "active" if controller.controller_name == 'properties' && controller.action_name == 'index' %>>Listings</a></li>
+               <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
+               <hr>
             <% if agent_signed_in? && (current_page?('/agent/dashboard') || current_page?('/agent/listing') || current_page?('/agents/dashboard/edit') || current_page?('/agents/listing/:id') || current_page?('/agents/listing/:id/edit'))%>
               <li>
                 <a href=<%= agents_path%> class=<%"active" if controller.controller_name == 'welcome' && controller.action_name == 'agents'%>>For Agents</a>
@@ -162,8 +167,6 @@
             <% end %>
               
         <!--       <li><a href=<%= faq_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'faq' %>>FAQ</a></li> -->
-
-              <li><a href=<%= contact_path %> class=<%= "active" if controller.controller_name == 'welcome' && controller.action_name == 'contact' %>>Contact</a></li>
 
 
             </ul>
