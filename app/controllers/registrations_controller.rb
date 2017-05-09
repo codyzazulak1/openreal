@@ -100,22 +100,24 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def listings_update
+
      if resource_class == Agent && agent_signed_in?
       @agent = current_agent
       @property = Property.find(params[:id])
       @address = @property.address
 
       if @property.update!(property_params)
-
-       params[:photos]['picture'].each { |p|
-        @photos = @property.photos.create!(picture: p, property_id: @property.id) 
-       }
+        if !(params[:photos].blank?)
+         params[:photos]['picture'].each { |p|
+          @photos = @property.photos.create!(picture: p, property_id: @property.id) 
+         }
+        end
 
         redirect_to agent_listings_path
         flash[:notice] = "Successfully updated #{@address.address_first} #{@address.address_second} #{@address.city}"
       end
-
      end
+
   end
 
   def delete_agprop
