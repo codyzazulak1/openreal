@@ -25,32 +25,35 @@
           <%= devise_error_messages! %>
 
 
-          <div class="field">
+          <div class="field small-12 medium-12 large-11">
             <%= f.label :email %><br class="hide-for-small-only"/>
             <% if session[:temp_agent_info] %>
-              <%= f.email_field :email, value: session[:temp_agent_info]["email"], disabled: true %>
+              <%= f.email_field :email, value: session[:temp_agent_info]["email"], style: "pointer-events: none; background-color: lightgrey;" %>
             <% else %>
               <%= f.email_field :email %>
             <% end %>
           </div>
 
-          <div class="field">
-            <%= f.label :password, 'New Password' %>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><!-- <br /> -->
-            <%= f.password_field :password, autocomplete: "off" %>
-          </div>
+          
+            <div class="field  small-12 medium-12 large-5" style="display: inline-block;">
+              <%= f.label :password, 'New Password' %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><!-- <br /> -->
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
 
-          <div class="field">
-            <%= f.label :password_confirmation, 'Confirm Password' %><br class="hide-for-small-only"/>
-            <%= f.password_field :password_confirmation, autocomplete: "off" %>
-          </div>
-          <div id="agent-perks">
+            <div class="field  small-12 medium-12 large-6" style="display: inline-block;">
+              <%= f.label :password_confirmation, 'Confirm Password' %><br class="hide-for-small-only"/>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            </div>
+          
+
+          <div id="agent-perks" class=" small-12 medium-12">
             <ul>
               <li>Access to HD photography, drone footage, VR, and more!</li>
               <li>Option to instantly sell or list with OpenReal!</li>
-              <li>Free home inspection with 100% warranty!</li>
+              <li>Free home inspection!</li>
             </ul>
           </div>
 

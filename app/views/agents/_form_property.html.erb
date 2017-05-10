@@ -36,7 +36,6 @@
     </div>
     <hr>
    <h3>Edit property information: </h3>
-   <div class="columns small-12 medium-9 large-9">
       <% aryprops = ['agent_id', 'status_id', 'sold', 'pictures', 'featured_photo', 'seller_info', 'pid', 'sellers_interest', 'architecture_style' ]%>
      
       <% @property_attributes.each_with_index do |u, i| %>
@@ -86,8 +85,8 @@
           <% end %>
         <% end %>
       <% end %>
-    </div>   
       <hr>
+
       <h3>Upload more photos: <h3>
       <br>
       <%= form_for :photo, url: agent_property_path, html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, data: {remote: true, type: "script"} do |f|%>
@@ -104,6 +103,7 @@
       <h3>Photos: </h3>
       <p style="text-align: center">No photos uploaded yet.</p>
       <% end %>
+      
   </div>
 
   

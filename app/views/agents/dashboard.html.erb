@@ -25,9 +25,10 @@
 		    	<% end %>
 		    	
 		    	<%= f.file_field :profile_picture, style: 'display: none;'%>
-		    	<p><small>Click on image to update photo.</small></p>
+		    	<br>
 		    	<div id="preview"></div>
-		    	<%= f.submit 'Save', class: 'button small', data: { "disable-with": "Saving..." }%><div class="cancel" style="display:inline-block;"></div>
+		    	<a class="button small" href="#" id="secondary-upload-btn"> Update profile picture</a>
+		    	<div class="save" style="display: inline-block;"></div><div class="cancel" style="display:inline-block;"></div>
 		    	<% end %>
 
 		    </div>
@@ -45,6 +46,7 @@
 
 <script type="text/javascript">
 	imageUpload('#imageUploader', '#agent_profile_picture');
+	imageUpload('#secondary-upload-btn', '#agent_profile_picture');
 
 	if ($('#agent_profile_picture').val() === ''){
 		$('input:submit').prop('disabled', true)

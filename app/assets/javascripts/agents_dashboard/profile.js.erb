@@ -16,9 +16,11 @@ function previewImageUpload(input, imgtag){
 
 		reader.readAsDataURL(input.files[0]);
 
-		$('#preview').html('<p style="color: red;"><small>Press save to set preview image</small></p>')
 		$('.cancel').html('<a href="dashboard" class="button small alert">Cancel</a>')
 		$('.cancel a').addClass('profile-picture-cancel');
+		$('.save').html('<input type="submit" name="commit" value="Save" class="button small" data-disable-with="Saving...">')
+
+		$('#secondary-upload-btn').hide();
 		// $('.cancel').append('<i class="fa fa-times-circle fa-lg" id="cancel-imgupload" aria-hidden="true" style="color: red; cursor: pointer" onClick="resetForm()"></i>')
 
 	} else
