@@ -48,6 +48,12 @@
                <!-- downcase -froze string issue -->
                <%= f.text_field u.to_sym%>
 
+             <% elsif u.include? "list_price_cents"%>
+             <%= f.label u, 'Listing price'%>
+             <div class="input-group">
+               <span class="input-group-label">$</span>
+                <%= f.number_field u.to_sym, class: 'input-group-field'%>
+             </div>
              <% else %>
                <%= f.label u %>
                <%= f.text_field u.to_sym %>
@@ -72,6 +78,12 @@
              <div class="columns small-12 medium-6">
               <%= f.label u %>
               <%= f.text_field u.to_sym %>
+             </div>
+             <% elsif u.include? "list_price_cents"%>
+             <div class="columns small-12 medium-6 input-group">
+                <%= f.label u, 'Listing price' %>
+               <span class="input-group-label">$</span>
+                <%= f.number_field u.to_sym, class: 'input-group-field'%>
              </div>
              <% else %>
              <div class="columns small-12 medium-6">
