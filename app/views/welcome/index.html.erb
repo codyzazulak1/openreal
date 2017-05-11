@@ -1,5 +1,31 @@
 <%- title "Sell Your Home Instantly!" %> 
 <!--hero-->
+
+<div id="actionModalHome" class="reveal small hide-for-small-only" data-reveal  data-v-offset="150"  data-animation-in='fade-in' data-animation-out='fade-out' aria-labelledby="Looking to buy, sell, or are you an agent?" aria-hidden="true" role="dialog">
+ <!-- <a class="close-reveal-modal float-right" aria-label="Close">&#215;</a> -->
+  <div class="modal-internal-img">
+  </div>
+  <div class="modal-logo-img column small-6 small-centered medium-6 medium-centered large-6 large-centered">
+    <%= image_tag('logo_lg')%>
+  </div>
+  <div class="text">
+    <h3>Real Estate, <span><h3>Simplified</h3></span>.</h3>
+    <p><small>How can we help you?</small></p>
+  </div>
+
+  <div class="row expanded modal-btns">
+    <div class="columns small-12  medium-3 modal-col">
+      <a href="/listings">Buy A Home</a>
+    </div>
+    <div class="columns small-12 medium-3 modal-col">
+      <a href="<%= new_property_path%>">Sell Your Home</a>
+    </div>
+    <div class="columns small-12 medium-3 modal-col end">
+      <a href="<%= agents_path%>">List A Client's Home</a>
+    </div>
+  </div>
+</div>
+
 <section class="" id="hero">
   <div class="hero-bg"></div>
   <div class="intro">
@@ -249,6 +275,20 @@
   scrollIt();
   grabCompanyChosen();
   redirectToFaq();
+
+
+  $(document).ready(function(){
+    if ($( window ).width() > 700){
+      setTimeout(function(){
+        $('#actionModalHome').foundation('open');
+
+        $('.close-reveal-modal').click(function(){
+          $('#actionModalHome').foundation('close');
+        })
+      },1000)      
+    }
+
+  })
   
 </script>
 
