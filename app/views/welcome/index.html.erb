@@ -26,6 +26,31 @@
   </div>
 </div>
 
+<div id="actionModalHomeSmall" class="reveal tiny show-for-small-only" data-reveal data-animation-in="fade-in" aria-labelledby="Looking to buy, sell, or are you an agent?" aria-hidden="true" role="dialog">
+  <div class="small-modal-img">
+  </div>
+  <div class="small-modal-logo columns small-6 small-centered">
+    <%= image_tag('logo_lg')%>
+  </div>
+  <div class="text-small">
+    <h3>Real Estate, <span><h3>Simplified</h3></span>.</h3>
+    <p><small>How can we help you?</small></p>
+  </div>
+
+  <div class="row btn-row">
+    <button class="columns small-12 button small">
+      <a href="/listings">Buy A Home</a>
+    </button>
+    <button class="columns small-12 button small">
+      <a href="<%= new_property_path%>">Sell Your Home</a>
+    </button>
+    <button class="columns small-12 end button small"> 
+      <a href="<%= agents_path%>">List A Client's Home</a>
+    </button>
+  </div>
+
+</div>
+
 <section class="" id="hero">
   <div class="hero-bg"></div>
   <div class="intro">
@@ -278,7 +303,7 @@
 
 
   $(document).ready(function(){
-    if ($( window ).width() > 700){
+    if ($( window ).width() > 639){
       setTimeout(function(){
         $('#actionModalHome').foundation('open');
 
@@ -286,6 +311,9 @@
           $('#actionModalHome').foundation('close');
         })
       },1000)      
+    }
+    else if ($(window).width() < 640){
+      $('#actionModalHomeSmall').foundation('open');
     }
 
   })
