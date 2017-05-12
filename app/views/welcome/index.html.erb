@@ -15,13 +15,13 @@
 
   <div class="row expanded modal-btns">
     <div class="columns small-12  medium-3 modal-col">
-      <a href="/listings">Buy A Home</a>
+      <a href="/listings">Buy a Home</a>
     </div>
     <div class="columns small-12 medium-3 modal-col">
       <a href="<%= new_property_path%>">Sell Your Home</a>
     </div>
     <div class="columns small-12 medium-3 modal-col end">
-      <a href="<%= agents_path%>">List A Client's Home</a>
+      <a href="<%= agents_path%>">List a Client's Home</a>
     </div>
   </div>
 </div>
@@ -303,20 +303,22 @@
 
 
   $(document).ready(function(){
-    if ($( window ).width() > 639){
+    if (($( window ).width() > 639) && (sessionStorage.getItem('popup') == null)){
       setTimeout(function(){
         $('#actionModalHome').foundation('open');
-
+        sessionStorage.setItem('popup', 1)
         $('.close-reveal-modal').click(function(){
           $('#actionModalHome').foundation('close');
         })
       },1000)      
     }
-    else if ($(window).width() < 640){
+    else if (($(window).width() < 640) && (sessionStorage.getItem('popup') == null)){
       $('#actionModalHomeSmall').foundation('open');
-    }
-
+      sessionStorage.setItem('popup', 1)
+    };
   })
+
+
   
 </script>
 
