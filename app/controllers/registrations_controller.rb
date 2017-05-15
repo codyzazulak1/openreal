@@ -197,7 +197,7 @@ class RegistrationsController < Devise::RegistrationsController
         bathrooms: listing["bathrooms"] || nil,
         floor_area: listing["floor_area"] || nil,
         year_built: listing["year_built"] || nil,
-        status_id: 4
+        status_id: 1
       )
 
       if property.save

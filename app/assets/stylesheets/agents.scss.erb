@@ -481,14 +481,19 @@ form.new_agent {
 #status-prop-agents {
 	p {
 		font-size: initial;
-		.submitted {
-		    color: orange;
-    		font-weight: 500;
-			}
+
 		.live {
 				color: $primary-color;
 				font-weight: 500;
 			}
+		}
+		.pending {
+			color: orange;
+			font-weight: 500;
+		}
+		.unapproved {
+			color: grey;
+			font-weight: 500;
 		}
 }
 

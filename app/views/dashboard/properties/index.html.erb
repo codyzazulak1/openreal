@@ -65,7 +65,7 @@
                   </optgroup>
                   <optgroup label="Agent Submitted">
                     <% @agent_submitted.each do |as| %>
-                      <option value=<%=as.name%> <%= "selected" if p.status.name == as.name %>><%= as.name %></option>
+                      <option value='<%=as.name%>' <%= "selected" if p.status.name == as.name %>><%= as.name %></option>
                     <%end%>
                   </optgroup>
                   <optgroup label="Owned Properties">

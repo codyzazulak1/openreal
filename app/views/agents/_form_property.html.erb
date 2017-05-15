@@ -52,7 +52,7 @@
              <%= f.label u, 'Listing price'%>
              <div class="input-group">
                <span class="input-group-label">$</span>
-                <%= f.number_field u.to_sym, class: 'input-group-field'%>
+                <%= f.text_field u.to_sym, class: 'input-group-field'%>
              </div>
              <% else %>
                <%= f.label u %>
@@ -83,7 +83,7 @@
              <div class="columns small-12 medium-6 input-group">
                 <%= f.label u, 'Listing price' %>
                <span class="input-group-label">$</span>
-                <%= f.number_field u.to_sym, class: 'input-group-field'%>
+                <%= f.text_field u.to_sym, class: 'input-group-field'%>
              </div>
              <% else %>
              <div class="columns small-12 medium-6">

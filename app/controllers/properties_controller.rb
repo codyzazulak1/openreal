@@ -1,12 +1,14 @@
 class PropertiesController < ApplicationController
 
+  # before_action :setup_show_propid, only: [:show]
+
   def index
     if params[:city]
       @city = params[:city].capitalize
       @center = city_center(@city)
-      @properties = Property.includes(:address, :photos).where.not(status_id: (4)..5).within(@city)
+      @properties = Property.where.not(status_id: 4).includes(:address, :photos).within(@city)
     else
-      @properties = Property.includes(:address, :photos).for_sale.where.not(status_id: (4)..5).created_desc
+      @properties = Property.where.not(status_id: 4).includes(:address, :photos).for_sale.created_desc
       @sold = Property.except_contact_form_submission.where('list_price_cents = ?', 0).count
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
@@ -55,7 +57,7 @@ class PropertiesController < ApplicationController
 
   def filter
   
-    @properties = Property.includes(:address, :photos).for_sale.where.not(status_id: (4)..5)
+    @properties = Property.includes(:address, :photos).for_sale.where.not(status_id: 4)
 
     cookies[:sort_params] = {value: params["sort"]}   
 
@@ -65,7 +67,7 @@ class PropertiesController < ApplicationController
       @properties = @properties.includes(:address, :photos).where("properties.list_price_cents >= ?", params["min-price"].to_i)
     end
     if params["show"]
-      @properties = Property.includes(:address, :photos).where.not(status_id: (4)..5).all.except_contact_form_submission
+      @properties = Property.includes(:address, :photos).where.not(status_id: 4).all.except_contact_form_submission
     end
 
     if params["max-price"] && params["max-price"] != ''
@@ -177,14 +179,16 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    if (Property.all.count != 0)
+    @property = Property.find(params[:id]) if Property.find(params[:id]).status_id != 4
+    if (Property.all.count != 0 && @property)
 
-      @properties = Property.where.not(status_id: (4)..5).all
-      @property = Property.find(params[:id])
-      @similar_properties = Property.where.not(status_id: (4)..5).similar_listings(@property, 3)
+      @properties = Property.where.not(status_id: 4).all
+      @similar_properties = Property.similar_listings(@property, 3)
       @inquiry = ContactForm.new
 
-      @agent = Agent.find(@property.agent_id);
+      if @property.agent_id
+        @agent = Agent.find(@property.agent_id)
+      end
       
       set_meta_tags title: "#{@property.address.address_first}, #{@property.address.city}, BC",
       description: "#{@property.description}"
@@ -210,6 +214,10 @@ class PropertiesController < ApplicationController
       else
         redirect_to '/listings'
       end
+
+    else
+      redirect_to '/listings'
+      flash[:notice] = "The listing you're trying to access doesn't exist or is no longer available."
     end
 
   end
@@ -304,5 +312,15 @@ class PropertiesController < ApplicationController
     params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes, :timeframe)
   end
 
+  def setup_show_propid
+    @property ||= Property.find(params[:id])
+    if @property.status_id == 4
+      redirect_to '/listings'
+      flash[:notice] = "The listing you're trying to access doesn't exist or is no longer available"
+    else
+      return @property
+    end
+
+  end
  
 end

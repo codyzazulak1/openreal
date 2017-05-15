@@ -5,27 +5,37 @@
 	    <h2>Your Listings </h2>
 	    <hr>
 	  	
-	  	<p class="atention">Some of your listings may not be live yet.</p>
-	  	<p>Please choose which properties you'd like to list on OpenReal: </p>
+	  	<!-- <p class="atention">Some of your listings may not be live yet.</p> -->
+	  	<p style="margin-top: 10px; font-weight: 300;">Some of your listings may not be live yet. Check your listing's status to learn more: </p>
+	  	<!-- <p>Please choose which properties you'd like to list on OpenReal: </p> -->
+	  	<h5></h5>
+
+	  	<p><small><color style="color: orange">Pending Approval</color>: OpenReal is reviewing your listing.</small></p>
+	  	<p><small><color style="color: #68c0ea">Live</color>: Your listing has been approved and is now live.</small></p>
+	  	<p><small><color style="color: grey">Unapproved</color>: Check the listing's comments for improvements so your listing can get approved.</small></p>
+	  	<br>
+
 	    
 	    <div class="dashboard-list">
 
 	    	<div class="dashboard-list-header row collapse">
 
 	    		<div class="small-8 columns">
-	    			<button class="button hide-for-small-only" id="get-props-btn"> Refresh Properties</button>
-	    			<button class="button small show-for-small-only" id="get-props-btn">Refresh Properties</button>
+	    			<!-- <button class="button hide-for-small-only" id="get-props-btn"> Refresh Properties</button> -->
+	    			<!-- <button class="button small show-for-small-only" id="get-props-btn">Refresh Properties</button> -->
 	    		</div>
 
 	    		<form class="small-4 columns" method="get">
-	    			<select style="margin:0" name="filter" onChange="submit();">
+	    			<select name="filter" onChange="submit();">
 	    				<option style="color:blue;" value="all" <%= "selected" if request.parameters[:filter] == "all" %>>Show All</option>
-	    				<option style="color:blue;" value="Unapproved" <%= "selected" if request.parameters[:filter] == "Unapproved" %>>Submitted</option>
+	    				<option style="color:blue;" value="Pending Approval" <%= 'selected' if request.parameters[:filter] == 'Pending Approval'%>>Pending Approval</option>
+	    				<option style="color:blue;" value="Unapproved" <%= "selected" if request.parameters[:filter] == "Unapproved" %>>Unapproved</option>
+	    			
 	    				<!-- <option style="color:blue;" value="all">Unsubmitted</option> -->
 	    				<option style="color:blue;" value="Approved" <%= "selected" if request.parameters[:filter] == "Approved" %>>Live</option>
 	    			</select>
 	    		</form>
-	    	</div> <!-- end of dashboard header -->
+	    	</div> <!-- end of dashboard header --> 
 
 
 	    	<% if @properties.count > 0%>
@@ -56,17 +66,18 @@
 								<% end %>
 							</h3>
 							<div>
-								<% puts "id: #{p.id}"%>
 								<%= link_to 'Edit', agent_listing_edit_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %>
 							</div>
 						</div>
 					</div>
 
 					<div class="small-4 columns" id="status-prop-agents">
-						<% if p.status_id === 4%>
-							<p>Status:  <span class="submitted">Submitted</span></p>
+						<% if p.status_id === 9%>
+							<p>Status:  <span class="pending">Pending Approval</span></p>
 						<% elsif p.status_id == 5%>
 							<p>Status:  <span class="live">Live</span></p>
+						<% elsif p.status_id == 4%>
+							<p>Status: <span class="unapproved"> Unapproved</span></p>
 						<% end %>
 					</div>
 				</li>
