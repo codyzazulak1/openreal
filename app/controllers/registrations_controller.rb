@@ -185,8 +185,8 @@ class RegistrationsController < Devise::RegistrationsController
     agent = current_agent
 
      # byebug
-  
-     # Agent.where(profile_picture: session[:temp_agent_info]['portrait']).first_or_create
+    agent.remote_profile_picture_url = session[:temp_agent_info]['portrait']
+    agent.save
 
     session[:temp_agent_info]["listings"].each do |listing|
       property = Property.new(
@@ -197,7 +197,7 @@ class RegistrationsController < Devise::RegistrationsController
         bathrooms: listing["bathrooms"] || nil,
         floor_area: listing["floor_area"] || nil,
         year_built: listing["year_built"] || nil,
-        status_id: 1
+        status_id: 9
       )
 
       if property.save
