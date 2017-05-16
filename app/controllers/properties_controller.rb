@@ -1,14 +1,13 @@
 class PropertiesController < ApplicationController
 
-  # before_action :setup_show_propid, only: [:show]
-
   def index
+    unapproved_listings = Status.where(name: ['Pending Approval', 'Unapproved'])
     if params[:city]
       @city = params[:city].capitalize
       @center = city_center(@city)
-      @properties = Property.where.not(status_id: 4).includes(:address, :photos).within(@city)
+      @properties = Property.where.not(status: unapproved_listings).includes(:address, :photos).within(@city)
     else
-      @properties = Property.where.not(status_id: 4).includes(:address, :photos).for_sale.created_desc
+      @properties = Property.includes(:address, :photos).for_sale.where.not(status: unapproved_listings).created_desc
       @sold = Property.except_contact_form_submission.where('list_price_cents = ?', 0).count
       @center = {lat: 49.2400769, lng: -123.0282093}
     end
@@ -56,8 +55,8 @@ class PropertiesController < ApplicationController
   end
 
   def filter
-  
-    @properties = Property.includes(:address, :photos).for_sale.where.not(status_id: 4)
+    unapproved_listings = Status.where(name: ['Pending Approval', 'Unapproved'])
+    @properties = Property.includes(:address, :photos).for_sale.where.not(status: unapproved_listings)
 
     cookies[:sort_params] = {value: params["sort"]}   
 
@@ -67,7 +66,7 @@ class PropertiesController < ApplicationController
       @properties = @properties.includes(:address, :photos).where("properties.list_price_cents >= ?", params["min-price"].to_i)
     end
     if params["show"]
-      @properties = Property.includes(:address, :photos).where.not(status_id: 4).all.except_contact_form_submission
+      @properties = Property.includes(:address, :photos).where.not(status: unapproved_listings).all.except_contact_form_submission
     end
 
     if params["max-price"] && params["max-price"] != ''
@@ -179,10 +178,11 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id]) if Property.find(params[:id]).status_id != 4
+    @property = Property.find(params[:id])
+    
     if (Property.all.count != 0 && @property)
-
-      @properties = Property.where.not(status_id: 4).all
+      unapproved_listings = Status.where(name: ['Pending Approval', 'Unapproved'])
+      @properties = Property.where.not(status: unapproved_listings).all
       @similar_properties = Property.similar_listings(@property, 3)
       @inquiry = ContactForm.new
 
