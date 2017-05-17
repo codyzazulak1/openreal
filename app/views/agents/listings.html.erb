@@ -12,7 +12,7 @@
 
 	  	<p><small><color style="color: orange">Pending Approval</color>: OpenReal is reviewing your listing.</small></p>
 	  	<p><small><color style="color: #68c0ea">Live</color>: Your listing has been approved and is now live.</small></p>
-	  	<p><small><color style="color: grey">Unapproved</color>: Check the listing's comments for improvements so your listing can get approved.</small></p>
+	  	<p><small><color style="color: grey">Unapproved</color>: Check the listing's notes for improvements so your listing can get approved.</small></p>
 	  	<br>
 
 	    
@@ -78,6 +78,26 @@
 							<p>Status:  <span class="live">Live</span></p>
 						<% elsif p.status_id == 4%>
 							<p>Status: <span class="unapproved"> Unapproved</span></p>
+							<% if p.note%>
+							<a href="#" class="button small " data-open='notes'>Check Notes</a>
+							<div class="reveal" id="notes" data-reveal>
+								<button class="close-button" data-close aria-label="Close modal" type="button">
+  								<span aria-hidden="true">&times;</span>
+								</button>
+								<h4>Notes on listing: <%= "#{p.address.address_first} #{p.address.address_second}" %></h4>
+								<hr>
+								<p>
+									<%= p.note%>
+								</p>
+								<p>
+									<small>Once you are ready to resubmit your listing click 
+									<%= link_to 'here'%> and it will be submitted right away.
+									</small>
+								</p>
+							</div>
+							<% else %>
+							<p><small>Notes Pending</small></p>
+							<% end %>
 						<% end %>
 					</div>
 				</li>
