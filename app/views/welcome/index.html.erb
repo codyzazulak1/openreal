@@ -1,5 +1,56 @@
 <%- title "Sell Your Home Instantly!" %> 
 <!--hero-->
+
+<div id="actionModalHome" class="reveal small hide-for-small-only" data-reveal  data-v-offset="150"  data-animation-in='fade-in' data-animation-out='fade-out' aria-labelledby="Looking to buy, sell, or are you an agent?" aria-hidden="true" role="dialog">
+ <!-- <a class="close-reveal-modal float-right" aria-label="Close">&#215;</a> -->
+  <div class="modal-internal-img">
+  </div>
+  <div class="modal-logo-img column small-6 small-centered medium-6 medium-centered large-6 large-centered">
+    <%= image_tag('logo_lg')%>
+  </div>
+  <div class="text">
+    <h3>Real Estate, <span><h3>Simplified</h3></span>.</h3>
+    <p><small>How can we help you?</small></p>
+  </div>
+
+  <div class="row expanded modal-btns">
+    <div class="columns small-12  medium-3 modal-col">
+      <a href="/listings">Buy a Home</a>
+    </div>
+    <div class="columns small-12 medium-3 modal-col">
+      <a href="<%= new_property_path%>">Sell Your Home</a>
+    </div>
+    <div class="columns small-12 medium-3 modal-col end">
+      <a href="<%= agents_path%>">List a Client's Home</a>
+    </div>
+  </div>
+</div>
+
+<div id="actionModalHomeSmall" class="reveal tiny show-for-small-only" data-reveal data-animation-in="fade-in" aria-labelledby="Looking to buy, sell, or are you an agent?" aria-hidden="true" role="dialog">
+  <div class="small-modal-img">
+  </div>
+  <div class="small-modal-logo columns small-6 small-centered">
+    <%= image_tag('logo_lg')%>
+  </div>
+  <div class="text-small">
+    <h3>Real Estate, <span><h3>Simplified</h3></span>.</h3>
+    <p><small>How can we help you?</small></p>
+  </div>
+
+  <div class="row btn-row">
+    <button class="columns small-12 button small">
+      <a href="/listings">Buy A Home</a>
+    </button>
+    <button class="columns small-12 button small">
+      <a href="<%= new_property_path%>">Sell Your Home</a>
+    </button>
+    <button class="columns small-12 end button small"> 
+      <a href="<%= agents_path%>">List A Client's Home</a>
+    </button>
+  </div>
+
+</div>
+
 <section class="" id="hero">
   <div class="hero-bg"></div>
   <div class="intro">
@@ -249,6 +300,25 @@
   scrollIt();
   grabCompanyChosen();
   redirectToFaq();
+
+
+  $(document).ready(function(){
+    if (($( window ).width() > 639) && (sessionStorage.getItem('popup') == null)){
+      setTimeout(function(){
+        $('#actionModalHome').foundation('open');
+        sessionStorage.setItem('popup', 1)
+        $('.close-reveal-modal').click(function(){
+          $('#actionModalHome').foundation('close');
+        })
+      },1000)      
+    }
+    else if (($(window).width() < 640) && (sessionStorage.getItem('popup') == null)){
+      $('#actionModalHomeSmall').foundation('open');
+      sessionStorage.setItem('popup', 1)
+    };
+  })
+
+
   
 </script>
 
