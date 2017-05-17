@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     resources :properties do
       patch 'status', action: :status
       patch 'featured_photo', action: :featured_photo
+      post 'note', action: :add_note
       resources :photos, only: [:new, :create]
     end
     resources :photos, only: [:destroy, :create]

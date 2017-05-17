@@ -119,6 +119,15 @@ class Dashboard::PropertiesController < ApplicationController
     end
   end
 
+  def add_note
+    @property = Property.find(params[:property_id])
+    @property.note = params[:notes]
+    if @property.save!
+      redirect_to dashboard_properties_path
+      flash[:notice] = "Successfully left a note for Agent property #{@property.address.address_first} #{@property.address.address_second}, #{@property.address.city}"
+    end
+  end
+
   private
 
   def property_params
@@ -128,7 +137,7 @@ class Dashboard::PropertiesController < ApplicationController
       :title_to_land,:year_built,:fireplaces,
       :number_of_floors, :stories, :bedrooms,
       :bathrooms,:lot_length,:lot_width, :pid,
-      :seller_info, :sellers_interest, :architecture_style,
+      :seller_info, :sellers_interest, :note, :architecture_style,
       :matterurl, :featured_photo,
       photos_attributes: [
         :picture, :property_id

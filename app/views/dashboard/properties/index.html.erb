@@ -52,8 +52,28 @@
                   <%end%>
                 </h3>
                 <div>
-                  <%#=# link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete",dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %>
+                  <%#=# link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete",dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %> 
+                  <% if p.agent_id && p.status.name == 'Unapproved'%>
+                  | <a href="#" data-open="add-note">Add Note</a>
+
+                    <div class="reveal" id="add-note" data-reveal>
+                      <p>Note for <%= p.agent.full_name.capitalize %></p>
+                      <form method="POST" action=<%= dashboard_property_note_path(p)%>>
+                        <%= hidden_field_tag :authenticity_token, form_authenticity_token%>
+                        <%= text_area_tag 'notes', p.note%>
+                        <input type="submit" value="Submit">
+                      </form>
+                      
+
+                      <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                  <% end %>
                 </div>
+
+                
               </div>
 
               <div class="float-right" style="width: 5rem;">
