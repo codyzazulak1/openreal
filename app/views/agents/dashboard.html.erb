@@ -8,7 +8,7 @@
 	    <div class="columns small-12 medium-6">
 		    <% if @agent.profile_picture.square.url%>
 		    <img src="<%= @photo.square.url%>">
-		    <% elsif @agent.profile_picture.nil || @agent.profile_picture.blank? %>
+		    <% elsif @agent.profile_picture.nil? || @agent.profile_picture.blank? %>
 		     <img src="https://dummyimage.com/250x250/4a474a/ffffff.png">
 		    <% end %>
 		    <div class="profile-picture">
