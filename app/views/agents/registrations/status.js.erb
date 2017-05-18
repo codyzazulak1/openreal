@@ -1,0 +1,7 @@
+ // Change content of property status in agents dynamically
+ $('#notes').foundation('close').fadeOut('slow');
+
+ $("#status-prop-agents-<%= @property.id%> p").replaceWith("<p> Status: <span class='pending'><%= escape_javascript( @property.status.name)%> </span></p>").fadeIn('slow');
+
+
+$('.notes-anchor-<%= @property.id%>').replaceWith('')

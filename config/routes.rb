@@ -37,13 +37,13 @@ Rails.application.routes.draw do
     get 'agents/listing/:id', to: 'registrations#listings_show', as: 'agent/listing/show'
 
     get 'agents/listing/:id/edit', to: 'registrations#listings_edit', as: 'agent/listing/edit'
+    get 'agent/property/:id/show_note', to: 'registrations#show_note', as: 'agent/property/show_note'
     patch 'agent/property/:id', to: 'registrations#listings_update', as: 'agent/property'
+    patch 'agent/property/:id/status', to: 'registrations#status', as: 'agent/property/status'
     delete 'agent/property/:id', to: 'registrations#photo_delete'
 
     patch 'agent/property/:id/featured_photo', to: 'registrations#featured_photo', as: 'agent/property/featured_photo'
     patch 'agents/profile_picture', to: 'registrations#profile_picture', as: 'agent/profile_picture'
-
-    # post 'agents/profile_picture', to: 'registrations#profile_picture', as: 'agent/profile_picture'
   end
   
   

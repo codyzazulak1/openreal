@@ -67,6 +67,29 @@ class RegistrationsController < Devise::RegistrationsController
     render 'agents/services'
   end
 
+  def show_note
+    @property = Property.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def status
+    if resource_class == Agent && agent_signed_in?
+     
+      @property = Property.find(params[:id])
+      @property.update(status_id: Status.find_by(name: 'Pending Approval').id)
+      respond_to do |format|
+        format.js
+        format.json do
+          render json: @property.as_json(only: [:status, :id])
+        end
+      end
+    else
+      unauthorized_access
+    end
+  end
+
   def listings_show
     if resource_class == Agent && agent_signed_in?
       @agent = current_agent
