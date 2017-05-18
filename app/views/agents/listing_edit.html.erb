@@ -6,11 +6,12 @@
     	<%if @property.note != ''%>
     	| 
     	<small><a href="#" data-open='note-info'>See Notes</a> </small>
-    	<div  class="reveal" id="note-info" data-reveal>
-    	<button class="close-button tiny" data-close aria-label="Close modal" type="button">
+    	<div  class="reveal" id="note-info" data-reveal style="padding: 0;">
+    	<button class="close-button tiny" data-close aria-label="Close modal" type="button" style="color: white">
   			<span aria-hidden="true">&times;</span>
 			</button>
-    		<%= @property.note%>
+				<div style="height: 50px; padding: 0; background: #68c0ea"></div>
+    		<p style="margin-top: 0.5em; margin-left: 1em"><%= @property.note%><p>
     	</div>
     	<% end %>
 

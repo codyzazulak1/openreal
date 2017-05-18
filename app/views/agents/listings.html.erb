@@ -66,7 +66,10 @@
 									<% end %>
 								</h3>
 								<div>
-									<%= link_to 'Edit', agent_listing_edit_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %>
+									<%= link_to 'Edit', agent_listing_edit_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %> 
+									<% if p.status_id == 4%>
+									<span class="show-for-small-only">|</span> <%= link_to 'Notes', agent_property_show_note_path(p.id), remote: true, method: :get, class: "notes-anchor-#{p.id} show-for-small-only", "data-open" => "notes"%>
+									<% end %>
 								</div>
 							</div>
 						</div>
@@ -79,10 +82,10 @@
 							<% elsif p.status_id == 4%>
 								<p>Status: <span class="unapproved"> Unapproved</span></p>
 								<% if !(p.note.blank?)%>
-								<%= link_to 'Check Notes', agent_property_show_note_path(p.id), remote: true, method: :get, class: "button small notes-anchor-#{p.id}", "data-open" => "notes"%>
-								<div class="reveal" id="notes" data-reveal>
+								<%= link_to 'Check Notes', agent_property_show_note_path(p.id), remote: true, method: :get, class: "button small notes-anchor-#{p.id} hide-for-small-only", "data-open" => "notes"%>
+								<div class="reveal" id="notes" data-reveal style="padding: 0">
 
-									<button class="close-button" data-close aria-label="Close modal" type="button">
+									<button class="close-button hide-for-small-only" data-close aria-label="Close modal" type="button" style="color: white;">
 	  								<span aria-hidden="true">&times;</span>
 									</button>
 									<div id="notes-content">	

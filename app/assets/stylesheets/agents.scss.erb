@@ -496,6 +496,24 @@ form.new_agent {
 			font-weight: 500;
 		}
 }
+div.shows-note {
+	height: 50px;
+	padding: 0;
+	background: $primary-color;
+
+	h4.note-listing {
+		color: white;
+		margin-left: 0.5em;
+		padding-top: 0.2em;
+    padding-right: 2em;
+	}
+}
+
+@media (max-width: 425px) {
+	div.shows-note {
+		height: 55px;
+	}
+}
 
 // Agents Services
 @media (min-width: 601px) {
