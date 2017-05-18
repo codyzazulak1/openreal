@@ -207,7 +207,6 @@ class RegistrationsController < Devise::RegistrationsController
 
     agent = current_agent
 
-     # byebug
     agent.remote_profile_picture_url = session[:temp_agent_info]['portrait']
     agent.save
 
@@ -222,22 +221,22 @@ class RegistrationsController < Devise::RegistrationsController
         year_built: listing["property"]["year_built"] || nil,
         status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
       )
-      byebug
+     
       # puts "################################################################################################################## \n #{listing['pictures']}"
 
       if property.save
         # puts "Saved Property"
-        photo_arr = listing["pictures"]
-        byebug
-        photo_arr.each { |src|
-          u = property.photos.build
-          u.remote_picture_url = src
-          if u.save
-            puts "###################### Saved Photo"
-          else
-            puts "###################### Photo Upload Failed"
-          end
-        }
+        # photo_arr = listing["pictures"]
+        # byebug
+        # photo_arr.each { |src|
+        #   u = property.photos.build
+        #   u.remote_picture_url = src
+        #   if u.save
+        #     puts "###################### Saved Photo"
+        #   else
+        #     puts "###################### Photo Upload Failed"
+        #   end
+        # }
 
       else
         # puts "Could not save Property"
