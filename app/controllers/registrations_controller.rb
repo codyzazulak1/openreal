@@ -199,11 +199,13 @@ class RegistrationsController < Devise::RegistrationsController
         year_built: listing["property"]["year_built"] || nil,
         status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
       )
+      byebug
       # puts "################################################################################################################## \n #{listing['pictures']}"
 
       if property.save
         # puts "Saved Property"
         photo_arr = listing["pictures"]
+        byebug
         photo_arr.each { |src|
           u = property.photos.build
           u.remote_picture_url = src

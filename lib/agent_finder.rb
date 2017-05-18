@@ -102,13 +102,12 @@ module AgentFinder
           puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
           puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
           puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
-          pp slider_array
+          # pic_array = []
           src_array = slider_array.map { |slider|
-            pp slider
             slider.search('img').first.attribute('data-src')
+            # pic_array.push(attri.value)
           }
-          pp src_array
-
+          
           obj = {
             property: {
               address: {
