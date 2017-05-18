@@ -7,7 +7,7 @@ module AgentFinder
 
 
     @mech.get(AgentFinder.urlbuilder(firstname, lastname, company)) { |page|
-      
+
       res = page.search('article.agent').first
 
       resObj = {
@@ -56,19 +56,79 @@ module AgentFinder
           parsed_address = Indirizzo::Address.new(address)
           postal_code = p.search('div.keyvalset')[1].search('span').last.text
           price_cents = p.xpath('//span[@itemprop="price"]').text.to_i * 100
-   
           city = p.xpath('//span[@itemprop="addressLocality"]').text
 
+          essential_info = p.search('div.keyvalset').first
+          interior_info = p.search('div.keyvalset')[-2]
+
+          bedrooms = nil
+          bathrooms = nil
+          square_footage = nil
+          year_built = nil
+          building_type = nil
+          stories = nil
+          fireplaces = nil
+
+          essential_info.search('.keyval').each { |kv|
+            kv_title = kv.search('strong').text
+            case kv_title
+              when 'Bedrooms'
+                bedrooms = kv.search('span').text.to_i
+              when 'Bathrooms'
+                bathrooms = kv.search('span').text.to_i
+              when 'Square Footage'
+                square_footage = kv.search('span').text.to_i
+              when 'Year Built'
+                year_built = kv.search('span').text.to_i
+              when 'Sub-Type'
+                building_type = kv.search('span').text
+            end
+          }
+
+          interior_info.search('keyval').each { |kv|
+            kv_title = kv.search('strong').text
+            case kv_title
+              when '# of Stories'
+                stories = kv.search('span').text.to_i
+              when '# of Fireplaces'
+                fireplaces = kv.search('span').text.to_i
+            end
+          }
+
+          slider_array = p.search('div.slide')
+          puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
+          puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
+          puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
+          puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
+          puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
+          puts "FJOAGHERIOHGEROIGJEROIGJERIOAGJERIOAGJAERIOGERJGIOERAGJIEROAGJRIEOAGJERIAOGJERIAOGJDREIAOGLREJIGOFHBJGKNSVJKSERHUIESRFHERUIAFJAWEIOFEAW"
+          pp slider_array
+          src_array = slider_array.map { |slider|
+            pp slider
+            slider.search('img').first.attribute('data-src')
+          }
+          pp src_array
+
           obj = {
-            address: { 
-              address_first: parsed_address.number,
-              address_second: parsed_address.prenum || nil,
-              street: parsed_address.street[0].titleize,
-              city: city,
-              postal_code: postal_code
+            property: {
+              address: {
+                address_first: parsed_address.number,
+                address_second: parsed_address.prenum || nil,
+                street: parsed_address.street[0].titleize,
+                city: city,
+                postal_code: postal_code
+              },
+              description: p.search('p.remarks').first.text,
+              list_price_cents: price_cents,
+              bedrooms: bedrooms,
+              bathrooms: bathrooms,
+              floor_area: square_footage,
+              year_built: year_built,
+              building_type: building_type,
+              number_of_floors: stories,
+              fireplaces: fireplaces
             },
-            description: p.search('p.remarks').first.text,
-            list_price_cents: price_cents
+            pictures: src_array
           }
 
           listings_array.push(obj)

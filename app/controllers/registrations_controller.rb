@@ -190,28 +190,40 @@ class RegistrationsController < Devise::RegistrationsController
 
     session[:temp_agent_info]["listings"].each do |listing|
       property = Property.new(
-        list_price_cents: listing["list_price_cents"],
-        description: listing["description"],
+        list_price_cents: listing["property"]["list_price_cents"],
+        description: listing["property"]["description"],
         agent_id: agent.id,
-        bedrooms: listing["bedrooms"] || nil,
-        bathrooms: listing["bathrooms"] || nil,
-        floor_area: listing["floor_area"] || nil,
-        year_built: listing["year_built"] || nil,
-        status_id: 9
+        bedrooms: listing["property"]["bedrooms"] || nil,
+        bathrooms: listing["property"]["bathrooms"] || nil,
+        floor_area: listing["property"]["floor_area"] || nil,
+        year_built: listing["property"]["year_built"] || nil,
+        status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
       )
+      # puts "################################################################################################################## \n #{listing['pictures']}"
 
       if property.save
         # puts "Saved Property"
+        photo_arr = listing["pictures"]
+        photo_arr.each { |src|
+          u = property.photos.build
+          u.remote_picture_url = src
+          if u.save
+            puts "###################### Saved Photo"
+          else
+            puts "###################### Photo Upload Failed"
+          end
+        }
+
       else
         # puts "Could not save Property"
       end
       
       address = Address.new(
-        address_first: listing["address"]["address_first"],
-        address_second: listing["address"]["address_second"],
-        street: listing["address"]["street"],
-        city: listing["address"]["city"],
-        postal_code: listing["address"]["postal_code"],
+        address_first: listing["property"]["address"]["address_first"],
+        address_second: listing["property"]["address"]["address_second"],
+        street: listing["property"]["address"]["street"],
+        city: listing["property"]["address"]["city"],
+        postal_code: listing["property"]["address"]["postal_code"],
         property_id: property.id
       )
       
