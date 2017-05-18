@@ -1,10 +1,10 @@
-<h4>Notes on listing: <%= "#{p.address.address_first} #{p.address.address_second}" %></h4>
+<h4>Notes on listing: <%= "#{p.address.address_second} #{p.address.address_first} , #{p.address.city}" %></h4>
 <hr>
 <p style="font-size: 15px;">
 	<%= p.note%>
 </p>
 <p>
 	<small>Once you are ready to resubmit your listing click 
-	<%= link_to 'here', agent_property_status_path(p.id), remote: true, method: :patch%>.
+	<strong><%= link_to 'here', agent_property_status_path(p.id), remote: true, method: :patch%></strong>.
 	</small>
 </p>

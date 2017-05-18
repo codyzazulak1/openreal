@@ -2,7 +2,19 @@
 	<%= render :partial => 'dashboard/side_panel' %>
 	
  <div class="medium-9 columns dashboard-content">
-    <h1><%= @property.address_name %></h1>
+    <h1><%= @property.address_name %> 
+    	<%if @property.note != ''%>
+    	| 
+    	<small><a href="#" data-open='note-info'>See Notes</a> </small>
+    	<div  class="reveal" id="note-info" data-reveal>
+    	<button class="close-button tiny" data-close aria-label="Close modal" type="button">
+  			<span aria-hidden="true">&times;</span>
+			</button>
+    		<%= @property.note%>
+    	</div>
+    	<% end %>
+
+    </h1>
     <hr>
 		<%= render partial: 'agents/form_property'%>
 	</div>
