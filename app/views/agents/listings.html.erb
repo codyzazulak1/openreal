@@ -12,7 +12,7 @@
 
 	  	<p><small><color style="color: orange">Pending Approval</color>: OpenReal is reviewing your listing.</small></p>
 	  	<p><small><color style="color: #68c0ea">Live</color>: Your listing has been approved and is now live.</small></p>
-	  	<p><small><color style="color: grey">Unapproved</color>: Check the listing's comments for improvements so your listing can get approved.</small></p>
+	  	<p><small><color style="color: red">Unapproved</color>: Check the listing's notes for improvements so your listing can get approved.</small></p>
 	  	<br>
 
 	    
@@ -39,49 +39,66 @@
 
 
 	    	<% if @properties.count > 0%>
-	    	<ul class="dashboard-list-body" id="agent-properties">
-	    	<div class="loader"><div class="spinner"></div></div>
-				<% @properties.each do |p|%>
-				<li class="dashboard-list-item row collapse">
+		    	<ul class="dashboard-list-body" id="agent-properties">
+		    	<div class="loader"><div class="spinner"></div></div>
+					<% @properties.each do |p|%>
+					<li class="dashboard-list-item row collapse">
 
-					<div class="small-1 columns dashboard-listing-img">
-						<a href="<%= agent_listing_show_path(p.id)%>">
-							<% if p.photos.count == 0 && p.featured_photo.blank?%>
-							<img src="http://placehold.it/350x150?text=SET+PHOTO">
-							<% elsif p.photos.count > 0 && p.featured_photo.blank? %>
-							<img src="http://placehold.it/250x100?text=SET+PHOTO">
-							<% else %>
-							<img src="<%= p.featured_photo %>">
-							<% end %>
-						</a>
-					</div>
-
-					<div class="small-6 columns end">
-						<div class="dashboard-listing-overview float-left">
-							<h3>
-								<% if p.address%>
-									<%= link_to p.address_name, agent_listing_show_path(p.id)%>
+						<div class="small-1 columns dashboard-listing-img">
+							<a href="<%= agent_listing_show_path(p.id)%>">
+								<% if p.photos.count == 0 && p.featured_photo.blank?%>
+								<img src="http://placehold.it/350x150?text=SET+PHOTO">
+								<% elsif p.photos.count > 0 && p.featured_photo.blank? %>
+								<img src=<%= p.photos.first.picture.url%>>
 								<% else %>
-								No associated address. (<%= p.created_at%>)
+								<img src="<%= p.featured_photo %>">
 								<% end %>
-							</h3>
-							<div>
-								<%= link_to 'Edit', agent_listing_edit_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %>
+							</a>
+						</div>
+
+						<div class="small-6 columns end">
+							<div class="dashboard-listing-overview float-left">
+								<h3>
+									<% if p.address%>
+										<%= link_to p.address_name, agent_listing_show_path(p.id)%>
+									<% else %>
+									No associated address. (<%= p.created_at%>)
+									<% end %>
+								</h3>
+								<div>
+									<%= link_to 'Edit', agent_listing_edit_path(p.id)%> | <%= link_to 'Delete', agent_listing_path(p.id), data: {confirm: 'Are you sure?'}, method: :delete %> 
+									<% if p.status_id == 4%>
+									<span class="show-for-small-only">|</span> <%= link_to 'Notes', agent_property_show_note_path(p.id), remote: true, method: :get, class: "notes-anchor-#{p.id} show-for-small-only", "data-open" => "notes"%>
+									<% end %>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="small-4 columns" id="status-prop-agents">
-						<% if p.status_id === 9%>
-							<p>Status:  <span class="pending">Pending Approval</span></p>
-						<% elsif p.status_id == 5%>
-							<p>Status:  <span class="live">Live</span></p>
-						<% elsif p.status_id == 4%>
-							<p>Status: <span class="unapproved"> Unapproved</span></p>
-						<% end %>
-					</div>
-				</li>
-				<% end %>
+						<div class="small-4 columns status-prop-agents" id="status-prop-agents-<%= p.id%>">
+							<% if p.status_id === 9%>
+								<p>Status:  <span class="pending">Pending Approval</span></p>
+							<% elsif p.status_id == 5%>
+								<p>Status:  <span class="live">Live</span></p>
+							<% elsif p.status_id == 4%>
+								<p>Status: <span class="unapproved"> Unapproved</span></p>
+								<% if !(p.note.blank?)%>
+								<%= link_to 'Check Notes', agent_property_show_note_path(p.id), remote: true, method: :get, class: "button small notes-anchor-#{p.id} hide-for-small-only", "data-open" => "notes"%>
+								<div class="reveal" id="notes" data-reveal style="padding: 0">
+
+									<button class="close-button hide-for-small-only" data-close aria-label="Close modal" type="button" style="color: white;">
+	  								<span aria-hidden="true">&times;</span>
+									</button>
+									<div id="notes-content">	
+									</div>
+						
+								</div>
+								<% else %>
+								<p><small>Notes Pending</small></p>
+								<% end %>
+							<% end %>	
+						</div>
+					</li>
+					<% end %>
 
 				<% else %>
 				<div style="margin: 20px; text-align: center;">
