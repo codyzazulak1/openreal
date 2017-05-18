@@ -37,17 +37,17 @@
 
 					<div class="small-6 columns">
             <ul style="list-style-type: circle;">
+             <% not_show = ['agent_id', 'status_id', 'sold', 'pictures']%>
               <% @property_attributes.each do |u| %>
-              <% if (u != 'agent_id')%>
-              <% if (u != 'status_id')%>
-              <% if (u != 'sold')%>
+              <% if !(not_show.map{|col| col == u}.any?)%>
                 <li>
                   <h5><%= u %> :</h5>
-
+                  <% if u == 'featured_photo'%>
+                  <img src="<%= @property[u]%>">
+                  <% else %>
                   <p><%= !(@property[u].blank?) ? @property[u] : 'Not set' %></p>
+                  <% end %>
                 </li>
-              <% end %>
-              <% end %>
               <% end %>
               <%end%>
             </ul>
