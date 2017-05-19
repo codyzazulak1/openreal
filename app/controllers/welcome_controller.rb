@@ -85,6 +85,10 @@ class WelcomeController < ApplicationController
   def mortcalc
   end
 
+  def investors
+    
+  end
+
   def agents
     @aform = AgentForm.new
 

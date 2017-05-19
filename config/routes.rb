@@ -88,6 +88,7 @@ Rails.application.routes.draw do
   get 'mortcalc', action: :mortcalc, controller: 'welcome'
   get 'agents', action: :agents, controller: 'welcome'
   get 'properties.json', action: :index, controller: 'properties', path: 'listings'
+  get 'investors', action: :investors, controller: 'welcome'
   #get '/register', action: :register, controller: 'welcome'
 
   #Sitemap
