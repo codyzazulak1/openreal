@@ -122,7 +122,7 @@
   <div class="float-left">
     <a href="<%= agent_listings_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
   </div>
-  <div class="float-right">
+  <div class="float-right" style="display: none">
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
 <%end%>

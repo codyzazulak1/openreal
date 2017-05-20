@@ -130,6 +130,10 @@ class RegistrationsController < Devise::RegistrationsController
       @address = @property.address
 
       if @property.update!(property_params)
+        if @property.list_price_cents.to_s.split('').count <= 6
+          @property.list_price_cents  = @property.list_price_cents * 100
+          @property.save
+        end
         if !(params[:photos].blank?)
          params[:photos]['picture'].each { |p|
           @photos = @property.photos.create!(picture: p, property_id: @property.id) 
