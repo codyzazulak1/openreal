@@ -69,10 +69,11 @@ Rails.application.routes.draw do
     resources :contact_forms
     resources :agent_forms
     resources :subscribers
+    resources :investors, only: [:destroy, :show]
   end
 
   resources :subscribers, only: [:new, :create]
-
+  resources :investors, only: [:create]
   resources :agent_forms, only: [:new, :create]
 
   get 'dashboard', action: :index, controller: 'dashboard'

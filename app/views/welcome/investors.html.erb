@@ -11,7 +11,7 @@
 
 			<div class="small-12 small-centered columns">
 			<!-- FIX THE INVEST FORM -->
-			  <a href="#" id="invest-form">
+			  <a href="#form-signup" id="invest-form">
 			  	<span>Invest Now</span>
 			  </a>
 			  <br>
@@ -73,20 +73,69 @@
 		<div></div>
 		<div>Goal 2: $<span>10</span> Million</div>
 		<div></div>
+		<div id="form-signup"></div>
 	</section>
 
-	<section id="investors-contact" class="push-footer">
-		<div class="sell-title row columns" id="form-signup">
+	<section id="investors-contact">
+		<div class="sell-title row columns">
       <h2>Launching August 1st</h2>
       <div>
 	      <p>OpenReal will be accepting new investors until July 31st</p>
 	      <hr style="width: 25%;">
       </div>
     </div>
+   </section>
 
-    <div class="form-start">
-    	<div class="row">
+    <section id='investors-form-start' class="form-start">
+    	<div class="row invest-f">
+    		<%= form_for @investor, method: :post, remote: true do |f|%>
+    		<div class="form-content columns small-12 medium-6 medium-offset-3 end">
+    			<h3>Invest In <span><h3 class="form-instantly"> OpenReal</h3> Today</span></h3>
+    			<h6>For all inquiries and more info, reach out here.</h6>
+    			<div class="inv-form-fields">
+	    			<div class="name_fields">
+		    			<label style="padding: initial;">Name</label>
+		    			<div class=" fields first_name_inv columns small-12 medium-12 large-6">
+		    				<%= f.text_field :first_name, placeholder: 'First Name', required: true%>
+		    			</div>
+		    			<div class=" fields last_name_inv small-12 medium-12 large-6 end">
+		    				<%= f.text_field :last_name, placeholder: 'Last Name', required: true%>
+		    			</div>
+		    		</div>
+
+	    			<div class="field email">
+	    				<%= f.label :email%>
+	    				<%= f.email_field :email, placeholder: 'yourname@email.com', required: true%>
+	    			</div>
+
+	    			<div>
+	    				<%= f.submit 'Request Info', class: 'offer-link'%>
+	    			</div>
+    			</div>
+					<div id="success">
+						<%= image_tag 'success.svg'%>
+						<h2>Success!</h2>
+		    		<p>Great! You'll hear from us soon.</p>
+					</div>
+
+    		</div>
+    		
+    		<% end %>
     		
     	</div>
-    </div>
-	</section>
+    	
+		</section>
+
+	<script type="text/javascript">
+		scrollIt();
+
+		function hide_invest_form(){
+			$('.invest-f').submit(function(e) {
+				e.preventDefault();
+				$('.inv-form-fields').fadeOut(200, function(){
+					$('#success').fadeIn();
+				})
+			})
+		}
+		hide_invest_form()
+	</script>

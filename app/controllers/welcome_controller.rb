@@ -86,7 +86,11 @@ class WelcomeController < ApplicationController
   end
 
   def investors
-    
+    @investor = Investor.new
+
+    #meta tags
+    set_meta_tags title: 'Online Platform for Selling Properties by Home Owners | Investors',
+    description: "Canada’s 1st online platform for home owners to sell their property fast, worry free, with / without real estate agent. Sell your home for cash quick. Investors"
   end
 
   def agents
