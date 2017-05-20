@@ -2,7 +2,13 @@ class InvestorsController < ApplicationController
 
 	def create
 		@investor = Investor.new(investor_params)
-		@investor.save!
+
+		if @investor.save!
+			redirect_to investors_path
+		else
+			redirect_to investors_path
+			flash[:error] = "Something went wrong, please try again."
+		end
 
 	end
 
