@@ -90,7 +90,7 @@
     	<div class="row invest-f">
     		<%= form_for @investor, method: :post, remote: true do |f|%>
     		<div class="form-content columns small-12 medium-6 medium-offset-3 end">
-    			<h3>Invest In <span><h3 class="form-instantly"> OpenReal</h3> Today</span></h3>
+    			<h3>Invest In <span><h3 class="form-instantly" id="h3-underline"> OpenReal</h3> Today</span></h3>
     			<h6>For all inquiries and more info, reach out here.</h6>
     			<div class="inv-form-fields">
 	    			<div class="name_fields">
@@ -103,13 +103,13 @@
 		    			</div>
 		    		</div>
 
-	    			<div class="field email">
+	    			<div class="fields email">
 	    				<%= f.label :email%>
 	    				<%= f.email_field :email, placeholder: 'yourname@email.com', required: true%>
 	    			</div>
 
 	    			<div>
-	    				<%= f.submit 'Request Info', class: 'offer-link'%>
+	    				<%= f.submit 'Request Info', class: 'offer-link columns small-12 medium-12 large-10 large-offset-1'%>
 	    			</div>
     			</div>
 					<div id="success">

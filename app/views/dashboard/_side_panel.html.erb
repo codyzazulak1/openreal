@@ -18,6 +18,9 @@
       <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "subscribers"%>>
         <a href="<%= dashboard_subscribers_path%>">Subscribers</a>
       </li>
+      <li class=<%= 'active' if get_namespace == "dashboard" && controller.controller_name == "investors"%>>
+        <a href="<%= dashboard_investors_path%>">Investors</a>
+      </li>
      <!--  <li><a href="#">Users</a></li> -->
     </ul>
   </nav>

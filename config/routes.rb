@@ -69,7 +69,7 @@ Rails.application.routes.draw do
     resources :contact_forms
     resources :agent_forms
     resources :subscribers
-    resources :investors, only: [:destroy, :show]
+    resources :investors
   end
 
   resources :subscribers, only: [:new, :create]

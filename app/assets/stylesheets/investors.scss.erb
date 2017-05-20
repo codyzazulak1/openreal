@@ -181,7 +181,11 @@
 	}
 }
 .form-start {
-	
+	.fields {
+    input {
+      border-radius: 0!important;
+    }
+  }
 	.first_name_inv {
 		padding: 0 12px 0 0;
 		display: inline-block;
@@ -209,7 +213,8 @@
 .offer-link {
 	margin-bottom: 1.5em;
   padding: 5px 190px;
-  border-radius: 0;
+  border-radius: 0!important;
+
 }
 
 .email {
@@ -242,4 +247,17 @@
     padding-left: 42px;
     padding-right: 42px;
 	}
+}
+
+@media screen and (max-width: 639px) {
+ .invest-f {
+
+    #h3-underline {
+        font-size: 28px!important;
+        height: 34px!important;
+    }
+  }
+  .agent_landingpage #investors-form-start {
+    margin-top: -3em!important;
+  }   
 }

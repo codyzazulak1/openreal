@@ -3,7 +3,7 @@
   <div class="medium-9 columns dashboard-content push-footer">
 
   <h1>
-    Subscribers
+    Investors
   </h1>
     
   <section class="row dashboard-aform" id="agent-columns">
@@ -19,20 +19,16 @@
   </section>
 
   <section class="row dashboard-aform" id="agent-contents" style="margin-top: -3em;">
-      <% @subscribers.each do |s|%>
+      <% @investors.each do |s|%>
       <div class="small-4 medium-3 columns details">
-        <p><%= s.full_name%></p>
+        <p><%= s.first_name%> <%=  s.last_name%></p>
       </div>
       <div class="small-4 medium-3 columns details end">
         <p><%= s.email%></p>
       </div>
       <div class="small-4 medium-3 columns details end">
-      <p><%= link_to "Delete", dashboard_subscriber_path(s), method: :delete%></p>
+      <p><%= link_to "Delete", dashboard_investor_path(s), method: :delete%></p>
       </div>
-
-      <!-- <div class="row"> -->
-       
-      <!-- </div> -->
       <hr>
       <% end %>  
   </section>
