@@ -1288,7 +1288,6 @@
     background-size: cover;
     background-position-y: -144px;
     background-repeat: no-repeat;
-    box-shadow: 1px 1px 27px;
   }
 
   .modal-logo-img {
@@ -1380,13 +1379,13 @@
   .small-modal-img {
     background-image: url(<%= asset_path 'modal_img'%>);
     background-repeat: no-repeat;
-    height: 140px;
+    height: 150px;
     width: 100%;
     background-size: cover;
     background-position-y: -87px;
   }
   .small-modal-logo {
-    max-width: 20%;
+    max-width: 23%;
     margin-top: -26px;
 
     img {
@@ -1416,8 +1415,9 @@
 
     button {
       background: white;
-      border: 1px solid #68c0ea;
+      border: 3px solid #68c0ea;
       font-weight: 500;
+      font-size: 14px
     }
   }
 }
@@ -1432,7 +1432,11 @@
 }
 @media (max-width: 320px) and (min-width: 320px){
   #actionModalHomeSmall {
-    height: 75vh!important;
+    height: 77vh!important;
+
+    .small-modal-img {
+      height: 125px!important;
+    }
   }
 }
 
@@ -1443,7 +1447,7 @@
 }
 @media (min-width: 321px) and (max-width: 375px){
   #actionModalHomeSmall .small-modal-logo {
-    margin-top: -26px;
+   margin-top: -35px;
   }
 }
 @media (min-width: 376px) and (max-width: 425px){
@@ -1457,6 +1461,17 @@
     margin-top: -30px;
   }
 }
+// Iphone 6 view small modal
+@media (max-width: 375px) and (min-width: 375px){
+  #actionModalHomeSmall {
+   height: 71vh!important;
+
+   .small-modal-img {
+    height: 140px!important;
+   }
+  }
+}
+
 
 @media (min-width: 525px) and (max-width: 640px){
     #actionModalHomeSmall .small-modal-logo {
