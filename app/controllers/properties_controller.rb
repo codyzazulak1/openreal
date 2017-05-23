@@ -194,14 +194,18 @@ class PropertiesController < ApplicationController
       description: "#{@property.description}"
 
       if !(@property.list_price_cents == 0)
-        if (@property.dwelling_class.downcase.include? "house") || (@property.dwelling_class.include? "single")
-          @dwelling_type = "House"
-        end
-        if (@property.dwelling_class.downcase.include? "apartment") || (@property.dwelling_class.include? "condo")
-          @dwelling_type = "Apartment"
-        end
-        if (@property.dwelling_class.downcase.include? "town") || (@property.dwelling_class.downcase.include? "townhouse")
-          @dwelling_type = "Townhouse"
+        if !(@property.dwelling_class.nil?)
+          if (@property.dwelling_class.downcase.include? "house") || (@property.dwelling_class.include? "single")
+            @dwelling_type = "House"
+          end
+          if (@property.dwelling_class.downcase.include? "apartment") || (@property.dwelling_class.include? "condo")
+            @dwelling_type = "Apartment"
+          end
+          if (@property.dwelling_class.downcase.include? "town") || (@property.dwelling_class.downcase.include? "townhouse")
+            @dwelling_type = "Townhouse"
+          end
+        else
+          nil
         end
 
         respond_to do |format|
