@@ -14,7 +14,12 @@ class RegistrationsController < Devise::RegistrationsController
       }
 
       session.delete(:temp_agent_info)
-      session[:temp_agent_info] = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
+
+      agent_profile = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
+
+      agent_profile[:listings][0].delete(:pictures)
+
+      session[:temp_agent_info] = agent_profile
 
       redirect_to new_agent_registration_path
     end
@@ -22,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @agent = Agent.new(session[:agent_params])
-  
+
     # No access to create a new admin
     if resource_class == Admin
       redirect_to new_admin_session_path
@@ -211,47 +216,49 @@ class RegistrationsController < Devise::RegistrationsController
 
     agent = current_agent
 
-    agent.remote_profile_picture_url = session[:temp_agent_info]['portrait']
+    agent_profile = AgentFinder.searchByName("#{agent.first_name}","#{agent.last_name}", agent.company_name) 
+
+    agent.remote_profile_picture_url = agent_profile[:portrait]
+    
     agent.save
 
-    session[:temp_agent_info]["listings"].each do |listing|
+    agent_profile[:listings].each do |listing|
       property = Property.new(
-        list_price_cents: listing["property"]["list_price_cents"],
-        description: listing["property"]["description"],
+        list_price_cents: listing[:property][:list_price_cents],
+        description: listing[:property][:description],
         agent_id: agent.id,
-        bedrooms: listing["property"]["bedrooms"] || nil,
-        bathrooms: listing["property"]["bathrooms"] || nil,
-        floor_area: listing["property"]["floor_area"] || nil,
-        year_built: listing["property"]["year_built"] || nil,
+        bedrooms: listing[:property][:bedrooms] || nil,
+        bathrooms: listing[:property][:bathrooms] || nil,
+        floor_area: listing[:property][:floor_area] || nil,
+        year_built: listing[:property][:year_built] || nil,
+        dwelling_class: listing[:property][:dwelling_class] || nil,
         status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
       )
-     
-      # puts "################################################################################################################## \n #{listing['pictures']}"
 
       if property.save
-        # puts "Saved Property"
-        # photo_arr = listing["pictures"]
-        # byebug
-        # photo_arr.each { |src|
-        #   u = property.photos.build
-        #   u.remote_picture_url = src
-        #   if u.save
-        #     puts "###################### Saved Photo"
-        #   else
-        #     puts "###################### Photo Upload Failed"
-        #   end
-        # }
+        puts "##### Saved Property"
+        photo_arr = listing[:pictures]
+
+        photo_arr.each { |src|
+          u = property.photos.build
+          u.remote_picture_url = src
+          if u.save
+            puts "###################### Saved Photo"
+          else
+            puts "###################### Photo Upload Failed"
+          end
+        }
 
       else
         # puts "Could not save Property"
       end
       
       address = Address.new(
-        address_first: listing["property"]["address"]["address_first"],
-        address_second: listing["property"]["address"]["address_second"],
-        street: listing["property"]["address"]["street"],
-        city: listing["property"]["address"]["city"],
-        postal_code: listing["property"]["address"]["postal_code"],
+        address_first: listing[:property][:address][:address_first],
+        address_second: listing[:property][:address][:address_second],
+        street: listing[:property][:address][:street],
+        city: listing[:property][:address][:city],
+        postal_code: listing[:property][:address][:postal_code],
         property_id: property.id
       )
       
