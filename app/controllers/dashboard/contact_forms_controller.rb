@@ -3,7 +3,7 @@ class Dashboard::ContactFormsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @forms = ContactForm.all
+    @forms = ContactForm.all.order('created_at DESC')
 
     @forms_pagination = @forms.paginate(:page => params[:page], :per_page => 5)
 
