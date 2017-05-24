@@ -16,8 +16,11 @@
 
       <%#= fa.label :longitude, 'longitude'%>
       <%#= fa.text_field :longitude%>
-    <div class="columns small-12 medium-6 large-6">
-      <% @address_attributes.each do |a| %>
+    <div class="columns small-12 medium-12 large-12">
+      <% @address_attributes.each_with_index do |a, i| %>
+
+      <% if i <= (@address_attributes.length/2)%>
+        <div class="columns small-12 medium-6">
         <% if a == 'address_first'%>
           <%= fa.label a, 'Street Address 1' %>
           <%= fa.text_field a.to_sym %>
@@ -29,7 +32,15 @@
         <% else %>
           <%= fa.label a %>
           <%= fa.text_field a.to_sym %>
+       
         <% end %>
+       </div>
+      <% else %>
+        <div class="columns small-12 medium-6">
+        <%= fa.label a%>
+        <%= fa.text_field a.to_sym%>
+        </div>
+      <% end %>
 
       <% end %>
     <% end %>
