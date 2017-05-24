@@ -3,22 +3,28 @@
 
     <section id="agent-intro-header" class="row">
       <div class="columns medium-12 small-12 large-6 agent-welcome-text">
-        <p>Welcome, <%= @agent.first_name.capitalize%>!</p>
+        <div class="welcome-intro"></div>
+        <p class="welcome-assets">Welcome, <%= @agent.first_name.capitalize%>!</p>
         <% if session[:temp_agent_info] %>
-          <p>Confirm your photo &amp; create a password!</p>
+          <p class="welcome-assets">Confirm your photo &amp; create a password!</p>
         <% else %>
-          <p>Lets get you started!</p>
+          <p class="welcome-assets">Lets get you started!</p>
         <% end %>
       </div>
       <div class="columns medium-12 small-12 small-centered large-6 end agent-welcome-photo">
         <% if session[:temp_agent_info] %>
-          <img src=<%= session[:temp_agent_info]["portrait"] %> class="agent-thumb-change-later"/>
+          <img src=<%= session[:temp_agent_info]["portrait"] %> class="agent-thumb-change-later welcome-assets"/>
         <% else %>
           <img src="https://dummyimage.com/150x150/4a474a/ffffff.png">
         <% end %>
       </div>
     </section>
-
+    <section class="row">
+      <div class="column medium-12 agent-createloader">
+       <div class="loader"><div class="spinner"></div></div>
+        <p class="notice-load" style="display: none; text-align: center;">Your profile is been created.</p>
+      </div>
+    </section>
     <section id="agent-sign-up-form" class="row">
       <div class="column medium-12 agent-password-form">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -69,3 +75,20 @@
   </div>
 </div>
 <%#= render "agents/shared/links" %>
+<script type="text/javascript">
+  $('.offer-link').click(function(){
+
+    $('#agent-sign-up-form').hide();
+
+    var obj_welcome = $('.welcome-assets')
+    $.each(obj_welcome, function(i, ele){
+      $('.agent-welcome-text').addClass('large-12')
+      $(ele).hide()
+      $('.welcome-intro').html("<div><p style='text-align: center'> Welcome <%= escape_javascript(@agent.first_name.capitalize)%>!</p></div>")
+    })
+
+    $('.loader').css('display', 'inline-block').fadeIn('slow');
+    $('.notice-load').fadeIn('slow');
+
+  }); 
+</script>
