@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def agent_setup
 
-    if resource_class == Agent && Agent.all.count <= 10 
+    if resource_class == Agent && Agent.where(company_name: 'Sutton').all.count <= 10 
       @agent = Agent.new(sign_up_params)
       session[:agent_params] = {
         first_name: @agent.first_name,
@@ -25,8 +25,10 @@ class RegistrationsController < Devise::RegistrationsController
 
       redirect_to new_agent_registration_path
     else
-      redirect_to agents_path
-      flash[:notice] = 'At capacity'
+
+      redirect_to agents_path(first_name: params[:agent][:first_name], last_name: params[:agent][:last_name], company_name: params[:agent][:company_name])
+      flash[:notice] = "We're currently at capacity. Please write your e-mail on the form below. We will be in contact soon!"
+
     end
   
   end
