@@ -3,7 +3,7 @@
 	
  <div class="medium-9 columns dashboard-content">
     <h1><%= @property.address_name %> 
-    	<%if @property.note != ''%>
+    	<%if !(@property.note.blank?)%>
     	| 
     	<small><a href="#" data-open='note-info'>See Notes</a> </small>
     	<div  class="reveal" id="note-info" data-reveal style="padding: 0;">
