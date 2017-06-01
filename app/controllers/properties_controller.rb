@@ -183,7 +183,7 @@ class PropertiesController < ApplicationController
     if (Property.all.count != 0 && @property)
       unapproved_listings = Status.where(name: ['Pending Approval', 'Unapproved'])
       @properties = Property.where.not(status: unapproved_listings).all
-      @similar_properties = Property.similar_listings(@property, 3)
+      @similar_properties = Property.where.not(status: unapproved_listings).similar_listings(@property, 3)
       @inquiry = ContactForm.new
 
       if @property.agent_id
