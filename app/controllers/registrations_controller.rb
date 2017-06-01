@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def agent_setup
 
-    if resource_class == Agent
+    if resource_class == Agent && Agent.all.count <= 10 
       @agent = Agent.new(sign_up_params)
       session[:agent_params] = {
         first_name: @agent.first_name,
@@ -17,12 +17,18 @@ class RegistrationsController < Devise::RegistrationsController
 
       agent_profile = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
 
-      agent_profile[:listings][0].delete(:pictures)
+      
+      agent_profile[:listings][0].delete(:pictures) unless agent_profile[:listings].blank?
+      agent_profile[:listings].clear unless agent_profile[:listings].blank?
 
       session[:temp_agent_info] = agent_profile
 
       redirect_to new_agent_registration_path
+    else
+      redirect_to agents_path
+      flash[:notice] = 'At capacity'
     end
+  
   end
 
   def new
@@ -117,7 +123,7 @@ class RegistrationsController < Devise::RegistrationsController
       @property = Property.find(params[:id])
       @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
       @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
-
+      @price = Money.new(@property.list_price_cents).format(no_cents: true, symbol: nil).split(',').join.to_i
       @photos_build = @property.photos.build
 
       @photos = @property.photos
@@ -135,7 +141,7 @@ class RegistrationsController < Devise::RegistrationsController
       @address = @property.address
 
       if @property.update!(property_params)
-        if @property.list_price_cents.to_s.split('').count <= 6
+        if @property.list_price_cents.to_s.split('').count <= 7
           @property.list_price_cents  = @property.list_price_cents * 100
           @property.save
         end
@@ -254,7 +260,7 @@ class RegistrationsController < Devise::RegistrationsController
       end
       
       address = Address.new(
-        address_first: listing[:property][:address][:address_first],
+        address_first: "#{listing[:property][:address][:address_first]} #{listing[:property][:address][:street]}",
         address_second: listing[:property][:address][:address_second],
         street: listing[:property][:address][:street],
         city: listing[:property][:address][:city],
@@ -332,6 +338,15 @@ class RegistrationsController < Devise::RegistrationsController
           :city, :postal_code, :property_id, :latitude, :longitude
         ]
         )
+      end
+    end
+
+    def agent_check
+      if Agent.all.count > 10
+        return root_path
+        flash[:notice] = 'At capacity'
+      else
+
       end
     end
 

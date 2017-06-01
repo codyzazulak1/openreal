@@ -16,9 +16,9 @@
 
       <%#= fa.label :longitude, 'longitude'%>
       <%#= fa.text_field :longitude%>
-    <div class="columns small-12 medium-12 large-12">
+  
       <% @address_attributes.each_with_index do |a, i| %>
-
+      <% if !(a == 'street')%>
       <% if i <= (@address_attributes.length/2)%>
         <div class="columns small-12 medium-6">
         <% if a == 'address_first'%>
@@ -44,7 +44,8 @@
 
       <% end %>
     <% end %>
-    </div>
+    <% end %>
+   
     <hr>
    <h3>Edit property information: </h3>
       <% aryprops = ['agent_id', 'status_id', 'sold', 'pictures', 'featured_photo', 'seller_info', 'pid', 'sellers_interest', 'architecture_style','note' ]%>
@@ -57,7 +58,7 @@
              <% if u.include? "building_type"%>
                <%= f.label u%>
                <!-- downcase -froze string issue -->
-               <%= f.select(u.to_sym, options_for_select([' Penthouse', ' 1 Storey', ' 2 Storey', ' 3 Storey', 'Corner Unit'])) %>
+               <%= f.select(u.to_sym, options_for_select([' Penthouse', ' 1 Storey','1 Storey w/ Basement', ' 2 Storey','2 Storey w/ Basement' ,' 3 Storey','3 Storey w/ Basement', 'Corner Unit'])) %>
 
              <% elsif u.include? "property_type"%>
                <%= f.label u %>
@@ -71,7 +72,9 @@
              <%= f.label u, 'Listing price'%>
              <div class="input-group">
                <span class="input-group-label">$</span>
-                <%= f.text_field u.to_sym, class: 'input-group-field'%>
+                <%= f.text_field u.to_sym, value: @price, class: 'input-group-field'%>
+                <span class="input-group-label">.00</span>
+                
              </div>
              <% elsif u.include? "dwelling_class"%>
               <%= f.label u%>
