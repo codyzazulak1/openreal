@@ -55,7 +55,13 @@ module AgentFinder
           @mech.get(url) { |p|
 
             address = p.xpath('//span[@itemprop="streetAddress"]').text
-            parsed_address = Indirizzo::Address.new(address)
+            if address != ''
+              parsed_address = Indirizzo::Address.new(address)
+            else
+              parsed_address = nil
+              address = 'No Address'
+            end
+
             postal_code = p.search('div.keyvalset')[1].search('span').last.text
             price_cents = p.xpath('//span[@itemprop="price"]').text.to_i * 100
             city = p.xpath('//span[@itemprop="addressLocality"]').text
@@ -63,71 +69,96 @@ module AgentFinder
             essential_info = p.search('div.keyvalset').first
             interior_info = p.search('div.keyvalset')[-2]
 
-            bedrooms = nil
-            bathrooms = nil
-            square_footage = nil
-            year_built = nil
-            building_type = nil
-            stories = nil
-            fireplaces = nil
-
-            essential_info.search('.keyval').each { |kv|
+            # Check for commercial reale state
+            type_array = ['Retail', 'Business', 'Office']
+            res = ''
+            essential_info.search('.keyval').each {
+              |kv|
               kv_title = kv.search('strong').text
+              kv_text = kv.search('span').text
+
               case kv_title
-                when 'Bedrooms'
-                  bedrooms = kv.search('span').text.to_i
-                when 'Bathrooms'
-                  bathrooms = kv.search('span').text.to_i
-                 
-                when 'Square Footage'
-                  square_footage = kv.search('span').text.split(',').join.to_i
+                when 'Type'
+                  if (type_array.map {|type| type == kv_text}.any?)
+                    res = 'Deny'
+                    break
+                  else
+                    res = 'Pass'
+                  end
                   
-                when 'Year Built'
-                  year_built = kv.search('span').text.to_i
-                when 'Sub-Type'
-                  building_type = kv.search('span').text
               end
             }
 
-            interior_info.search('keyval').each { |kv|
-              kv_title = kv.search('strong').text
-              case kv_title
-                when '# of Stories'
-                  stories = kv.search('span').text.to_i
-                when '# of Fireplaces'
-                  fireplaces = kv.search('span').text.to_i
-              end
-            }
+            if res == 'Pass'
 
-            slider_array = p.search('div.slide')
-      
-            src_array = slider_array.map { |slider|
-              slider.search('img').first.attribute('data-src').value
-            }
-            
-            obj = {
-              property: {
-                address: {
-                  address_first: parsed_address.number,
-                  address_second: parsed_address.prenum || nil,
-                  street: parsed_address.street[0].titleize,
-                  city: city,
-                  postal_code: postal_code
+              bedrooms = nil
+              bathrooms = nil
+              square_footage = nil
+              year_built = nil
+              building_type = nil
+              stories = nil
+              fireplaces = nil
+
+              essential_info.search('.keyval').each { |kv|
+                kv_title = kv.search('strong').text
+                case kv_title
+                  when 'Bedrooms'
+                    bedrooms = kv.search('span').text.to_i
+                  when 'Bathrooms'
+                    bathrooms = kv.search('span').text.to_i
+                   
+                  when 'Square Footage'
+                    square_footage = kv.search('span').text.split(',').join.to_i
+                    
+                  when 'Year Built'
+                    year_built = kv.search('span').text.to_i
+                  when 'Sub-Type'
+                    building_type = kv.search('span').text
+                end
+              }
+
+              interior_info.search('keyval').each { |kv|
+                kv_title = kv.search('strong').text
+                case kv_title
+                  when '# of Stories'
+                    stories = kv.search('span').text.to_i
+                  when '# of Fireplaces'
+                    fireplaces = kv.search('span').text.to_i
+                end
+              }
+
+              slider_array = p.search('div.slide')
+        
+              src_array = slider_array.map { |slider|
+                slider.search('img').first.attribute('data-src').value
+              }
+              
+              obj = {
+                property: {
+                  address: {
+                    address_first: parsed_address.number,
+                    address_second: parsed_address.prenum || nil,
+                    street: (parsed_address.street[0].nil? || parsed_address.nil?) ? (parsed_address.street[0] = '') : parsed_address.street[0].titleize,
+                    city: city,
+                    postal_code: postal_code
+                  },
+                  description: p.search('p.remarks').first.text,
+                  list_price_cents: price_cents,
+                  bedrooms: bedrooms,
+                  bathrooms: bathrooms,
+                  floor_area: square_footage,
+                  year_built: year_built,
+                  building_type: building_type,
+                  number_of_floors: stories,
+                  fireplaces: fireplaces
                 },
-                description: p.search('p.remarks').first.text,
-                list_price_cents: price_cents,
-                bedrooms: bedrooms,
-                bathrooms: bathrooms,
-                floor_area: square_footage,
-                year_built: year_built,
-                building_type: building_type,
-                number_of_floors: stories,
-                fireplaces: fireplaces
-              },
-              pictures: src_array
-            }
+                pictures: src_array
+              }
 
-            listings_array.push(obj)
+              listings_array.push(obj)
+            elsif res == "Deny"
+              next
+            end
           }
         }
     end

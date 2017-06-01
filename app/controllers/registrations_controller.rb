@@ -164,7 +164,7 @@ class RegistrationsController < Devise::RegistrationsController
       @property = Property.find(params[:id])
       @property.destroy
       redirect_to agent_dashboard_path
-      flash[:success] = "Successfully deleted property #{@property.address_first @property.address_second}"
+      flash[:success] = "Successfully deleted property #{@property.address.address_first} #{@property.address.address_second}"
     else
       unauthorized_access
     end
