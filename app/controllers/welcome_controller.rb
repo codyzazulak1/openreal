@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
     @user = current_user
     @just_listed = Property.where('created_at >= ?', 2.days.ago).where.not(status: Status.where(name: ["Pending Approval", "Unapproved"]))
     @featured = Property.all.where.not(status: Status.where(name: ["Pending Approval", "Unapproved"])).sample(3)
-    @new_properties = Property..where.not(status: Status.where(name: ["Pending Approval", "Unapproved"])).just_listed(3)
+    @new_properties = Property.where.not(status: Status.where(name: ["Pending Approval", "Unapproved"])).just_listed(3)
 
     @properties_active = @properties_p.where('list_price_cents > ?', 0).where.not(status: Status.where(name: ["Pending Approval", "Unapproved"])).count
     # @properties_active = @properties_p.where('id NOT IN (SELECT DISTINCT(property_id) FROM contact_forms)').where('list_price_cents = ?', 0).where.not(status_id: (4)..5).count
