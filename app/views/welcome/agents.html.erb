@@ -223,33 +223,5 @@ scrollIt();
 selectCompany();
 text_field();
 formActionChange();
-
-function populateagent(){
-	var list = {}
-	location.search.substr(1).split("&").forEach(function(item) {list[item.split("=")[0]] = item.split("=")[1]})
-
-	if (location.search != '') {
-		document.getElementById('div2').innerHTML='<input type="email" name="agent_form[email]" placeholder="Your email" required="required">';
-		document.getElementById('div1').innerHTML='<input type="text" name="agent_form[company_name]" placeholder="Your company name" />';
-		var form = document.getElementById('options-tag');
-		var companychange = form.options
-
-		
-
-		$('#agents form').prop('action', '/agent_forms');
-    $('.first_name input').prop('name', 'agent_form[first_name]');
-    $('.last_name input').prop('name', 'agent_form[last_name]');
-    $("#agents form").data('remote', true);
-    $('#options-tag').prop('name', 'agent_form[company_name]');
-		
-		companychange.selectedIndex = 7;
-    //Add params
-   document.getElementsByName('agent_form[first_name]')[0].value = list['first_name'];
-    document.getElementsByName('agent_form[last_name]')[0].value = list['last_name'];
-    
-    $('#div1')[0].children[0].value = list['company_name']
-    
-	}
-}
-populateagent();
+urlparams();
 </script>
