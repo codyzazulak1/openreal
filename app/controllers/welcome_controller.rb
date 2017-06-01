@@ -8,12 +8,12 @@ class WelcomeController < ApplicationController
     @featured = Property.all.sample(3)
     @new_properties = Property.just_listed(3)
 
-    @properties_active = @properties_p.where('list_price_cents > ?', 0).where.not(status_id: (4)..5).count
+    @properties_active = @properties_p.where('list_price_cents > ?', 0).where.not(status: Status.where(name: ["Pending Approval", "Unapproved"])).count
     # @properties_active = @properties_p.where('id NOT IN (SELECT DISTINCT(property_id) FROM contact_forms)').where('list_price_cents = ?', 0).where.not(status_id: (4)..5).count
     
 
     # Properties to be featured on front page
-    feature_prop = Property.where("list_price_cents > ?", 0).where.not(status_id: (4)..5).order("created_at DESC").to_a
+    feature_prop = Property.where("list_price_cents > ?", 0).where.not(status: Status.where(name: ["Pending Approval", "Unapproved"])).order("created_at DESC").to_a
     feature_prop.each_with_index do |p, i|
       if i == 0
         @feature1_property = p
