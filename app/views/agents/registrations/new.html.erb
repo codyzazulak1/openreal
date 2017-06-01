@@ -23,6 +23,7 @@
       <div class="column medium-12 agent-createloader">
        <div class="loader"><div class="spinner"></div></div>
         <p class="notice-load" style="display: none; text-align: center;">Your profile is being created.</p>
+        <p class="notice-load" style="display: none; text-align: center; margin-top: -10px;">This may take a minute.</p>
       </div>
     </section>
     <section id="agent-sign-up-form" class="row">
@@ -49,7 +50,7 @@
               <%= f.password_field :password, autocomplete: "off" %>
             </div>
 
-            <div class="field  small-12 medium-12 large-6" style="display: inline-block;">
+            <div class="field  small-12 medium-12 large-5" style="display: inline-block;">
               <%= f.label :password_confirmation, 'Confirm Password' %><br class="hide-for-small-only"/>
               <%= f.password_field :password_confirmation, autocomplete: "off" %>
             </div>
@@ -67,7 +68,7 @@
             <%= f.hidden_field :first_name, value: @agent.first_name%>
             <%= f.hidden_field :last_name, value: @agent.last_name%>
             <%= f.hidden_field :company_name, value: @agent.company_name%>
-            <%= f.submit "Start Listing", class: 'offer-link' %>
+            <%= f.submit "Start Listing", class: 'offer-link', style: 'margin-bottom: initial;'%>
           </div>
         <% end %>
       </div>
