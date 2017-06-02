@@ -27,7 +27,7 @@ class RegistrationsController < Devise::RegistrationsController
     else
 
       redirect_to agents_path(first_name: params[:agent][:first_name], last_name: params[:agent][:last_name], company_name: params[:agent][:company_name])
-      flash[:notice] = "We're currently at capacity. Please write your e-mail on the form below. We will be in contact soon!"
+      flash[:notice] = "We're currently at capacity. Please write your e-mail on the form below and we will be in contact soon!"
 
     end
   
