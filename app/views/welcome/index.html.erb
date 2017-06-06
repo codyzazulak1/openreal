@@ -307,16 +307,16 @@
 
     date.setDate(date.getDate() + 1);
     expires += date.toGMTString();
-    document.cookie = cookiename + '=' + cookieval + ';' + expires 
+    document.cookie = cookiename + '=' + cookieval + '; ' + expires 
 
   }
 
   $(document).ready(function(){
-    if (($( window ).width() > 639) && (sessionStorage.getItem('popup') == null)){
-      
+    if (($( window ).width() > 639) && (document.cookie.match('popup=set') == null)){
+
       setTimeout(function(){
         $('#actionModalHome').foundation('open');
-        setUpCookie('popup', 1)
+        setUpCookie('popup', 'set')
       },1000) 
 
 
@@ -327,9 +327,9 @@
       //   }
       // })
     }
-    else if (($(window).width() < 640) && (sessionStorage.getItem('popup') == null)){
+    else if (($(window).width() < 640) && (document.cookie.match('popup=set') == null)){
       $('#actionModalHomeSmall').foundation('open');
-      setUpCookie('popup', 1)
+      setUpCookie('popup', 'set')
       
       // sessionStorage.setItem('popup', 1)
       
