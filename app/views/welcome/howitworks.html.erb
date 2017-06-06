@@ -53,12 +53,11 @@
             </ul>
           </li>
         </ul>
-
       </div>
       <!-- how it works nav -->
       <div class="medium-4 columns hide-for-small-only" id="howitworks-nav" data-sticky-container>
-
-        <div class="sticky" data-sticky data-anchor="howitworks-content" data-margin-bottom="2" data-margin-top="4" data-check-every="0">
+<!-- data-anchor="howitworks-content" -->
+        <div class="sticky" data-sticky data-top-anchor="howitworks-content" data-btm-anchor="stick-here-btm:bottom" data-margin-bottom="2" data-margin-top="4" data-check-every="0">
 
           <div class="this" style="margin-bottom: 25px;">
             
@@ -91,11 +90,13 @@
 
         </div>
       </div>
-
+      
     </div> 
   </div> 
-  <hr>
+  <section id="stick-here-btm"></section>
+  <hr >
 </div>
+
 
 <h2 id="pricing2" style="text-align: center;">Peace of mind, at just 2%</h2>
 <%= render 'pricing_template'%>
@@ -113,7 +114,6 @@ function openAccordion (trigger, target, id){
 
     $('ul').find(target).slideToggle('fast')
 
-    //accordionScroll(id);
     e.preventDefault();
   });
 };
