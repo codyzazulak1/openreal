@@ -301,14 +301,22 @@
   grabCompanyChosen();
   redirectToFaq();
 
+  var setUpCookie = function(cookiename, cookieval){
+    var date = new Date(),
+        expires = 'expires=';
+
+    date.setDate(date.getDate() + 1);
+    expires += date.toGMTString();
+    document.cookie = cookiename + '=' + cookieval + ';' + expires 
+
+  }
 
   $(document).ready(function(){
     if (($( window ).width() > 639) && (sessionStorage.getItem('popup') == null)){
+      
       setTimeout(function(){
         $('#actionModalHome').foundation('open');
-
-        sessionStorage.setItem('popup', 1);
-
+        setUpCookie('popup', 1)
       },1000) 
 
 
@@ -321,8 +329,9 @@
     }
     else if (($(window).width() < 640) && (sessionStorage.getItem('popup') == null)){
       $('#actionModalHomeSmall').foundation('open');
-
-      sessionStorage.setItem('popup', 1)
+      setUpCookie('popup', 1)
+      
+      // sessionStorage.setItem('popup', 1)
       
       // $(window).resize(function(){
       //   if (($( window ).width() > 639)) {
