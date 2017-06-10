@@ -45,6 +45,39 @@
 
 }
 
+@media screen and (min-width: 1024px){
+  .partners {
+    .worldh {
+      max-width: 50%!important;
+    }
+    .sutton {
+      max-width: 90%!important;
+    }
+    .cibc {
+      max-width: 57%!important;
+    }
+  }
+}
+
+@media screen and (min-width: 425px){
+  .partners {
+    .cibc {
+      margin-top: 9px!important;
+    }
+  }  
+}
+@media screen and (max-width: 425px){
+  .partners {
+    .worldh, .cibc {
+      max-width: 45%!important;
+    }
+
+    .sutton {
+      max-width: 60%!important;
+    }
+  }  
+}
+
 @media screen and (max-width: 768px){
   .partners {
     .worldh {
@@ -54,11 +87,13 @@
       max-width: 80%;
     }
   }
+
+
 }
 
 @media screen and (max-width: 680px){
   .partners {
-    .row-margin {margin-left: 0%;}
+    .row-margin {margin-left: 0%!important;}
   }
 }
 
@@ -70,7 +105,7 @@
       margin-top: 0;
     }
     .worldh, .cibc{
-      max-width: 30%;
+      max-width: 50%;
       padding-bottom: 15px;
     }
     .sutton {
@@ -78,6 +113,97 @@
       padding-bottom: 15px;
     }
 
+  }
+}
+
+#team {
+  text-align: center;
+  margin-top: 1.5em;
+
+  div:nth-child(2) {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  div {
+    img {
+      border-radius: 100%;
+      width: 45%;
+    }
+
+    .name {
+      font-weight: 600;
+      margin-bottom: 0;
+    }
+
+    span, .bio {
+      font-weight: 300;
+      font-size: 16px;
+    }
+    .bio {
+      margin-top: 0.5em;
+    }
+
+    hr {
+      width: 25%;
+      margin-bottom: 7px;
+      margin-top: 7px;
+    }
+
+    .social-media {
+
+    }
+  }
+}
+
+@media screen and (min-width: 425px){
+  #team {
+    .face {
+      width: 35%;
+    }
+  }
+}
+@media screen and (min-width: 638px){
+  #team {
+
+    div:nth-child(2) {
+      margin-top: initial;
+      margin-bottom: initial;
+    }
+    .face {
+      width: 25%;
+    }
+    .name {
+      font-weight: inherit!important;
+    }
+
+    span, .bio {
+      font-weight: inherit;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  #team {
+    .bio {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px){
+  #team {
+    margin-top: 2.5em;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 426px){
+  #team {
+    div {
+      .bio {
+        font-size: 14px;
+      }
+    }
   }
 }
 
