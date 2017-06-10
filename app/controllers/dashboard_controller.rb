@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
     @contacts = ContactForm.all
     @aforms = AgentForm.all
     @investors = Investor.all
+    @agents = Agent.all 
   end
 
 end
