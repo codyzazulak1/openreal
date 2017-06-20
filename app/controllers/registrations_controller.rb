@@ -222,65 +222,77 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
 
-    agent = current_agent
+    if resource_class == Agent && agent_signed_in?
+      agent = current_agent
 
-    agent_profile = AgentFinder.searchByName("#{agent.first_name}","#{agent.last_name}", agent.company_name) 
+      agent_profile = AgentFinder.searchByName("#{agent.first_name}","#{agent.last_name}", agent.company_name) 
 
-    agent.remote_profile_picture_url = agent_profile[:portrait]
-    
-    agent.save
-
-    agent_profile[:listings].each do |listing|
-      property = Property.new(
-        list_price_cents: listing[:property][:list_price_cents],
-        description: listing[:property][:description],
-        agent_id: agent.id,
-        bedrooms: listing[:property][:bedrooms] || nil,
-        bathrooms: listing[:property][:bathrooms] || nil,
-        floor_area: listing[:property][:floor_area] || nil,
-        year_built: listing[:property][:year_built] || nil,
-        dwelling_class: listing[:property][:dwelling_class] || nil,
-        status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
-      )
-
-      if property.save
-        puts "##### Saved Property"
-        photo_arr = listing[:pictures]
-
-        photo_arr.each { |src|
-          u = property.photos.build
-          u.remote_picture_url = src
-          if u.save
-            puts "###################### Saved Photo"
-          else
-            puts "###################### Photo Upload Failed"
-          end
-        }
-
-      else
-        # puts "Could not save Property"
-      end
+      agent.remote_profile_picture_url = agent_profile[:portrait]
       
-      address = Address.new(
-        address_first: "#{listing[:property][:address][:address_first]} #{listing[:property][:address][:street]}",
-        address_second: listing[:property][:address][:address_second],
-        street: listing[:property][:address][:street],
-        city: listing[:property][:address][:city],
-        postal_code: listing[:property][:address][:postal_code],
-        property_id: property.id
-      )
-      
-      if address.save
-        # puts 'Saved address'
-      else
-        # puts 'Could not save Address'
+      agent.save
+
+      agent_profile[:listings].each do |listing|
+        property = Property.new(
+          list_price_cents: listing[:property][:list_price_cents],
+          description: listing[:property][:description],
+          agent_id: agent.id,
+          bedrooms: listing[:property][:bedrooms] || nil,
+          bathrooms: listing[:property][:bathrooms] || nil,
+          floor_area: listing[:property][:floor_area] || nil,
+          year_built: listing[:property][:year_built] || nil,
+          dwelling_class: listing[:property][:dwelling_class] || nil,
+          status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
+        )
+
+        if property.save
+          puts "##### Saved Property"
+          photo_arr = listing[:pictures]
+
+          photo_arr.each { |src|
+            u = property.photos.build
+            u.remote_picture_url = src
+            if u.save
+              puts "###################### Saved Photo"
+            else
+              puts "###################### Photo Upload Failed"
+            end
+          }
+
+
+        else
+          puts "Could not save Property"
+        end
+        
+        address = Address.new(
+          address_first: "#{listing[:property][:address][:address_first]} #{listing[:property][:address][:street]}",
+          address_second: listing[:property][:address][:address_second],
+          street: listing[:property][:address][:street],
+          city: listing[:property][:address][:city],
+          postal_code: listing[:property][:address][:postal_code],
+          property_id: property.id
+        )
+        
+        if address.save
+          puts 'Saved address'
+        else
+          puts 'Could not save Address'
+        end
+
       end
 
-    end
+      session.delete(:temp_agent_info)
 
-    session.delete(:temp_agent_info)
+      return agent_dashboard_path
 
-    return agent_dashboard_path
+    elsif !(resource.errors.empty?)
+
+      resource.errors.each do |err|
+        puts "-----------"
+        puts err.message
+        puts '-----------'
+      end
+
+    end #if agent present statement close
   end
 
   # def after_sign_in_path_for(resource)
