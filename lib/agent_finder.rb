@@ -7,24 +7,31 @@ module AgentFinder
 
 
     @mech.get(AgentFinder.urlbuilder(firstname, lastname, company)) { |page|
-
-      res = page.search('article.agent').first
-
-      resObj = {
-
-        full_name: res.search('div.agent-heading span').text,
-        email: res.search('.agent-contact a').attribute('href').to_s[7..-1],
-        portrait: "https://www.sutton.com#{res.search('div.photo img').attribute("data-src")}"
-
-      }
-
-      link_to_profile = res.search('div.body div.photo a').attribute("href");
-
-      resObj[:listings] = AgentFinder.pullListings(link_to_profile)
       
-      return resObj
+      no_agent = page.search('div.rewmodule_content p')
+      
+      res = page.search('article.agent').first
+      
+      unless res.blank? || !(no_agent.blank?)
 
-    }
+        resObj = {
+
+          full_name: res.search('div.agent-heading span').text,
+          email: res.search('.agent-contact a').attribute('href').to_s[7..-1],
+          portrait: "https://www.sutton.com#{res.search('div.photo img').attribute("data-src")}"
+
+        }
+
+        link_to_profile = res.search('div.body div.photo a').attribute("href");
+
+        resObj[:listings] = AgentFinder.pullListings(link_to_profile)
+        
+        return resObj
+
+      else
+        return nil
+      end
+      }
 
   end
 

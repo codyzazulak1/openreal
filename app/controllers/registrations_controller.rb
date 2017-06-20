@@ -3,9 +3,12 @@ class RegistrationsController < Devise::RegistrationsController
   require_relative '../../lib/agent_finder.rb'
   include AgentFinder
 
-  def agent_setup
+  before_action only: [:agent_setup] { agent_already_exists(sign_up_params)}
 
+  def agent_setup
+  
     if resource_class == Agent && Agent.where(company_name: 'Sutton').all.count <= 10 
+
       @agent = Agent.new(sign_up_params)
       session[:agent_params] = {
         first_name: @agent.first_name,
@@ -16,14 +19,19 @@ class RegistrationsController < Devise::RegistrationsController
       session.delete(:temp_agent_info)
 
       agent_profile = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
-
       
-      agent_profile[:listings][0].delete(:pictures) unless agent_profile[:listings].blank?
-      agent_profile[:listings].clear unless agent_profile[:listings].blank?
+      if agent_profile
+        agent_profile[:listings][0].delete(:pictures) unless agent_profile[:listings].blank?
+        agent_profile[:listings].clear unless agent_profile[:listings].blank?
 
-      session[:temp_agent_info] = agent_profile
+        session[:temp_agent_info] = agent_profile
 
-      redirect_to new_agent_registration_path
+        redirect_to new_agent_registration_path
+      else
+        flash[:error] = "We couldn't find an associated Sutton account with your details. Please make sure your first and last name match your Sutton account details and try again."
+        redirect_to :back
+      end
+
     else
 
       redirect_to agents_path(first_name: params[:agent][:first_name], last_name: params[:agent][:last_name], company_name: params[:agent][:company_name])
@@ -355,12 +363,11 @@ class RegistrationsController < Devise::RegistrationsController
       end
     end
 
-    def agent_check
-      if Agent.all.count > 10
-        return root_path
-        flash[:notice] = 'At capacity'
-      else
-
+    def agent_already_exists(sign_up_params)
+      agent_exists = Agent.find_by(first_name: sign_up_params['first_name'].downcase, last_name: sign_up_params['last_name'].downcase)
+      if agent_exists
+        flash[:error] = 'Your name matches an agent already registered with us, please proceed to log in. If this is not you please contact our customer service.'
+        redirect_to new_agent_session_path
       end
     end
 
