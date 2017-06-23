@@ -394,6 +394,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.6)
   rails_12factor
+  redis
   ruby-hmac
   sass-rails (~> 5.0)
   sidekiq
