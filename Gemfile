@@ -51,6 +51,10 @@ gem 'foundation-rails'
 # HMAC
 gem 'ruby-hmac'
 
+#workers
+gem 'sidekiq'
+gem 'carrierwave_backgrounder'
+
 # fancybox
 gem 'fancybox2-rails', '~> 0.2.8'
 
