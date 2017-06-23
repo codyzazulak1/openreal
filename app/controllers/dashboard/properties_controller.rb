@@ -88,11 +88,8 @@ class Dashboard::PropertiesController < ApplicationController
         @photos = @property.photos.create!(picture: p, property_id: @property.id)
       end
 
-      respond_to do |format|
-      end
-
       flash[:success] = "Property has been added!"
-      # redirect_to dashboard_properties_path
+      redirect_to dashboard_properties_path
     else
       flash[:error] = "Something went wrong, please fill again."
       render 'new'
