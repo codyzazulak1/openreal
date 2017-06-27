@@ -22,6 +22,7 @@ config/local_env.yml
 config/secrets.yml
 .env
 .byebug_history
+dump.rb
 
 # OS generated files #
 ######################
