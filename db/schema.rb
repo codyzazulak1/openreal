@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 20170519183037) do
     t.text     "description"
     t.integer  "status_id",                                            default: 1
     t.string   "matterurl"
-    t.json     "pictures"
     t.boolean  "sold",                                                 default: false
     t.string   "featured_photo"
     t.integer  "agent_id"
