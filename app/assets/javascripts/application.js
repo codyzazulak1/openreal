@@ -17,6 +17,7 @@
 //= require map
 //= require jquery.form-validator.min
 //= require dropzone
+//= require s3_direct_upload
 
 
 $(function(){ $(document).foundation(); });
