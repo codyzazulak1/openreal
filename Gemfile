@@ -26,6 +26,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 
+#s3 direct upload gem
+gem 's3_direct_upload'
+
 # Money
 gem 'money', '~> 6.7'
 gem 'money-rails', '~> 1.6'
