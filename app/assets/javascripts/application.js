@@ -17,7 +17,8 @@
 //= require map
 //= require jquery.form-validator.min
 //= require dropzone
-//= require s3_direct_upload
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 
 
 $(function(){ $(document).foundation(); });
@@ -30,13 +31,13 @@ function initMultiple(){
   autoComplete();
 }
 
-  $(document).ready(function(){
-    var present = this.getElementById('addressInputTwo');
+$(document).ready(function(){
+  var present = this.getElementById('addressInputTwo');
 
-    if (present !== null) {
-       present.focus()
-    }
-  });
+  if (present !== null) {
+     present.focus()
+  }
+});
 
 function hideSoldBadges(){
   Array.prototype.forEach.call(document.getElementsByClassName('listing-badge sold'), function(ele){$(ele).hide()});
