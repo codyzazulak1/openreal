@@ -1,6 +1,29 @@
-$('.loader').show();
-setTimeout(function(){
-	$("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").hide().fadeOut(250);
-	$('.loader').fadeOut();
-}, 180)
+<% if @destroy_all%>
+	$('.loader').show();
 
+	setTimeout(function(){
+		$('#edit_photos_section').html("<%= j render '/dashboard/properties/edit_photos', photos: @photos%>");
+
+		$('.loader').fadeOut();
+
+		$('.delete_all').css('background-color', '#68c0ea');
+
+		$('.delete_all').css('pointer-events', 'initial');
+
+		$('.delete_all').text('Delete all photos');
+
+		$('.loaded').text('Photos deleted.').css('text-align', 'center');
+	
+	})
+	
+<% else %>
+	$('.loader').show();
+
+	setTimeout(function(){
+		$("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").hide().fadeOut(250);
+
+		$('.loader').fadeOut();
+
+	}, 180)
+
+<% end %>

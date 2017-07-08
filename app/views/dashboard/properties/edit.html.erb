@@ -8,13 +8,25 @@
 		<hr>
 
     <div>
+      <%= link_to 'Delete all photos', dashboard_photo_path(property_id: @property.id, destroy_all: true), method: :delete, data: {confirm: "Are you sure?"}, remote: true, class: 'float-right button delete_all'%>
 	  	<button class="button round" href="#" role="button" aria-label="add more photos" id="add_photos_edit">Add more photos</button>
 	  	<%= form_for :photo, url: dashboard_property_photos_path(@property), html: {id: "add_photos_form", style: "display: none"}, authenticity_token: true, data: {remote: true, type: "script"} do |f|%>
 	  		<%= f.file_field :picture, multiple: true%>
-	  		<%= f.submit 'Submit', class: "button small secondary"%>
 	  	<% end %>
-  	</div>
-  	<hr>
+      <br>
+      <div id="progress">
+       <div class="bar" style="width: 0%;"><p></p></div>
+       <p id="percentage"></p>
+       <div class="loaded"></div>
+      </div>
+
+      <script id="template-upload" type="text/x-tmpl">
+        <div class="upload">
+          {%=o.name%}
+          <div class="progress"><div class="bar" style="width: 0%"></div></div>
+        </div>
+      </script>
+    </div>
   	<div id="photo-edit-container">
   		<div class="loader" style="background: transparent"><div class="spinner" style="color: #68c0ea"></div></div>
 	  	<div id="edit_photos_section" class="row">
@@ -24,4 +36,17 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  $('.delete_all').click(function(e){
 
+    $(this).css('background-color', '#e1e1e1');
+
+    $(this).css('pointer-events', 'none');
+    
+    $('.loaded').text('Deleting photos...').css('text-align', 'center');
+
+    setTimeout(function(){
+      e.preventDefault();
+    }, 3000)
+  })
+</script>

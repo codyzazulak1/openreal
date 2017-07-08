@@ -1,6 +1,11 @@
-$("#add_photos_form").toggle();
-$("#add_photos_form").reset();
-// $("#photo_<%= @photo.id%>, #del_<%= @photo.id%>").appendTo("#dash_photo_list")
-// $("<%= @photos%>").appendTo("#all_photos_show")
+<% if @photo.new_record?%>
+	alert("Failed to upload photo: <%= j @photo.errors.full_messages.join(', ').html_safe %>");
 
-$("<%= escape_javascript(render @photos)%>").appendTo("#all_photos_show")
+<% else %>
+	$('#all_photos_show').replaceWith('<p> Your photos are loading... </p>');
+
+	setTimeout(function(){
+		$('#edit_photos_section').html("<%= escape_javascript(render partial: '/dashboard/properties/edit_photos', locals: {photo: @photo, property: @property})%>")
+	}, 3500);
+
+<% end %>

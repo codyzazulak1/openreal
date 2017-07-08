@@ -76,7 +76,11 @@ gem 'font-awesome-sass'
 #Use meta tag SEO
 gem 'meta-tags'
 
+#jquery upload carrierwave
+gem 'jquery-fileupload-rails'
+
 gem 'dotenv-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

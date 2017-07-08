@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+authenticate :admin do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+end
+
   devise_for :agents, :controllers => {
                          registrations: 'registrations',
                          sessions: 'users/sessions'
