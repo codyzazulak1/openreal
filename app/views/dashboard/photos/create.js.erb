@@ -1,5 +1,5 @@
 <% if @photo.new_record?%>
-	alert("Failed to upload painting: <%= j @painting.errors.full_messages.join(', ').html_safe %>");
+	alert("Failed to upload photo: <%= j @photo.errors.full_messages.join(', ').html_safe %>");
 
 <% else %>
 	$('#all_photos_show').replaceWith('<p> Your photos are loading... </p>');
