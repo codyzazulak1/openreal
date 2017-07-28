@@ -65,13 +65,48 @@
             <%# end %>
           </div> -->
 
+          <div class="medium-6 columns text-box">
 
-
-
-          <div class="medium-5 columns text-box">
             <span class="cf-contact notes"><strong>Submission Type</strong></span>
+
             <p class="cf-contact"><%= cf.sub_type %></p>
+
           </div>
+
+          <!-- Offer Price -->
+
+          <div id="mod-<%= cf.property_id%>">
+
+            <button class="button offer-btn" data-open='offer-price' data-address="<%= cf.property.address_name %>">Generate Offer</button>
+
+            <div class='reveal' id='offer-price' data-reveal>
+
+              <div id="gmap"></div>
+
+              <hr>
+
+              <div class="columns medium-4">
+
+                <a href="#" class="button small map-link" target='_blank'>Open in maps</a>
+
+              </div>
+
+              <div class="columns medium-4">
+
+                <a href="#" class="button small">Learn more</a>
+
+              </div>
+
+              <div class="columns medium-4">
+
+                <a href="#" class="button small">Save offer price</a>
+
+              </div>
+
+            </div>
+
+          </div>
+          
 
           <div class="medium-expand columns">
             <%= link_to "Delete", dashboard_contact_form_path(cf), method: :delete, class: "delete-button" %>
@@ -85,3 +120,87 @@
     <%= will_paginate @forms_pagination, {previous_label: "◀", next_label: "▶"}%>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+
+  var map, address, geocoder;
+  var markers = [];
+
+  $('.offer-btn').click(function(){
+
+    if (!map){
+
+      address = $(this).data('address')
+    
+      map = new google.maps.Map(document.getElementById('gmap'), {
+        zoom: 12,
+        center: {lat: -34.397, lng: 150.644}
+      });
+
+      geocoder = new google.maps.Geocoder();
+
+      geocodeAddress(geocoder, map, address);
+
+    } else {
+
+      address = $(this).data('address');
+
+      geocoder = null
+
+      geocoder = new google.maps.Geocoder();
+
+      map.setCenter({lat: -34.397, lng: 150.644});
+
+      geocodeAddress(geocoder, map, address);
+    }
+
+  })
+
+  function geocodeAddress(geocoder, resultsMap, address) {
+
+    geocoder.geocode({'address': address}, function(results, status) {
+
+      if (status === 'OK') {
+
+        resultsMap.setCenter(results[0].geometry.location);
+
+        for (var i = markers.length - 1; i >= 0; i--) {
+          
+          markers[i].setMap(null)
+        }
+
+        var marker = new google.maps.Marker({
+
+          map: resultsMap,
+          position: results[0].geometry.location
+
+        });
+
+        markers.push(marker);
+
+        // directions for view on google.maps.com
+        var lat = results[0].geometry.location.lat()
+
+        var lng = results[0].geometry.location.lng()
+
+        var reg = /[\.\,]/g 
+        
+        var address_search_param = address.replace(reg, '').split(' ').join('+');
+
+        // $('.map-link').attr('href', 'https://www.google.com/maps/search/?api=1&map_action=map' + '&center=' + lat + ',' + lng );
+        $('.map-link').attr('href', "https://maps.google.com/?q=" + address_search_param)
+
+      } else {
+
+        alert('Geocode was not successful for the following reason: ' + status);
+
+      }
+
+    });
+
+  }
+
+});
+
+</script>
+<script src=<%="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_SECRET']}"%> async defer></script>
