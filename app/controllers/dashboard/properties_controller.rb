@@ -8,21 +8,22 @@ class Dashboard::PropertiesController < ApplicationController
     @customer_submitted = Status.where(category: "Customer Submitted")
     @agent_submitted = Status.where(category: "Agent Submitted")
     @owned = Status.where(category: "Owned Properties")
-    categories = ["Customer Submitted", "Agent Submitted", "Owned Properties"]
-    names = [].push(@customer_submitted
-              .map{|cs| cs.name})
-            .push(@agent_submitted
-              .map{|as| as.name})
-            .push(@owned
-              .map{|o| o.name})
-            .flatten!
 
-    if categories.include?(params[:filter])
-      @properties = Property.joins(:status).where(statuses: {category: params[:filter]})
-    elsif names.include?(params[:filter])
-      @properties = Property.joins(:status).where(statuses: {name: params[:filter]})
-    else
-      @properties = Property.all.order(created_at: :desc)
+    if is_status_category?(params[:filter])
+      @properties = Property.search_properties_from(params[:filter])
+    elsif is_status_name?(params[:filter])
+      @properties = Property.search_status_name(params[:filter])
+
+      if @customer_submitted.map {|cs| cs.name}.include?(params[:filter])
+        @category = 'Customer Submitted'
+      elsif @agent_submitted.map {|as| as.name}.include?(params[:filter])
+        @category = 'Agent Submitted'
+      elsif @owned.map{|op| op.name}.include?(params[:filter])
+        @category = 'Owned Properties'
+      end 
+
+    elsif params[:filter] == 'All'
+      @properties
     end
 
     @properties_paged = @properties.paginate(:page => params[:page], :per_page => 10)
@@ -160,6 +161,30 @@ class Dashboard::PropertiesController < ApplicationController
 
   def photo_params
     params.require(:property).require(:photos_attributes).permit(:picture, :property_id)
+  end
+
+  def is_status_category?(filter)
+    case filter
+    when 'Agent Submitted'
+      return params[:filter]
+    when 'Customer Submitted'
+      return params[:filter]
+    when 'Owned Properties'
+      return params[:filter]
+    else
+      return false
+    end    
+  end
+
+  def is_status_name?(filter)
+    ary = []
+    Status.all.map {|st| ary.push(st.name)}
+
+    if ary.include?(filter)
+      return filter
+    else
+      return false
+    end
   end
 
 end
