@@ -6,26 +6,66 @@
     <hr>
     <div class="dashboard-list">
       <div class="dashboard-list-header row collapse">
-        <div class="small-8 columns">
-          <%= link_to "Add a new property", new_dashboard_property_path+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]), class: "btn btn-primary" %>
+
+        <div class="small-6 columns">
+          <%#= link_to "Add a new property", new_dashboard_property_path+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]), class: "btn btn-primary" %>
+          <div class="list-group">
+            <%= link_to new_dashboard_property_path+"?from="+(request.parameters[:page].nil? ? '1' : request.parameters[:page])+"&filter="+(request.parameters[:filter].nil? ? 'all' : request.parameters[:filter]) do %>
+              <i class="fa fa-plus-circle"></i>
+              <span><small><strong>Add Property</strong></small></span> 
+              <% end %>
+          </div>
         </div>
 
         <form class="small-4 columns" method="get">
           <select style="margin:0;" name="filter" onChange="submit();">
+
             <option style="color: blue;" value="All" <%= "selected" if request.parameters[:filter] == "All" %>>Show All</option>
-            <option style="color: blue;" value="Customer Submitted" <%= "selected" if request.parameters[:filter] == "Customer Submitted" %>>Show Customer Listings</option>
-            <% @customer_submitted.each do |cs| %>
-              <option value="<%= cs.name %>"><%= cs.name %></option>
-            <%end%>
-            <option style="color: blue;" value="Agent Submitted" <%= "selected" if request.parameters[:filter] == "Agent Submitted" %>>Show Agent Listings</option>
-            <% @agent_submitted.each do |as| %>
-              <option value="<%= as.name %>"><%= as.name %></option>
-            <%end%>
-            <option style="color: blue;" value="Owned Properties" <%= "selected" if request.parameters[:filter] == "Owned Properties" %>>Show Owned Listings</option>
-            <% @owned.each do |os| %>
-              <option value="<%= os.name %>"><%= os.name %></option>
-            <%end%>
-          </select>
+
+            <% case %>
+            <% when request.parameters[:filter] == nil || request.parameters[:filter] == 'All' %>
+              
+              <option style="color: blue;" value="Customer Submitted" <%#= "selected" if request.parameters[:filter] == 'Customer Submitted'%>>Show Customer Listings</option>
+              <option style="color: blue;" value="Agent Submitted" <%#= "selected" if request.parameters[:filter] == "Agent Submitted" %>>Show Agent Listings</option>
+              <option style="color: blue;" value="Owned Properties" <%#= "selected" if request.parameters[:filter] == "Owned Properties" %>>Show Owned Listings</option>
+
+
+            <% when request.parameters[:filter] == 'Customer Submitted' || @category == 'Customer Submitted' %>
+              
+              <option style="color: blue;" value="Customer Submitted" <%= "selected" if request.parameters[:filter] %>>Show Customer Listings</option>
+              <% @customer_submitted.each do |cs| %>
+                <option value="<%= cs.name %>"><%= cs.name %></option>
+              <%end%>
+
+              <option style="color: blue;" value="Agent Submitted" >Show Agent Listings</option>
+              <option style="color: blue;" value="Owned Properties" >Show Owned Listings</option>
+
+            <% when  request.parameters[:filter] =='Agent Submitted' || @category == 'Agent Submitted' %>
+               
+               <option style="color: blue;" value="Customer Submitted">Show Customer Listings</option>
+
+              <option style="color: blue;" value="Agent Submitted" <%= "selected" if request.parameters[:filter] %>>Show Agent Listings</option>
+              <% @agent_submitted.each do |as| %>
+                <option value="<%= as.name %>"><%= as.name %></option>
+              <%end%>
+
+              <option style="color: blue;" value="Owned Properties">Show Owned Listings</option>
+
+
+            <% when  request.parameters[:filter] == 'Owned Properties' || @category == 'Owned Properties' %>
+             
+              <option style="color: blue;" value="Customer Submitted">Show Customer Listings</option>
+              <option style="color: blue;" value="Agent Submitted">Show Agent Listings</option>
+
+              <option style="color: blue;" value="Owned Properties" <%= "selected" if request.parameters[:filter]%>>Show Owned Listings</option>
+              <% @owned.each do |os| %>
+                <option value="<%= os.name %>"><%= os.name %></option>
+              <%end%>
+
+            <% end %>
+
+            </select>
+         
         </form>
       </div>
 
