@@ -92,7 +92,7 @@
                   <%end%>
                 </h3>
                 <div>
-                  <%#=# link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete",dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %> 
+                  <%#= link_to "View", property_path(p), target: "_blank" %> | <%= link_to "Edit", edit_dashboard_property_path(p) %> | <%= link_to "Delete",dashboard_property_path(p), data: {:confirm => 'Are you sure?'}, :method => :delete %> 
                   <% if p.agent_id && p.status.name == 'Unapproved'%>
                   | <a href="#" data-open="add-note">Add Note</a>
 
