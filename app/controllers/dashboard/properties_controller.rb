@@ -40,7 +40,7 @@ class Dashboard::PropertiesController < ApplicationController
     @property = Property.find(params[:id])
     @address = @property.address
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
-    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id"]
     @photos = @property.photos
    
   end
@@ -60,6 +60,7 @@ class Dashboard::PropertiesController < ApplicationController
     property.update(status_id: Status.find_by(name: params["status"]).id)
 
     respond_to do |format|
+      format.html
       format.json do
        render json: property.as_json(only: [:status])
      end
@@ -71,7 +72,7 @@ class Dashboard::PropertiesController < ApplicationController
     @property = Property.new
     @address = Address.new(property: @property)
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
-    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id"]
 
     @photos = @property.photos.new
   end
@@ -81,7 +82,7 @@ class Dashboard::PropertiesController < ApplicationController
     @address = Address.new(address_params)
 
     @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
-    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id", "latitude", "longitude"]
+    @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id"]
 
 
     if @property.save
