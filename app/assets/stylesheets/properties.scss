@@ -19,7 +19,8 @@ body.properties.show {
 @media screen and (max-width: 400px){
   body.properties{
     height: 100vh!important;
-    overflow-y: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 }
 
