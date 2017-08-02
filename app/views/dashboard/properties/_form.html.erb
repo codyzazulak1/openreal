@@ -5,52 +5,88 @@
   <div class="float-right">
     <%= f.submit "Save", class: "btn btn-primary" %>
   </div>
-
-  <ul class="accordion clear-both" data-accordion data-multi-expand="true" data-allow-all-closed="true">
+  <br>
+  <br>
+  <!-- <ul class="accordion clear-both" data-accordion data-multi-expand="true" data-allow-all-closed="true">
     <li class="accordion-item is-active" data-accordion-item>
       <a href="#" class="accordion-title">Address</a>
-      <div class="accordion-content" data-tab-content>
-        <%= f.fields_for :address do |fa| %>
-
-          <%= fa.label :latitude, 'Latitude'%>
-          <%= fa.text_field :latitude%>
-
-          <%= fa.label :longitude, 'longitude'%>
-          <%= fa.text_field :longitude%>
-          
-          <% @address_attributes.each do |a| %>
+      <div class="accordion-content" data-tab-content> -->
+      <div class="row">
+        <div class="columns">
+          <h3>Edit address information: </h3>
+          <%= f.fields_for :address do |fa| %>
             
-            <%= fa.label a %>
-            <%= fa.text_field a.to_sym %>
-          <% end %>
-        <% end %>
-      </div>
-    </li>
+            <% @address_attributes.each_with_index do |a, i| %>
 
-    <li class="accordion-item" data-accordion-item>
+              <% if i <= (@address_attributes.length/2) %>
+              <div class="columns small-12 medium-6">
+                <%= fa.label a %>
+                <%= fa.text_field a.to_sym %>
+              </div>
+              <% else%>
+              <div class="columns small-12 medium-6">
+                <%= fa.label a %>
+                <%= fa.text_field a.to_sym %>
+              </div>
+              <% end %>
+
+            <% end %>
+          <% end %>
+        </div>
+    <!-- </li> -->
+
+   <!--  <li class="accordion-item" data-accordion-item>
       <a href="#" class="accordion-title">Basics</a>
-      <div class="accordion-content" data-tab-content>
-        <% @property_attributes.each do |u| %>
+      <div class="accordion-content" data-tab-content> -->
+      <div class="columns">
+      <h3> Edit property information</h3>
+        <% @property_attributes.each_with_index do |u, i| %>
 
-          <% if u.include? "building_type"%>
-             <%= f.label u%>
-             <!-- downcase -froze string issue -->
-             <%= f.text_field u.to_sym%>
-           <% else %>
+          <% if i <= (@property_attributes.length/2) %>
 
-             <%= f.label u %>
-             <%= f.text_field u.to_sym %>
+            <div class="columns small-12 medium-6">
+              <% if u.include? "building_type"%>
+                 <%= f.label u%>
+                 <!-- downcase -froze string issue -->
+                 <%= f.text_field u.to_sym%>
 
+              <% elsif u.include? ("status_id") %>
+                <%= f.label u %>
+
+                <%= f.select u,options_from_collection_for_select(Status.where(category: Status.find(@property.status_id).category), 'id','name') , {:prompt => true} %>
+
+              <% else %>
+
+                <%= f.label u %>
+                <%= f.text_field u.to_sym %>
+
+              <% end %>
+            </div>
+          <% else %>  
+            <div class="columns small-12 medium-6">
+              <% if u.include? "building_type"%>
+                 <%= f.label u%>
+                 <!-- downcase -froze string issue -->
+                 <%= f.text_field u.to_sym%>
+
+              <% elsif u.include? ("status_id") %>
+                <%= f.label u %>
+
+                <%= f.select u,options_from_collection_for_select(Status.where(category: Status.find(@property.status_id).category), 'id','name') , {:prompt => true} %>
+
+              <% else %>
+
+                <%= f.label u %>
+                <%= f.text_field u.to_sym %>
+
+              <% end %>
+            </div>
           <% end %>
-  
-          <%# if u.include? "status_id" %>
-            <%#= f.label u %>
-            <%#= f.select u, options_for_select(["Unlisted", "Listed", "Archived"]), {:prompt => true} %>
-          <%# end %>
         <% end %>
+
         <% if current_page?(new_dashboard_property_path)%>
-        <div>
-          <div>
+        <div class="row">
+          <div class="columns float-right">
             <%=f.fields_for :photos do |photo|%>
               <%= photo.label :picture, 'Upload picture' %><br>
               <%= photo.file_field :picture, :multiple => true, name: "photos[picture][]" %>
@@ -59,9 +95,10 @@
         </div>
          <% end %>
       </div>
-    </li>
+      </div>
+<!--     </li>
   </ul>
-
+ -->
   
   <div class="float-left">
     <a href="<%= dashboard_properties_path %>?page=<%= request.parameters[:from].nil? ? '1' : request.parameters[:from] %>&filter=<%= request.parameters[:filter].nil? ? 'all' : request.parameters[:filter] %>" class="btn btn-secondary">Back</a>
