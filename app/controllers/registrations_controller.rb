@@ -235,9 +235,10 @@ class RegistrationsController < Devise::RegistrationsController
 
       agent_profile = AgentFinder.searchByName("#{agent.first_name}","#{agent.last_name}", agent.company_name) 
 
-      agent.remote_profile_picture_url = agent_profile[:portrait]
-      
-      agent.save
+      if agent_profile[:portrait] && !(agent_profile[:portrait].include? '/anon.png')
+        agent.remote_profile_picture_url = agent_profile[:portrait]
+        agent.save!
+      end
 
       agent_profile[:listings].each do |listing|
         property = Property.new(
