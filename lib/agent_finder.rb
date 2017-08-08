@@ -24,8 +24,10 @@ module AgentFinder
 
         link_to_profile = res.search('div.body div.photo a').attribute("href");
 
-        resObj[:listings] = AgentFinder.pullListings(link_to_profile)
-        
+        # AgentFinder.findPagination in case there's multiple pages of properties: 
+
+        resObj[:listings] = AgentFinder.findPagination(link_to_profile)
+        byebug
         return resObj
 
       else
@@ -48,8 +50,69 @@ module AgentFinder
 
   end
 
+  def AgentFinder.findPagination(listings_array = [], link_to_profile)
+    # y check if pagination is on the page
+    # y if pagination
+      # y click on pagination
+      # y redo AgentFinder.pullListings
+        # y should add the other listings to the array passed to method
+      # X check listings array is not repeated properties (Might be its own method?)
+      # y return listings array
+    # y else 
+      # y Don't do anything
+    # y end
+    ## START -------------------------------------------
+  
+    @mech.get(link_to_profile) {|page| 
+      puts "LISTINGS ARRAY: #{listings_array.count}"
+      pagination_div = page.search('div.pagination')
+
+      if !(pagination_div.empty?)
+
+        unless listings_array
+          listings_array = []
+        end
+
+        AgentFinder.pullListings(link_to_profile).map { |listing| listings_array.push(listing)}
+
+        #check for next pages available
+        np = pagination_div.map {|a| 
+          if !(a.search('a.next').blank?)
+            a.search('a.next').attribute('href').value
+          else 
+            false
+          end
+        }
+
+        if np[0] != false 
+          next_page = "https://www.sutton.com" + np[0]
+        else
+          next_page = false
+        end
+
+        unless next_page.blank?
+          puts "INSIDE NEXT PAGE"
+          AgentFinder.findPagination(listings_array, next_page)
+        else
+          listings_array
+        end 
+
+      else #no pagination
+        puts "NO PAGINATION"
+        listings_array = AgentFinder.pullListings(link_to_profile)
+      end
+
+      return listings_array
+    }
+
+  end
+
   def AgentFinder.pullListings(link_to_profile)
     listings_array = []
+    puts "----------------"
+    puts "BUILDING A LIST"
+   
+
     @mech.get(link_to_profile) { |page|
       listings = page.search('.listing')
 
@@ -170,6 +233,7 @@ module AgentFinder
         }
     end
     }
+    puts "Array count: #{listings_array.count}"
     return listings_array
   end
 end
