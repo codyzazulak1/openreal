@@ -1,2 +1,2 @@
 web: bundle exec puma
-worker: bundle exec sidekiq -e production -q carrierwave
+worker: bundle exec sidekiq -e production -q carrierwave, -q aproperty
