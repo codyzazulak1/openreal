@@ -1,11 +1,11 @@
 if Rails.env.production? 
 
 	Sidekiq.configure_client {|config|
-		config.redis = {url: ENV['REDIS_URL'], size: 2}
+		config.redis = {url: ENV['REDIS_URL'], size: 3}
 	}
 
 	Sidekiq.configure_server{|config|
-		config.redis = {url: ENV['REDIS_URL'], size: 20}
+		config.redis = {url: ENV['REDIS_URL']}
 	}
 
 	Rails.application.config.after_initialize do
