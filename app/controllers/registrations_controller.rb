@@ -10,6 +10,7 @@ class RegistrationsController < Devise::RegistrationsController
     if resource_class == Agent && Agent.where(company_name: 'Sutton').all.count <= 10 
 
       @agent = Agent.new(sign_up_params)
+
       session[:agent_params] = {
         first_name: @agent.first_name,
         last_name: @agent.last_name,
@@ -21,7 +22,9 @@ class RegistrationsController < Devise::RegistrationsController
       agent_profile = AgentFinder.searchByName("#{session[:agent_params][:first_name]}","#{session[:agent_params][:last_name]}", session[:agent_params][:company_name]) 
       
       if agent_profile
+
         agent_profile[:listings][0].delete(:pictures) unless agent_profile[:listings].blank?
+
         agent_profile[:listings].clear unless agent_profile[:listings].blank?
 
         session[:temp_agent_info] = agent_profile
@@ -231,67 +234,15 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
 
     if resource_class == Agent && agent_signed_in?
+
       agent = current_agent
-
-      agent_profile = AgentFinder.searchByName("#{agent.first_name}","#{agent.last_name}", agent.company_name) 
-
-      if agent_profile[:portrait] && !(agent_profile[:portrait].include? '/anon.png')
-        agent.remote_profile_picture_url = agent_profile[:portrait]
-        agent.save!
-      end
-
-      agent_profile[:listings].each do |listing|
-        property = Property.new(
-          list_price_cents: listing[:property][:list_price_cents],
-          description: listing[:property][:description],
-          agent_id: agent.id,
-          bedrooms: listing[:property][:bedrooms] || nil,
-          bathrooms: listing[:property][:bathrooms] || nil,
-          floor_area: listing[:property][:floor_area] || nil,
-          year_built: listing[:property][:year_built] || nil,
-          dwelling_class: listing[:property][:dwelling_class] || nil,
-          status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
-        )
-
-        if property.save
-          puts "##### Saved Property"
-          photo_arr = listing[:pictures]
-
-          photo_arr.each { |src|
-            u = property.photos.build
-            u.remote_picture_url = src
-            if u.save
-              puts "###################### Saved Photo"
-            else
-              puts "###################### Photo Upload Failed"
-            end
-          }
-
-
-        else
-          puts "Could not save Property"
-        end
-        
-        address = Address.new(
-          address_first: "#{listing[:property][:address][:address_first]} #{listing[:property][:address][:street]}",
-          address_second: listing[:property][:address][:address_second],
-          street: listing[:property][:address][:street],
-          city: listing[:property][:address][:city],
-          postal_code: listing[:property][:address][:postal_code],
-          property_id: property.id
-        )
-        
-        if address.save
-          puts 'Saved address'
-        else
-          puts 'Could not save Address'
-        end
-
-      end
+ 
+      UploadpropertyJob.perform_later(agent.id)
 
       session.delete(:temp_agent_info)
-
-      return agent_dashboard_path
+      
+      flash[:notice] = 'Your profile picture and properties are being loaded.'
+      return agent_dashboard_path 
 
     elsif !(resource.errors.empty?)
 
@@ -301,7 +252,7 @@ class RegistrationsController < Devise::RegistrationsController
         puts '-----------'
       end
 
-    end #if agent present statement close
+    end #if resource class agent close
   end
 
   # def after_sign_in_path_for(resource)
