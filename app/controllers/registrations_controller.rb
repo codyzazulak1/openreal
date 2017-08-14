@@ -23,16 +23,14 @@ class RegistrationsController < Devise::RegistrationsController
       
       if agent_profile
 
-        agent_profile[:listings][0].delete(:pictures) unless agent_profile[:listings].blank?
-
-        agent_profile[:listings].clear unless agent_profile[:listings].blank?
-
         session[:temp_agent_info] = agent_profile
 
         redirect_to new_agent_registration_path
       else
+
         flash[:error] = "We couldn't find an associated Sutton account with your details. Please make sure your first and last name match your Sutton account details and try again."
         redirect_to :back
+
       end
 
     else
@@ -240,12 +238,13 @@ class RegistrationsController < Devise::RegistrationsController
       UploadpropertyJob.perform_later(agent.id)
 
       session.delete(:temp_agent_info)
+      session.delete(:agent_params)
       
       flash[:notice] = 'Your profile picture and properties are being loaded.'
       return agent_dashboard_path 
 
     elsif !(resource.errors.empty?)
-
+      flash[:error] = "Something went wrong. #{resource.errors.count} errors."
       resource.errors.each do |err|
         puts "-----------"
         puts err.message
