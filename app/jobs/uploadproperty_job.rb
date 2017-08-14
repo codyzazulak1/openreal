@@ -12,6 +12,11 @@ class UploadpropertyJob < ActiveJob::Base
 
     agent_profile << {portrait: AgentFinder.searchByName("#{agent.first_name}","#{agent.last_name}", agent.company_name)[:portrait]}
 
+  	if agent_profile[1][:portrait]
+  		agent.remote_profile_picture_url = agent_profile[1][:portrait]
+  		agent.save
+  	end
+
     agent_profile[0][:listings].each do |listing|
 	    property = Property.new(
 	      list_price_cents: listing[:property][:list_price_cents],
@@ -25,13 +30,7 @@ class UploadpropertyJob < ActiveJob::Base
 	      status: Status.find_by(name: "Pending Approval", category: "Agent Submitted")
 	    )
 
-	    property.save!
 	    if property.save
-
-	    	if agent_profile[1][:portrait]
-	    		agent.remote_profile_picture_url = agent_profile[1][:portrait]
-	    		agent.save
-	    	end
 
 	    	photo_arr = listing[:pictures]
 
