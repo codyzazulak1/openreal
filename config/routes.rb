@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   # authenticate :admin do 
   #   require 'sidekiq/web'
   #   mount Sidekiq::Web => '/sidekiq'
-  # end
+  # end 
   # customers
   #resources :customers, :only => [:show] do
   #  resources :favorites
