@@ -139,4 +139,7 @@ class Property < ActiveRecord::Base
   scope :for_sale_and_sold, -> {where("properties.list_price_cents >= 0")}
   scope :except_contact_form_submission, -> {where('id NOT IN (SELECT DISTINCT(property_id) FROM contact_forms)')}
   scope :remove_unapproved_listings, -> {where.not(status: Status.where(name: ["Pending Approval", "Unapproved"]))}
+
+  scope :search_properties_from, -> (person) { joins(:status).where('category = ?', person) if person.present?}
+  scope :search_status_name, -> (name) {joins(:status).where('name = ?', name) if name.present?}
 end
