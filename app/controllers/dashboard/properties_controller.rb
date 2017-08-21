@@ -71,7 +71,7 @@ class Dashboard::PropertiesController < ApplicationController
   def new
     @property = Property.new
     @address = Address.new(property: @property)
-    @property_attributes = Property.column_names - ["id", "created_at", "updated_at", "status_id"]
+    @property_attributes = Property.column_names - ["id", "created_at", "updated_at"]
     @address_attributes = Address.column_names - ["id", "created_at", "updated_at", "property_id"]
 
     @photos = @property.photos.new
