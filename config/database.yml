@@ -28,3 +28,4 @@ test:
 production:
   <<: *default
   database: openrealdb_prod
+  url: <%= ENV['DATABASE_URL']%>
