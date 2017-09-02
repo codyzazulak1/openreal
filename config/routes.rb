@@ -14,11 +14,7 @@ Rails.application.routes.draw do
                       registrations: 'registrations',
                       sessions: 'users/sessions'
   }
-
-  # authenticate :admin do 
-  #   require 'sidekiq/web'
-  #   mount Sidekiq::Web => '/sidekiq'
-  # end
+  
   # customers
   #resources :customers, :only => [:show] do
   #  resources :favorites
