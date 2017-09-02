@@ -9,7 +9,7 @@ default: &default
   encoding: unicode
   database: openrealdb
   host: localhost
-  pool: 5
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
   timeout: 5000
   username: openrealadmin
   password: openrealdbpw
@@ -28,3 +28,4 @@ test:
 production:
   <<: *default
   database: openrealdb_prod
+  url: <%= ENV['DATABASE_URL']%>

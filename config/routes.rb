@@ -14,7 +14,7 @@ Rails.application.routes.draw do
                       registrations: 'registrations',
                       sessions: 'users/sessions'
   }
-  
+
   # customers
   #resources :customers, :only => [:show] do
   #  resources :favorites
