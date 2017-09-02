@@ -1,3 +1,12 @@
+if Rails.env.development?
+  Sidekiq.configure_client {|config|
+    config.redis = {url: 'redis://localhost:6379/5'}
+  }
+  Sidekiq.configure_server {|config|
+    config.redis = {url: 'redis://localhost:6379/5'}
+  }
+end
+
 if Rails.env.production? 
 
 	Sidekiq.configure_client {|config|
