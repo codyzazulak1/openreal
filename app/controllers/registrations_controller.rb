@@ -64,9 +64,13 @@ class RegistrationsController < Devise::RegistrationsController
   def listings_index
     if resource_class == Agent && agent_signed_in?
       @agent = current_agent
+
       @properties = Property.where(agent_id: @agent.id).order(created_at: :desc)
      
+      if @agent.sign_in_count == 1
 
+        @loading = 'Note: Some listings and photos might still be in progress.'
+      end
       agent_submitted = Status.where(category: 'Agent Submitted')
 
       statuses_name = [].push(agent_submitted.map{|sn| sn.name}).flatten
