@@ -26,6 +26,11 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
 
+#scraper
+gem "webdrivers", "~> 3.0"
+gem "watir"
+gem "headless"
+
 # Money
 gem 'money', '~> 6.7'
 gem 'money-rails', '~> 1.6'
