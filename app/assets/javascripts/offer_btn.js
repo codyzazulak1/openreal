@@ -6,12 +6,13 @@ $(document).ready(function(){
 
 	$('.offer-btn').click(function(){
 		console.log('c-1');
+
 		$('#e-url').css('background-color', 'lightgrey');
 		$('#e-url').css('pointer-events', 'none');
 		$('#offer-container').height('5em');
 		$('.loader').show();
 		$('#offer-container').find('*').not('div.loader, div.spinner, p.wait-text, p > small').remove();
-		
+		$('#offer-container').append('<div class="columns small-1 show-for-small-only"><a href="#" class="map-link" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i></a></div>')
 		if (!map){
       address = $(this).data('address')
       map = new google.maps.Map(document.getElementById('gmap'), {
