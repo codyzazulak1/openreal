@@ -113,6 +113,7 @@ def self.finden(address)
 		assessed_date: assessed_date,
 		assessed_date_value: total_value,
 		land_value: land,
+		building_value: building,
 		url: url
 	}
 
