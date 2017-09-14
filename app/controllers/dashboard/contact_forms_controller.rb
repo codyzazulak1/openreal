@@ -45,7 +45,6 @@ class Dashboard::ContactFormsController < ApplicationController
 		address = @contact_property.address_name
 		#@offer_info = Autoprop.finden(address, autoprop_login, autoprop_pw)
 		@offer_info = Evalbc.finden(address)
-		puts "RETURN OF OFFER INFO #{@offer_info}"
 
 		respond_to do |format|
 			#format.js { render layout: 'dashboard/contact_form/price_offer.js.erb', json: @offer_info }
