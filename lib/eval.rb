@@ -21,10 +21,6 @@ def self.finden(address)
 	
 	browser.goto 'https://evaluebc.bcassessment.ca/'
 
-	if address.include? 'apt' 
-		address = address.split('apt.')[1]
-	end
-
 	search_bar = browser.text_field(id: 'rsbSearch')
 
 	search_bar.set "#{address}"
