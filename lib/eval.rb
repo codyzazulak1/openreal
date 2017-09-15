@@ -5,7 +5,9 @@ require 'watir'
 require 'date'
 
 def self.finden(address)
-	chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+	chrome_bin = ENV.fetch('GOOGLE_CHROME_BIN', nil)
+	puts "CHROME BIN: #{chrome_bin}"
+	chrome_driver = ENV.fetch('CHROMEDRIVER_PATH', nil)
 
 	chrome_opts = chrome_bin ? {"chromeOptions" => {"binary" => chrome_bin}} : {}
 	cap = Selenium::WebDriver::Remote::Capabilities.chrome(chrome_opts)
