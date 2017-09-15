@@ -10,9 +10,10 @@ def self.finden(address)
 	chrome_shims = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 	puts "-----------CHROME SHIM: #{chrome_shims}"
 
-	chrome_opts = chrome_bin ? {"chromeOptions" => {"binary" => chrome_bin}} : {}
+	chrome_opts = chrome_bin ? {"chromeOptions" => {"binary" => chrome_shims}} : {}
 
 	cap = Selenium::WebDriver::Remote::Capabilities.chrome(chrome_opts)
+	puts cap
 	browser = Watir::Browser.new :chrome, headless: true, desired_capabilities: cap
 	
 	browser.goto 'https://evaluebc.bcassessment.ca/'
