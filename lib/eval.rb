@@ -5,16 +5,12 @@ require 'watir'
 require 'date'
 
 def self.finden(address)
-	chrome_bin = ENV.fetch('GOOGLE_CHROME_BIN', nil)
+	chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
 	puts "----------CHROME BIN: #{chrome_bin}"
-	chrome_shims = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
-	puts "-----------CHROME SHIM: #{chrome_shims}"
+	Selenium::WebDriver::Chrome.path = "#{chrome_bin}"
+	#chrome_opts = chrome_bin ? {"chromeOptions" => {"binary" => chrome_shims}} : {}
 
-	chrome_opts = chrome_bin ? {"chromeOptions" => {"binary" => chrome_shims}} : {}
-
-	cap = Selenium::WebDriver::Remote::Capabilities.chrome(chrome_opts)
-	puts cap
-	browser = Watir::Browser.new :chrome, headless: true, desired_capabilities: cap
+	browser = Watir::Browser.new :chrome, headless: true, options: {binary: "#{chrome_bin}" }
 	
 	browser.goto 'https://evaluebc.bcassessment.ca/'
 
