@@ -4,6 +4,8 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+.vagrant/
+
 # Ignore bundler config.
 /.bundle
 /vendor/bundle
@@ -23,6 +25,7 @@ config/secrets.yml
 .env
 .byebug_history
 dump.rdb
+.swp
 
 # OS generated files #
 ######################

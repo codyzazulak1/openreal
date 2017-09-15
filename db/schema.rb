@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(version: 20170519183037) do
   add_index "photos", ["property_id"], name: "index_photos_on_property_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
-    t.datetime "created_at",                                                           null: false
-    t.datetime "updated_at",                                                           null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.text     "seller_info"
     t.string   "pid"
     t.string   "dwelling_class"
@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 20170519183037) do
     t.text     "description"
     t.integer  "status_id",                                            default: 1
     t.string   "matterurl"
-    t.boolean  "sold",                                                 default: false
     t.string   "featured_photo"
     t.integer  "agent_id"
     t.text     "note"
