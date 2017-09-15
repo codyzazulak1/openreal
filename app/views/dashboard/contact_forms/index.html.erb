@@ -68,20 +68,52 @@
 
 
 
-          <div class="medium-5 columns text-box">
+          <div class="medium-6 columns text-box">
             <span class="cf-contact notes"><strong>Submission Type</strong></span>
             <p class="cf-contact"><%= cf.sub_type %></p>
-          </div>
+					</div>
+		
+					<div id="mod-<%= cf.property_id%>">
+										
+									<%= link_to "Generate Offer", dashboard_contact_form_price_estimate_path(cf.property_id), remote: true, class: 'button offer-btn', id: cf.property_id, data: {address: cf.property.address_name, open: 'offer-price'} %>
+									<div class="reveal" id="offer-price" data-reveal>
+										<button class="close-button show-for-small-only" data-close arial-label="Close modal" type="button"><span aria-hidden="true">&times;</span></button>			
+													</br><div id="gmap"></div>
+										<hr>
+										<div id="offer-container">
+											<div class="loader">
+												<p style="text-align: center;" class='wait-text'><small>Generating new assessment...</small></p>
+												<div class="spinner"></div>
+											</div>
+									 </div>
+										<hr>
+										<div class="columns  medium-4 hide-for-small-only">
+											<a href="#" class="button small map-link" target="_blank">Open in maps </a>
+										</div>
+										
+										<div class="columns small-6 medium-4">
+														<a href="#" class="button small" >Save offer price</a>
+										</div>
 
+										<div class="columns small-4 medium-4 end">
+														<a href="#" class="button small" id="e-url" target="_blank">
+															Full assessment report
+														</a>
+										</div>
+									</div>
+
+					</div>
           <div class="medium-expand columns">
             <%= link_to "Delete", dashboard_contact_form_path(cf), method: :delete, class: "delete-button" %>
           </div>
         </div>
 
-        </li>
+				</li>
         <% end %>
     </ul>
     <% end %>
     <%= will_paginate @forms_pagination, {previous_label: "◀", next_label: "▶"}%>
   </div>
 </div>
+
+<script src=<%="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_SECRET']}"%> asyn defer></script>

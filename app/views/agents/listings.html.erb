@@ -14,7 +14,10 @@
 	  	<p><small><color style="color: #68c0ea">Live</color>: Your listing has been approved and is now live.</small></p>
 	  	<p><small><color style="color: red">Unapproved</color>: Check the listing's notes for improvements so your listing can get approved.</small></p>
 	  	<br>
-
+	  	<% if @loading%>
+	  	<hr>
+	  	<p><small><i><%=  @loading %></i></small></p>
+	  	<% end %>
 	    
 	    <div class="dashboard-list">
 

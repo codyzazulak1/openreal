@@ -89,7 +89,7 @@ namespace :seed do
     raise "Can't run on Production" if Rails.env.production?
 
     customer_submitted = ["Unappraised", "Awaiting Response", "Closing"]
-    agent_submitted = ["Unapproved", "Approved"]
+    agent_submitted = ["Unapproved", "Approved", "Pending Approval"]
     owned_properties = ["Unlisted", "Listed", "Archived"]
 
     customer_submitted.each do |u|
