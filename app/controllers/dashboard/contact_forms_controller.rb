@@ -41,18 +41,8 @@ class Dashboard::ContactFormsController < ApplicationController
   end
 	def	price_estimate
 		
-		@address = @contact_property.address_name
+		address = @contact_property.address_name
 
-		rg = ['unit', 'apartment', 'apt.', 'apt']
-
-		rg.each {|rg|
-			if address.downcase.include? rg
-				@address = adress.split(rg)[1]
-			else
-				@address
-			end
-		}
-		puts @address
 		@contact_property = Property.find(params[:contact_form_id])
 		#@offer_info = Autoprop.finden(address, autoprop_login, autoprop_pw)
 		@offer_info = Evalbc.finden(@address)
