@@ -21,17 +21,6 @@ def self.finden(address)
 	
 	browser.goto 'https://evaluebc.bcassessment.ca/'
 
-	rg = ['unit', 'apartment', 'apt.', 'apt']
-
-	rg.each {|r|
-		if address.downcase.include? r
-			address = adress.split(r)[1]
-		else
-			address
-		end
-	}
-	puts address
-
 	search_bar = browser.text_field(id: 'rsbSearch')
 
 	search_bar.set "#{address}"
