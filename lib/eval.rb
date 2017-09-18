@@ -12,24 +12,32 @@ def self.finden(address)
 	heroku_chromedriver = '/app/.chromedriver/bin/chromedriver'
 	heroku_gochrome = '/app/.apt/usr/bin/google-chrome'
 
-	Selenium::WebDriver::Chrome.driver_path = heroku_chromedriver 
  	
 	#options = Selenium::WebDriver::Chrome::Options.new(binary: chrome_bin)
 
-	
-	browser = Watir::Browser.new :chrome, headless: true, options: {binary: heroku_gochrome}
-	
+	if Rails.env == "production"
+		Selenium::WebDriver::Chrome.driver_path = heroku_chromedriver 
+
+		browser = Watir::Browser.new :chrome, headless: true, options: {binary: heroku_gochrome}
+	elsif Rails.env == "development"
+		browser = Watir::Browser.new :chrome, headless: true
+	end
 	browser.goto 'https://evaluebc.bcassessment.ca/'
 
 	search_bar = browser.text_field(id: 'rsbSearch')
 
 	search_bar.set "#{address}"
-
-	browser.ul(id: "ui-id-1").wait_until_present
-
+	
 	sleep 2
 	browser.text_field(id: 'rsbSearch').click
+  
+	browser.text_field(id: 'rsbSearch').send_keys :down
+	a = browser.find_element(id: "ui-id-1").present?
+	puts "PRESENT? ------ #{a}"
+	browser.ul(id: "ui-id-1").wait_until_present
+
 	browser.text_field(id: 'rsbSearch').send_keys [:down, :enter]
+	
 	sleep 2 
 
 	#--------items
