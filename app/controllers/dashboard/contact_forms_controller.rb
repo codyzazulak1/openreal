@@ -39,15 +39,27 @@ class Dashboard::ContactFormsController < ApplicationController
     @form.destroy
     redirect_to dashboard_contact_forms_path, notice: "Deleted #{@form.name}"
   end
+
 	def	price_estimate
-		#address = params[:address]
 		@contact_property = Property.find(params[:contact_form_id])
+	
 		address = @contact_property.address_name
+		rg = ['unit', 'apartment', 'apt.', 'apt']
+
+		rg.each {|r|
+			if address.downcase.include? r
+				address = address.split(r)[1]
+			else
+				address
+			end
+		}
+		puts address
+
+
 		#@offer_info = Autoprop.finden(address, autoprop_login, autoprop_pw)
-		@offer_info = Evalbc.finden(address)
+		@offer_info = Evalbc.finden(@address)
 
 		respond_to do |format|
-			#format.js { render layout: 'dashboard/contact_form/price_offer.js.erb', json: @offer_info }
 			format.js
 		end
 	end

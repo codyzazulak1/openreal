@@ -5,13 +5,21 @@ require 'watir'
 require 'date'
 
 def self.finden(address)
-	browser = Watir::Browser.new :chrome, headless: true
+	chrome_bin = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+
+	google_path = ENV.fetch('GOOGLE_CHROME_BIN', nil)
+
+	heroku_chromedriver = '/app/.chromedriver/bin/chromedriver'
+	heroku_gochrome = '/app/.apt/usr/bin/google-chrome'
+
+	Selenium::WebDriver::Chrome.driver_path = heroku_chromedriver 
+ 	
+	#options = Selenium::WebDriver::Chrome::Options.new(binary: chrome_bin)
+
+	
+	browser = Watir::Browser.new :chrome, headless: true, options: {binary: heroku_gochrome}
 	
 	browser.goto 'https://evaluebc.bcassessment.ca/'
-
-	if address.include? 'apt' 
-		address = address.split('apt.')[1]
-	end
 
 	search_bar = browser.text_field(id: 'rsbSearch')
 

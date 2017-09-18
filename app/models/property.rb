@@ -83,7 +83,11 @@ class Property < ActiveRecord::Base
   end
 
   def address_name
-    return "#{self.address.address_second} #{self.address.address_first}, #{self.address.city}"
+			unless self.address.nil?
+    		return "#{self.address.address_second} #{self.address.address_first}, #{self.address.city}"
+			else
+				return "No address"
+			end
   end
 
   def self.cities

@@ -66,7 +66,9 @@ Rails.application.routes.draw do
       resources :photos, only: [:new, :create]
     end
     resources :photos, only: [:destroy, :create]
-    resources :contact_forms
+    resources :contact_forms do
+			get 'price_estimate', action: 'price_estimate'
+		end
     resources :agent_forms
     resources :subscribers
     resources :investors

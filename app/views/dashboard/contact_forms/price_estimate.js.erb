@@ -8,22 +8,21 @@ setTimeout(function(){
 	$('#offer-container').height('auto');
 	$('#offer-container').append('<h5 style="text-align: center; font-weight: 500">' + '<%= escape_javascript(@contact_property.address_name)%>' + '</h5>')
 
-	$('#offer-container').append('<p>*Total value today: $' + '<%= escape_javascript(@offer_info[:total_value_today].to_s)%>')
+	$('#offer-container').append('<p>Total value today: ' + '<%= escape_javascript(number_to_currency(@offer_info[:total_value_today], precision: 0).to_s)%>')
 
 	$('#offer-container').append('<p>' + '<%= escape_javascript(@offer_info[:assessed_date])%> for ' + '$<%= escape_javascript(@offer_info[:assessed_date_value].to_s)%>.' + '</p>');
 	<% unless @offer_info[:land_value] == '$0' %>	
-		$('#offer-container').append('<p>Land value: '+ '<%= escape_javascript(@offer_info[:land_value].to_s)%>' + '</p>')
+		$('#offer-container').append('<p>Land value: '+ '<%= escape_javascript(number_to_currency(@offer_info[:land_value], precision: 0).to_s)%>' + '</p>')
 	<% else %>
 		$('#offer-container').append('<p>Land value not available.</p>')							
 	<% end %>
 
 	<% unless @offer_info[:building_value] == '$0' %>
-		$('#offer-container').append('<p> Building value: '+ '<%= escape_javascript(@offer_info[:building_value].to_s)%>'  + '</p>')
+		$('#offer-container').append('<p> Building value: '+ '<%= escape_javascript(number_to_currency(@offer_info[:building_value], precision: 0).to_s)%>'  + '</p>')
 	<% else %>
 		$('#offer-container').append('<p>Building value not available.</p>')
 	<% end %>
 	$('#e-url').attr('href', '<%= escape_javascript(@offer_info[:url])%>')
 	
-	$('#offer-container').append('<p><small>*Value today  based on 0.5% change.</small></p>')
 }, 2000)
 
