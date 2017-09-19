@@ -22,20 +22,19 @@ def self.finden(address)
 	elsif Rails.env == "development"
 		browser = Watir::Browser.new :chrome, headless: true
 	end
+
 	browser.goto 'https://evaluebc.bcassessment.ca/'
 
 	search_bar = browser.text_field(id: 'rsbSearch')
 
 	search_bar.set "#{address}"
 	
-	sleep 2
-	browser.text_field(id: 'rsbSearch').click
-  
-	browser.text_field(id: 'rsbSearch').send_keys :down
-	a = browser.find_element(id: "ui-id-1").present?
-	puts "PRESENT? ------ #{a}"
 	browser.ul(id: "ui-id-1").wait_until_present
 
+	sleep 2
+
+	browser.text_field(id: 'rsbSearch').click
+  
 	browser.text_field(id: 'rsbSearch').send_keys [:down, :enter]
 	
 	sleep 2 
@@ -70,8 +69,8 @@ def self.finden(address)
 		end
 	else
 		#land and building not available
-		land = '$0 - Not available'
-		building = '$0 - Not available'
+		land = 'Not available'
+		building = 'Not available'
 	end
 	
 	if browser.div(id: 'previousAssessed').present?
