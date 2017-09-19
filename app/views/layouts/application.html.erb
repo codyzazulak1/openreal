@@ -15,8 +15,12 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script> -->
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <script type="text/javascript" src="https://embed.modernapp.co/chat?code=492550a5867a28215bc9b63eb6eee323"></script>
+		<%= csrf_meta_tags %>
+
+		<% unless request.path.include?('/dashboard') || request.path.include?('/agent')%>
+			<script type="text/javascript" src="https://embed.modernapp.co/chat?code=492550a5867a28215bc9b63eb6eee323"></script>
+		<% end %>
+
   </head>
 
   <body class="<%= controller.controller_name %> <%= controller.action_name %>">
