@@ -8,20 +8,49 @@ setTimeout(function(){
 	$('#offer-container').height('auto');
 	$('#offer-container').append('<h5 style="text-align: center; font-weight: 500">' + '<%= escape_javascript(@contact_property.address_name)%>' + '</h5>')
 
-	$('#offer-container').append('<p>Total value today: ' + '<%= escape_javascript(number_to_currency(@offer_info[:total_value_today], precision: 0).to_s)%>')
+	$('#offer-container').append(
+		'<div class="row">' +
+		'<div class="columns small-12 medium-6"><p>Total value today</p></div>' +
+		'<div class="columns small-12 medium-6"><%= escape_javascript(number_to_currency(@offer_info[:total_value_today], precision: 0).to_s)%></div>' +	
+		'</div>'	
+	)
 
-	$('#offer-container').append('<p>' + '<%= escape_javascript(@offer_info[:assessed_date])%> for ' + '$<%= escape_javascript(@offer_info[:assessed_date_value].to_s)%>.' + '</p>');
-	<% unless @offer_info[:land_value] == '$0' %>	
-		$('#offer-container').append('<p>Land value: '+ '<%= escape_javascript(number_to_currency(@offer_info[:land_value], precision: 0).to_s)%>' + '</p>')
+	$('#offer-container').append(
+		'<div class="row">' +
+		'<div class="columns small-12 medium-6">' +
+		<% unless @offer_info[:assessed_date].blank? %>
+		'<p><%= escape_javascript(@offer_info[:assessed_date])%> for </p></div>' + 
+		'<div class="columns small-12 medium-6"><span><%= escape_javascript(number_to_currency(@offer_info[:assessed_date_value], precision: 0).to_s)%></span></div>' +
+		'</div>'
+		<% else%>
+			'<p> Assessed Date Not Available<p></div>'
+		<% end%>
+	);
+
+	<% unless @offer_info[:land_value] == ('Not available' || '$0') %>	
+									
+		$('#offer-container').append(
+			'<div class="row">' + 	
+			'<div class="columns small-12 medium-6"><p>Land value: </p></div>' + 
+			'<div class="columns small-12 medium-6"><p><%= escape_javascript(number_to_currency(@offer_info[:land_value], precision: 0).to_s)%>' + '</p></div></div>'
+		)
 	<% else %>
-		$('#offer-container').append('<p>Land value not available.</p>')							
+		$('#offer-container').append('<div class="row columns small-12 medium-12"><p>Land value not available.</p></div>')
 	<% end %>
 
-	<% unless @offer_info[:building_value] == '$0' %>
-		$('#offer-container').append('<p> Building value: '+ '<%= escape_javascript(number_to_currency(@offer_info[:building_value], precision: 0).to_s)%>'  + '</p>')
+	<% unless @offer_info[:building_value] == ('Not available' || '$0') %>
+
+		$('#offer-container').append(
+			'<div class="row">' +
+			'<div class="columns small-12 medium-6"><p> Building value: <p></div>' +
+			'<div class="columns small-12 medium-6"><p><%= escape_javascript(number_to_currency(@offer_info[:building_value], precision: 0).to_s)%></p></div>' +
+			'</div>'
+		)
+
 	<% else %>
-		$('#offer-container').append('<p>Building value not available.</p>')
+		$('#offer-container').append('<div class="row columns small-12 medium-12"><p>Building value not available.</p></div>')
 	<% end %>
+
 	$('#e-url').attr('href', '<%= escape_javascript(@offer_info[:url])%>')
 	
 }, 2000)
