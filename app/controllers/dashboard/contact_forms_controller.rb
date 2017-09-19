@@ -44,7 +44,7 @@ class Dashboard::ContactFormsController < ApplicationController
 		@contact_property = Property.find(params[:contact_form_id])
 	
 		address = @contact_property.address_name
-		rg = ['unit', 'apartment', 'apt.', 'apt']
+		rg = ['unit', 'apartment', 'apt.', 'apt', 'suite', 'Suite']
 
 		rg.each {|r|
 			if address.downcase.include? r
@@ -57,7 +57,7 @@ class Dashboard::ContactFormsController < ApplicationController
 
 
 		#@offer_info = Autoprop.finden(address, autoprop_login, autoprop_pw)
-		@offer_info = Evalbc.finden(@address)
+		@offer_info = Evalbc.finden(address)
 
 		respond_to do |format|
 			format.js
