@@ -44,11 +44,11 @@ class Dashboard::ContactFormsController < ApplicationController
 		@contact_property = Property.find(params[:contact_form_id])
 	
 		address = @contact_property.address_name
-		rg = ['unit', 'apartment', 'apt.', 'apt', 'suite', 'Suite']
+		rg = ['unit', 'apartment', 'apt.', 'apt', 'suite']
 
 		rg.each {|r|
 			if address.downcase.include? r
-				address = address.split(r)[1]
+				address = address.downcase.split(r)[1]
 			else
 				address
 			end
