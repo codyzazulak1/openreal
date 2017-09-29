@@ -26,15 +26,6 @@ class PropertiesController < ApplicationController
    
   end
 
-  # def listing
-  #   @property = Property.find(params[:id])
-  # end
-
-  # def listings
-  #   @properties_p = Property.all
-  #   @listings_paged = @properties_p.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
-  # end
-
   def edit
     @property = Property.find(params[:id])
     @address = @property.address
@@ -159,23 +150,35 @@ class PropertiesController < ApplicationController
   end
 
   def new
+	
+    session[:property_params] 	||= {}
+    session[:address] 					||= {}
+    session[:property_upgrades] ||= {}
 
-    session[:property_params] ||= {}
-    session[:address_params] ||= {}
-    # session[:property_upgrades_params] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
-
-    @property = Property.new
-    @address = Address.new(session[:address_params].merge({property: @property}))
-    @address ||= Address.new(property: @property)
-    @contact = ContactForm.new
-
-    @property_upgrades = @property.property_upgrades.build
+    @property 						 = Property.new
+    @address 							 = Address.new(session[:address].merge({property: @property}))
+    @address 				 		 ||= Address.new(property: @property)
+    @contact 					 		 = ContactForm.new
+	 	@property_upgrades 		 = 	@property.property_upgrades.build
 
     @property.current_step = session[:property_step]
-    @photos = @property.photos.build
+		
+		#for upgrades
+		@pool 	= upgrade_pool
+		@other 	= upgrade_other
+		@kc 		= upgrade_kitchen_condition
+		@kco 		= upgrade_kitchen_countertops
+		@ka			= upgrade_kitchen_appliances
+		@ke 		= upgrade_kitchen_extras
+		@bathc 	= upgrade_bath_condition
+		@bathe 	= upgrade_bath_extras
+		@hyflo 	= upgrade_hy_flo_cd
+		@hyliv 	= upgrade_hy_liv_ar
+		@hyp		= upgrade_hy_paint
+		@hyback = upgrade_hy_backyard
 
-  end
+	end
 
   def show
     @property = Property.find(params[:id])
@@ -227,66 +230,158 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    # byebug
     # session[:params] = session[:params].nil? ? params : params.merge(session[:params])
-    session[:property] ||= property_params unless params[:property].nil?
-    session[:property] = session[:property].merge(property_params) unless params[:property].nil?
-    session[:address] = address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
-    session[:contact] = contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
-
-    session[:property_upgrades] = property_upgrade_params if !params[:property].nil? && !params[:property][:property_upgrades].nil?
-
-
-    @property = Property.new(session[:property])
-    @address = Address.new(session[:address])
+    session[:property] 				||= property_params unless params[:property].nil?
+    session[:property] 					= session[:property].merge(property_params) unless params[:property].nil?
+    session[:address] 					= address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
+    session[:contact] 					= contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
+		
+		session[:property].delete("property_upgrades_attributes")
+		
+		@property = Property.new(session[:property])
+		@property.list_price_cents = 0
+    @address ||= Address.new(session[:address])
+		@propertyupgrades =	@property.property_upgrades.build
     @contact = ContactForm.new(session[:contact])
-
-    @property_upgrade = @property.property_upgrades.new(session[:property_upgrades])
-
     @property.current_step = session[:property_step]
-    @photos = @property.photos.build
+
     @contact.property = @property
-    @contact.status = Status.find_by(name: "Unappraised").name
- 
+    @contact.status = Status.find_by(name: "Unappraised").name 
     @contact.sub_type = "Property Submission"
-    @property.list_price_cents = 0
+
+  	#for upgrades
+			@pool 	= upgrade_pool
+			@other 	= upgrade_other
+			@kc 		= upgrade_kitchen_condition
+			@kco 		= upgrade_kitchen_countertops
+			@ka			= upgrade_kitchen_appliances
+			@ke 		= upgrade_kitchen_extras
+			@bathc 	= upgrade_bath_condition
+			@bathe 	= upgrade_bath_extras
+			@hyflo 	= upgrade_hy_flo_cd
+			@hyliv 	= upgrade_hy_liv_ar
+			@hyp		= upgrade_hy_paint
+			@hyback = upgrade_hy_backyard
+		
+		unless params[:property].nil? || params[:property][:property_upgrades_attributes].nil?
+				
+			unless @property.last_step? || params[:back_button]		
+
+				if !params[:property][:property_upgrades_attributes].nil?
+
+					params[:property][:property_upgrades_attributes][:upgrade_id].each { |i|
+						
+						if session[:property_upgrades]["upgrade_id"].nil?
+
+							session[:property_upgrades].merge!("upgrade_id" => [])
+
+							session[:property_upgrades] = session[:property_upgrades]
+
+						end
+	
+						session[:property_upgrades]["upgrade_id"] << i
+				  }
+			 end
+
+		 end
+
+		end
+
+		unless params[:back_button]	
+
+			case
+
+			when params[:kitchen], params[:bath], params[:hy]
+		
+				if params[:kitchen]
+
+					values = params[:kitchen].values
+
+					values.each {|v|
+
+						session[:property_upgrades]["upgrade_id"] << v.to_i
+					}
+			
+				elsif params[:bath]
+				
+					case
+
+					when params[:bath][:bathc]
+						
+						v = params[:bath][:bathc]
+
+						 session[:property_upgrades]["upgrade_id"] << v.to_i
+
+					when params[:bath][:bathe]
+
+						params[:bath][:bathe].values.each do |v|
+
+							session[:property_upgrades]["upgrade_id"] << v.to_i
+
+						end
+
+					end
+
+				elsif params[:hy]
+
+					values = params[:hy].values
+
+					values.each {|v|
+
+						session[:property_upgrades]["upgrade_id"] << v.to_i
+
+					}
+
+				end #if else end
+
+			end #case end
+
+		end #unless params[:back] end
+		
     # if @property.valid?
     if params
+
       if params[:back_button]
+
         @property.previous_step
+
       elsif @property.last_step?
-        if @property.all_valid?
-          @property.save
-          @contact.save
+        
+				if @property.all_valid?
+					
+					if @property.save
+						
+							session[:property_upgrades]["upgrade_id"].compact.each do |pu|
+
+							@property.property_upgrades.create(property_id: @property.id, upgrade_id: pu.to_i) unless pu == nil
+
+						end
+
+						@contact.save
+
+					end
+
         end
+
       else
+
         @property.next_step
+
       end
+
       session[:property_step] = @property.current_step
+
     end
 
     if @property.new_record?
       render 'new'
     else
-      session[:property_step] = session[:property] = session[:address] = nil
+      session[:property_step] = session[:property] = session[:address] = session[:property_upgrades] =  nil
       render "confirmed"
     end
   end
 
-  # def destroy
-  #   @property = Property.find(params[:id])
-  #   @property.destroy
-  #   redirect_to dashboard_properties_path
-  # end
-
-  # def all_valid?
-  #   steps.all? do |step|
-  #     self.current_step = step
-  #     valid?
-  #   end
-  # end
-
-
+ 
   private
 
   def city_center(city)
@@ -297,16 +392,8 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, :agent_id, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id])
+    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, :agent_id, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id, :id])
   end
-
-  # def property_upgrade_params
-  #   params.require(:property).require(:property_upgrades_attributes).permit(:property_id, :upgrade_id,:id)   
-  # end
-
-  # def upgrade_params
-  #   params.require(:property).require(:upgrades_attributes).permit(:id, :name)
-  # end
 
   def address_params
     params.require(:property).require(:address_attributes).permit(:address_first, :address_second, :city, :postal_code, :latitude, :longitude)
@@ -315,6 +402,10 @@ class PropertiesController < ApplicationController
   def contact_params
     params.require(:property).require(:contact_form_attributes).permit(:name, :email, :phone, :notes, :timeframe)
   end
+	
+	def property_upgrade_params
+		params.require(:property).require(:property_upgrades_attributes).permit(:property_id, :upgrade_id)
+	end
 
   def setup_show_propid
     @property ||= Property.find(params[:id])
@@ -326,5 +417,54 @@ class PropertiesController < ApplicationController
     end
 
   end
- 
+
+	def upgrade_pool
+		return  Upgrade.where(section: 'pool').all
+	end
+
+	def upgrade_other				
+		return  Upgrade.where(section: 'other').all
+	end
+
+	def upgrade_kitchen_condition
+		return  Upgrade.where(section: 'kitchen', feature: 'condition').all
+	end	
+	
+	def upgrade_kitchen_countertops
+		return  Upgrade.where(section: 'kitchen', feature: 'countertops').all
+	end
+
+	def	upgrade_kitchen_appliances
+		return  Upgrade.where(section: 'kitchen', feature: 'appliances').all
+	end
+
+	def	upgrade_kitchen_extras
+		return  Upgrade.where(section: 'kitchen', feature: 'extra_features').all
+	end
+	
+	def	upgrade_bath_condition
+		return Upgrade.where(section: 'bathroom', feature: 'condition').all
+	end
+
+	def	upgrade_bath_extras
+		return  Upgrade.where(section: 'bathroom', feature: 'extra_features').all
+	end
+
+	def	upgrade_hy_flo_cd
+		return  Upgrade.where(section: 'home_yard', feature: 'flooring condition').all
+	end
+
+	def	upgrade_hy_liv_ar
+		return  Upgrade.where(section: 'home_yard', feature: 'living area flooring kind').all
+	end
+
+	def upgrade_hy_paint
+		return  Upgrade.where(section: 'home_yard', feature: 'paint condition').all
+	end
+
+	def upgrade_hy_backyard
+		return  Upgrade.where(section: 'home_yard', feature: 'back yard condition').all
+	end
+
+
 end
