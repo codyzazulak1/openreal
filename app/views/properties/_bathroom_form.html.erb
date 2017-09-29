@@ -1,0 +1,30 @@
+<%- title "Sell Your Home"%>
+<%= image_tag('sales_page/img-1')%>
+<div>Step 5 of 7</div> 
+<h3>Bathroom</h3>
+
+<div class="container">
+
+	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
+
+	<label> What is the condition of your master bathroom?</label>
+
+	<% @bathc.each do |feat|%>
+
+		<%= radio_button_tag "bath[bathc]", feat.id %>
+
+		<%= label_tag feat.name %></br>
+
+	<% end %>
+
+	<label>Which features does your master bathroom have?</label>
+	<% @bathe.each do |feat|%>
+
+		<%= check_box_tag 'bath[bathe][]', feat.id %>
+
+		<%= label_tag feat.name %></br>
+
+	<% end %>
+	
+	<% end %>
+</div>

@@ -1,0 +1,48 @@
+<%- title "Sell Your Home"%>
+<%= image_tag('sales_page/img-1')%>
+<div>Step 6 of 7</div> 
+<h3>Home and Yard</h3>
+
+<div class="container">
+
+	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
+
+	<label> What is the condition of your kitchen</label>
+
+	<% @hyflo.each do |feat|%>
+
+		<%= radio_button_tag "hy[hyflo]", feat.id %>
+
+		<%= label_tag feat.name %></br>
+
+	<% end %>
+
+	<label>Which countertops does your kitchen have</label>
+	<% @hyliv.each do |feat|%>
+
+		<%= radio_button_tag 'hy[hyliv]', feat.id %>
+
+		<%= label_tag feat.name %></br>
+
+	<% end %>
+	
+	<label> What kind of kitchen appliances do you have?</label>
+	<% @hyp.each do |feat|%>
+
+		<%= radio_button_tag 'hy[hyp]', feat.id %>
+
+		<%= label_tag feat.name %></br>
+
+	<% end %>
+
+	<label> Does your kitchen have any of the following features?</label>
+	<% @hyback.each do |feat|%>
+
+		<%= radio_button_tag 'hy[hyback]', feat.id %>
+
+		<%= label_tag feat.name %></br>
+
+	<% end %>
+
+	<% end %>
+</div>
