@@ -107,7 +107,10 @@ class Property < ActiveRecord::Base
     [
       "basic",
       "features",
-      #"upgrades",
+      "upgrades",
+			"kitchen",
+			"bathroom",
+			"home_yard",
       "contact"
       #"closing"
     ]
