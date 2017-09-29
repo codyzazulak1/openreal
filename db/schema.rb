@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519183037) do
+ActiveRecord::Schema.define(version: 20170920222746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,8 +123,8 @@ ActiveRecord::Schema.define(version: 20170519183037) do
   add_index "photos", ["property_id"], name: "index_photos_on_property_id", using: :btree
 
   create_table "properties", force: :cascade do |t|
-    t.datetime "created_at",                                                           null: false
-    t.datetime "updated_at",                                                           null: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.text     "seller_info"
     t.string   "pid"
     t.string   "dwelling_class"
@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 20170519183037) do
     t.text     "description"
     t.integer  "status_id",                                            default: 1
     t.string   "matterurl"
-    t.boolean  "sold",                                                 default: false
     t.string   "featured_photo"
     t.integer  "agent_id"
     t.text     "note"
@@ -184,6 +183,8 @@ ActiveRecord::Schema.define(version: 20170519183037) do
 
   create_table "upgrades", force: :cascade do |t|
     t.string "name"
+    t.string "section"
+    t.string "feature"
   end
 
   add_foreign_key "addresses", "properties"
