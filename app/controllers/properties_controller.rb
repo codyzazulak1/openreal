@@ -154,14 +154,12 @@ class PropertiesController < ApplicationController
     session[:property_params] 	||= {}
     session[:address] 					||= {}
     session[:property_upgrades] ||= {}
-
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
     @property 						 = Property.new
     @address 							 = Address.new(session[:address].merge({property: @property}))
     @address 				 		 ||= Address.new(property: @property)
     @contact 					 		 = ContactForm.new
 	 	@property_upgrades 		 = 	@property.property_upgrades.build
-
     @property.current_step = session[:property_step]
 		
 		#for upgrades
@@ -392,7 +390,7 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
-    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, :agent_id, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id, :id])
+    params.require(:property).permit(:description, :floor_area, :stories,:list_price_cents, :bedrooms, :bathrooms, :upgrade_cost, :agent_id, photos_attributes: [:picture], address_attributes: [:address_first, :address_second, :city, :postal_code, :latitude, :longitude], contact_form_attributes: [:name, :email, :phone, :notes, :timeframe], property_upgrades_attributes: [:property_id, :upgrade_id, :id])
   end
 
   def address_params
