@@ -95,7 +95,8 @@ namespace :upgrade do
 				}
 			end
 		}
-	end
+		end #case 
+	end #section
 	
-	end
-end	
+	end #task
+end #namespace	
