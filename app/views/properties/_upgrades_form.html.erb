@@ -1,8 +1,38 @@
 <%- title "Sell Your Home"%>
+<%= image_tag('sales_page/img-1')%>
 <div>Step 3 of 7</div>
 <h3>Home Upgrades</h3>
 <h6 style="color: #52b7e7;">Let us know of any upgrades made in your home</h6>
-<hr>
-<label> Have you renovated your home since you purchased it?</label>		
-<p>TBT</p>
+<div>
+	<label> Have you renovated your home since you purchased it?</label>		
+
+	<%= radio_button_tag "uc", "yes", true%><small> Yes, I have </small> <br />
+
+	<%= radio_button_tag "uc", "no", false%> <small>No </small> <br /> 
+
+	<label>If yes, how much have you spent on renovations?</label>
 	
+	<%= fp.text_field :upgrade_cost %>
+</div>
+
+<script>
+$('#uc_yes').on('change', function(){
+	if (document.getElementById('uc_yes').checked == false){
+		$('#property_upgrade_cost').prop('disabled', true);
+	}
+	else if (document.getElementById('uc_yes').checked == true){
+		$('#property_upgrade_cost').prop('disabled', false)
+	}							
+})
+
+$('#uc_no').on('change', function(){
+	if (document.getElementById('uc_no').checked == false){
+		$('#property_upgrade_cost').prop('disabled', false)
+	}
+	else if (document.getElementById('uc_no').checked == true){
+		$('#property_upgrade_cost').prop('disabled', true)
+}
+
+});
+
+</script>
