@@ -7,6 +7,9 @@
  *              *
  ****************/
 
+
+
+
 body.properties {
   height: 100vh;
 }
@@ -1054,3 +1057,8 @@ input:checked ~ .switch-paddle::after {
   }
 }
 
+@media screen and (min-width: 620px){
+	#property_upgrade_cost {
+		width: 75%;
+	}
+}
