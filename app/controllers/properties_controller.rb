@@ -190,7 +190,7 @@ class PropertiesController < ApplicationController
       if @property.agent_id
         @agent = Agent.find(@property.agent_id)
       end
-      
+
       set_meta_tags title: "#{@property.address.address_first}, #{@property.address.city}, BC",
       description: "#{@property.description}"
 
@@ -228,21 +228,22 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    # session[:params] = session[:params].nil? ? params : params.merge(session[:params])
+   # session[:params] = session[:params].nil? ? params : params.merge(session[:params])
     session[:property] 				||= property_params unless params[:property].nil?
     session[:property] 					= session[:property].merge(property_params) unless params[:property].nil?
     session[:address] 					= address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
     session[:contact] 					= contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 		
+     puts "jdaskldjsalkjdlaslsa --------<<<<<<<<<<< #{session[:property_upgrades]["upgrade_id"]}" unless session[:property_upgrades].nil?
+
 		session[:property].delete("property_upgrades_attributes")
 		
 		@property = Property.new(session[:property])
 		@property.list_price_cents = 0
     @address ||= Address.new(session[:address])
-		@propertyupgrades =	@property.property_upgrades.build
     @contact = ContactForm.new(session[:contact])
     @property.current_step = session[:property_step]
-
+		@property_upgrades = @property.property_upgrades.build
     @contact.property = @property
     @contact.status = Status.find_by(name: "Unappraised").name 
     @contact.sub_type = "Property Submission"
@@ -285,7 +286,8 @@ class PropertiesController < ApplicationController
 
 		end
 
-		unless params[:back_button]	
+
+		unless params[:back_button] || @property.last_step?	
 
 			case
 
@@ -297,28 +299,18 @@ class PropertiesController < ApplicationController
 
 					values.each {|v|
 
-						session[:property_upgrades]["upgrade_id"] << v.to_i
+						session[:property_upgrades]["upgrade_id"] << v
 					}
 			
 				elsif params[:bath]
 				
-					case
+					v  = params[:bath][:bathc]
 
-					when params[:bath][:bathc]
-						
-						v = params[:bath][:bathc]
+					vb = params[:bath][:bathe]
 
-						 session[:property_upgrades]["upgrade_id"] << v.to_i
+					session[:property_upgrades]["upgrade_id"] << v
 
-					when params[:bath][:bathe]
-
-						params[:bath][:bathe].values.each do |v|
-
-							session[:property_upgrades]["upgrade_id"] << v.to_i
-
-						end
-
-					end
+					vb.each {|vgt| session[:property_upgrades]["upgrade_id"] << vgt }
 
 				elsif params[:hy]
 
@@ -326,7 +318,7 @@ class PropertiesController < ApplicationController
 
 					values.each {|v|
 
-						session[:property_upgrades]["upgrade_id"] << v.to_i
+						session[:property_upgrades]["upgrade_id"] << v
 
 					}
 
@@ -348,7 +340,9 @@ class PropertiesController < ApplicationController
 				if @property.all_valid?
 					
 					if @property.save
-						
+
+							session[:property_upgrades]["upgrade_id"] = session[:property_upgrades]["upgrade_id"].uniq
+							
 							session[:property_upgrades]["upgrade_id"].compact.each do |pu|
 
 							@property.property_upgrades.create(property_id: @property.id, upgrade_id: pu.to_i) unless pu == nil

@@ -1,8 +1,8 @@
 <%- title "Sell Your Home"%>
 <%= image_tag('sales_page/img-1')%>
 <div>Step 6 of 7</div> 
-<h3>Home and Yard</h3>
-
+<h3>Home &amp; Yard</h3>
+<br>
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
@@ -11,8 +11,11 @@
 
 	<% @hyflo.each do |feat|%>
 
-		<%= radio_button_tag "hy[hyflo]", feat.id %>
-
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+			<%= radio_button_tag "hy[hyflo]", feat.id, true  %>
+		<% else %>
+			<%= radio_button_tag "hy[hyflo]", feat.id, false %>
+		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>
@@ -20,17 +23,23 @@
 	<label>Which countertops does your kitchen have</label>
 	<% @hyliv.each do |feat|%>
 
-		<%= radio_button_tag 'hy[hyliv]', feat.id %>
-
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+			<%= radio_button_tag 'hy[hyliv]', feat.id, true  %>
+		<% else %>
+			<%= radio_button_tag 'hy[hyliv]', feat.id, false %>
+		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>
 	
 	<label> What kind of kitchen appliances do you have?</label>
 	<% @hyp.each do |feat|%>
-
-		<%= radio_button_tag 'hy[hyp]', feat.id %>
-
+	
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+			<%= radio_button_tag 'hy[hyp]', feat.id, true  %>
+		<% else %>
+			<%= radio_button_tag 'hy[hyp]', feat.id, false %>
+		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>
@@ -38,8 +47,11 @@
 	<label> Does your kitchen have any of the following features?</label>
 	<% @hyback.each do |feat|%>
 
-		<%= radio_button_tag 'hy[hyback]', feat.id %>
-
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+			<%= radio_button_tag 'hy[hyback]', feat.id, true %>
+		<% else %>
+			<%= radio_button_tag 'hy[hyback]', feat.id, false %>
+		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>

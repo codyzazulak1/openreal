@@ -1,14 +1,23 @@
 <%- title "Sell Your Home"%>
 <%= image_tag('sales_page/img-1')%>
 <div>Step 3 of 7</div>
-<h3>Home Upgrades</h3>
-<h6 style="color: #52b7e7;">Let us know of any upgrades made in your home</h6>
+<h3>Upgrades</h3>
+<br />
 <div>
 	<label> Have you renovated your home since you purchased it?</label>		
+	<% if @property.upgrade_cost == 0 %>
+	
+		<%= radio_button_tag "uc", "yes", false %><small> Yes, I have </small> <br />
 
-	<%= radio_button_tag "uc", "yes", true%><small> Yes, I have </small> <br />
+		<%= radio_button_tag "uc", "no", true %> <small>No </small> <br />
 
-	<%= radio_button_tag "uc", "no", false%> <small>No </small> <br /> 
+	<% elsif @property.upgrade_cost > 0%>
+				
+		<%= radio_button_tag "uc", "yes", true %><small> Yes, I have </small> <br />
+
+		<%= radio_button_tag "uc", "no", false  %> <small>No </small> <br />
+
+	<% end %>
 
 	<label>If yes, how much have you spent on renovations?</label>
 	

@@ -2,7 +2,7 @@
 <%= image_tag('sales_page/img-1')%>
 <div>Step 4 of 7</div> 
 <h3>Kitchen</h3>
-
+<br />
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
@@ -11,7 +11,11 @@
 
 	<% @kc.each do |feat|%>
 
-		<%= radio_button_tag "kitchen[kc]", feat.id %>
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+			<%= radio_button_tag "kitchen[kc]", feat.id, true %>
+		<% else %>
+			<%= radio_button_tag "kitchen[kc]", feat.id, false%>
+		<% end %>
 
 		<%= label_tag feat.name %></br>
 
@@ -19,8 +23,12 @@
 
 	<label>Which countertops does your kitchen have?</label>
 	<% @kco.each do |feat|%>
-
-		<%= radio_button_tag 'kitchen[kco]', feat.id %>
+	
+		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+			<%= radio_button_tag 'kitchen[kco]', feat.id, true %>
+		<% else %>
+			<%= radio_button_tag 'kitchen[kco]', feat.id, false %>
+		<% end %>
 
 		<%= label_tag feat.name %></br>
 
@@ -28,9 +36,12 @@
 	
 	<label> What kind of kitchen appliances do you have?</label>
 	<% @ka.each do |feat|%>
-
-		<%= radio_button_tag 'kitchen[ka]', feat.id %>
-
+		
+		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+			<%= radio_button_tag 'kitchen[ka]', feat.id, true %>
+		<% else %>
+			<%= radio_button_tag 'kitchen[ka]', feat.id, false %>
+		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>
@@ -38,8 +49,11 @@
 	<label> Does your kitchen have any of the following features?</label>
 	<% @ke.each do |feat|%>
 
-		<%= radio_button_tag 'kitchen[ke]', feat.id %>
-
+		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+			<%= radio_button_tag 'kitchen[ke]', feat.id, true %>
+		<% else %>
+			<%= radio_button_tag 'kitchen[ke]', feat.id, false %>		
+		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>

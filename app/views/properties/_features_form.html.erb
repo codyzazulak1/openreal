@@ -3,6 +3,7 @@
 <%= image_tag('sales_page/img-2')%>
 <div>Step 2 of 7</div>
 <h3>Tell us about your home</h3>
+<br />
 
 <div>
   <%= fp.label :floor_area %>
@@ -11,17 +12,17 @@
 
 <div>
   <%= fp.label :stories %>
-  <%= fp.select :stories, options_for_select([1,2,3,4,5,6]), {data: { 'validation' => "required" }}, {prompt: true}%>
+	<%= fp.select :stories, options_for_select([1,2,3,4,5,6], selected: (@property.stories.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true}%>
 </div>
 
 <div>
   <%= fp.label :bedrooms %>
-  <%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6,7]), {data: { 'validation' => "required" }}, {prompt: true} %>
+  <%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6,7], selected: (@property.bedrooms.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
 
 <div>
   <%= fp.label :bathrooms %>
-  <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6,7]), {data: { 'validation' => "required" }}, {prompt: true} %>
+  <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6,7], selected: (@property.bathrooms.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
 
 <div>
@@ -31,7 +32,15 @@
 	<label> Do you have a pool?</label>
 	<% @pool.each do |feat|%>
 
-		<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id %>
+		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+
+			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, true %>
+
+		<% else %>
+
+			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, false  %>
+
+		<% end %>
 
 		<%= label_tag feat.name %></br>
 
@@ -40,9 +49,12 @@
 	<label>Does your home have any of the following?</label>
 
 	<% @other.each do |ot| %>
-
-		<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id -%>
-					
+	
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((ot.id).to_s)) ) %>
+			<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, true  %>
+		<% else %>
+			<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, false%>
+		<% end %>		
 		<%= label_tag ot.name %><br/ >
 
 	<% end %>

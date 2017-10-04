@@ -2,7 +2,7 @@
 <%= image_tag('sales_page/img-1')%>
 <div>Step 5 of 7</div> 
 <h3>Bathroom</h3>
-
+<br />
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
@@ -11,18 +11,24 @@
 
 	<% @bathc.each do |feat|%>
 
-		<%= radio_button_tag "bath[bathc]", feat.id %>
-
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+			<%= radio_button_tag "bath[bathc]", feat.id, true %>
+		<% else %>
+			<%= radio_button_tag "bath[bathc]", feat.id, false %>
+		<% end %>				
 		<%= label_tag feat.name %></br>
 
 	<% end %>
-
+	<br>
 	<label>Which features does your master bathroom have?</label>
-	<% @bathe.each do |feat|%>
+	<% @bathe.each do |ba|%>
 
-		<%= check_box_tag 'bath[bathe][]', feat.id %>
-
-		<%= label_tag feat.name %></br>
+		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((ba.id).to_s)) ) %>
+			<%= check_box_tag 'bath[bathe][]', ba.id, true %>
+		<% else %>
+			<%= check_box_tag 'bath[bathe][]', ba.id, false %>
+		<% end %>
+		<%= label_tag ba.name %></br>
 
 	<% end %>
 	
