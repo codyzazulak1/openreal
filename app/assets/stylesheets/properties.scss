@@ -1060,5 +1060,12 @@ input:checked ~ .switch-paddle::after {
 @media screen and (min-width: 620px){
 	#property_upgrade_cost {
 		width: 75%;
+	};
+
+	#property_contact_form_attributes_timeframe{
+		width: 75%
+	};
+	.cform_field {
+		width: 75%!important;
 	}
 }
