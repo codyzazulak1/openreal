@@ -32,7 +32,7 @@
 	<label> Do you have a pool?</label>
 	<% @pool.each do |feat|%>
 
-		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+		<% if (!(session[:features].blank?) && (session[:features].include?((feat.id).to_s))) %>
 
 			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, true %>
 
@@ -50,7 +50,7 @@
 
 	<% @other.each do |ot| %>
 	
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((ot.id).to_s)) ) %>
+		<% if ((!(session[:features].blank?) && session[:features].include?((ot.id).to_s)) ) %>
 			<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, true  %>
 		<% else %>
 			<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, false%>

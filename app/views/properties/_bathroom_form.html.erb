@@ -11,7 +11,7 @@
 
 	<% @bathc.each do |feat|%>
 
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+		<% if ((!(session[:bath].blank?) && session[:bath]["bathc"].include?((feat.id).to_s)) ) %>
 			<%= radio_button_tag "bath[bathc]", feat.id, true %>
 		<% else %>
 			<%= radio_button_tag "bath[bathc]", feat.id, false %>
@@ -23,7 +23,7 @@
 	<label>Which features does your master bathroom have?</label>
 	<% @bathe.each do |ba|%>
 
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((ba.id).to_s)) ) %>
+		<% if ((!(session[:bath].blank?) && session[:bath]["bathe"].include?((ba.id).to_s)) ) %>
 			<%= check_box_tag 'bath[bathe][]', ba.id, true %>
 		<% else %>
 			<%= check_box_tag 'bath[bathe][]', ba.id, false %>

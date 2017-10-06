@@ -11,7 +11,7 @@
 
 	<% @hyflo.each do |feat|%>
 
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+		<% if ((!(session[:hy].blank?) && session[:hy]["hyflo"].include?((feat.id).to_s)) ) %>
 			<%= radio_button_tag "hy[hyflo]", feat.id, true  %>
 		<% else %>
 			<%= radio_button_tag "hy[hyflo]", feat.id, false %>
@@ -23,7 +23,7 @@
 	<label>Which countertops does your kitchen have</label>
 	<% @hyliv.each do |feat|%>
 
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+		<% if ((!(session[:hy].blank?) && session[:hy]["hyliv"].include?((feat.id).to_s)) ) %>
 			<%= radio_button_tag 'hy[hyliv]', feat.id, true  %>
 		<% else %>
 			<%= radio_button_tag 'hy[hyliv]', feat.id, false %>
@@ -35,7 +35,7 @@
 	<label> What kind of kitchen appliances do you have?</label>
 	<% @hyp.each do |feat|%>
 	
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+		<% if ((!(session[:hy].blank?) && session[:hy]["hyp"].include?((feat.id).to_s)) ) %>
 			<%= radio_button_tag 'hy[hyp]', feat.id, true  %>
 		<% else %>
 			<%= radio_button_tag 'hy[hyp]', feat.id, false %>
@@ -47,7 +47,7 @@
 	<label> Does your kitchen have any of the following features?</label>
 	<% @hyback.each do |feat|%>
 
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+		<% if ((!(session[:hy].blank?) && session[:hy]["hyback"].include?((feat.id).to_s)) ) %>
 			<%= radio_button_tag 'hy[hyback]', feat.id, true %>
 		<% else %>
 			<%= radio_button_tag 'hy[hyback]', feat.id, false %>

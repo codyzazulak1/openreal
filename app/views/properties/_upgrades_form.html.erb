@@ -25,6 +25,11 @@
 </div>
 
 <script>
+
+if (document.getElementById('uc_yes').checked == false){
+	$('#property_upgrade_cost').prop('disabled', true);
+}
+
 $('#uc_yes').on('change', function(){
 	if (document.getElementById('uc_yes').checked == false){
 		$('#property_upgrade_cost').prop('disabled', true);

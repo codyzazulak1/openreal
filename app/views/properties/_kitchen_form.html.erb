@@ -11,7 +11,7 @@
 
 	<% @kc.each do |feat|%>
 
-		<% if ((!(session[:property_upgrades].blank?) && session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s)) ) %>
+		<% if ((!(session[:kitch].blank?) && session[:kitch]["kc"].include?((feat.id).to_s)) ) %>
 			<%= radio_button_tag "kitchen[kc]", feat.id, true %>
 		<% else %>
 			<%= radio_button_tag "kitchen[kc]", feat.id, false%>
@@ -24,7 +24,7 @@
 	<label>Which countertops does your kitchen have?</label>
 	<% @kco.each do |feat|%>
 	
-		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+		<% if (!(session[:kitch].blank?) && (session[:kitch]["kco"].include?((feat.id).to_s))) %>
 			<%= radio_button_tag 'kitchen[kco]', feat.id, true %>
 		<% else %>
 			<%= radio_button_tag 'kitchen[kco]', feat.id, false %>
@@ -37,7 +37,7 @@
 	<label> What kind of kitchen appliances do you have?</label>
 	<% @ka.each do |feat|%>
 		
-		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+		<% if (!(session[:kitch].blank?) && (session[:kitch]["ka"].include?((feat.id).to_s))) %>
 			<%= radio_button_tag 'kitchen[ka]', feat.id, true %>
 		<% else %>
 			<%= radio_button_tag 'kitchen[ka]', feat.id, false %>
@@ -49,7 +49,7 @@
 	<label> Does your kitchen have any of the following features?</label>
 	<% @ke.each do |feat|%>
 
-		<% if (!(session[:property_upgrades].blank?) && (session[:property_upgrades]["upgrade_id"].include?((feat.id).to_s))) %>
+		<% if (!(session[:kitch].blank?) && (session[:kitch]["ke"].include?((feat.id).to_s))) %>
 			<%= radio_button_tag 'kitchen[ke]', feat.id, true %>
 		<% else %>
 			<%= radio_button_tag 'kitchen[ke]', feat.id, false %>		
