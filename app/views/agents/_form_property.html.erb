@@ -48,7 +48,7 @@
    
     <hr>
    <h3>Edit property information: </h3>
-      <% aryprops = ['agent_id', 'status_id', 'sold', 'pictures', 'featured_photo', 'seller_info', 'pid', 'sellers_interest', 'architecture_style','note' ]%>
+      <% aryprops = ['agent_id', 'status_id', 'sold', 'pictures', 'featured_photo', 'seller_info', 'pid', 'sellers_interest', 'architecture_style','note', 'upgrade_cost' ]%>
      
       <% @property_attributes.each_with_index do |u, i| %>
         <% if !(aryprops.map {|prop_attr| u == prop_attr}.any?) %>
