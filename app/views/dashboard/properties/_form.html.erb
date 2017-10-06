@@ -62,8 +62,13 @@
 
               <% end %>
             </div>
-          <% else %>  
-            <div class="columns small-12 medium-6">
+						<% else %> 
+						<% if u  == @property_attributes.last %>
+							<div class="columns small-12 medium-6 end">
+						<% else %>
+							<div class="columns small-12 medium-6">
+						<% end %>
+
               <% if u.include? "building_type"%>
                  <%= f.label u%>
                  <!-- downcase -froze string issue -->
@@ -72,7 +77,19 @@
               <% elsif u.include? ("status_id") %>
                 <%= f.label u %>
 
-                <%= f.select u,options_from_collection_for_select(Status.where(category: Status.find(@property.status_id).category), 'id','name') , {:prompt => true} %>
+								<%= f.select u,options_from_collection_for_select(Status.where(category: Status.find(@property.status_id).category), 'id','name') , {:prompt => true} %>
+
+							<% elsif !(@property.contact_form.nil?) && (u.include? ('upgrade_cost')) %>
+
+								<%= f.label u %>
+
+								<%= f.text_field u.to_sym %>
+
+							<% elsif (@property.contact_form.nil?) && (u.include? ('upgrade_cost'))%>
+
+								<label>Upgrade cost</label>
+
+								<p><i><small><strong>Upgrade cost not available for properties not attached to a customer.</strong></small></i></p>
 
               <% else %>
 
