@@ -234,8 +234,6 @@ class PropertiesController < ApplicationController
     session[:address] 					= address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
     session[:contact] 					= contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 		
-     puts "jdaskldjsalkjdlaslsa --------<<<<<<<<<<< #{session[:property_upgrades]["upgrade_id"]}" unless session[:property_upgrades].nil?
-
 		session[:property].delete("property_upgrades_attributes")
 		
 		@property = Property.new(session[:property])
@@ -261,72 +259,14 @@ class PropertiesController < ApplicationController
 			@hyliv 	= upgrade_hy_liv_ar
 			@hyp		= upgrade_hy_paint
 			@hyback = upgrade_hy_backyard
-		
-		unless params[:property].nil? || params[:property][:property_upgrades_attributes].nil?
-				
-			unless @property.last_step? || params[:back_button]		
 
-				if !params[:property][:property_upgrades_attributes].nil?
-
-					params[:property][:property_upgrades_attributes][:upgrade_id].each { |i|
-						
-						if session[:property_upgrades]["upgrade_id"].nil?
-
-							session[:property_upgrades].merge!("upgrade_id" => [])
-
-							session[:property_upgrades] = session[:property_upgrades]
-
-						end
-	
-						session[:property_upgrades]["upgrade_id"] << i
-				  }
-			 end
-
-		 end
-
+		#upgrades sessions for sections
+		unless params[:property].nil? || params[:property][:property_upgrades_attributes].nil?	
+			session[:features] = params[:property][:property_upgrades_attributes][:upgrade_id] unless params[:property][:property_upgrades_attributes][:upgrade_id].nil?
 		end
-
-
-		unless params[:back_button] || @property.last_step?	
-
-			case
-
-			when params[:kitchen], params[:bath], params[:hy]
-		
-				if params[:kitchen]
-
-					values = params[:kitchen].values
-
-					values.each {|v|
-
-						session[:property_upgrades]["upgrade_id"] << v
-					}
-			
-				elsif params[:bath]
-				
-					v  = params[:bath][:bathc]
-
-					vb = params[:bath][:bathe]
-
-					session[:property_upgrades]["upgrade_id"] << v
-
-					vb.each {|vgt| session[:property_upgrades]["upgrade_id"] << vgt }
-
-				elsif params[:hy]
-
-					values = params[:hy].values
-
-					values.each {|v|
-
-						session[:property_upgrades]["upgrade_id"] << v
-
-					}
-
-				end #if else end
-
-			end #case end
-
-		end #unless params[:back] end
+		session[:kitch] = params[:kitchen] unless params[:kitchen].nil?
+		session[:bath] = params[:bath]	unless params[:bath].nil?
+		session[:hy] = params[:hy] unless params[:hy].nil?
 		
     # if @property.valid?
     if params
@@ -341,13 +281,19 @@ class PropertiesController < ApplicationController
 					
 					if @property.save
 
-							session[:property_upgrades]["upgrade_id"] = session[:property_upgrades]["upgrade_id"].uniq
-							
-							session[:property_upgrades]["upgrade_id"].compact.each do |pu|
+								session[:features].each { |x|
+									@property.property_upgrades.create(property_id: @property.id, upgrade_id: x.to_i) unless x == nil
+								}	
+								session[:kitch].values.each { |k|
+									@property.property_upgrades.create(property_id: @property.id, upgrade_id: k.to_i) unless k == nil
+								}
+								session[:bath].values.flatten.each { |b| 
+									@property.property_upgrades.create(property_id: @property.id, upgrade_id: b.to_i) unless b == nil
+								}
 
-							@property.property_upgrades.create(property_id: @property.id, upgrade_id: pu.to_i) unless pu == nil
-
-						end
+								session[:hy].values.each { |h|
+									@property.property_upgrades.create(property_id: @property.id, upgrade_id: h.to_i) unless h == nil
+								}	
 
 						@contact.save
 
@@ -368,7 +314,7 @@ class PropertiesController < ApplicationController
     if @property.new_record?
       render 'new'
     else
-      session[:property_step] = session[:property] = session[:address] = session[:property_upgrades] =  nil
+      session[:property_step] = session[:property] = session[:address] = session[:property_upgrades] = session[:kitch] = session[:bath] = session[:hy] = session[:features] = nil 
       render "confirmed"
     end
   end
