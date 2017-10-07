@@ -25,39 +25,45 @@
   <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6,7], selected: (@property.bathrooms.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
 
-<div>
-
-
-	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
+<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
+ <div>
 	<label> Do you have a pool?</label>
 	<% @pool.each do |feat|%>
 
 		<% if (!(session[:features].blank?) && (session[:features].include?((feat.id).to_s))) %>
 
-			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, true %>
+			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, true, data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      } %>
 
 		<% else %>
 
-			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, false  %>
+			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, false, data: {
+			'validation' => "required",
+			'validation-error-msg' => "One option selected required"
+		} %>
 
 		<% end %>
 
 		<%= label_tag feat.name %></br>
 
 	<% end %>
-		
-	<label>Does your home have any of the following?</label>
+	</div>
 
-	<% @other.each do |ot| %>
-	
-		<% if ((!(session[:features].blank?) && session[:features].include?((ot.id).to_s)) ) %>
-			<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, true  %>
-		<% else %>
-			<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, false%>
-		<% end %>		
-		<%= label_tag ot.name %><br/ >
+	<div>	
+		<label>Does your home have any of the following?</label>
 
-	<% end %>
+		<% @other.each do |ot| %>
 	
+			<% if ((!(session[:features].blank?) && session[:features].include?((ot.id).to_s)) ) %>
+							<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, true, id: "property_upgrades_other_#{ot.id}", class: 'cb-sell'%>
+			<% else %>
+							<%= check_box_tag 'property[property_upgrades_attributes][upgrade_id][]', ot.id, false, id: "property_upgrades_other_#{ot.id}", class: 'cb-sell' %>
+			<% end %>		
+			<%= label_tag ot.name %><br/ >
+
+		<% end %>
+	</div>
+
 <% end %>
-

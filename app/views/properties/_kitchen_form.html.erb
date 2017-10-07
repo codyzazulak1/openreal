@@ -6,57 +6,85 @@
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
-
+	<div>
 	<label> What is the condition of your kitchen?</label>
 
 	<% @kc.each do |feat|%>
 
 		<% if ((!(session[:kitch].blank?) && session[:kitch]["kc"].include?((feat.id).to_s)) ) %>
-			<%= radio_button_tag "kitchen[kc]", feat.id, true %>
+			<%= radio_button_tag "kitchen[kc]", feat.id, true,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% else %>
-			<%= radio_button_tag "kitchen[kc]", feat.id, false%>
+			<%= radio_button_tag "kitchen[kc]", feat.id, false,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      } %>
 		<% end %>
 
 		<%= label_tag feat.name %></br>
 
 	<% end %>
-
+	</div>
+	<div>
 	<label>Which countertops does your kitchen have?</label>
 	<% @kco.each do |feat|%>
 	
 		<% if (!(session[:kitch].blank?) && (session[:kitch]["kco"].include?((feat.id).to_s))) %>
-			<%= radio_button_tag 'kitchen[kco]', feat.id, true %>
+			<%= radio_button_tag 'kitchen[kco]', feat.id, true,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% else %>
-			<%= radio_button_tag 'kitchen[kco]', feat.id, false %>
+			<%= radio_button_tag 'kitchen[kco]', feat.id, false,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      } %>
 		<% end %>
 
 		<%= label_tag feat.name %></br>
 
 	<% end %>
-	
+	</div>
+	<div>
 	<label> What kind of kitchen appliances do you have?</label>
 	<% @ka.each do |feat|%>
 		
 		<% if (!(session[:kitch].blank?) && (session[:kitch]["ka"].include?((feat.id).to_s))) %>
-			<%= radio_button_tag 'kitchen[ka]', feat.id, true %>
+			<%= radio_button_tag 'kitchen[ka]', feat.id, true,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% else %>
-			<%= radio_button_tag 'kitchen[ka]', feat.id, false %>
+			<%= radio_button_tag 'kitchen[ka]', feat.id, false,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>
-
+	</div>
+	<div>
 	<label> Does your kitchen have any of the following features?</label>
 	<% @ke.each do |feat|%>
 
 		<% if (!(session[:kitch].blank?) && (session[:kitch]["ke"].include?((feat.id).to_s))) %>
-			<%= radio_button_tag 'kitchen[ke]', feat.id, true %>
+			<%= radio_button_tag 'kitchen[ke]', feat.id, true,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% else %>
-			<%= radio_button_tag 'kitchen[ke]', feat.id, false %>		
+			<%= radio_button_tag 'kitchen[ke]', feat.id, false,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>		
 		<% end %>
 		<%= label_tag feat.name %></br>
 
 	<% end %>
 
 	<% end %>
+	</div>
 </div>

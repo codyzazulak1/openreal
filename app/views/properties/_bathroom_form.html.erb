@@ -6,31 +6,40 @@
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
-
+	<div>
 	<label> What is the condition of your master bathroom?</label>
 
 	<% @bathc.each do |feat|%>
 
 		<% if ((!(session[:bath].blank?) && session[:bath]["bathc"].include?((feat.id).to_s)) ) %>
-			<%= radio_button_tag "bath[bathc]", feat.id, true %>
+			<%= radio_button_tag "bath[bathc]", feat.id, true,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% else %>
-			<%= radio_button_tag "bath[bathc]", feat.id, false %>
+			<%= radio_button_tag "bath[bathc]", feat.id, false,  data: {
+        'validation' => "required",
+        'validation-error-msg' => "One option selected required."
+      }  %>
 		<% end %>				
 		<%= label_tag feat.name %></br>
 
 	<% end %>
-	<br>
+	</div>
+		<br>
+	<div>
 	<label>Which features does your master bathroom have?</label>
 	<% @bathe.each do |ba|%>
 
 		<% if ((!(session[:bath].blank?) && session[:bath]["bathe"].include?((ba.id).to_s)) ) %>
-			<%= check_box_tag 'bath[bathe][]', ba.id, true %>
+						<%= check_box_tag 'bath[bathe][]', ba.id, true, class: 'cb-sell' %>
 		<% else %>
-			<%= check_box_tag 'bath[bathe][]', ba.id, false %>
+						<%= check_box_tag 'bath[bathe][]', ba.id, false, class: 'cb-sell' %>
 		<% end %>
 		<%= label_tag ba.name %></br>
 
 	<% end %>
 	
 	<% end %>
+	</div>
 </div>
