@@ -81,13 +81,13 @@ def self.finden(address)
 		end
 		
 		if browser.div(id: 'prevLandRow').present?
-			prev_land_price = browser.div(id: 'span_PreviousAssessedLand').text
+			prev_land_price = browser.span(id: 'span_PreviousAssessedLand').text
 		else
 			prev_land_price = 'Not available'
 		end
 
 		if browser.div(id: 'prevBuildingRow').present?
-			prev_building_price = browser.div(id: 'span_PreviousAssessedBuilding').text
+			prev_building_price = browser.span(id: 'span_PreviousAssessedBuilding').text
 		else
 			prev_building_price = 'Not Available'
 		end
