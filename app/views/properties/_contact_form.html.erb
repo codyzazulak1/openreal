@@ -6,16 +6,12 @@
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name, 'Name *'%>
-    <%= cf.text_field :name, data: {
-     validation: "required" 
-    }, placeholder: "What can we call you?", class: 'cform_field' %>
+    <%= cf.text_field :name, required: 'required', placeholder: "What can we call you?", class: 'cform_field' %>
   </div>
 
   <div>
     <%= cf.label :email, 'E-mail *'%>
-    <%= cf.email_field :email, data: {
-     validation: "required" 
-    }, placeholder: "example@email.com", class: 'cform_field' %>
+    <%= cf.email_field :email, required: 'required', placeholder: "example@email.com", class: 'cform_field' %>
   </div>
 
   <div>
