@@ -17,7 +17,7 @@ namespace :upgrade do
 	other_name					= ['Permitted addition', 'Unpermitted addition', 'Leased solar panels', 'Owned solar panels', 'Known foundation issues', 'Gated community', 'Known history of chemical contamination']
 
 	kitchen_condition 	= ['Kitchen needs repairs', 'Some scuffs, stains, or chips', 'Near perfect condition']
-	kitchen_countertops = ['Granite slab', 'Granite tile', 'Other tile', 'Corian', 'Formica', 'Quartz', "Other/Don't know"]
+	kitchen_countertops = ['Granite slab', 'Granite tile', 'Other tile', 'Quartz', "Other/Don't know"]
 	kitchen_appliances 	= ['All stainless steel', 'All black', 'All white', 'Mixed', "Other/Don't know"]
 	kitchen_extra_feat 	= ['Kitchen Island', "New cabinets", "Tile backsplash", "None of the above"]
 
