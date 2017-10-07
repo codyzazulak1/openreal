@@ -32,17 +32,11 @@
 
 		<% if (!(session[:features].blank?) && (session[:features].include?((feat.id).to_s))) %>
 
-			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, true, data: {
-        'validation' => "required",
-        'validation-error-msg' => "One option selected required."
-      } %>
+			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, true, required:' required' %>
 
 		<% else %>
 
-			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, false, data: {
-			'validation' => "required",
-			'validation-error-msg' => "One option selected required"
-		} %>
+			<%= radio_button_tag 'property[property_upgrades_attributes][upgrade_id][]', feat.id, false, required: 'required' %>
 
 		<% end %>
 
