@@ -17,7 +17,20 @@ class Dashboard::ContactFormsController < ApplicationController
 
   def show
     @form = ContactForm.find(params[:id])
-  end
+  	@pr_upgrades = PropertyUpgrade.where(property_id: @form.property_id)
+		ary = []
+
+		@pr_upgrades.each {|pu|
+			ary << pu.upgrade_id unless pu.upgrade_id.nil?
+		}
+		
+		@upgrades = []
+
+		ary.each {|i|
+			@upgrades << Upgrade.find(i)
+		}
+
+	end
 
   def new
     @form = ContactForm.new
