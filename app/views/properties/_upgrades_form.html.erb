@@ -33,7 +33,7 @@ if (document.getElementById('uc_yes').checked == false){
 $('#uc_yes').on('change', function(){
 	if (document.getElementById('uc_yes').checked == false){
 	
-		$('#property_upgrade_cost').val(0)
+		$('#property_upgrade_cost').val("0")
 		$('#property_upgrade_cost').prop('disabled', true);
 	}
 	else if (document.getElementById('uc_yes').checked == true){
@@ -46,8 +46,9 @@ $('#uc_no').on('change', function(){
 		$('#property_upgrade_cost').prop('disabled', false)
 	}
 	else if (document.getElementById('uc_no').checked == true){
-		$('#property_upgrade_cost').val(0);
+		$('#property_upgrade_cost').val("0");
 		$('#property_upgrade_cost').prop('disabled', true)
+		$('#property_upgrade_cost').attr('value', '0')
 }
 
 });
