@@ -21,19 +21,6 @@ owned_properties.each do |u|
   puts "Owned Properties ------ #{u}"
 end
 
-arr =
-[
-  "bathroom",
-  "pool",
-  "basement",
-  "kitchen"
-]
-
-arr.each do |u|
-
-  Upgrade.create(name: u)
-
-end
 
 Admin.create(first_name: "Steven", last_name: "Kang", email: "stevenk@openreal.ca", password: "openadminsk", password_confirmation: "openadminsk")
 Admin.create(first_name: "Fio", last_name: "Leon-Gomez", email: "fiol@openreal.ca", password: "openadminfl", password_confirmation: "openadminfl")

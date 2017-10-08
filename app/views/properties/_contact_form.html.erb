@@ -1,32 +1,24 @@
 <%- title "Sell Your Home"%>
 <%= image_tag('sales_page/img-3')%>
-<div>Step 3 of 3</div>
-<h3>How can we contact you?</h3>
+<div>Step 7 of 7</div>
+<h3>Where should we send your offer?</h3>
 <br>
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name, 'Name *'%>
-    <%= cf.text_field :name, data: {
-     validation: "required" 
-    }, placeholder: "What can we call you?" %>
+    <%= cf.text_field :name, required: 'required', placeholder: "What can we call you?", class: 'cform_field' %>
   </div>
 
   <div>
     <%= cf.label :email, 'E-mail *'%>
-    <%= cf.email_field :email, data: {
-     validation: "required" 
-    }, placeholder: "example@email.com" %>
+    <%= cf.email_field :email, required: 'required', placeholder: "example@email.com", class: 'cform_field' %>
   </div>
 
   <div>
-    <%= cf.label :phone %>
-    <%= cf.text_field :phone, placeholder: "" %>
+    <%= cf.label :phone, "Phone (Optional)" %>
+    <%= cf.text_field :phone, placeholder: "", class: 'cform_field' %>
   </div>
 
-  <div>
-    <%= cf.label :notes, "Message" %>
-    <%= cf.text_field :notes, placeholder: "" %>
-  </div>
   <div>
     <%= cf.label :timeframe, "How soon do you want to sell your home?" %>
     <%= cf.select :timeframe, options_for_select([
@@ -35,5 +27,10 @@
       ["4-6 weeks", 2],
       ["6+ weeks", 3],
       ["No preference", 4]]) %>
+	</div>
+
+  <div>
+		<%= cf.label :notes, "What else should we know about your home or neighborhood? (Optional)" %>
+    <%= cf.text_area :notes, placeholder: "", cols: 20, class: 'cform_field' %>
   </div>
 <%end%>

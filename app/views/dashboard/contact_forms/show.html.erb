@@ -1,5 +1,5 @@
-
-
+<br>
+<br>
  <div class="row padded-r-t">
  	<div class="small-6 small-centered columns">
 		<h2>Contact information</h2>
@@ -8,16 +8,11 @@
 
 		<div class="row"></div>
 		<div class="small-6 columns">
-			<p>Email: </p>
-			<p>Phone: </p>
+						<p>Email: <%= @form.email%> </p>
+						<p>Phone: <%= @form.phone%> </p>
 		</div>
 
-		<div class="small-6 columns">
-			<%= @form.email %>
-			<%= @form.phone %>
-		</div>
-
-		<div class="row">
+		<div>
 			<div class="small-12 columns">
 			<%= form_for @form, url: dashboard_contact_form_path(@form), html: {method: :put} do |f| %>
 			  <p>Status: <%= select_tag(:status, options_for_select([
@@ -28,11 +23,47 @@
 			  <% end %>
 			 </div>
 		</div>
-
+		
 		<div class="row padded-r-b">
 			<div class="columns">
 				<textarea readonly>Notes: <%= @form.notes %></textarea>
 			</div>
+		</div>
+		<div class="small-12 medium-12 columns">
+						<h4><%= "#{@form.property.address.address_first} #{@form.property.address.address_second}"%></h4>			
+			<h4>Property features</h4>
+		
+			<% @upgrades.each do |u|%>
+			
+				<% if u.section == 'pool' %>
+					
+					<p><%= "#{u.section.capitalize}: #{u.name}"%></p>
+	
+				<% elsif u.section == 'other'%>
+						
+					<p><%= "#{u.section.capitalize}:" %></p>
+					<ul>
+						<li><%= "#{u.name}"%></li>
+					</ul>
+
+				<% elsif u.section == 'bathroom'%>
+					
+						<% if u.feature == 'extra_features'%>
+								<p>Master bedroom  features</p>
+								<ul><li><%= u.name  %></li></ul>
+						<% else %>	
+								<p> Condition of master bedroom: <%= "#{u.name}" %></p>
+						<% end %>
+				
+				<% elsif u.section == 'home_yard' %>
+						<p> <%= "Home and yard #{u.feature}: #{u.name}"%> </p>
+				<% else %>
+							
+					<p> <%="#{u.section.capitalize} #{u.feature}: #{u.name}"%></p>
+
+				<% end %>
+
+		<% end%>
 		</div>
 
 
