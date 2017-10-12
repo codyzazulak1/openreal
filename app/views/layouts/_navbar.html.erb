@@ -1,9 +1,10 @@
 <% arypages = [howitworks_path, contact_us_path, faq_path, terms_path, contact_path, agents_path, root_path]%>
-
-<% if current_page?('/listings')%>
-<nav id="navbar">
+<% if request.path == '/properties/new' %>
+	<nav id="navbar">
+<% elsif current_page?('/listings')%>	
+	<nav id="navbar">
 <% else %>
-<nav id="navbar" style="position: fixed; width: 100%;">
+	<nav id="navbar" style="position: fixed; width: 100%;">
 <% end %>
   <div class="top-bar">
     <div class="float-left" style="display: inline-block;">

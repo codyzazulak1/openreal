@@ -1,12 +1,14 @@
 <%- title "Sell Your Home"%>
-<%= image_tag('sales_page/img-1')%>
+<div class="columns small-12">
+<%= image_tag('sales_page/page6.svg', id: 'page_svg_6')%>
 <div>Step 6 of 7</div> 
 <h3>Home &amp; Yard</h3>
 <br>
+</div>
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
-	<div>
+	<div class="columns small-12 medium-11">
 	<label> What is the condition of your flooring?</label>
 
 	<% @hyflo.each do |feat|%>
@@ -22,11 +24,12 @@
         'validation-error-msg' => "One option selected required."
       }  %>
 		<% end %>
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name, feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
+	<br>
 	</div>
-	<div>
+	<div class="columns small-12 medium-11">
 	<label>What kind of flooring is in your main living area?</label>
 	<% @hyliv.each do |feat|%>
 
@@ -41,12 +44,13 @@
         'validation-error-msg' => "One option selected required."
       }  %>
 		<% end %>
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name,feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
+	<br>
 	</div>
-	<div>
-	<label> How about the condition of your interior paint??</label>
+	<div class="columns small-12 medium-11">
+	<label> How about the condition of your interior paint?</label>
 	<% @hyp.each do |feat|%>
 	
 		<% if ((!(session[:hy].blank?) && session[:hy]["hyp"].include?((feat.id).to_s)) ) %>
@@ -60,12 +64,13 @@
         'validation-error-msg' => "One option selected required."
       }  %>
 		<% end %>
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name, feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
+	<br>
 	</div>
-	<div>
-	<label> What is the condition of your backyard??</label>
+	<div class="columns small-12 medium-11 end">
+	<label> What is the condition of your backyard?</label>
 	<% @hyback.each do |feat|%>
 
 		<% if ((!(session[:hy].blank?) && session[:hy]["hyback"].include?((feat.id).to_s)) ) %>
@@ -79,10 +84,11 @@
         'validation-error-msg' => "One option selected required."
       }  %>
 		<% end %>
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name, feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
 
 	<% end %>
+	<br>
 	</div>
 </div>

@@ -245,8 +245,8 @@ class PropertiesController < ApplicationController
     @contact.property = @property
     @contact.status = Status.find_by(name: "Unappraised").name 
     @contact.sub_type = "Property Submission"
-
-  	#for upgrades
+  	
+		#for upgrades
 			@pool 	= upgrade_pool
 			@other 	= upgrade_other
 			@kc 		= upgrade_kitchen_condition
@@ -278,13 +278,31 @@ class PropertiesController < ApplicationController
       elsif @property.last_step?
         
 				if @property.all_valid?
+				
+					if @property.stories.is_a? String
+						if @property.stories.include? ('+')
+							@property.stories = @property.stories.split('+')[0].to_i
+						end
+					end
 					
+					if @property.bedrooms.is_a? String
+						if @property.bedrooms.include? ('+')
+								@property.bedrooms = @property.bedrooms.split('+')[0].to_i
+						end
+					end
+
+					if @property.bathrooms.is_a? String
+						if @property.bathrooms.include? ("+")
+								@property.bathrooms = @property.bathrooms.split('+')[0].to_i
+						end
+					end
+
 					if @property.save
 
 								session[:features].each { |x|
 									@property.property_upgrades.create(property_id: @property.id, upgrade_id: x.to_i) unless x == nil
 								}	
-								session[:kitch].values.each { |k|
+								session[:kitch].values.flatten.each { |k|
 									@property.property_upgrades.create(property_id: @property.id, upgrade_id: k.to_i) unless k == nil
 								}
 								session[:bath].values.flatten.each { |b| 

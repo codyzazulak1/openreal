@@ -1,8 +1,10 @@
 <%- title "Sell Your Home"%>
-<%= image_tag('sales_page/img-3')%>
+<div class="small-12">
+<%= image_tag('sales_page/page7.svg')%>
 <div>Step 7 of 7</div>
 <h3>Where should we send your offer?</h3>
 <br>
+</div>
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name, 'Name *'%>
