@@ -1,12 +1,15 @@
 <%- title "Sell Your Home"%>
-<%= image_tag('sales_page/img-1')%>
+<div class="columns small-12">
+<%= image_tag('sales_page/page4.svg', id: 'page_svg_4') %>
 <div>Step 4 of 7</div> 
 <h3>Kitchen</h3>
 <br />
+</div>
+
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
-	<div>
+	<div class="columns small-12 medium-11">
 	<label> What is the condition of your kitchen?</label>
 
 	<% @kc.each do |feat|%>
@@ -23,11 +26,12 @@
       } %>
 		<% end %>
 
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name , feat.name ,style: "display: inline;" %></br>
 
 	<% end %>
+	<br/>
 	</div>
-	<div>
+	<div class="columns small-12 medium-11">
 	<label>Which countertops does your kitchen have?</label>
 	<% @kco.each do |feat|%>
 	
@@ -43,11 +47,13 @@
       } %>
 		<% end %>
 
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name , feat.name , style: "display: inline;" %></br>
 
 	<% end %>
+
+	<br/>
 	</div>
-	<div>
+	<div class="columns small-12 medium-11">
 	<label> What kind of kitchen appliances do you have?</label>
 	<% @ka.each do |feat|%>
 		
@@ -62,29 +68,26 @@
         'validation-error-msg' => "One option selected required."
       }  %>
 		<% end %>
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name, feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
+
+	<br/>
 	</div>
-	<div>
+	<div class="columns small-12 medium-11 end">
 	<label> Does your kitchen have any of the following features?</label>
 	<% @ke.each do |feat|%>
 
 		<% if (!(session[:kitch].blank?) && (session[:kitch]["ke"].include?((feat.id).to_s))) %>
-			<%= radio_button_tag 'kitchen[ke]', feat.id, true,  data: {
-        'validation' => "required",
-        'validation-error-msg' => "One option selected required."
-      }  %>
+						<%= check_box_tag 'kitchen[ke][]', feat.id, true, id: "kitchen_#{feat.id}" ,class: 'cb-sell' %>
 		<% else %>
-			<%= radio_button_tag 'kitchen[ke]', feat.id, false,  data: {
-        'validation' => "required",
-        'validation-error-msg' => "One option selected required."
-      }  %>		
+						<%= check_box_tag 'kitchen[ke][]', feat.id, false, id: "kitchen_#{feat.id}", class: 'cb-sell' %>		
 		<% end %>
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name, feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
 
 	<% end %>
 	</div>
 </div>
+

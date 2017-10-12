@@ -1,12 +1,15 @@
 <%- title "Sell Your Home"%>
-<%= image_tag('sales_page/img-1')%>
+<div class="columns small-12">
+<%= image_tag('sales_page/page5.svg',id: 'page_svg_5')%>
 <div>Step 5 of 7</div> 
 <h3>Bathroom</h3>
 <br />
+</div>
+
 <div class="container">
 
 	<%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
-	<div>
+	<div class="columns small-12 medium-11">
 	<label> What is the condition of your master bathroom?</label>
 
 	<% @bathc.each do |feat|%>
@@ -22,12 +25,12 @@
         'validation-error-msg' => "One option selected required."
       }  %>
 		<% end %>				
-		<%= label_tag feat.name %></br>
+		<%= label_tag feat.name, feat.name, style: "display: inline;"  %></br>
 
 	<% end %>
+	<br>
 	</div>
-		<br>
-	<div>
+		<div class="columns small-12 medium-11 end">
 	<label>Which features does your master bathroom have?</label>
 	<% @bathe.each do |ba|%>
 
@@ -36,7 +39,7 @@
 		<% else %>
 						<%= check_box_tag 'bath[bathe][]', ba.id, false, class: 'cb-sell' %>
 		<% end %>
-		<%= label_tag ba.name %></br>
+		<%= label_tag ba.name, ba.name, style: "display: inline;"  %></br>
 
 	<% end %>
 	
