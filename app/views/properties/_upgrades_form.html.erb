@@ -1,5 +1,5 @@
 <%- title "Sell Your Home"%>
-<%= image_tag('sales_page/img-1')%>
+<%= image_tag('sales_page/page3.svg')%>
 <div>Step 3 of 7</div>
 <h3>Upgrades</h3>
 <br />
@@ -21,13 +21,14 @@
 
 	<label>If yes, how much have you spent on renovations?</label>
 	
-	<%= fp.text_field :upgrade_cost %>
+	<%= fp.text_field :upgrade_cost, placeholder: '$###,###'%>
 </div>
 
 <script>
 
 if (document.getElementById('uc_yes').checked == false){
 	$('#property_upgrade_cost').prop('disabled', true);
+	//$('#property_upgrade_cost').val("");
 }
 
 $('#uc_yes').on('change', function(){
@@ -38,6 +39,7 @@ $('#uc_yes').on('change', function(){
 	}
 	else if (document.getElementById('uc_yes').checked == true){
 		$('#property_upgrade_cost').prop('disabled', false)
+		$('#property_upgrade_cost').val('')
 	}							
 })
 
@@ -47,10 +49,19 @@ $('#uc_no').on('change', function(){
 	}
 	else if (document.getElementById('uc_no').checked == true){
 		$('#property_upgrade_cost').val("0");
-		$('#property_upgrade_cost').prop('disabled', true)
-		$('#property_upgrade_cost').attr('value', '0')
-}
-
+		$('#property_upgrade_cost').attr('value', '0')}
 });
+
+$('#property_upgrade_cost').on('click', function(){
+	if (document.getElementById('uc_no').checked == true){
+		$('#property_upgrade_cost').prop('disabled', true);
+	setTimeout(function(){
+		$('#property_upgrade_cost').prop('disabled', false);
+		$('#property_upgrade_cost').val("0");
+	}, 1500)
+	
+	}
+
+})
 
 </script>
