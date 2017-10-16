@@ -152,11 +152,11 @@ class PropertiesController < ApplicationController
   def new
 	
     session[:property_params] 	||= {}
-    session[:address] 					||= {}
+    session[:address_params] 		||= {}
     session[:property_upgrades] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
     @property 						 = Property.new
-    @address 							 = Address.new(session[:address].merge({property: @property}))
+    @address 							 = Address.new(session[:address_params].merge({property: @property}))
     @address 				 		 ||= Address.new(property: @property)
     @contact 					 		 = ContactForm.new
 	 	@property_upgrades 		 = 	@property.property_upgrades.build
@@ -231,14 +231,14 @@ class PropertiesController < ApplicationController
    # session[:params] = session[:params].nil? ? params : params.merge(session[:params])
     session[:property] 				||= property_params unless params[:property].nil?
     session[:property] 					= session[:property].merge(property_params) unless params[:property].nil?
-    session[:address] 					= address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
+    session[:address_params]		= address_params if !params[:property].nil? && !params[:property][:address_attributes].nil?
     session[:contact] 					= contact_params if !params[:property].nil? && !params[:property][:contact_form_attributes].nil?
 		
 		session[:property].delete("property_upgrades_attributes")
 		
 		@property = Property.new(session[:property])
 		@property.list_price_cents = 0
-    @address ||= Address.new(session[:address])
+    @address ||= Address.new(session[:address_params])
     @contact = ContactForm.new(session[:contact])
     @property.current_step = session[:property_step]
 		@property_upgrades = @property.property_upgrades.build
@@ -332,7 +332,7 @@ class PropertiesController < ApplicationController
     if @property.new_record?
       render 'new'
     else
-      session[:property_step] = session[:property] = session[:address] = session[:property_upgrades] = session[:kitch] = session[:bath] = session[:hy] = session[:features] = nil 
+      session[:property_step] = session[:property] = session[:address_params] = session[:property_upgrades] = session[:kitch] = session[:bath] = session[:hy] = session[:features] = nil 
       render "confirmed"
     end
   end
