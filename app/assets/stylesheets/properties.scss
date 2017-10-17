@@ -771,12 +771,12 @@ input:checked ~ .switch-paddle::after {
 #new-property-form {
   //padding-bottom: 1rem;
  // margin-top: 60px;
-	margin-top: 0.1em;
+	margin-top: 6.1em;
 	
 	[id^='page_svg_'] {
 		border: none;
 		border-radius: 0;
-		margin-right: initial;
+		margin-right: 1em;
 		margin-top: initial;
 	}
 
@@ -810,11 +810,13 @@ input:checked ~ .switch-paddle::after {
     padding: 0.2em 2.5em;
     font-weight: 400;
     border: 4px solid;
+		border-radius: 0;
   }
   input[type=submit]:hover {
     background: #68c0ea;
     color: white;
     border: 4px solid #68c0ea;
+		border-radius: 0;
   }
 
   .progress {

@@ -1,67 +1,70 @@
 <%- title "Sell Your Home"%>
-<%= image_tag('sales_page/page3.svg')%>
-<div>Step 3 of 7</div>
-<h3>Upgrades</h3>
-<br />
-<div>
-	<label> Have you renovated your home since you purchased it?</label>		
-	<% if @property.upgrade_cost == 0 %>
+<div class="columns">
+
+	<%= image_tag('sales_page/page3.svg')%>
+	<div>Step 3 of 7</div>
+	<h3>Upgrades</h3>
+	<br />
+	<div>
+		<label> Have you renovated your home since you purchased it?</label>		
+		<% if @property.upgrade_cost == 0 %>
 	
-		<%= radio_button_tag "uc", "yes", false %><small> Yes, I have </small> <br />
+			<%= radio_button_tag "uc", "yes", false %><small> Yes, I have </small> <br />
 
-		<%= radio_button_tag "uc", "no", true %> <small>No </small> <br />
+			<%= radio_button_tag "uc", "no", true %> <small>No </small> <br />
 
-	<% elsif @property.upgrade_cost > 0%>
+		<% elsif @property.upgrade_cost > 0%>
 				
-		<%= radio_button_tag "uc", "yes", true %><small> Yes, I have </small> <br />
+			<%= radio_button_tag "uc", "yes", true %><small> Yes, I have </small> <br />
 
-		<%= radio_button_tag "uc", "no", false  %> <small>No </small> <br />
+			<%= radio_button_tag "uc", "no", false  %> <small>No </small> <br />
 
-	<% end %>
+		<% end %>
 
-	<label>If yes, how much have you spent on renovations?</label>
+		<label>If yes, how much have you spent on renovations?</label>
 	
-	<%= fp.text_field :upgrade_cost, placeholder: '$###,###'%>
+		<%= fp.text_field :upgrade_cost, placeholder: '$###,###'%>
+	</div>
+
 </div>
+	<script>
 
-<script>
-
-if (document.getElementById('uc_yes').checked == false){
-	$('#property_upgrade_cost').prop('disabled', true);
-	//$('#property_upgrade_cost').val("");
-}
-
-$('#uc_yes').on('change', function(){
 	if (document.getElementById('uc_yes').checked == false){
-	
-		$('#property_upgrade_cost').val("0")
 		$('#property_upgrade_cost').prop('disabled', true);
+		$('#property_upgrade_cost').val("$0");
 	}
-	else if (document.getElementById('uc_yes').checked == true){
-		$('#property_upgrade_cost').prop('disabled', false)
-		$('#property_upgrade_cost').val('')
-	}							
-})
 
-$('#uc_no').on('change', function(){
-	if (document.getElementById('uc_no').checked == false){
-		$('#property_upgrade_cost').prop('disabled', false)
-	}
-	else if (document.getElementById('uc_no').checked == true){
-		$('#property_upgrade_cost').val("0");
-		$('#property_upgrade_cost').attr('value', '0')}
-});
-
-$('#property_upgrade_cost').on('click', function(){
-	if (document.getElementById('uc_no').checked == true){
-		$('#property_upgrade_cost').prop('disabled', true);
-	setTimeout(function(){
-		$('#property_upgrade_cost').prop('disabled', false);
-		$('#property_upgrade_cost').val("0");
-	}, 1500)
+	$('#uc_yes').on('change', function(){
+		if (document.getElementById('uc_yes').checked == false){
 	
-	}
+			$('#property_upgrade_cost').val("0")
+			$('#property_upgrade_cost').prop('disabled', true);
+		}
+		else if (document.getElementById('uc_yes').checked == true){
+			$('#property_upgrade_cost').prop('disabled', false)
+			$('#property_upgrade_cost').val('')
+		}							
+	})
 
-})
+	$('#uc_no').on('change', function(){
+		if (document.getElementById('uc_no').checked == false){
+			$('#property_upgrade_cost').prop('disabled', false)
+		}
+		else if (document.getElementById('uc_no').checked == true){
+			$('#property_upgrade_cost').val("0");
+			$('#property_upgrade_cost').attr('value', '0')}
+	});
 
-</script>
+	$('#property_upgrade_cost').on('click', function(){
+		if (document.getElementById('uc_no').checked == true){
+			$('#property_upgrade_cost').prop('disabled', true);
+		setTimeout(function(){
+			$('#property_upgrade_cost').prop('disabled', false);
+			$('#property_upgrade_cost').val("0");
+		}, 1500)
+	
+		}
+
+	})
+
+	</script>

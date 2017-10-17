@@ -1,10 +1,11 @@
 <%- title "Sell Your Home"%>
-<div class="small-12">
+<div class="columns small-12">
 <%= image_tag('sales_page/page7.svg')%>
 <div>Step 7 of 7</div>
 <h3>Where should we send your offer?</h3>
 <br>
 </div>
+<div class="columns ">
 <%= fp.fields_for :contact_form, @contact do |cf| %>
   <div>
     <%= cf.label :name, 'Name *'%>
@@ -34,5 +35,6 @@
   <div>
 		<%= cf.label :notes, "What else should we know about your home or neighborhood? (Optional)" %>
     <%= cf.text_area :notes, placeholder: "", cols: 20, class: 'cform_field' %>
-  </div>
+	</div>
+</div>
 <%end%>

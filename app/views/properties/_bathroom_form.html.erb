@@ -35,9 +35,9 @@
 	<% @bathe.each do |ba|%>
 
 		<% if ((!(session[:bath].blank?) && session[:bath]["bathe"].include?((ba.id).to_s)) ) %>
-						<%= check_box_tag 'bath[bathe][]', ba.id, true, class: 'cb-sell' %>
+						<%= check_box_tag 'bath[bathe][]', ba.id, true, class: 'cb-sell', id: "bath[bathe][]_#{ba.id}" %>
 		<% else %>
-						<%= check_box_tag 'bath[bathe][]', ba.id, false, class: 'cb-sell' %>
+						<%= check_box_tag 'bath[bathe][]', ba.id, false, class: 'cb-sell', id: "bath[bathe][]_#{ba.id}" %>
 		<% end %>
 		<%= label_tag ba.name, ba.name, style: "display: inline;"  %></br>
 
