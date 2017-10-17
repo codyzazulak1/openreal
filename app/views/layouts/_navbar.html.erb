@@ -1,6 +1,6 @@
 <% arypages = [howitworks_path, contact_us_path, faq_path, terms_path, contact_path, agents_path, root_path]%>
 <% if request.path == '/properties/new' %>
-	<nav id="navbar">
+	<nav id="navbar" style="position: fixed; width: 100%;">
 <% elsif current_page?('/listings')%>	
 	<nav id="navbar">
 <% else %>
@@ -174,5 +174,10 @@
           </li>
         </ul>
     </div>
+	</div>
+	<% if request.path == '/properties/new' && !(@property.last_step?) %> 
+	<div class="progress round" role="progressbar" tabindex="0" aria-valuenow="<%= @property.current_progress %>" aria-valuemin="0" style="border-radius: 0;margin-bottom:0.2px;" aria-valuetext="<%= @property.current_progress %> percent"  aria-valuemax="100">
+    <div class="progress-meter" style="width: <%= @property.current_progress %>%" ></div>
   </div>
+	<% end %>
 </nav>

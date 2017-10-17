@@ -1,7 +1,4 @@
 <%= form_for @property, url: properties_new_path, :html => { :multipart => true , id: "new-property-form", data: 'abide'} do |fp| %>
-  <div class="progress round" role="progressbar" tabindex="0" aria-valuenow="<%= @property.current_progress %>" aria-valuemin="0" aria-valuetext="<%= @property.current_progress %> percent"  aria-valuemax="100">
-    <div class="progress-meter" style="width: <%= @property.current_progress %>%" ></div>
-  </div>
   <% if @property.first_step?%>
     <div class="sell-title">
       <h2>Selling is simple!</h2>
@@ -13,11 +10,23 @@
     <div class="small-12 small-centered medium-6 medium-centered columns sales-box-wrapper">
       <%= render "properties/#{@property.current_step}_form", :fp => fp %>
       <div class="row collapse">
-        <div class="medium-12 columns text-right">
-          <%#= fp.submit "Back", :name => "back_button", class: "btn btn-secondary", id: "back-btn" unless @property.first_step? %>
-          <%= fp.submit "Next", class: "btn btn-primary", id: "submit-btn" unless @property.last_step? %>
+				<div class="medium-12 columns text-right">
+							
+					<div class="columns small-6 show-for-small-only">
+						<%= fp.submit "Back", :name => "back_button", class: "btn btn-secondary", id: "back-btn" unless @property.first_step? %>
+					</div>
+					<div class="columns small-6 show-for-small-only">
+						<%= fp.submit "Next", class: "btn btn-primary", id: "submit-btn" unless @property.last_step? %>
+					</div>
+					<div class="columns small-6 show-for-small-only">	
+         		<%= fp.submit "Submit", class: "btn btn-primary" if @property.last_step? %>
+					</div>
+					<div class="hide-for-small-only">
+						<%= fp.submit "Back", :name => "back_button", class: "btn btn-secondary", id: "back-btn" unless @property.first_step? %>
+						<%= fp.submit "Next", class: "btn btn-primary", id: "submit-btn" unless @property.last_step? %>
+        		<%= fp.submit "Submit", class: "btn btn-primary" if @property.last_step? %>
+					</div>
           <%#= fp.submit "Skip", class: "btn btn-primary", id: "submit-btn" if @property.current_step == 'upgrades' %>
-          <%= fp.submit "Submit", class: "btn btn-primary" if @property.last_step? %>
         </div>
       </div>
     </div>
