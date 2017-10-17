@@ -13,17 +13,17 @@
 
 <div class="columns small-12 medium-9">
   <%= fp.label :stories %>
-	<%= fp.select :stories, options_for_select([1,2,'3+'], selected: (@property.stories.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true}%>
+	<%= fp.select :stories, options_for_select([1,2,['3+', 3]], selected: ("#{@property.stories.to_s}" unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true}%>
 </div>
 
 <div class="columns small-12 medium-9">
   <%= fp.label :bedrooms %>
-  <%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6,'7+'], selected: (@property.bedrooms.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
+	<%= fp.select :bedrooms,  options_for_select([1,2,3,4,5,6,['7+', 7]], selected: ("#{@property.bedrooms.to_s}" unless @property.bedrooms.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
 
 <div  class="columns small-12 medium-9">
   <%= fp.label :bathrooms %>
-  <%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6,'7+'], selected: (@property.bathrooms.to_s unless @property.stories.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
+	<%= fp.select :bathrooms, options_for_select([1,2,3,4,5,6,['7+', 7]], selected: ("#{@property.bathrooms.to_s}" unless @property.bathrooms.blank?)), {data: { 'validation' => "required" }}, {prompt: true} %>
 </div>
 
 <%= fp.fields_for :property_upgrades, @property_upgrades do |pu|%>
