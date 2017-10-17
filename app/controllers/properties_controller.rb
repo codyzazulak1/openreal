@@ -151,7 +151,7 @@ class PropertiesController < ApplicationController
 
   def new
 	
-    session[:property_params] 	||= {}
+    session[:property] 	||= {}
     session[:address_params] 		||= {}
     session[:property_upgrades] ||= {}
     # session[:params] = session[:params].nil? ? {} : params.merge(session[:params])
@@ -267,7 +267,7 @@ class PropertiesController < ApplicationController
 		session[:kitch] = params[:kitchen] unless params[:kitchen].nil?
 		session[:bath] = params[:bath]	unless params[:bath].nil?
 		session[:hy] = params[:hy] unless params[:hy].nil?
-		
+	
     # if @property.valid?
     if params
 
