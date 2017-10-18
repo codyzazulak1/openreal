@@ -78,7 +78,7 @@
 						</div>
 
 						<div class="small-4 columns status-prop-agents" id="status-prop-agents-<%= p.id%>">
-							<% if p.status_id === 9%>
+							<% if p.status_id == 9%>
 								<p>Status:  <span class="pending">Pending Approval</span></p>
 							<% elsif p.status_id == 5%>
 								<p>Status:  <span class="live">Live</span></p>
