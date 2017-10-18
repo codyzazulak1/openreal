@@ -14,7 +14,7 @@ namespace :upgrade do
 
 	pool_name 					= ['Yes, You have an in-ground private pool', 'Yes, an above-ground private pool', 'Community pool', 'No pool']
 
-	other_name					= ['Permitted addition', 'Unpermitted addition', 'Leased solar panels', 'Owned solar panels', 'Known foundation issues', 'Gated community', 'Known history of chemical contamination']
+	other_name					= ['Permitted addition', 'Unpermitted addition', 'Leased solar panels', 'Owned solar panels', 'Known foundation issues', 'Gated community', 'Known history of chemical contamination', 'None of the above']
 
 	kitchen_condition 	= ['Kitchen needs repairs', 'Some scuffs, stains, or chips', 'Near perfect condition']
 	kitchen_countertops = ['Granite slab', 'Granite tile', 'Other tile', 'Quartz', "Other/Don't know"]
