@@ -58,15 +58,15 @@
              <% if u.include? "building_type"%>
                <%= f.label u%>
                <!-- downcase -froze string issue -->
-               <%= f.select(u.to_sym, options_for_select([' Penthouse', ' 1 Storey','1 Storey w/ Basement', ' 2 Storey','2 Storey w/ Basement' ,' 3 Storey','3 Storey w/ Basement', 'Corner Unit'])) %>
+               <%= f.select(u.to_sym, options_for_select([' Penthouse', ' 1 Storey','1 Storey w/ Basement', ' 2 Storey','2 Storey w/ Basement' ,' 3 Storey','3 Storey w/ Basement', 'Corner Unit'], selected: (@property.building_type.to_s unless @property.building_type.nil?) )) %>
 
              <% elsif u.include? "property_type"%>
                <%= f.label u %>
-               <%= f.select(u.to_sym, options_for_select(['Residential Attached', 'Residential Detached'])) %>
+               <%= f.select(u.to_sym, options_for_select(['Residential Attached', 'Residential Detached'], selected: (@property.property_type.to_s unless @property.property_type.nil?) )) %>
 
              <% elsif u.include? 'title_to_land'%>
               <%= f.label u %>
-              <%= f.select(u.to_sym, options_for_select(['Freehold NonStrata', 'Freehold Strata']))%>
+              <%= f.select(u.to_sym, options_for_select(['Freehold NonStrata', 'Freehold Strata'], selected: (@property.title_to_land.to_s unless @property.title_to_land.nil?) ))%>
 
              <% elsif u.include? "list_price_cents"%>
              <%= f.label u, 'Listing price'%>
@@ -78,7 +78,7 @@
              </div>
              <% elsif u.include? "dwelling_class"%>
               <%= f.label u%>
-              <%= f.select(u.to_sym, options_for_select(['House/Single Family', 'House/Multi-Family', 'Apartment', 'Townhouse'])) %>
+              <%= f.select(u.to_sym, options_for_select(['House/Single Family', 'House/Multi-Family', 'Apartment', 'Townhouse'], (@property.dwelling_class.to_s unless @property.dwelling_class.nil?) )) %>
              <% else %>
                <%= f.label u %>
                <%= f.text_field u.to_sym %>
@@ -102,12 +102,12 @@
               <% elsif u.include? "property_type"%>
               <div class="columns small-12 medium-6">
               <%= f.label u%>
-              <%= f.select(u.to_sym, options_for_select(['Residential Attached', 'Residential Detached'])) %>
+              <%= f.select(u.to_sym, options_for_select(['Residential Attached', 'Residential Detached']), selected: (@property.property_type.to_s unless @property.property_type.nil?) ) %>
 
              <% elsif u.include? "building_type"%>
              <div class="columns small-12 medium-6">
               <%= f.label u %>
-              <%= f.select(u.to_sym, options_for_select([' Penthouse', ' 1 Storey', ' 2 Storey', ' 3 Storey', 'Corner Unit'])) %>
+              <%= f.select(u.to_sym, options_for_select([' Penthouse', ' 1 Storey', ' 2 Storey', ' 3 Storey', 'Corner Unit'], selected: (@property.building_type.to_s unless @property.building_type.nil?) )) %>
              </div>
              <% elsif u.include? "list_price_cents"%>
              <div class="columns small-12 medium-6 input-group">
