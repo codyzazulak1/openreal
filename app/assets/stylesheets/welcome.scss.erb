@@ -1548,6 +1548,49 @@
   }
 }
 
+.customer-dashex {
+	padding-bottom: 0;
+	
+	.border-container {
+		 border: 4px solid #68c0ea;
+		 border-bottom: 0;
+		 box-shadow: 2px 3px 25px 8px lightgrey;
+	}	
+	.cu-title {
+		h5 {
+			padding-top: 1em;
+		}
+	}
+
+	.comparable-container {
+		.cu-1 {
+			p:first-child {
+				margin-bottom: 0;
+			}
+			p {
+			text-align: left;
+			}
+		}
+
+		.cu-2 {
+			p {
+				line-height: 0.6;
+				font-size: smaller;
+			}
+			h5 {
+				margin-bottom: 0;
+				font-weight: 500;
+			}
+		}
+	}
+}
+
+@media (max-width: 450px){
+	.border-container {
+		border: none!important;
+	}
+}
+
 @media (max-width: 320px){
   #actionModalHomeSmall .small-modal-logo {
    // margin-top: -42px!important;
